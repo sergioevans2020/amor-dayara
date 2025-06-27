@@ -25,28 +25,55 @@
       align-items: center;
     }
 
-    /* Texto en movimiento */
-    .mensaje-movimiento {
-      width: 100%;
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      color: #d63384;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 700;
-      padding: 20px 0;
-      animation: deslizar 12s linear infinite;
-      z-index: 10;
+    /* Contenedor para el texto en movimiento con la barra */
+    .mensaje-movimiento-wrapper {
       position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 60px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       user-select: none;
-      text-shadow: 0 0 10px #d63384cc;
+      z-index: 10;
+    }
+    /* La barra rosa detrás */
+    .barra-rosa {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 120%;
+      height: 40px;
+      background: linear-gradient(90deg, #ff69b4, #d63384);
+      border-radius: 25px;
+      transform: translateY(-50%);
+      animation: deslizar 12s linear infinite;
+      z-index: 1;
+      filter: drop-shadow(0 0 10px #d63384bb);
+    }
+
+    /* Texto en movimiento sobre la barra */
+    .mensaje-movimiento {
+      position: absolute;
+      white-space: nowrap;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-family: 'Great Vibes', cursive;
+      color: white;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      padding: 0 20px;
+      animation: deslizar 12s linear infinite;
+      z-index: 2;
+      text-shadow: 0 0 10px #910048cc;
     }
 
     @keyframes deslizar {
       0% {
-        transform: translateX(100%);
+        transform: translateX(100%) translateY(-50%);
       }
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-120%) translateY(-50%);
       }
     }
 
@@ -75,16 +102,22 @@
       }
     }
 
-    /* Posiciones de frases */
+    /* Posiciones de frases nuevas y viejas */
     .fr1 { top: 8%; left: 5%; }
     .fr2 { top: 22%; right: 8%; }
     .fr3 { bottom: 18%; left: 7%; }
     .fr4 { bottom: 15%; right: 12%; }
     .fr5 { top: 50%; left: 45%; }
+    /* Nuevas frases */
+    .fr6 { top: 35%; right: 40%; }
+    .fr7 { top: 70%; left: 12%; }
+    .fr8 { bottom: 30%; right: 30%; }
+    .fr9 { top: 60%; right: 15%; }
+    .fr10 { bottom: 8%; left: 50%; }
 
     /* Contenedor central */
     .centro {
-      margin-top: 140px;
+      margin-top: 80px;
       background: rgba(255 255 255 / 0.85);
       padding: 40px 25px 50px 25px;
       border-radius: 20px;
@@ -174,17 +207,54 @@
     .sticker3 { bottom: 15%; left: 12%; animation-delay: 3s; }
     .sticker4 { bottom: 10%; right: 10%; animation-delay: 2s; }
 
+    /* Stich stickers grandes (de fondo) */
+    .stich {
+      position: fixed;
+      font-size: 10rem;
+      opacity: 0.15;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+      animation: floatSlow 6s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+    .stich-rosa {
+      top: 20%;
+      left: 10%;
+      color: #ff69b4; /* rosa */
+      animation-delay: 0s;
+      transform-origin: center;
+    }
+    .stich-azul {
+      bottom: 15%;
+      right: 8%;
+      color: #1e90ff; /* azul */
+      animation-delay: 3s;
+      transform-origin: center;
+    }
+
+    @keyframes floatSlow {
+      0% {
+        transform: translateY(0) rotate(-5deg);
+      }
+      100% {
+        transform: translateY(-15px) rotate(5deg);
+      }
+    }
+
     /* Responsive */
     @media (max-width: 480px) {
       .frase {
         display: none; /* para no saturar en móviles */
       }
+      .mensaje-movimiento-wrapper {
+        height: 50px;
+      }
       .mensaje-movimiento {
         font-size: 1.8rem;
-        padding: 15px 0;
       }
       .centro {
-        margin-top: 100px;
+        margin-top: 60px;
         padding: 30px 20px 40px 20px;
       }
       .texto-centro {
@@ -197,37 +267,45 @@
         font-size: 1rem;
         padding: 18px 15px;
       }
+      /* Esconder Stich en móviles para menos distracción */
+      .stich {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Texto en movimiento -->
-  <div class="mensaje-movimiento" aria-label="Mensaje de amor en movimiento">
-    Te amo mi princesa, siempre serás mi amor perfecto 💖
+  <!-- Texto en movimiento con barra -->
+  <div class="mensaje-movimiento-wrapper" aria-label="Mensaje de amor en movimiento con barra rosa">
+    <div class="barra-rosa"></div>
+    <div class="mensaje-movimiento">
+      Te amo mi princesa, siempre serás mi amor perfecto 💖
+    </div>
   </div>
 
-  <!-- Frases románticas decorativas -->
-  <div class="frase fr1" aria-hidden="true">Eres mi todo 💕</div>
-  <div class="frase fr2" aria-hidden="true">Nuestro amor es eterno 🌹</div>
-  <div class="frase fr3" aria-hidden="true">Siempre tú y yo 💑</div>
-  <div class="frase fr4" aria-hidden="true">Gracias por existir ✨</div>
-  <div class="frase fr5" aria-hidden="true">Tú haces mi vida mejor 🌸</div>
+  <!-- Stich stickers grandes de fondo -->
+  <div class="stich stich-rosa" aria-hidden="true">🐰</div>
+  <div class="stich stich-azul" aria-hidden="true">🐰</div>
 
-  <!-- Stickers emoji -->
-  <div class="sticker sticker1" aria-hidden="true">💖</div>
-  <div class="sticker sticker2" aria-hidden="true">🌷</div>
-  <div class="sticker sticker3" aria-hidden="true">💫</div>
-  <div class="sticker sticker4" aria-hidden="true">🌺</div>
+  <!-- Frases románticas -->
+  <div class="frase fr1">Eres mi todo</div>
+  <div class="frase fr2">Nuestro amor es eterno</div>
+  <div class="frase fr3">Siempre tú y yo</div>
+  <div class="frase fr4">Gracias por existir</div>
+  <div class="frase fr5">Tú haces mi vida mejor</div>
+  <div class="frase fr6">Contigo soy feliz</div>
+  <div class="frase fr7">Eres mi sol en días grises</div>
+  <div class="frase fr8">Te quiero más que ayer</div>
+  <div class="frase fr9">Juntos, siempre</div>
+  <div class="frase fr10">Eres mi sueño hecho realidad</div>
 
   <!-- Contenedor central -->
   <div class="centro">
     <div class="texto-centro">
       Tengo algo muy importante que decirte bb
     </div>
-    <button class="boton" id="boton-mensaje" aria-expanded="false" aria-controls="mensaje">
-      AMOR
-    </button>
+    <button class="boton" onclick="mostrarMensaje()" aria-expanded="false" aria-controls="mensaje">AMOR</button>
     <div id="mensaje" role="region" aria-live="polite">
       Desde ese primer día que te vi, supe que eras para mí. <br />
       Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
@@ -235,21 +313,15 @@
   </div>
 
   <script>
-    const boton = document.getElementById('boton-mensaje');
-    const mensaje = document.getElementById('mensaje');
-
-    boton.addEventListener('click', () => {
-      if (mensaje.classList.contains('show')) {
-        mensaje.classList.remove('show');
-        boton.textContent = 'AMOR';
-        boton.setAttribute('aria-expanded', 'false');
-      } else {
-        mensaje.classList.add('show');
-        boton.textContent = 'OCULTAR';
+    function mostrarMensaje() {
+      const mensaje = document.getElementById("mensaje");
+      if (!mensaje.classList.contains("show")) {
+        mensaje.classList.add("show");
+        // Cambiar aria-expanded para accesibilidad
+        const boton = document.querySelector('.boton');
         boton.setAttribute('aria-expanded', 'true');
-        mensaje.focus();
       }
-    });
+    }
   </script>
 </body>
 </html>
