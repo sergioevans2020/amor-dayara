@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para mi princesa Dayara</title>
+  <style>
+    body { margin: 0; font-family: 'Brush Script MT', cursive; background-color: #ffd1dc; overflow-x: hidden; position: relative; }
+    .mensaje-movimiento { width: 100%; text-align: center; color: #ff69b4; font-size: 24px; animation: deslizar 10s linear infinite; font-weight: bold; }
+    @keyframes deslizar { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+    .centro { text-align: center; margin-top: 100px; }
+    .texto-centro { font-size: 32px; color: #c71585; background: url('https://i.pinimg.com/originals/f1/f7/9e/f1f79ec73dbcf0c87b72bfb01498cb93.png'); background-size: contain; background-repeat: no-repeat; background-position: center; padding: 60px 20px; }
+    .boton { margin-top: 20px; padding: 15px 30px; font-size: 20px; background-color: #2196F3; color: white; border: none; border-radius: 10px; cursor: pointer; transition: background 0.3s; }
+    .boton:hover { background-color: #0b7dda; }
+    .rosas { position: absolute; width: 100px; height: 100px; animation: flotar 4s infinite alternate; }
+    .rosa1 { top: 0; left: 0; }
+    .rosa2 { top: 0; right: 0; }
+    .rosa3 { bottom: 0; left: 0; }
+    .rosa4 { bottom: 0; right: 0; }
+    @keyframes flotar { from { transform: translateY(0); } to { transform: translateY(10px); } }
+    .mensaje-escondido { display: none; margin-top: 30px; font-size: 22px; color: #d63384; max-width: 600px; margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+  <div class="mensaje-movimiento">Te amo mi princesa, siempre serás mi amor perfecto</div>
+  <img src="https://www.pngmart.com/files/17/Rose-Transparent-Background.png" class="rosas rosa1" />
+  <img src="https://www.pngmart.com/files/17/Rose-Transparent-PNG.png" class="rosas rosa2" />
+  <img src="https://www.pngmart.com/files/17/Pink-Rose-Transparent-PNG.png" class="rosas rosa3" />
+  <img src="https://www.pngmart.com/files/17/Beautiful-Pink-Rose-PNG.png" class="rosas rosa4" />
+  <div class="centro">
+    <div class="texto-centro">Tengo algo muy importante que decirte bb</div>
+    <button class="boton" onclick="mostrarMensaje()">AMOR</button>
+    <div id="mensaje" class="mensaje-escondido">
+      Desde ese primer día que te vi, supe que eras para mí.<br />
+      Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
+    </div>
+  </div>
+  <script>
+    function mostrarMensaje() {
+      document.getElementById("mensaje").style.display = "block";
+    }
+  </script>
+</body>
+</html>
