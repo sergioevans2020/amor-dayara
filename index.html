@@ -2,131 +2,254 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Para mi princesa Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background-color: #ffe6f0;
+      background: linear-gradient(135deg, #ffe6f0 0%, #f9c5d1 100%);
       overflow-x: hidden;
+      color: #c71585;
+      min-height: 100vh;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
+    /* Texto en movimiento */
     .mensaje-movimiento {
       width: 100%;
       text-align: center;
       font-family: 'Great Vibes', cursive;
       color: #d63384;
-      font-size: 30px;
-      font-weight: bold;
-      padding: 20px;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      padding: 20px 0;
       animation: deslizar 12s linear infinite;
-      z-index: 2;
+      z-index: 10;
       position: relative;
+      user-select: none;
+      text-shadow: 0 0 10px #d63384cc;
     }
 
     @keyframes deslizar {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
     }
 
-    .centro {
+    /* Frases románticas (decorativas) */
+    .frase {
+      position: absolute;
+      font-weight: 700;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: #b30059cc;
+      max-width: 180px;
       text-align: center;
-      margin-top: 120px;
-      z-index: 2;
+      opacity: 0.9;
+      text-shadow: 0 0 4px #b30059aa;
+      animation: brillo 3s ease-in-out infinite alternate;
+      user-select: none;
+    }
+    @keyframes brillo {
+      0% {
+        text-shadow: 0 0 4px #b30059aa;
+        opacity: 0.8;
+      }
+      100% {
+        text-shadow: 0 0 15px #ff66b2;
+        opacity: 1;
+      }
+    }
+
+    /* Posiciones de frases */
+    .fr1 { top: 8%; left: 5%; }
+    .fr2 { top: 22%; right: 8%; }
+    .fr3 { bottom: 18%; left: 7%; }
+    .fr4 { bottom: 15%; right: 12%; }
+    .fr5 { top: 50%; left: 45%; }
+
+    /* Contenedor central */
+    .centro {
+      margin-top: 140px;
+      background: rgba(255 255 255 / 0.85);
+      padding: 40px 25px 50px 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(199, 21, 133, 0.25);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      z-index: 20;
       position: relative;
     }
 
+    /* Texto central */
     .texto-centro {
-      font-size: 36px;
-      color: #c71585;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
       font-family: 'Great Vibes', cursive;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 40px 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      color: #a60056;
+      margin-bottom: 25px;
+      user-select: none;
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 8px #a6005680;
     }
 
+    /* Botón */
     .boton {
-      margin-top: 25px;
-      padding: 15px 35px;
-      font-size: 20px;
-      background-color: #2196F3;
-      color: white;
+      padding: 15px 40px;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      background-color: #d63384;
+      color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background 0.3s;
-      font-weight: bold;
+      font-weight: 700;
+      box-shadow: 0 6px 15px rgba(214, 51, 132, 0.5);
+      transition: background-color 0.4s, box-shadow 0.4s;
+      user-select: none;
+    }
+    .boton:hover,
+    .boton:focus {
+      background-color: #a60056;
+      box-shadow: 0 8px 20px rgba(166, 0, 86, 0.75);
+      outline: none;
     }
 
-    .boton:hover {
-      background-color: #0b7dda;
-    }
-
-    .mensaje-escondido {
-      display: none;
+    /* Mensaje escondido con transición suave */
+    #mensaje {
       margin-top: 30px;
-      font-size: 22px;
-      color: #c71585;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 10px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: #a60056;
+      max-width: 100%;
+      background-color: rgba(255 255 255 / 0.95);
+      padding: 22px 20px;
+      border-radius: 15px;
       font-family: 'Quicksand', sans-serif;
-    }
-
-    .frase {
-      position: absolute;
-      font-weight: bold;
-      font-family: 'Great Vibes', cursive;
-      font-size: 22px;
-      color: #b30059;
-      max-width: 200px;
+      box-shadow: 0 4px 15px rgba(199, 21, 133, 0.25);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.6s ease, max-height 0.6s ease;
+      user-select: text;
+      line-height: 1.5;
       text-align: center;
-      opacity: 0.9;
+    }
+    #mensaje.show {
+      opacity: 1;
+      max-height: 500px; /* suficiente para el contenido */
     }
 
-    .fr1 { top: 10%; left: 5%; }
-    .fr2 { top: 20%; right: 10%; }
-    .fr3 { bottom: 20%; left: 8%; }
-    .fr4 { bottom: 15%; right: 12%; }
-    .fr5 { top: 50%; left: 45%; }
+    /* Stickers (emojis) decorativos */
+    .sticker {
+      position: fixed;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      user-select: none;
+      animation: floatUpDown 4s ease-in-out infinite;
+      opacity: 0.7;
+      z-index: 5;
+      pointer-events: none;
+      filter: drop-shadow(0 0 2px #b30059cc);
+    }
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Posiciones stickers */
+    .sticker1 { top: 10%; left: 10%; animation-delay: 0s; }
+    .sticker2 { top: 15%; right: 15%; animation-delay: 1.5s; }
+    .sticker3 { bottom: 15%; left: 12%; animation-delay: 3s; }
+    .sticker4 { bottom: 10%; right: 10%; animation-delay: 2s; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .frase {
+        display: none; /* para no saturar en móviles */
+      }
+      .mensaje-movimiento {
+        font-size: 1.8rem;
+        padding: 15px 0;
+      }
+      .centro {
+        margin-top: 100px;
+        padding: 30px 20px 40px 20px;
+      }
+      .texto-centro {
+        font-size: 2.2rem;
+      }
+      .boton {
+        width: 100%;
+      }
+      #mensaje {
+        font-size: 1rem;
+        padding: 18px 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="mensaje-movimiento">
-    Te amo mi princesa, siempre serás mi amor perfecto
+  <!-- Texto en movimiento -->
+  <div class="mensaje-movimiento" aria-label="Mensaje de amor en movimiento">
+    Te amo mi princesa, siempre serás mi amor perfecto 💖
   </div>
 
-  <!-- Frases románticas -->
-  <div class="frase fr1">Eres mi todo</div>
-  <div class="frase fr2">Nuestro amor es eterno</div>
-  <div class="frase fr3">Siempre tú y yo</div>
-  <div class="frase fr4">Gracias por existir</div>
-  <div class="frase fr5">Tú haces mi vida mejor</div>
+  <!-- Frases románticas decorativas -->
+  <div class="frase fr1" aria-hidden="true">Eres mi todo 💕</div>
+  <div class="frase fr2" aria-hidden="true">Nuestro amor es eterno 🌹</div>
+  <div class="frase fr3" aria-hidden="true">Siempre tú y yo 💑</div>
+  <div class="frase fr4" aria-hidden="true">Gracias por existir ✨</div>
+  <div class="frase fr5" aria-hidden="true">Tú haces mi vida mejor 🌸</div>
 
+  <!-- Stickers emoji -->
+  <div class="sticker sticker1" aria-hidden="true">💖</div>
+  <div class="sticker sticker2" aria-hidden="true">🌷</div>
+  <div class="sticker sticker3" aria-hidden="true">💫</div>
+  <div class="sticker sticker4" aria-hidden="true">🌺</div>
+
+  <!-- Contenedor central -->
   <div class="centro">
     <div class="texto-centro">
       Tengo algo muy importante que decirte bb
     </div>
-    <button class="boton" onclick="mostrarMensaje()">AMOR</button>
-    <div id="mensaje" class="mensaje-escondido">
+    <button class="boton" id="boton-mensaje" aria-expanded="false" aria-controls="mensaje">
+      AMOR
+    </button>
+    <div id="mensaje" role="region" aria-live="polite">
       Desde ese primer día que te vi, supe que eras para mí. <br />
       Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
     </div>
   </div>
 
   <script>
-    function mostrarMensaje() {
-      document.getElementById("mensaje").style.display = "block";
-    }
+    const boton = document.getElementById('boton-mensaje');
+    const mensaje = document.getElementById('mensaje');
+
+    boton.addEventListener('click', () => {
+      if (mensaje.classList.contains('show')) {
+        mensaje.classList.remove('show');
+        boton.textContent = 'AMOR';
+        boton.setAttribute('aria-expanded', 'false');
+      } else {
+        mensaje.classList.add('show');
+        boton.textContent = 'OCULTAR';
+        boton.setAttribute('aria-expanded', 'true');
+        mensaje.focus();
+      }
+    });
   </script>
 </body>
 </html>
