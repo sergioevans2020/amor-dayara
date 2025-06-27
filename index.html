@@ -3,38 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para mi princesa Dayara</title>
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: 'Brush Script MT', cursive; background-color: #ffd1dc; overflow-x: hidden; position: relative; }
-    .mensaje-movimiento { width: 100%; text-align: center; color: #ff69b4; font-size: 24px; animation: deslizar 10s linear infinite; font-weight: bold; }
-    @keyframes deslizar { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-    .centro { text-align: center; margin-top: 100px; }
-    .texto-centro { font-size: 32px; color: #c71585; background: url('https://i.pinimg.com/originals/f1/f7/9e/f1f79ec73dbcf0c87b72bfb01498cb93.png'); background-size: contain; background-repeat: no-repeat; background-position: center; padding: 60px 20px; }
-    .boton { margin-top: 20px; padding: 15px 30px; font-size: 20px; background-color: #2196F3; color: white; border: none; border-radius: 10px; cursor: pointer; transition: background 0.3s; }
-    .boton:hover { background-color: #0b7dda; }
-    .rosas { position: absolute; width: 100px; height: 100px; animation: flotar 4s infinite alternate; }
-    .rosa1 { top: 0; left: 0; }
-    .rosa2 { top: 0; right: 0; }
-    .rosa3 { bottom: 0; left: 0; }
-    .rosa4 { bottom: 0; right: 0; }
-    @keyframes flotar { from { transform: translateY(0); } to { transform: translateY(10px); } }
-    .mensaje-escondido { display: none; margin-top: 30px; font-size: 22px; color: #d63384; max-width: 600px; margin-left: auto; margin-right: auto; }
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('https://i.imgur.com/FdfZbzs.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 192, 203, 0.4);
+      z-index: 0;
+    }
+
+    .frases {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 90%;
+      font-size: 18px;
+      color: #fff;
+      font-style: italic;
+      opacity: 0.6;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .mensaje-movimiento {
+      width: 100%;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      color: #fff0f5;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 20px;
+      animation: deslizar 12s linear infinite;
+      z-index: 2;
+      position: relative;
+    }
+
+    @keyframes deslizar {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .centro {
+      text-align: center;
+      margin-top: 120px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .texto-centro {
+      font-size: 36px;
+      color: #fff;
+      font-family: 'Great Vibes', cursive;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .boton {
+      margin-top: 25px;
+      padding: 15px 35px;
+      font-size: 20px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .boton:hover {
+      background-color: #0b7dda;
+    }
+
+    .mensaje-escondido {
+      display: none;
+      margin-top: 30px;
+      font-size: 22px;
+      color: #fff;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+    }
   </style>
 </head>
 <body>
+  <div class="overlay"></div>
+
   <div class="mensaje-movimiento">Te amo mi princesa, siempre serás mi amor perfecto</div>
-  <img src="https://www.pngmart.com/files/17/Rose-Transparent-Background.png" class="rosas rosa1" />
-  <img src="https://www.pngmart.com/files/17/Rose-Transparent-PNG.png" class="rosas rosa2" />
-  <img src="https://www.pngmart.com/files/17/Pink-Rose-Transparent-PNG.png" class="rosas rosa3" />
-  <img src="https://www.pngmart.com/files/17/Beautiful-Pink-Rose-PNG.png" class="rosas rosa4" />
+
+  <div class="frases">
+    💕 Eres la razón de mis sonrisas...<br>
+    💖 Contigo cada momento es mágico...<br>
+    💌 Nuestro amor no tiene fin...<br>
+    🌹 Si tuviera que elegir de nuevo, te volvería a elegir a ti...<br>
+    💞 Eres mi hogar, mi paz, mi todo...
+  </div>
+
   <div class="centro">
-    <div class="texto-centro">Tengo algo muy importante que decirte bb</div>
+    <div class="texto-centro">
+      Tengo algo muy importante que decirte bb
+    </div>
     <button class="boton" onclick="mostrarMensaje()">AMOR</button>
     <div id="mensaje" class="mensaje-escondido">
-      Desde ese primer día que te vi, supe que eras para mí.<br />
+      Desde ese primer día que te vi, supe que eras para mí. <br />
       Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
     </div>
   </div>
+
   <script>
     function mostrarMensaje() {
       document.getElementById("mensaje").style.display = "block";
