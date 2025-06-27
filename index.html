@@ -1,4 +1,3 @@
-<!-- Usa este archivo HTML completo -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +18,6 @@
       overflow-x: hidden;
       color: #c71585;
       min-height: 100vh;
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -81,30 +79,45 @@
       text-align: center;
       opacity: 0.9;
       text-shadow: 0 0 4px #b30059aa;
-      animation: brillo 3s ease-in-out infinite alternate;
       user-select: none;
+      z-index: 2;
     }
 
-    @keyframes brillo {
-      0% { opacity: 0.8; text-shadow: 0 0 4px #b30059aa; }
-      100% { opacity: 1; text-shadow: 0 0 15px #ff66b2; }
+    .frase-con-tooltip {
+      position: relative;
+      cursor: default;
     }
 
-    /* Recolocadas y nuevas frases */
-    .fr1 { top: 10%; left: 5%; }
-    .fr2 { top: 15%; right: 5%; }
-    .fr3 { top: 25%; left: 10%; }
-    .fr4 { top: 35%; right: 10%; }
-    .fr5 { bottom: 30%; left: 5%; }
-    .fr6 { bottom: 35%; right: 10%; }
-    .fr7 { bottom: 20%; left: 25%; }
-    .fr8 { bottom: 25%; right: 25%; }
-    .fr9 { top: 45%; left: 40%; }
-    .fr10 { bottom: 10%; right: 5%; }
-    .fr11 { top: 60%; left: 10%; }
-    .fr12 { top: 65%; right: 15%; }
-    .fr13 { bottom: 18%; left: 50%; }
-    .fr14 { top: 70%; right: 40%; }
+    .frase-con-tooltip .tooltip {
+      display: none;
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      background: #fff0f7;
+      color: #b30059;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1rem;
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      white-space: normal;
+      text-align: center;
+      line-height: 1.4;
+      z-index: 100;
+    }
+
+    .frase-con-tooltip:hover .tooltip,
+    .frase-con-tooltip.active .tooltip {
+      display: block;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(-5px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+    }
 
     .centro {
       margin-top: 80px;
@@ -145,28 +158,19 @@
       box-shadow: 0 8px 20px rgba(166, 0, 86, 0.75);
     }
 
-    #mensaje {
-      margin-top: 30px;
+    #mensaje, #pregunta, #respuesta {
+      display: none;
+      margin-top: 25px;
       font-size: 1.1rem;
-      color: #a60056;
-      background-color: rgba(255,255,255,0.95);
+      animation: aparecer 0.6s ease forwards;
+    }
+
+    #mensaje {
+      background: rgba(255,255,255,0.95);
       padding: 20px;
       border-radius: 15px;
+      color: #a60056;
       box-shadow: 0 4px 15px rgba(199, 21, 133, 0.25);
-      display: none;
-      animation: aparecer 0.6s ease forwards;
-    }
-
-    @keyframes aparecer {
-      0% { opacity: 0; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    #pregunta, #respuesta {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      display: none;
-      animation: aparecer 0.6s ease forwards;
     }
 
     .boton-secundario {
@@ -179,6 +183,11 @@
       color: white;
       cursor: pointer;
       font-weight: bold;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     .stich {
@@ -199,6 +208,22 @@
       100% { transform: translateY(-15px) rotate(5deg); }
     }
 
+    /* Posiciones frase */
+    .fr1 { top: 10%; left: 5%; }
+    .fr2 { top: 15%; right: 5%; }
+    .fr3 { top: 25%; left: 10%; }
+    .fr4 { top: 35%; right: 10%; }
+    .fr5 { bottom: 30%; left: 5%; }
+    .fr6 { bottom: 35%; right: 10%; }
+    .fr7 { bottom: 20%; left: 25%; }
+    .fr8 { bottom: 25%; right: 25%; }
+    .fr9 { top: 45%; left: 40%; }
+    .fr10 { bottom: 10%; right: 5%; }
+    .fr11 { top: 60%; left: 10%; }
+    .fr12 { top: 65%; right: 15%; }
+    .fr13 { bottom: 18%; left: 50%; }
+    .fr14 { top: 70%; right: 40%; }
+
     @media (max-width: 480px) {
       .frase { display: none; }
       .stich { display: none; }
@@ -214,58 +239,90 @@
     </div>
   </div>
 
-  <!-- Stickers de fondo estilo Stich -->
-  <div class="stich stich-rosa" aria-hidden="true">🐰</div>
-  <div class="stich stich-azul" aria-hidden="true">🐰</div>
+  <div class="stich stich-rosa">🐰</div>
+  <div class="stich stich-azul">🐰</div>
 
-  <!-- Frases románticas -->
-  <div class="frase fr1">Eres mi todo 💕</div>
-  <div class="frase fr2">Nuestro amor es eterno 🌹</div>
-  <div class="frase fr3">Siempre tú y yo 💑</div>
-  <div class="frase fr4">Gracias por existir ✨</div>
-  <div class="frase fr5">Tú haces mi vida mejor 🌸</div>
-  <div class="frase fr6">Contigo soy feliz 🎀</div>
-  <div class="frase fr7">Tu sonrisa es mi alegría 😍</div>
-  <div class="frase fr8">Eres el latido de mi corazón 💓</div>
-  <div class="frase fr9">Amarte es mi destino ✨</div>
-  <div class="frase fr10">Solo tú haces que todo valga la pena 💫</div>
-  <div class="frase fr11">Eres mi luz 💡</div>
-  <div class="frase fr12">Mi vida es mejor contigo 💘</div>
-  <div class="frase fr13">Contigo quiero todo ❤️</div>
-  <div class="frase fr14">Nada se compara a ti 🌷</div>
+  <!-- Frases con tooltips -->
+  <div class="frase frase-con-tooltip fr1">
+    Eres mi todo 💕
+    <div class="tooltip">En tu mirar, mi mundo gira, sin ti, amor, la vida expira.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr2">
+    Nuestro amor es eterno 🌹
+    <div class="tooltip">Ni el tiempo ni el viento nos borran la historia, somos eternos, tatuados en memoria.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr3">
+    Siempre tú y yo 💑
+    <div class="tooltip">Dos caminos, un destino, tú y yo, siempre unidos.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr4">
+    Gracias por existir ✨
+    <div class="tooltip">Tu presencia es sol naciente, mil gracias por ser tan presente.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr5">
+    Tú haces mi vida mejor 🌸
+    <div class="tooltip">Con solo sonreír, cambias mi cielo, mi vida florece con tu anhelo.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr6">
+    Contigo soy feliz 🎀
+    <div class="tooltip">A tu lado todo brilla más, eres mi paz, mi dulce hogar.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr7">
+    Tu sonrisa es mi alegría 😍
+    <div class="tooltip">Cuando sonríes, mi alma canta, se me olvida el mundo, se me espanta la falta.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr8">
+    Eres el latido de mi corazón 💓
+    <div class="tooltip">Mi corazón no sabe latir sin tu voz, tú eres su ritmo, su razón, su Dios.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr9">
+    Amarte es mi destino ✨
+    <div class="tooltip">No elegí amarte, fue el cielo quien guió, te encontré, y todo en mí renació.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr10">
+    Solo tú haces que todo valga la pena 💫
+    <div class="tooltip">Entre tantas razones para rendirme, tú eres la única para resistirme.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr11">
+    Eres mi luz 💡
+    <div class="tooltip">Cuando la oscuridad me toca el alma, tu luz me envuelve, me devuelve la calma.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr12">
+    Mi vida es mejor contigo 💘
+    <div class="tooltip">No sabía lo que era vivir de verdad, hasta que tu amor me enseñó la eternidad.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr13">
+    Contigo quiero todo ❤️
+    <div class="tooltip">Si sueño, te sueño en cada rincón, contigo lo quiero todo, sin condición.</div>
+  </div>
+  <div class="frase frase-con-tooltip fr14">
+    Nada se compara a ti 🌷
+    <div class="tooltip">He visto el cielo, las estrellas y el mar, pero a ti, amor, nada te puede igualar.</div>
+  </div>
 
-  <!-- Contenido central -->
   <div class="centro">
-    <div class="texto-centro">
-      Tengo algo muy importante que decirte bb
-    </div>
+    <div class="texto-centro">Tengo algo muy importante que decirte bb</div>
     <button class="boton" onclick="mostrarMensaje()">AMOR</button>
-    <div id="mensaje">
-      Desde ese primer día que te vi, supe que eras para mí. <br />
-      Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
-    </div>
-    <div id="pregunta">
-      ¿Te gustó?
-      <br />
-      <button class="boton-secundario" onclick="mostrarRespuesta()">SI &lt;3</button>
-    </div>
-    <div id="respuesta">
-      ME ALEGRO MI NIÑA PORQUE ERES LO MÁS VALIOSO QUE TENGO, MI DAYARA PRECIOSA. 💖
-    </div>
+    <div id="mensaje">Desde ese primer día que te vi, supe que eras para mí. <br />Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.</div>
+    <div id="pregunta">¿Te gustó?<br /><button class="boton-secundario" onclick="mostrarRespuesta()">SI &lt;3</button></div>
+    <div id="respuesta">ME ALEGRO MI NIÑA PORQUE ERES LO MÁS VALIOSO QUE TENGO, MI DAYARA PRECIOSA. 💖</div>
   </div>
 
   <script>
     function mostrarMensaje() {
-      const mensaje = document.getElementById("mensaje");
-      const pregunta = document.getElementById("pregunta");
-      mensaje.style.display = "block";
-      pregunta.style.display = "block";
+      document.getElementById("mensaje").style.display = "block";
+      document.getElementById("pregunta").style.display = "block";
+    }
+    function mostrarRespuesta() {
+      document.getElementById("respuesta").style.display = "block";
     }
 
-    function mostrarRespuesta() {
-      const respuesta = document.getElementById("respuesta");
-      respuesta.style.display = "block";
-    }
+    // Para móviles: mostrar tooltip al tocar
+    document.querySelectorAll('.frase-con-tooltip').forEach(frase => {
+      frase.addEventListener('touchstart', () => {
+        frase.classList.toggle('active');
+      });
+    });
   </script>
 </body>
 </html>
