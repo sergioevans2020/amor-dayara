@@ -4,16 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para mi princesa Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #fff;
       font-family: 'Quicksand', sans-serif;
-      background-image: url('https://i.imgur.com/tVDvGzA.png'); /* corazones pixelados */
-      background-repeat: repeat;
-      background-size: 40px;
+      background-color: #ffe6f0;
       overflow-x: hidden;
       position: relative;
     }
@@ -38,7 +35,7 @@
 
     .centro {
       text-align: center;
-      margin-top: 100px;
+      margin-top: 120px;
       z-index: 2;
       position: relative;
     }
@@ -87,16 +84,14 @@
     .frase {
       position: absolute;
       font-weight: bold;
-      font-style: italic;
       font-family: 'Great Vibes', cursive;
-      font-size: 20px;
+      font-size: 22px;
       color: #b30059;
-      opacity: 0.9;
       max-width: 200px;
       text-align: center;
+      opacity: 0.9;
     }
 
-    /* Posiciones de frases en la pantalla */
     .fr1 { top: 10%; left: 5%; }
     .fr2 { top: 20%; right: 10%; }
     .fr3 { bottom: 20%; left: 8%; }
@@ -107,4 +102,31 @@
 <body>
 
   <div class="mensaje-movimiento">
-    Te amo mi princesa, siempre
+    Te amo mi princesa, siempre serás mi amor perfecto
+  </div>
+
+  <!-- Frases románticas -->
+  <div class="frase fr1">Eres mi todo</div>
+  <div class="frase fr2">Nuestro amor es eterno</div>
+  <div class="frase fr3">Siempre tú y yo</div>
+  <div class="frase fr4">Gracias por existir</div>
+  <div class="frase fr5">Tú haces mi vida mejor</div>
+
+  <div class="centro">
+    <div class="texto-centro">
+      Tengo algo muy importante que decirte bb
+    </div>
+    <button class="boton" onclick="mostrarMensaje()">AMOR</button>
+    <div id="mensaje" class="mensaje-escondido">
+      Desde ese primer día que te vi, supe que eras para mí. <br />
+      Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
+    </div>
+  </div>
+
+  <script>
+    function mostrarMensaje() {
+      document.getElementById("mensaje").style.display = "block";
+    }
+  </script>
+</body>
+</html>
