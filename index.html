@@ -3,291 +3,247 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Para mi princesa Dayara 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+<title>Amor Dayara - Página Principal</title>
 <style>
-  /* Reset y body */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
   body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Quicksand', sans-serif;
-    background-color: #ffe6f0;
+    margin: 0; padding: 0;
+    background: #ffd9e8; /* rosa pastel claro */
+    font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+    color: #581845;
   }
 
-  /* Texto en movimiento en los 4 bordes */
-  .scroll-border {
+  /* Texto en movimiento alrededor del marco */
+  .marquee-container {
     position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     z-index: 10;
-    background: #ffcce5;
-  }
-  .scroll-border.top {
-    top: 0; left: 0; right: 0;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .scroll-border.top span {
-    white-space: nowrap;
-    font-family: 'Great Vibes', cursive;
-    color: #d63384;
-    font-weight: 700;
-    font-size: 20px;
-    animation: scrollHorizontal 20s linear infinite;
-  }
-  .scroll-border.bottom {
-    bottom: 0; left: 0; right: 0;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .scroll-border.bottom span {
-    white-space: nowrap;
-    font-family: 'Great Vibes', cursive;
-    color: #d63384;
-    font-weight: 700;
-    font-size: 20px;
-    animation: scrollHorizontalReverse 20s linear infinite;
-  }
-  .scroll-border.left {
-    top: 32px; bottom: 32px; left: 0;
-    width: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  .scroll-border.left span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: 'Great Vibes', cursive;
-    color: #d63384;
-    font-weight: 700;
-    font-size: 20px;
-    animation: scrollVertical 25s linear infinite;
-  }
-  .scroll-border.right {
-    top: 32px; bottom: 32px; right: 0;
-    width: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  .scroll-border.right span {
-    writing-mode: vertical-rl;
-    font-family: 'Great Vibes', cursive;
-    color: #d63384;
-    font-weight: 700;
-    font-size: 20px;
-    animation: scrollVerticalReverse 25s linear infinite;
   }
 
-  /* Animaciones textos */
-  @keyframes scrollHorizontal {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
-  @keyframes scrollHorizontalReverse {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-  @keyframes scrollVertical {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(-100%); }
-  }
-  @keyframes scrollVerticalReverse {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-
-  /* Corazones animados (sin imágenes) */
-  .heart {
+  .marquee-top, .marquee-bottom {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    background-color: #ff6b81;
-    transform: rotate(45deg);
-    animation: floatUp linear infinite;
-    opacity: 0.8;
-    border-radius: 3px 3px 0 0;
-    box-shadow:
-      -10px 0 0 #ff6b81,
-      0 -10px 0 #ff6b81;
-    z-index: 0;
-  }
-  .heart::before,
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #ff6b81;
-    border-radius: 50%;
-  }
-  .heart::before {
-    top: -10px;
-    left: 0;
-  }
-  .heart::after {
-    left: -10px;
-    top: 0;
+    width: 100%;
+    height: 30px;
+    background: transparent;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #831843;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px #ffffffaa;
+    user-select: none;
   }
 
-  @keyframes floatUp {
-    0% {
-      transform: translateY(100vh) rotate(45deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-150px) rotate(45deg);
-      opacity: 0;
-    }
+  .marquee-top {
+    top: 0; left: 0;
+  }
+  .marquee-bottom {
+    bottom: 0; left: 0;
   }
 
-  /* Gran corazón animado */
-  .big-heart {
+  .marquee-left, .marquee-right {
     position: fixed;
-    bottom: 10%;
-    right: 10%;
-    width: 150px;
-    height: 150px;
-    background-color: #ff6b81;
-    transform: rotate(45deg);
-    z-index: 0;
-    animation: heartbeat 2s infinite;
-    border-radius: 3px 3px 0 0;
-    box-shadow:
-      -75px 0 0 #ff6b81,
-      0 -75px 0 #ff6b81;
-    pointer-events: none;
+    width: 30px;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
+    color: #831843;
+    font-weight: 700;
+    font-size: 1.2rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    user-select: none;
+    text-shadow: 1px 1px 3px #ffffffaa;
   }
-  .big-heart::before,
-  .big-heart::after {
-    content: "";
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background-color: #ff6b81;
-    border-radius: 50%;
+  .marquee-left {
+    top: 0; left: 0;
   }
-  .big-heart::before {
-    top: -75px;
-    left: 0;
+  .marquee-right {
+    top: 0; right: 0;
   }
-  .big-heart::after {
-    left: -75px;
-    top: 0;
+
+  .marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marqueeX 15s linear infinite;
   }
-  @keyframes heartbeat {
-    0%, 100% { transform: rotate(45deg) scale(1); }
-    50% { transform: rotate(45deg) scale(1.15); }
+  .marquee-content-vertical {
+    display: inline-block;
+    padding-top: 100%;
+    animation: marqueeY 20s linear infinite;
+  }
+
+  @keyframes marqueeX {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-100%);}
+  }
+  @keyframes marqueeY {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100%);}
   }
 
   /* Contenedor principal */
   .container {
     position: relative;
     z-index: 20;
-    padding: 60px 20px;
     min-height: 100vh;
-    box-sizing: border-box;
-    text-align: center;
-  }
-
-  /* Titulo principal */
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 48px;
-    color: #b30059;
-    margin-bottom: 50px;
-    user-select: none;
-  }
-
-  /* Botones regalo */
-  .buttons {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 30px;
+    align-items: center;
+    padding: 60px 20px;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: #6f1d7e;
+    text-shadow: 0 2px 5px #e4a1d8cc;
+  }
+
+  /* Botones regalos */
+  .botones-regalos {
+    display: flex;
+    gap: 40px;
     flex-wrap: wrap;
-    margin-top: 40px;
+    justify-content: center;
   }
+
   button {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    padding: 15px 50px;
-    border-radius: 12px;
+    font-size: 1.4rem;
+    padding: 15px 40px;
     border: none;
+    border-radius: 40px;
     cursor: pointer;
-    color: white;
-    transition: background-color 0.3s ease;
-    user-select: none;
+    font-weight: 700;
+    box-shadow: 0 6px 10px #b173b9cc;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  button#regalo1 {
-    background-color: #2196F3;
+
+  button:focus {
+    outline: 3px solid #8e44ad;
+    outline-offset: 3px;
   }
-  button#regalo1:hover {
-    background-color: #0b7dda;
+
+  .btn-regalo1 {
+    background: #2d82b7;
+    color: #fff;
   }
-  button#regalo2 {
-    background-color: #e91e63;
+  .btn-regalo1:hover, .btn-regalo1:focus {
+    background: #195a80;
+    transform: scale(1.05);
   }
-  button#regalo2:hover {
-    background-color: #c2185b;
+
+  .btn-regalo2 {
+    background: #bf1e2e;
+    color: #fff;
+  }
+  .btn-regalo2:hover, .btn-regalo2:focus {
+    background: #7a121a;
+    transform: scale(1.05);
+  }
+
+  /* Corazones animados con CSS y JS */
+  .heart {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #ff6a9e, #ff346e);
+    transform: rotate(-45deg);
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 15px 15px 0 0;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #ff6a9e, #ff346e);
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -15px;
+    left: 0;
+  }
+  .heart::after {
+    left: 15px;
+    top: 0;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-200px) rotate(-45deg);
+      opacity: 0;
+    }
   }
 </style>
 </head>
 <body>
 
-  <!-- Texto en movimiento en los bordes -->
-  <div class="scroll-border top" aria-hidden="true">
-    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp; siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
-  </div>
-  <div class="scroll-border bottom" aria-hidden="true">
-    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp; siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
-  </div>
-  <div class="scroll-border left" aria-hidden="true">
-    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
-  </div>
-  <div class="scroll-border right" aria-hidden="true">
-    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
-  </div>
-
-  <!-- Corazones flotantes -->
-  <div aria-hidden="true">
-    <div class="heart" style="left: 5%; animation-duration: 15s; animation-delay: 0s;"></div>
-    <div class="heart" style="left: 12%; animation-duration: 12s; animation-delay: 3s;"></div>
-    <div class="heart" style="left: 20%; animation-duration: 18s; animation-delay: 1s;"></div>
-    <div class="heart" style="left: 28%; animation-duration: 14s; animation-delay: 4s;"></div>
-    <div class="heart" style="left: 35%; animation-duration: 16s; animation-delay: 2s;"></div>
-    <div class="heart" style="left: 42%; animation-duration: 13s; animation-delay: 6s;"></div>
-    <div class="heart" style="left: 50%; animation-duration: 19s; animation-delay: 5s;"></div>
-    <div class="heart" style="left: 58%; animation-duration: 11s; animation-delay: 1.5s;"></div>
-    <div class="heart" style="left: 65%; animation-duration: 15s; animation-delay: 0.5s;"></div>
-    <div class="heart" style="left: 72%; animation-duration: 17s; animation-delay: 3.5s;"></div>
-    <div class="heart" style="left: 80%; animation-duration: 14s; animation-delay: 2.5s;"></div>
-    <div class="heart" style="left: 88%; animation-duration: 16s; animation-delay: 4.5s;"></div>
-  </div>
-
-  <!-- Gran sticker corazón animado -->
-  <div class="big-heart" aria-hidden="true"></div>
-
-  <div class="container">
-    <h1>Para mi princesa Dayara 💖</h1>
-    <div class="buttons">
-      <button id="regalo1" onclick="location.href='regalo1.html'">REGALO 1</button>
-      <button id="regalo2" onclick="location.href='regalo2.html'">REGALO 2</button>
+  <!-- Texto animado en el marco -->
+  <div class="marquee-container" aria-hidden="true">
+    <div class="marquee-top" aria-hidden="true">
+      <div class="marquee-content">siempre seras mi niña 21/06/2025 &nbsp;&nbsp; siempre seras mi niña 21/06/2025 &nbsp;&nbsp;</div>
+    </div>
+    <div class="marquee-bottom" aria-hidden="true">
+      <div class="marquee-content" style="animation-direction: reverse;">siempre seras mi niña 21/06/2025 &nbsp;&nbsp; siempre seras mi niña 21/06/2025 &nbsp;&nbsp;</div>
+    </div>
+    <div class="marquee-left" aria-hidden="true">
+      <div class="marquee-content-vertical">siempre seras mi niña 21/06/2025 &nbsp;&nbsp;</div>
+    </div>
+    <div class="marquee-right" aria-hidden="true">
+      <div class="marquee-content-vertical" style="animation-direction: reverse;">siempre seras mi niña 21/06/2025 &nbsp;&nbsp;</div>
     </div>
   </div>
 
+  <!-- Contenido principal -->
+  <main class="container" role="main">
+    <h1>Amor Dayara 💖</h1>
+    <div class="botones-regalos" role="navigation" aria-label="Botones para acceder a los regalos">
+      <button class="btn-regalo1" onclick="location.href='regalo1.html'" aria-label="Abrir regalo 1: mensajes de amor">REGALO 1</button>
+      <button class="btn-regalo2" onclick="location.href='regalo2.html'" aria-label="Abrir regalo 2: calendarios románticos">REGALO 2</button>
+    </div>
+  </main>
+
+<script>
+  // Generar corazones animados aleatorios sin imágenes externas
+  const heartsCount = 25;
+  const body = document.body;
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.bottom = '-50px';
+    heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+    heart.style.opacity = 0.6 + Math.random() * 0.4;
+
+    body.appendChild(heart);
+
+    // Eliminar corazón cuando termine animación y crear otro
+    heart.addEventListener('animationend', () => {
+      heart.remove();
+      createHeart();
+    });
+  }
+
+  for(let i = 0; i < heartsCount; i++) {
+    setTimeout(createHeart, i * 300);
+  }
+</script>
+
 </body>
 </html>
-
