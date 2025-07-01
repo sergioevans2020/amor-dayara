@@ -1,138 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regalo 1 para Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #ffe6f0;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    .mensaje-movimiento {
-      width: 100%;
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      color: #d63384;
-      font-size: 30px;
-      font-weight: bold;
-      padding: 20px;
-      animation: deslizar 12s linear infinite;
-      z-index: 2;
-      position: relative;
-      background-color: #ffcce5;
-    }
-
-    @keyframes deslizar {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    .centro {
-      text-align: center;
-      margin-top: 100px;
-      z-index: 2;
-      position: relative;
-    }
-
-    .texto-centro {
-      font-size: 36px;
-      color: #c71585;
-      font-family: 'Great Vibes', cursive;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 40px 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .boton {
-      margin-top: 25px;
-      padding: 15px 35px;
-      font-size: 20px;
-      background-color: #2196F3;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.3s;
-      font-weight: bold;
-    }
-
-    .boton:hover {
-      background-color: #0b7dda;
-    }
-
-    .mensaje-escondido {
-      display: none;
-      margin-top: 30px;
-      font-size: 22px;
-      color: #c71585;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 10px;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    .respuesta {
-      display: none;
-      margin-top: 20px;
-      font-size: 20px;
-      color: #d63384;
-      font-weight: bold;
-    }
-
-    .piramide {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-    }
-
-    .piramide .fila {
-      display: flex;
-      justify-content: center;
-      margin: 5px 0;
-    }
-
-    .frase-box {
-      background-color: #ffccdd;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 10px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 20px;
-      color: #b30059;
-      position: relative;
-      transition: transform 0.2s;
-    }
-
-    .frase-box:hover::after {
-      content: attr(data-poema);
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #fff0f5;
-      color: #c71585;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-      font-size: 14px;
-      white-space: nowrap;
-      z-index: 10;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regalo 1 - Para Dayara 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset y base */
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #ffe6f0;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+  /* Texto en movimiento superior */
+  .mensaje-movimiento {
+    width: 100%;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    color: #d63384;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px 0;
+    position: relative;
+    background: linear-gradient(90deg, #ffc0cb 20%, #ff69b4 50%, #ffc0cb 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: deslizar 12s linear infinite;
+    z-index: 10;
+  }
+  @keyframes deslizar {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  /* Contenedor central */
+  .centro {
+    text-align: center;
+    margin-top: 120px;
+    position: relative;
+    z-index: 5;
+  }
+  .texto-centro {
+    font-size: 36px;
+    color: #c71585;
+    font-family: 'Great Vibes', cursive;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .boton {
+    margin-top: 25px;
+    padding: 15px 35px;
+    font-size: 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+    user-select: none;
+  }
+  .boton:hover {
+    background-color: #0b7dda;
+  }
+  /* Mensaje escondido */
+  .mensaje-escondido {
+    display: none;
+    margin-top: 30px;
+    font-size: 22px;
+    color: #c71585;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Quicksand', sans-serif;
+  }
+  /* Pregunta después del mensaje */
+  .pregunta {
+    display: none;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #b30059;
+    font-weight: 600;
+  }
+  .pregunta button {
+    margin-top: 10px;
+    padding: 10px 25px;
+    font-size: 18px;
+    background-color: #e91e63;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .pregunta button:hover {
+    background-color: #ad1457;
+  }
+  /* Texto final cuando se pulsa SI */
+  #gracias {
+    display: none;
+    margin-top: 25px;
+    font-size: 22px;
+    color: #d63384;
+    font-weight: 700;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 240, 245, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Great Vibes', cursive;
+  }
+  /* Pirámide frases */
+  .piramide {
+    max-width: 760px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    user-select: none;
+    position: relative;
+    z-index: 6;
+  }
+  .fila {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  .fila-1 { justify-content: center; }
+  .fila-2 { justify-content: center; }
+  .fila-3 { justify-content: center; }
+  .fila-4 { justify-content: center; }
+  /* Cada frase cuadro */
+  .frase-cuadro {
+    position: relative;
+    background: #ffc0cbaa;
+    border: 2px solid #ff69b4;
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    color: #b30059;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255,105,180,0.3);
+    min-width: 180px;
+    max-width: 220px;
+    transition: background-color 0.3s;
+  }
+  .frase-cuadro:hover,
+  .frase-cuadro.touch-active {
+    background-color: #ff69b4cc;
+  }
+  /* Tooltip estilo nube */
+  .tooltip {
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffc0cbbb;
+    color: #800040;
+    padding: 12px 18px;
+    border-radius: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    width: 260px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+  }
+  .tooltip.visible {
+    opacity: 1;
+  }
+  /* Explosión corazones */
+  .corazon {
+    position: fixed;
+    font-size: 25px;
+    animation-name: flotar;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  @keyframes flotar {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-150px) scale(1.4); opacity: 0; }
+  }
+</style>
 </head>
 <body>
+
   <div class="mensaje-movimiento">
     Te amo mi princesa, siempre serás mi amor perfecto
   </div>
@@ -141,41 +212,49 @@
     <div class="texto-centro">
       Tengo algo muy importante que decirte bb
     </div>
-    <button class="boton" onclick="mostrarMensaje()">AMOR</button>
+    <button id="botonAmor" class="boton">AMOR</button>
     <div id="mensaje" class="mensaje-escondido">
       Desde ese primer día que te vi, supe que eras para mí. <br />
       Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
-      <div style="margin-top: 20px;">
-        <p>¿Te gustó?</p>
-        <button class="boton" style="background-color: #e91e63;" onclick="mostrarRespuesta()">SI <3</button>
-        <div class="respuesta" id="respuesta">ME ALEGRO MI NIÑA POR QUE ERES LO MÁS VALIOSO QUE TENGO MI DAYARA PRECIOSA.</div>
+    </div>
+
+    <div class="pregunta" id="pregunta">
+      ¿Te gustó?
+      <br />
+      <button id="botonSi">SI &lt;3</button>
+    </div>
+
+    <div id="gracias">
+      ME ALEGRO MI NIÑA POR QUE ERES LO MÁS VALIOSO QUE TENGO MI DAYARA PRECIOSA.
+    </div>
+
+    <!-- Pirámide de frases -->
+    <div class="piramide" aria-label="Frases románticas en forma de pirámide">
+      <div class="fila fila-1">
+        <div class="frase-cuadro" tabindex="0" data-poema="Eres mi sol que ilumina mis días, el motivo de mis sonrisas y alegrías.">Eres mi sol</div>
+      </div>
+      <div class="fila fila-2">
+        <div class="frase-cuadro" tabindex="0" data-poema="Nuestro amor es un viaje sin fin, contigo a mi lado, todo es un festín.">Nuestro amor</div>
+        <div class="frase-cuadro" tabindex="0" data-poema="Tu risa es la melodía que quiero escuchar cada amanecer, eres mi paz y mi querer.">Tu risa</div>
+      </div>
+      <div class="fila fila-3">
+        <div class="frase-cuadro" tabindex="0" data-poema="Siempre tú y yo, construyendo sueños bajo el cielo estrellado.">Siempre tú y yo</div>
+        <div class="frase-cuadro" tabindex="0" data-poema="Gracias por existir, por llenar mi vida de magia y luz.">Gracias por existir</div>
+        <div class="frase-cuadro" tabindex="0" data-poema="Tú haces mi vida mejor, cada instante a tu lado es un tesoro sin valor.">Tú haces mi vida mejor</div>
+      </div>
+      <div class="fila fila-4">
+        <div class="frase-cuadro" tabindex="0" data-poema="Eres mi todo, mi principio y fin, la razón de mi existir sin fin.">Eres mi todo</div>
+        <div class="frase-cuadro" tabindex="0" data-poema="Amarte es mi destino, mi alegría, mi camino.">Amarte es mi destino</div>
+        <div class="frase-cuadro" tabindex="0" data-poema="Eres la melodía que da ritmo a mi corazón, la luz que guía mi pasión.">Melodía de amor</div>
+        <div class="frase-cuadro" tabindex="0" data-poema="Mi corazón late fuerte por ti, Dayara, mi amor sin fin.">Corazón late fuerte</div>
       </div>
     </div>
 
-    <div class="piramide">
-      <div class="fila">
-        <div class="frase-box" data-poema="Sin ti el día es gris, contigo todo es luz.">Eres mi sol</div>
-      </div>
-      <div class="fila">
-        <div class="frase-box" data-poema="Tú y yo, destino trazado por las estrellas.">Nuestro amor es destino</div>
-        <div class="frase-box" data-poema="Tus abrazos son mi paz, tus besos mi refugio.">Eres mi refugio</div>
-      </div>
-      <div class="fila">
-        <div class="frase-box" data-poema="Cada instante contigo es eternidad de amor.">Contigo el tiempo vuela</div>
-        <div class="frase-box" data-poema="Mi corazón sonríe con tu mirada.">Tus ojos, mi mundo</div>
-        <div class="frase-box" data-poema="Amarte es mi destino eterno.">Siempre tú y yo</div>
-      </div>
-    </div>
   </div>
 
-  <script>
-    function mostrarMensaje() {
-      document.getElementById("mensaje").style.display = "block";
-    }
-    function mostrarRespuesta() {
-      document.getElementById("respuesta").style.display = "block";
-    }
-  </script>
-</body>
-</html>
+  <!-- Tooltip para frases -->
+  <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
 
+  <!-- Audio embebido base64: suave melodía romántica corta -->
+  <audio id="audioRomantico" preload="auto" loop>
+    <source src="data:audio/mpeg;base64,//uQxAAADAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI
