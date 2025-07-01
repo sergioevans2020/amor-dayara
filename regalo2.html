@@ -1,167 +1,350 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Regalo 2 para Dayara 💜</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #f3e5f5;
-      background-image: url('https://i.imgur.com/zVbEfcG.png'); /* emoji/sticker decorativos de fondo */
-      background-size: 100px;
-      background-repeat: repeat;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 30px;
-      color: #7b1fa2;
-    }
-
-    .calendario {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 40px auto;
-    }
-
-    .mes {
-      margin-bottom: 50px;
-    }
-
-    .mes h2 {
-      color: #6a1b9a;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      background-color: #e1bee7;
-      padding: 10px;
-      border-radius: 10px;
-      max-width: 90vw;
-    }
-
-    .dia, .titulo-dia {
-      width: 40px;
-      height: 40px;
-      background-color: #f8bbd0;
-      color: #6a1b9a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      border-radius: 6px;
-      position: relative;
-    }
-
-    .titulo-dia {
-      background-color: #ce93d8;
-    }
-
-    .dia:hover::after {
-      content: attr(data-frase);
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff3ff;
-      color: #6a1b9a;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      white-space: nowrap;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      z-index: 10;
-    }
-
-    @media (max-width: 600px) {
-      .dia, .titulo-dia {
-        width: 35px;
-        height: 35px;
-        font-size: 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regalo 2 - Calendario de Amor para Dayara 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  /* Fondo celeste pastel con patrón de nubes rosas pastel */
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    background: #a3cef1;
+    background-image:
+      radial-gradient(circle at 25% 30%, #f8d7e0 18%, transparent 40%),
+      radial-gradient(circle at 70% 35%, #f8d7e0 20%, transparent 45%),
+      radial-gradient(circle at 50% 70%, #f8d7e0 22%, transparent 50%);
+    background-repeat: repeat;
+    background-size: 300px 200px;
+    font-family: 'Cormorant Garamond', serif;
+    color: #4a2f3b;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* Canvas fuegos artificiales */
+  #fuegosCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Contenedor principal */
+  .contenedor {
+    position: relative;
+    z-index: 10;
+    padding: 40px 20px 80px 20px;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+  }
+  /* Título */
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 56px;
+    margin-bottom: 30px;
+    color: #d4657a;
+    text-shadow: 0 0 8px #d4657aaa;
+  }
+  /* Contenedor calendarios */
+  .calendarios {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  /* Calendario individual */
+  .calendario {
+    background: #f9e3ebcc;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px #d4657a77;
+    padding: 20px;
+    width: 320px;
+    user-select: none;
+  }
+  .calendario header {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #b63e57;
+    font-family: 'Cormorant Garamond', serif;
+    text-shadow: 0 0 6px #b63e57cc;
+  }
+  /* Días de la semana */
+  .dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 700;
+    color: #9e4461;
+    margin-bottom: 10px;
+  }
+  /* Celdas día */
+  .dia {
+    height: 44px;
+    line-height: 44px;
+    border-radius: 8px;
+    margin: 2px;
+    color: #4a2f3bcc;
+    cursor: pointer;
+    font-weight: 600;
+    user-select: none;
+    position: relative;
+    font-size: 17px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  /* Hover y activo */
+  .dia:hover, .dia:focus {
+    background: #d4657add;
+    color: white;
+    box-shadow: 0 0 12px #d4657abb;
+    outline: none;
+  }
+  /* Días vacíos */
+  .dia.vacio {
+    cursor: default;
+    background: transparent;
+  }
+  /* Nube frase */
+  .nube-frase {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d4657add;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 28px;
+    box-shadow: 0 6px 12px #d4657aaa;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: normal;
+    width: 230px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    user-select: none;
+    z-index: 15;
+  }
+  .nube-frase.visible {
+    opacity: 1;
+  }
+  /* Mensaje carta antigua */
+  .mensaje-carta {
+    margin-top: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #8b3a4b;
+    max-width: 640px;
+    background: #f9e3ebcc;
+    padding: 25px 35px;
+    border-radius: 25px;
+    box-shadow: 0 0 15px #d4657abb;
+    user-select: none;
+  }
+</style>
 </head>
 <body>
-  <h1>Calendario de Amor 💜</h1>
 
-  <div class="calendario">
-    <!-- Junio -->
-    <div class="mes">
-      <h2>Junio 2025</h2>
-      <div class="grid">
-        <div class="titulo-dia">L</div>
-        <div class="titulo-dia">M</div>
-        <div class="titulo-dia">X</div>
-        <div class="titulo-dia">J</div>
-        <div class="titulo-dia">V</div>
-        <div class="titulo-dia">S</div>
-        <div class="titulo-dia">D</div>
-        <!-- Comienza el mes en sábado -->
-        <div></div><div></div><div></div><div></div><div></div>
-        <div class="dia" data-frase="Eres la razón de todas mis sonrisas">1</div>
-        <div class="dia" data-frase="Tu amor me hace mejor persona">2</div>
-        <div class="dia" data-frase="Contigo cada día es mágico">3</div>
-        <div class="dia" data-frase="Tú haces latir mi corazón más fuerte">4</div>
-        <div class="dia" data-frase="Gracias por amarme como lo haces">5</div>
-        <div class="dia" data-frase="Siempre tú, en mis pensamientos">6</div>
-        <div class="dia" data-frase="Contigo soy feliz de verdad">7</div>
-        <div class="dia" data-frase="Nuestro amor es eterno">8</div>
-        <div class="dia" data-frase="Nada se compara a tu ternura">9</div>
-        <div class="dia" data-frase="Quiero envejecer contigo">10</div>
-        <div class="dia" data-frase="Eres mi lugar favorito">11</div>
-        <div class="dia" data-frase="Nunca dejaré de amarte">12</div>
-        <div class="dia" data-frase="Mi corazón es tuyo por siempre">13</div>
-        <div class="dia" data-frase="Tus besos me salvan">14</div>
-        <div class="dia" data-frase="Gracias por existir">15</div>
-        <div class="dia" data-frase="Contigo todo es mejor">16</div>
-        <div class="dia" data-frase="Eres mi felicidad diaria">17</div>
-        <div class="dia" data-frase="Tu voz es mi melodía favorita">18</div>
-        <div class="dia" data-frase="Nuestro amor es único">19</div>
-        <div class="dia" data-frase="Cada día te amo más">20</div>
-        <div class="dia" data-frase="Hoy celebramos nuestro amor">21</div>
-        <div class="dia" data-frase="Nunca dudes de mi amor">22</div>
-        <div class="dia" data-frase="Estoy contigo en todo momento">23</div>
-        <div class="dia" data-frase="Solo tú me haces volar">24</div>
-        <div class="dia" data-frase="Me haces tan feliz">25</div>
-        <div class="dia" data-frase="Siempre serás mi niña">26</div>
-        <div class="dia" data-frase="Te amo sin medida">27</div>
-        <div class="dia" data-frase="Mi vida contigo es perfecta">28</div>
-        <div class="dia" data-frase="Contigo quiero todo">29</div>
-        <div class="dia" data-frase="Lo mejor está por venir">30</div>
+<canvas id="fuegosCanvas" aria-hidden="true"></canvas>
+
+<div class="contenedor">
+  <h1>Calendario de Amor para mi Princesa</h1>
+  <div class="calendarios" role="region" aria-label="Calendarios de junio y julio 2025">
+    <div class="calendario" aria-label="Calendario junio 2025">
+      <header>Junio 2025</header>
+      <div class="dias-semana" aria-hidden="true">
+        <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
       </div>
+      <div class="dias-grid" id="junio"></div>
     </div>
-
-    <!-- Julio -->
-    <div class="mes">
-      <h2>Julio 2025</h2>
-      <div class="grid">
-        <div class="titulo-dia">L</div>
-        <div class="titulo-dia">M</div>
-        <div class="titulo-dia">X</div>
-        <div class="titulo-dia">J</div>
-        <div class="titulo-dia">V</div>
-        <div class="titulo-dia">S</div>
-        <div class="titulo-dia">D</div>
-        <!-- Comienza el mes en martes -->
-        <div></div><div class="dia" data-frase="Juntos somos invencibles">1</div>
-        <div class="dia" data-frase="Tu sonrisa me ilumina">2</div>
-        <div class="dia" data-frase="A tu lado, siempre">3</div>
-        <div class="dia" data-frase="Mi amor por ti es eterno">4</div>
-        <div class="dia" data-frase="Siempre tú en mi mente">5</div>
-        <div class="dia" data-frase="Eres mi mayor fortuna">6</div>
-        <!-- puedes seguir añadiendo frases hasta el 31 si deseas -->
+    <div class="calendario" aria-label="Calendario julio 2025">
+      <header>Julio 2025</header>
+      <div class="dias-semana" aria-hidden="true">
+        <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
       </div>
+      <div class="dias-grid" id="julio"></div>
     </div>
   </div>
+  <div class="mensaje-carta" aria-live="polite" role="contentinfo" tabindex="0">
+    Para mi novia que amo y amaré siempre.
+  </div>
+</div>
+
+<script>
+  // Frases románticas (mínimo 2 líneas)
+  const frases = [
+    "Eres la luz que ilumina mis días,\ntu amor es mi alegría constante.",
+    "Contigo todo es mejor,\nmi corazón late solo por ti.",
+    "Cada instante a tu lado\nes un tesoro que guardo.",
+    "Amarte es mi destino,\nmi alegría, mi camino.",
+    "Tu sonrisa es la melodía\nque quiero escuchar siempre.",
+    "Eres mi sueño hecho realidad,\nmás allá de la eternidad.",
+    "Cada día a tu lado\nes un poema de amor.",
+    "Eres mi refugio y paz,\nmi todo, mi solaz.",
+    "Sin ti no soy nada,\ntu amor es mi calma.",
+    "En cada latido mío\nestá escrito tu nombre.",
+    "Amor verdadero y profundo,\nmi universo sin segundo.",
+    "Eres mi sol y mi luna,\nmi dulce y eterna fortuna.",
+    "Contigo aprendí a volar\nsin miedo a aterrizar.",
+    "Juntos en esta vida,\nmi única querida.",
+    "Tus ojos son estrellas\nque guían mis centellas.",
+    "Día a día te amo más,\nmi musa, mi compás.",
+    "Por siempre tú y yo,\nmi amor sin condición.",
+    "Eres mi canción favorita,\nmi alegría infinita.",
+    "Mi corazón es tu hogar,\ntu amor mi caminar.",
+    "A tu lado todo es paz,\ntu sonrisa es mi solaz.",
+    "Eres mi dulce melodía,\nmi luz en cada día.",
+    "Nunca dejo de pensarte,\nmi razón para amarte.",
+    "En cada amanecer,\ntu amor es mi querer.",
+    "Eres mi magia y encanto,\ntu amor es mi manto.",
+    "Por siempre juntos, amor,\nmi mayor bendición.",
+    "Tus palabras son miel,\nmi amor por ti es fiel.",
+    "Eres mi cielo y mar,\nmi vida sin igual.",
+    "Amarte es felicidad,\nte llevo en mi verdad.",
+    "Cada beso tuyo es vida,\nmi eterna y dulce herida.",
+    "Juntos hasta el final,\nmi amor sin igual."
+  ];
+
+  function crearCalendario(id, mes, año) {
+    const contenedor = document.getElementById(id);
+    contenedor.innerHTML = '';
+    const diasMes = new Date(año, mes + 1, 0).getDate();
+    const primerDia = new Date(año, mes, 1).getDay(); // 0 (dom) - 6 (sab)
+    // Convertir para que lunes sea 0
+    const offset = primerDia === 0 ? 6 : primerDia -1;
+
+    for(let i=0; i < offset; i++) {
+      const vacio = document.createElement('div');
+      vacio.classList.add('dia', 'vacio');
+      contenedor.appendChild(vacio);
+    }
+
+    for(let dia=1; dia <= diasMes; dia++) {
+      const diaDiv = document.createElement('div');
+      diaDiv.classList.add('dia');
+      diaDiv.textContent = dia;
+      const frase = frases[(dia - 1) % frases.length];
+      diaDiv.setAttribute('tabindex', '0');
+      diaDiv.setAttribute('role', 'button');
+      diaDiv.setAttribute('aria-label', `Día ${dia} de ${id}, clic para ver frase de amor`);
+      diaDiv.dataset.frase = frase;
+
+      diaDiv.addEventListener('click', (e) => {
+        mostrarFrase(e.target);
+        lanzarFuegos(e.target);
+      });
+      diaDiv.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          mostrarFrase(e.target);
+          lanzarFuegos(e.target);
+        }
+      });
+
+      contenedor.appendChild(diaDiv);
+    }
+  }
+
+  function mostrarFrase(diaDiv) {
+    const nubesPrevias = document.querySelectorAll('.nube-frase.visible');
+    nubesPrevias.forEach(nube => {
+      nube.classList.remove('visible');
+      setTimeout(() => nube.remove(), 300);
+    });
+
+    const nube = document.createElement('div');
+    nube.classList.add('nube-frase');
+    nube.textContent = diaDiv.dataset.frase;
+    diaDiv.appendChild(nube);
+
+    setTimeout(() => {
+      nube.classList.add('visible');
+    }, 10);
+
+    setTimeout(() => {
+      nube.classList.remove('visible');
+      setTimeout(() => nube.remove(), 300);
+    }, 4000);
+  }
+
+  // Canvas fuegos artificiales
+  const canvas = document.getElementById('fuegosCanvas');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particula {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+      this.radius = 2 + Math.random()*2;
+      this.speedX = (Math.random() - 0.5) * 6;
+      this.speedY = (Math.random() - 0.5) * 6;
+      this.life = 60 + Math.random()*20;
+      this.alpha = 1;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.speedY += 0.1;
+      this.life--;
+      this.alpha = this.life / 80;
+    }
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = this.alpha;
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 8;
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  let particulas = [];
+
+  function lanzarFuegos(target) {
+    const rect = target.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const colores = ['#ff6f91', '#f9d5e5', '#ff9a8b', '#ffcad4', '#ffe6f0'];
+    for(let i=0; i<30; i++) {
+      particulas.push(new Particula(x, y, colores[Math.floor(Math.random() * colores.length)]));
+    }
+  }
+
+  function animar() {
+    ctx.clearRect(0, 0, width, height);
+    for(let i=particulas.length -1; i>=0; i--) {
+      const p = particulas[i];
+      p.update();
+      p.draw(ctx);
+      if(p.life <= 0) {
+        particulas.splice(i,1);
+      }
+    }
+    requestAnimationFrame(animar);
+  }
+  animar();
+
+  crearCalendario('junio', 5, 2025);
+  crearCalendario('julio', 6, 2025);
+</script>
+
 </body>
 </html>
