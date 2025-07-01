@@ -3,347 +3,405 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Regalo 2 - Calendario de Amor para Dayara 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+<title>Regalo 2 - Calendarios de amor para Dayara 💜</title>
 <style>
-  /* Fondo celeste pastel con patrón de nubes rosas pastel */
-  html, body {
-    margin: 0; padding: 0;
-    height: 100%;
-    background: #a3cef1;
-    background-image:
-      radial-gradient(circle at 25% 30%, #f8d7e0 18%, transparent 40%),
-      radial-gradient(circle at 70% 35%, #f8d7e0 20%, transparent 45%),
-      radial-gradient(circle at 50% 70%, #f8d7e0 22%, transparent 50%);
-    background-repeat: repeat;
-    background-size: 300px 200px;
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
+
+  body {
+    margin: 0; padding: 40px 10px 80px;
+    background: #a9d6ff; /* azul celeste */
     font-family: 'Cormorant Garamond', serif;
-    color: #4a2f3b;
+    color: #4a3c62;
+    position: relative;
+    min-height: 100vh;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
-  /* Canvas fuegos artificiales */
-  #fuegosCanvas {
+
+  /* Fondo con nubes rosadas pastel */
+  body::before {
+    content: "";
     position: fixed;
     top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
+    width: 100vw; height: 100vh;
+    background:
+      radial-gradient(circle at 20% 20%, #ffb6c1 15%, transparent 70%),
+      radial-gradient(circle at 50% 40%, #f9c5d1 20%, transparent 70%),
+      radial-gradient(circle at 80% 25%, #ffb6c1 15%, transparent 70%),
+      radial-gradient(circle at 30% 75%, #f9c5d1 25%, transparent 80%),
+      radial-gradient(circle at 70% 80%, #ffb6c1 20%, transparent 80%);
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+    animation: moveClouds 40s linear infinite;
+    z-index: -1;
+    opacity: 0.3;
   }
-  /* Contenedor principal */
+  @keyframes moveClouds {
+    0% {background-position: 0 0, 0 0, 0 0, 0 0, 0 0;}
+    100% {background-position: 1500px 0, 1000px 0, 1200px 0, 1600px 0, 1400px 0;}
+  }
+
+  /* Contenedor central */
   .contenedor {
-    position: relative;
-    z-index: 10;
-    padding: 40px 20px 80px 20px;
-    max-width: 900px;
-    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
     text-align: center;
   }
-  /* Título */
+
   h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 56px;
-    margin-bottom: 30px;
-    color: #d4657a;
-    text-shadow: 0 0 8px #d4657aaa;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #4a3c62;
+    text-shadow: 0 2px 5px #b89bb4cc;
   }
-  /* Contenedor calendarios */
+
+  /* Contenedor calendarios lado a lado */
   .calendarios {
     display: flex;
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
   }
+
   /* Calendario individual */
   .calendario {
-    background: #f9e3ebcc;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px #d4657a77;
+    background: #e7d7f0;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px #caaee0cc;
     padding: 20px;
     width: 320px;
     user-select: none;
   }
-  .calendario header {
-    font-size: 28px;
+
+  .calendario h2 {
     font-weight: 700;
-    margin-bottom: 15px;
-    color: #b63e57;
-    font-family: 'Cormorant Garamond', serif;
-    text-shadow: 0 0 6px #b63e57cc;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: #623d76;
   }
-  /* Días de la semana */
-  .dias-semana {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    font-weight: 700;
-    color: #9e4461;
-    margin-bottom: 10px;
-  }
-  /* Celdas día */
-  .dia {
-    height: 44px;
-    line-height: 44px;
-    border-radius: 8px;
-    margin: 2px;
-    color: #4a2f3bcc;
-    cursor: pointer;
-    font-weight: 600;
+
+  /* Tabla calendario */
+  table {
+    border-collapse: collapse;
+    width: 100%;
     user-select: none;
-    position: relative;
-    font-size: 17px;
-    transition: background-color 0.3s, box-shadow 0.3s;
   }
-  /* Hover y activo */
-  .dia:hover, .dia:focus {
-    background: #d4657add;
-    color: white;
-    box-shadow: 0 0 12px #d4657abb;
+
+  th, td {
+    border: 1px solid #a085b0;
+    width: 14.28%;
+    height: 50px;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    color: #4a3c62;
+    font-weight: 600;
+    font-size: 18px;
+    transition: background-color 0.25s ease;
+    border-radius: 10px;
+  }
+
+  th {
+    background: #cbb7dc;
+    color: #38194a;
+    font-size: 16px;
+  }
+
+  td:hover, td:focus {
+    background: #d6b1d7;
     outline: none;
   }
-  /* Días vacíos */
-  .dia.vacio {
-    cursor: default;
-    background: transparent;
-  }
-  /* Nube frase */
-  .nube-frase {
+
+  /* Nube con frase */
+  .tooltip {
     position: absolute;
-    bottom: 120%;
+    bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
-    background: #d4657add;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 28px;
-    box-shadow: 0 6px 12px #d4657aaa;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 500;
-    white-space: normal;
-    width: 230px;
-    pointer-events: none;
+    background: #9e699f;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 24px;
+    font-size: 14px;
+    width: 180px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px #7a4f7dcc;
+    white-space: pre-line;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s ease;
-    user-select: none;
-    z-index: 15;
+    z-index: 10;
   }
-  .nube-frase.visible {
+  td:hover .tooltip,
+  td:focus .tooltip,
+  td.tooltip-visible .tooltip {
     opacity: 1;
+    pointer-events: auto;
   }
-  /* Mensaje carta antigua */
-  .mensaje-carta {
-    margin-top: 50px;
+
+  /* Mensaje final */
+  .mensaje-final {
+    margin-top: 40px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-style: italic;
-    color: #8b3a4b;
-    max-width: 640px;
-    background: #f9e3ebcc;
-    padding: 25px 35px;
-    border-radius: 25px;
-    box-shadow: 0 0 15px #d4657abb;
-    user-select: none;
+    font-size: 1.6rem;
+    color: #5d3b70;
+    background: #d8bde0;
+    padding: 20px 30px;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px #a57cb8cc;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Fuegos artificiales container */
+  #fireworks {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 1000;
   }
 </style>
 </head>
 <body>
 
-<canvas id="fuegosCanvas" aria-hidden="true"></canvas>
+<div class="contenedor" role="main" aria-label="Regalo 2: Calendarios románticos para Dayara">
 
-<div class="contenedor">
-  <h1>Calendario de Amor para mi Princesa</h1>
-  <div class="calendarios" role="region" aria-label="Calendarios de junio y julio 2025">
-    <div class="calendario" aria-label="Calendario junio 2025">
-      <header>Junio 2025</header>
-      <div class="dias-semana" aria-hidden="true">
-        <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
-      </div>
-      <div class="dias-grid" id="junio"></div>
-    </div>
-    <div class="calendario" aria-label="Calendario julio 2025">
-      <header>Julio 2025</header>
-      <div class="dias-semana" aria-hidden="true">
-        <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
-      </div>
-      <div class="dias-grid" id="julio"></div>
-    </div>
+  <h1>Calendarios de Amor para mi Princesa 💜</h1>
+
+  <div class="calendarios" aria-label="Calendarios de junio y julio">
+    <section class="calendario" aria-label="Calendario Junio 2025">
+      <h2>Junio 2025</h2>
+      <table aria-describedby="desc-junio">
+        <thead>
+          <tr>
+            <th scope="col">Dom</th><th scope="col">Lun</th><th scope="col">Mar</th><th scope="col">Mié</th>
+            <th scope="col">Jue</th><th scope="col">Vie</th><th scope="col">Sáb</th>
+          </tr>
+        </thead>
+        <tbody id="junio-tbody"></tbody>
+      </table>
+      <p id="desc-junio" class="sr-only">Calendario del mes de junio de 2025 con frases románticas en cada día.</p>
+    </section>
+
+    <section class="calendario" aria-label="Calendario Julio 2025">
+      <h2>Julio 2025</h2>
+      <table aria-describedby="desc-julio">
+        <thead>
+          <tr>
+            <th scope="col">Dom</th><th scope="col">Lun</th><th scope="col">Mar</th><th scope="col">Mié</th>
+            <th scope="col">Jue</th><th scope="col">Vie</th><th scope="col">Sáb</th>
+          </tr>
+        </thead>
+        <tbody id="julio-tbody"></tbody>
+      </table>
+      <p id="desc-julio" class="sr-only">Calendario del mes de julio de 2025 con frases románticas en cada día.</p>
+    </section>
   </div>
-  <div class="mensaje-carta" aria-live="polite" role="contentinfo" tabindex="0">
+
+  <div class="mensaje-final" aria-live="polite">
     Para mi novia que amo y amaré siempre.
   </div>
 </div>
 
+<!-- Contenedor fuegos artificiales -->
+<canvas id="fireworks"></canvas>
+
 <script>
-  // Frases románticas (mínimo 2 líneas)
-  const frases = [
-    "Eres la luz que ilumina mis días,\ntu amor es mi alegría constante.",
-    "Contigo todo es mejor,\nmi corazón late solo por ti.",
-    "Cada instante a tu lado\nes un tesoro que guardo.",
-    "Amarte es mi destino,\nmi alegría, mi camino.",
-    "Tu sonrisa es la melodía\nque quiero escuchar siempre.",
-    "Eres mi sueño hecho realidad,\nmás allá de la eternidad.",
-    "Cada día a tu lado\nes un poema de amor.",
-    "Eres mi refugio y paz,\nmi todo, mi solaz.",
-    "Sin ti no soy nada,\ntu amor es mi calma.",
-    "En cada latido mío\nestá escrito tu nombre.",
-    "Amor verdadero y profundo,\nmi universo sin segundo.",
-    "Eres mi sol y mi luna,\nmi dulce y eterna fortuna.",
-    "Contigo aprendí a volar\nsin miedo a aterrizar.",
-    "Juntos en esta vida,\nmi única querida.",
-    "Tus ojos son estrellas\nque guían mis centellas.",
-    "Día a día te amo más,\nmi musa, mi compás.",
-    "Por siempre tú y yo,\nmi amor sin condición.",
-    "Eres mi canción favorita,\nmi alegría infinita.",
-    "Mi corazón es tu hogar,\ntu amor mi caminar.",
-    "A tu lado todo es paz,\ntu sonrisa es mi solaz.",
-    "Eres mi dulce melodía,\nmi luz en cada día.",
-    "Nunca dejo de pensarte,\nmi razón para amarte.",
-    "En cada amanecer,\ntu amor es mi querer.",
-    "Eres mi magia y encanto,\ntu amor es mi manto.",
-    "Por siempre juntos, amor,\nmi mayor bendición.",
-    "Tus palabras son miel,\nmi amor por ti es fiel.",
-    "Eres mi cielo y mar,\nmi vida sin igual.",
-    "Amarte es felicidad,\nte llevo en mi verdad.",
-    "Cada beso tuyo es vida,\nmi eterna y dulce herida.",
-    "Juntos hasta el final,\nmi amor sin igual."
+  // Frases románticas para cada día (mínimo 2 líneas)
+  const frasesDias = [
+    "Eres mi alegría constante,\ntu amor es mi instante.",
+    "Cada día a tu lado,\nun sueño realizado.",
+    "Tu sonrisa ilumina,\nmi alma que camina.",
+    "Amarte es la razón,\nde mi inspiración.",
+    "Contigo soy mejor,\nmi dulce amor.",
+    "Eres mi luz y mi cielo,\nmi más preciado anhelo.",
+    "En tus ojos me pierdo,\nmi mundo descubro.",
+    "Tu abrazo es mi hogar,\ndonde quiero estar.",
+    "Cada latido es por ti,\nmi amor sin fin.",
+    "Eres mi calma y tormenta,\nmi eterna meta.",
+    "Tu voz es melodía,\nmi más bella armonía.",
+    "Juntos somos eternos,\nun amor tierno.",
+    "Mi corazón es tuyo,\npuro y seguro.",
+    "Eres mi dulce razón,\nde cada canción.",
+    "En ti encuentro paz,\nmi felicidad.",
+    "Amarte sin medida,\nes mi mayor vida.",
+    "Tu amor es mi faro,\nmás brillante y claro.",
+    "Eres mi todo y más,\nmás allá del solaz.",
+    "Contigo siempre quiero,\nun futuro sincero.",
+    "Tu sonrisa es mi sol,\nmi mayor farol.",
+    "Eres mi dulce ilusión,\nmi gran pasión.",
+    "Amor que no termina,\nmi luz divina.",
+    "Cada día contigo,\nun eterno abrigo.",
+    "Tu amor es mi guía,\nmás allá del día.",
+    "Eres mi paz interior,\nmi eterno fervor.",
+    "Tu abrazo es mi refugio,\nsin ningún perjuicio.",
+    "Contigo aprendí a volar,\nmi razón de amar.",
+    "Eres mi dulce canción,\nmi más bella emoción.",
+    "Tu risa es mi tesoro,\nun eterno decoro.",
+    "Amarte es mi destino,\nun dulce camino.",
+    "En ti encontré hogar,\nmás allá del mar.",
+    "Eres mi sol y luna,\nmi fortuna.",
   ];
 
-  function crearCalendario(id, mes, año) {
-    const contenedor = document.getElementById(id);
-    contenedor.innerHTML = '';
-    const diasMes = new Date(año, mes + 1, 0).getDate();
-    const primerDia = new Date(año, mes, 1).getDay(); // 0 (dom) - 6 (sab)
-    // Convertir para que lunes sea 0
-    const offset = primerDia === 0 ? 6 : primerDia -1;
+  // Función para crear el calendario
+  function crearCalendario(mes, year, tbodyId) {
+    const tbody = document.getElementById(tbodyId);
+    tbody.innerHTML = '';
 
-    for(let i=0; i < offset; i++) {
-      const vacio = document.createElement('div');
-      vacio.classList.add('dia', 'vacio');
-      contenedor.appendChild(vacio);
+    const primerDia = new Date(year, mes, 1).getDay(); // domingo=0
+    const diasMes = new Date(year, mes + 1, 0).getDate();
+
+    let fila = document.createElement('tr');
+    let diaContador = 1;
+
+    // Rellenar primer fila con celdas vacías hasta el primer día
+    for (let i = 0; i < 7; i++) {
+      if (i < primerDia) {
+        const tdVacio = document.createElement('td');
+        tdVacio.classList.add('empty');
+        fila.appendChild(tdVacio);
+      } else {
+        const td = crearDiaTd(diaContador, mes, year);
+        fila.appendChild(td);
+        diaContador++;
+      }
     }
+    tbody.appendChild(fila);
 
-    for(let dia=1; dia <= diasMes; dia++) {
-      const diaDiv = document.createElement('div');
-      diaDiv.classList.add('dia');
-      diaDiv.textContent = dia;
-      const frase = frases[(dia - 1) % frases.length];
-      diaDiv.setAttribute('tabindex', '0');
-      diaDiv.setAttribute('role', 'button');
-      diaDiv.setAttribute('aria-label', `Día ${dia} de ${id}, clic para ver frase de amor`);
-      diaDiv.dataset.frase = frase;
-
-      diaDiv.addEventListener('click', (e) => {
-        mostrarFrase(e.target);
-        lanzarFuegos(e.target);
-      });
-      diaDiv.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          mostrarFrase(e.target);
-          lanzarFuegos(e.target);
+    // Crear filas completas mientras haya días
+    while (diaContador <= diasMes) {
+      const filaNueva = document.createElement('tr');
+      for (let i = 0; i < 7; i++) {
+        if (diaContador <= diasMes) {
+          const td = crearDiaTd(diaContador, mes, year);
+          filaNueva.appendChild(td);
+          diaContador++;
+        } else {
+          // Celdas vacías finales
+          const tdVacio = document.createElement('td');
+          tdVacio.classList.add('empty');
+          filaNueva.appendChild(tdVacio);
         }
-      });
-
-      contenedor.appendChild(diaDiv);
+      }
+      tbody.appendChild(filaNueva);
     }
   }
 
-  function mostrarFrase(diaDiv) {
-    const nubesPrevias = document.querySelectorAll('.nube-frase.visible');
-    nubesPrevias.forEach(nube => {
-      nube.classList.remove('visible');
-      setTimeout(() => nube.remove(), 300);
+  // Crear celda de día con tooltip y click de fuegos artificiales
+  function crearDiaTd(dia, mes, year) {
+    const td = document.createElement('td');
+    td.setAttribute('tabindex', '0');
+    td.setAttribute('role', 'button');
+    td.textContent = dia;
+
+    // Asignar frase aleatoria (cíclica)
+    const index = (dia - 1) % frasesDias.length;
+    const frase = frasesDias[index];
+
+    // Crear tooltip (nube)
+    const tooltip = document.createElement('div');
+    tooltip.classList.add('tooltip');
+    tooltip.textContent = frase;
+    td.appendChild(tooltip);
+
+    // Manejo hover/focus: tooltip visible (CSS ya maneja opacity)
+
+    // Click: disparar fuegos artificiales grandes
+    td.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lanzarFuegosArtificiales(e.clientX, e.clientY);
     });
 
-    const nube = document.createElement('div');
-    nube.classList.add('nube-frase');
-    nube.textContent = diaDiv.dataset.frase;
-    diaDiv.appendChild(nube);
-
-    setTimeout(() => {
-      nube.classList.add('visible');
-    }, 10);
-
-    setTimeout(() => {
-      nube.classList.remove('visible');
-      setTimeout(() => nube.remove(), 300);
-    }, 4000);
+    return td;
   }
 
-  // Canvas fuegos artificiales
-  const canvas = document.getElementById('fuegosCanvas');
+  // Fuegos artificiales grandes (canvas)
+  const canvas = document.getElementById('fireworks');
   const ctx = canvas.getContext('2d');
-  let width, height;
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
+  let particles = [];
+  let animationFrameId;
 
-  class Particula {
+  function ajustarCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  ajustarCanvas();
+  window.addEventListener('resize', ajustarCanvas);
+
+  // Partícula
+  class Particle {
     constructor(x, y, color) {
       this.x = x;
       this.y = y;
       this.color = color;
-      this.radius = 2 + Math.random()*2;
-      this.speedX = (Math.random() - 0.5) * 6;
-      this.speedY = (Math.random() - 0.5) * 6;
-      this.life = 60 + Math.random()*20;
+      this.radius = Math.random() * 4 + 3;
+      this.life = 100;
+      this.speedX = (Math.random() - 0.5) * 10;
+      this.speedY = (Math.random() - 0.5) * 10;
+      this.gravity = 0.2;
       this.alpha = 1;
     }
     update() {
       this.x += this.speedX;
       this.y += this.speedY;
-      this.speedY += 0.1;
+      this.speedY += this.gravity;
       this.life--;
-      this.alpha = this.life / 80;
+      this.alpha = this.life / 100;
+      this.radius *= 0.95;
     }
-    draw(ctx) {
+    draw() {
       ctx.save();
       ctx.globalAlpha = this.alpha;
       ctx.beginPath();
-      ctx.fillStyle = this.color;
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+      gradient.addColorStop(0, this.color);
+      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gradient;
       ctx.shadowColor = this.color;
-      ctx.shadowBlur = 8;
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+      ctx.shadowBlur = 10;
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
   }
 
-  let particulas = [];
-
-  function lanzarFuegos(target) {
-    const rect = target.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-
-    const colores = ['#ff6f91', '#f9d5e5', '#ff9a8b', '#ffcad4', '#ffe6f0'];
-    for(let i=0; i<30; i++) {
-      particulas.push(new Particula(x, y, colores[Math.floor(Math.random() * colores.length)]));
+  function lanzarFuegosArtificiales(x, y) {
+    // Crear muchas partículas de colores pastel románticos
+    const colors = ['#d27fbf', '#fba3c3', '#f7a9b8', '#c56eaa', '#b96e9f', '#db99c2', '#ffc3d9'];
+    for (let i = 0; i < 50; i++) {
+      particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+    }
+    if (!animationFrameId) {
+      animar();
     }
   }
 
   function animar() {
-    ctx.clearRect(0, 0, width, height);
-    for(let i=particulas.length -1; i>=0; i--) {
-      const p = particulas[i];
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
       p.update();
-      p.draw(ctx);
-      if(p.life <= 0) {
-        particulas.splice(i,1);
+      p.draw();
+      if (p.life <= 0 || p.radius < 0.5) {
+        particles.splice(i, 1);
       }
+    });
+    if (particles.length > 0) {
+      animationFrameId = requestAnimationFrame(animar);
+    } else {
+      animationFrameId = null;
     }
-    requestAnimationFrame(animar);
   }
-  animar();
 
-  crearCalendario('junio', 5, 2025);
-  crearCalendario('julio', 6, 2025);
+  // Crear los calendarios
+  crearCalendario(5, 2025, 'junio-tbody'); // Junio = mes 5 (0-based)
+  crearCalendario(6, 2025, 'julio-tbody'); // Julio = mes 6 (0-based)
+
+  // Para accesibilidad: cerrar tooltips al hacer click fuera
+  document.body.addEventListener('click', () => {
+    document.querySelectorAll('td.tooltip-visible').forEach(td => td.classList.remove('tooltip-visible'));
+  });
 </script>
 
 </body>
