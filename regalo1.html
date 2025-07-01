@@ -6,263 +6,327 @@
   <title>Regalo 1 - Para mi princesa Dayara 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
-      padding: 0 15px 50px 15px;
+      margin: 0; padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(135deg, #ffe6f0, #ffd3e0);
+      background-color: #ffe6f0;
+      color: #c71585;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-top: 100px;
-      color: #c71585;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Contenedor principal */
-    .container {
-      max-width: 900px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 35px 30px 50px 30px;
-      border-radius: 20px;
-      box-shadow: 0 6px 18px rgba(199, 21, 133, 0.25);
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #d63384;
+      margin-bottom: 1rem;
       text-align: center;
-      position: relative;
     }
 
-    /* Texto central */
-    .texto-centro {
+    /* Frases piramidales */
+    .frases-container {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 15px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      position: relative;
+      /* Pirámide shape with grid placement */
+    }
+
+    /* Posiciones para pirámide */
+    .frase {
+      background: #f8cce3;
+      padding: 12px 16px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(199, 21, 133, 0.3);
       font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      margin-bottom: 25px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #8a0044;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
       user-select: none;
-      line-height: 1.2;
+      transition: background 0.3s ease;
+      max-width: 140px;
+      margin: auto;
+    }
+    .frase:hover {
+      background: #d85da8;
+      color: white;
+    }
+
+    /* Grid positioning to form pyramid */
+    .fr1 { grid-column: 3; grid-row: 1; }
+    .fr2 { grid-column: 2; grid-row: 2; }
+    .fr3 { grid-column: 4; grid-row: 2; }
+    .fr4 { grid-column: 1; grid-row: 3; }
+    .fr5 { grid-column: 3; grid-row: 3; }
+    .fr6 { grid-column: 5; grid-row: 3; }
+    .fr7 { grid-column: 2; grid-row: 4; }
+    .fr8 { grid-column: 4; grid-row: 4; }
+    .fr9 { grid-column: 3; grid-row: 5; }
+
+    /* Tooltip/nube */
+    .tooltip {
+      position: absolute;
+      background: rgba(255, 192, 203, 0.95);
+      color: #800040;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      max-width: 220px;
+      box-shadow: 0 4px 12px rgba(199, 21, 133, 0.5);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+      user-select: none;
+      line-height: 1.3;
+    }
+
+    /* Central box */
+    .central-box {
+      text-align: center;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(199, 21, 133, 0.3);
+      margin-bottom: 40px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.9rem;
+      color: #a6005a;
+      font-weight: 700;
     }
 
     /* Botón AMOR */
-    .boton {
-      margin-top: 10px;
-      padding: 15px 40px;
-      font-size: 20px;
-      background: linear-gradient(135deg, #2196F3, #0b7dda);
-      color: white;
+    button#botonAmor {
+      padding: 16px 42px;
+      font-size: 1.5rem;
+      background-color: #d63384;
       border: none;
       border-radius: 14px;
-      cursor: pointer;
+      color: white;
       font-weight: 700;
-      box-shadow: 0 5px 10px rgba(33, 150, 243, 0.4);
-      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.15s ease;
       user-select: none;
-      outline-offset: 3px;
-      outline-color: transparent;
+      box-shadow: 0 6px 15px rgba(214, 51, 132, 0.6);
+    }
+    button#botonAmor:hover,
+    button#botonAmor:focus {
+      background-color: #af2a6c;
+      outline: none;
+      transform: scale(1.07);
     }
 
-    .boton:hover,
-    .boton:focus {
-      background: linear-gradient(135deg, #0b7dda, #064c8c);
-      box-shadow: 0 8px 20px rgba(11, 125, 218, 0.7);
-      transform: scale(1.05);
-      outline-color: #2196F3;
-    }
-
-    /* Mensaje y pregunta */
-    #mensaje, #pregunta, #respuesta {
+    /* Mensajes que aparecen después de AMOR */
+    #mensajeAmor {
       display: none;
-      margin-top: 30px;
-      font-size: 22px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 20px 25px;
-      border-radius: 15px;
-      font-family: 'Quicksand', sans-serif;
-      box-shadow: 0 4px 12px rgba(199, 21, 133, 0.15);
-      color: #9b1364;
-      user-select: text;
-      line-height: 1.4;
-      text-align: center;
-      font-weight: 600;
-    }
-
-    /* Botón SI <3 */
-    #btnSi {
-      margin-top: 15px;
-      padding: 12px 32px;
-      font-size: 18px;
-      background: linear-gradient(135deg, #e91e63, #c2185b);
-      color: white;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 5px 10px rgba(233, 30, 99, 0.5);
-      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
-      user-select: none;
-      outline-offset: 3px;
-      outline-color: transparent;
-    }
-
-    #btnSi:hover,
-    #btnSi:focus {
-      background: linear-gradient(135deg, #c2185b, #880e4f);
-      box-shadow: 0 8px 20px rgba(194, 24, 91, 0.8);
-      transform: scale(1.05);
-      outline-color: #e91e63;
-    }
-
-    /* Frases en forma de pirámide usando grid */
-    .frases-piramide {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-gap: 18px 15px;
-      justify-items: center;
-      margin-top: 40px;
-      user-select: none;
-      position: relative;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Cada frase con posición personalizada para formar pirámide */
-    .frase {
-      background: #ffcee5;
-      border-radius: 16px;
-      padding: 14px 18px;
-      font-family: 'Great Vibes', cursive;
-      font-weight: 700;
-      font-size: 20px;
-      color: #9b1364;
-      position: relative;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(199, 21, 133, 0.2);
-      transition: color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      outline-offset: 2px;
-      outline-color: transparent;
-    }
-    /* Pirámide: colocar vacíos con grid-area */
-    .frase1 { grid-column: 3 / 4; }
-    .frase2 { grid-column: 2 / 3; }
-    .frase3 { grid-column: 4 / 5; }
-    .frase4 { grid-column: 1 / 2; }
-    .frase5 { grid-column: 3 / 4; }
-    .frase6 { grid-column: 5 / 6; }
-    .frase7 { grid-column: 2 / 3; }
-    .frase8 { grid-column: 4 / 5; }
-    .frase9 { grid-column: 3 / 4; }
-
-    /* Hover y focus para frases */
-    .frase:hover,
-    .frase:focus,
-    .frase.show-tooltip {
-      color: #a3005c;
-      box-shadow: 0 6px 20px rgba(211, 102, 181, 0.6);
-      transform: scale(1.08);
-      outline-color: #d63384;
-      outline-style: solid;
-      outline-width: 2px;
-    }
-
-    /* Tooltip estilo nube */
-    .tooltip {
-      position: absolute;
-      top: -90px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.96);
+      font-size: 1.3rem;
       color: #b30059;
-      padding: 12px 18px;
-      border-radius: 22px;
-      box-shadow: 0 6px 15px rgba(199, 21, 133, 0.2);
+      background: rgba(255, 230, 245, 0.9);
+      margin: 28px auto 12px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      max-width: 600px;
       font-family: 'Quicksand', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.3;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      width: 210px;
-      text-align: center;
-      user-select: text;
-      z-index: 10;
-    }
-    .frase:hover .tooltip,
-    .frase:focus .tooltip,
-    .frase.show-tooltip .tooltip {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
+      box-shadow: 0 4px 20px rgba(199, 21, 133, 0.15);
+      user-select: none;
     }
 
-    /* Scroll para móviles si es necesario */
-    @media (max-width: 650px) {
-      .frases-piramide {
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 15px 12px;
-      }
-      .frase1, .frase2, .frase3,
-      .frase4, .frase5, .frase6,
-      .frase7, .frase8, .frase9 {
-        grid-column: auto !important;
-      }
+    /* Pregunta y botón SI */
+    #pregunta {
+      display: none;
+      margin-top: 12px;
+      font-size: 1.25rem;
+      color: #8a0044;
+      font-weight: 600;
+      font-family: 'Great Vibes', cursive;
+    }
+    #botonSi {
+      display: none;
+      margin-top: 18px;
+      background-color: #c2185b;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      padding: 14px 38px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      box-shadow: 0 6px 15px rgba(194, 24, 91, 0.7);
+    }
+    #botonSi:hover,
+    #botonSi:focus {
+      background-color: #8a0044;
+      outline: none;
+      transform: scale(1.07);
+    }
+
+    /* Texto final */
+    #mensajeFinal {
+      display: none;
+      margin-top: 28px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      color: #9b004d;
+      background: rgba(255, 192, 203, 0.95);
+      max-width: 600px;
+      padding: 22px 26px;
+      border-radius: 14px;
+      box-shadow: 0 6px 22px rgba(199, 21, 133, 0.4);
+      user-select: none;
     }
   </style>
 </head>
 <body>
+  <h1>Para mi princesa Dayara</h1>
 
-  <div class="container" role="main" aria-label="Regalo 1 página para Dayara">
+  <div class="frases-container" aria-label="Frases románticas en forma de pirámide">
+    <div class="frase fr1" tabindex="0" data-tooltip="Eres mi todo en este mundo y en mis sueños más dulces.">Eres mi todo</div>
+    <div class="frase fr2" tabindex="0" data-tooltip="Nuestro amor es fuerte, eterno y sin condiciones.">Nuestro amor es eterno</div>
+    <div class="frase fr3" tabindex="0" data-tooltip="Siempre tú y yo, unidos más allá del tiempo y el espacio.">Siempre tú y yo</div>
+    <div class="frase fr4" tabindex="0" data-tooltip="Gracias por existir y llenar mi vida de luz y alegría.">Gracias por existir</div>
+    <div class="frase fr5" tabindex="0" data-tooltip="Tú haces que mi vida sea hermosa y llena de color.">Tú haces mi vida mejor</div>
+    <div class="frase fr6" tabindex="0" data-tooltip="Eres la melodía que alegra cada uno de mis días.">Melodía de amor</div>
+    <div class="frase fr7" tabindex="0" data-tooltip="Cada momento contigo es un tesoro que guardo en mi alma.">Momentos contigo</div>
+    <div class="frase fr8" tabindex="0" data-tooltip="Tu sonrisa ilumina hasta mis días más grises y fríos.">Tu sonrisa</div>
+    <div class="frase fr9" tabindex="0" data-tooltip="Eres mi paz, mi fuerza y la razón de mi felicidad.">Mi paz y fuerza</div>
+  </div>
 
-    <div class="texto-centro" tabindex="0">Tengo algo muy importante que decirte, bb</div>
+  <div class="central-box" aria-live="polite" aria-atomic="true">
+    Tengo algo muy importante que decirte bb
+  </div>
 
-    <button class="boton" id="btnAmor" aria-expanded="false" aria-controls="mensaje">AMOR</button>
+  <button id="botonAmor" aria-controls="mensajeAmor" aria-expanded="false" aria-haspopup="true">
+    AMOR
+  </button>
 
-    <div id="mensaje" role="region" aria-live="polite" aria-atomic="true">
-      <p style="margin:0; padding: 0 5px;">
-        Desde ese primer día que te vi, supe que eras para mí.<br />
-        Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
-      </p>
-    </div>
+  <div id="mensajeAmor" role="region" aria-live="polite" aria-atomic="true">
+    Mi niña preciosa, eres el latido de mi corazón y la luz de mis días.
+  </div>
 
-    <div id="pregunta" style="margin-top: 20px;">
-      <p style="margin-bottom: 12px; font-weight: 700;">¿Te gustó?</p>
-      <button class="boton" id="btnSi" aria-expanded="false" aria-controls="respuesta">SI &lt;3</button>
-    </div>
+  <div id="pregunta" role="region" aria-live="polite" aria-atomic="true">
+    ¿Te gustó?
+  </div>
+  <button id="botonSi" aria-controls="mensajeFinal" aria-expanded="false" aria-haspopup="true">
+    SI &lt;3
+  </button>
 
-    <div id="respuesta" role="region" aria-live="polite" aria-atomic="true" style="margin-top: 20px;">
-      <p style="margin:0; padding: 0 5px;">
-        ME ALEGRO MI NIÑA POR QUE ERES LO MÁS VALIOSO QUE TENGO MI DAYARA PRECIOSA.
-      </p>
-    </div>
+  <div id="mensajeFinal" role="region" aria-live="polite" aria-atomic="true">
+    ME ALEGRO MI NIÑA POR QUE ERES LO MÁS VALIOSO QUE TENGO MI DAYARA PRECIOSA.
+  </div>
 
-    <div class="frases-piramide" aria-label="Frases románticas para Dayara">
-      <div tabindex="0" class="frase frase1" role="button" aria-describedby="tip1" aria-expanded="false">
-        Eres mi todo
-        <div class="tooltip" id="tip1" role="tooltip">Contigo cada día es un regalo, mi alegría sin fin.</div>
-      </div>
-      <div tabindex="0" class="frase frase2" role="button" aria-describedby="tip2" aria-expanded="false">
-        Nuestro amor es eterno
-        <div class="tooltip" id="tip2" role="tooltip">Juntos somos fuertes, un amor que nunca muere.</div>
-      </div>
-      <div tabindex="0" class="frase frase3" role="button" aria-describedby="tip3" aria-expanded="false">
-        Siempre tú y yo
-        <div class="tooltip" id="tip3" role="tooltip">Dos almas entrelazadas que nunca se separan.</div>
-      </div>
-      <div tabindex="0" class="frase frase4" role="button" aria-describedby="tip4" aria-expanded="false">
-        Gracias por existir
-        <div class="tooltip" id="tip4" role="tooltip">Tu presencia ilumina mi vida, mi mayor bendición.</div>
-      </div>
-      <div tabindex="0" class="frase frase5" role="button" aria-describedby="tip5" aria-expanded="false">
-        Tú haces mi vida mejor
-        <div class="tooltip" id="tip5" role="tooltip">Eres el sol que brilla en mis días grises.</div>
-      </div>
-      <div tabindex="0" class="frase frase6" role="button" aria-describedby="tip6" aria-expanded="false">
-        Mi princesa hermosa
-        <div class="tooltip" id="tip6" role="tooltip">Eres luz y esperanza, mi eterna danza.</
+  <!-- Tooltip element -->
+  <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <script>
+    // Tooltip logic for hover and touch
+    const frases = document.querySelectorAll('.frase');
+    const tooltip = document.getElementById('tooltip');
+
+    frases.forEach(frase => {
+      // Mostrar tooltip al hover
+      frase.addEventListener('mouseenter', (e) => {
+        tooltip.textContent = frase.dataset.tooltip;
+        tooltip.style.opacity = '1';
+        tooltip.style.pointerEvents = 'auto';
+        positionTooltip(frase);
+        tooltip.setAttribute('aria-hidden', 'false');
+      });
+      frase.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+        tooltip.style.pointerEvents = 'none';
+        tooltip.setAttribute('aria-hidden', 'true');
+      });
+
+      // Mostrar tooltip al foco (teclado)
+      frase.addEventListener('focus', () => {
+        tooltip.textContent = frase.dataset.tooltip;
+        tooltip.style.opacity = '1';
+        tooltip.style.pointerEvents = 'auto';
+        positionTooltip(frase);
+        tooltip.setAttribute('aria-hidden', 'false');
+      });
+      frase.addEventListener('blur', () => {
+        tooltip.style.opacity = '0';
+        tooltip.style.pointerEvents = 'none';
+        tooltip.setAttribute('aria-hidden', 'true');
+      });
+
+      // Para touch (dispositivos móviles)
+      frase.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // prevenir click accidental
+        tooltip.textContent = frase.dataset.tooltip;
+        tooltip.style.opacity = '1';
+        tooltip.style.pointerEvents = 'auto';
+        positionTooltip(frase);
+        tooltip.setAttribute('aria-hidden', 'false');
+      });
+      document.body.addEventListener('touchstart', (e) => {
+        if (!e.target.classList.contains('frase')) {
+          tooltip.style.opacity = '0';
+          tooltip.style.pointerEvents = 'none';
+          tooltip.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    function positionTooltip(el) {
+      const rect = el.getBoundingClientRect();
+      const ttRect = tooltip.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollX = window.scrollX || window.pageXOffset;
+
+      // Posición arriba centrada con algo de margen
+      let top = rect.top + scrollY - ttRect.height - 10;
+      let left = rect.left + scrollX + rect.width / 2 - ttRect.width / 2;
+
+      // Limitar dentro del viewport horizontal
+      if (left < 5) left = 5;
+      if (left + ttRect.width > window.innerWidth - 5) left = window.innerWidth - ttRect.width - 5;
+
+      tooltip.style.top = top + 'px';
+      tooltip.style.left = left + 'px';
+    }
+
+    // Lógica botón AMOR y mensajes
+    const botonAmor = document.getElementById('botonAmor');
+    const mensajeAmor = document.getElementById('mensajeAmor');
+    const pregunta = document.getElementById('pregunta');
+    const botonSi = document.getElementById('botonSi');
+    const mensajeFinal = document.getElementById('mensajeFinal');
+
+    botonAmor.addEventListener('click', () => {
+      mensajeAmor.style.display = 'block';
+      pregunta.style.display = 'block';
+      botonSi.style.display = 'inline-block';
+      botonAmor.setAttribute('aria-expanded', 'true');
+      botonAmor.disabled = true;
+      // Scroll suave para que el usuario vea el mensaje
+      mensajeAmor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    botonSi.addEventListener('click', () => {
+      mensajeFinal.style.display = 'block';
+      botonSi.style.display = 'none';
+      pregunta.style.display = 'none';
+      botonSi.setAttribute('aria-expanded', 'true');
+      // Scroll suave para que el usuario vea el mensaje final
+      mensajeFinal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
