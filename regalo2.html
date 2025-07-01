@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regalo 2 para Dayara 💜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background-color: #f3e5f5;
+      background-image: url('https://i.imgur.com/zVbEfcG.png'); /* emoji/sticker decorativos de fondo */
+      background-size: 100px;
+      background-repeat: repeat;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #7b1fa2;
+    }
+
+    .calendario {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px auto;
+    }
+
+    .mes {
+      margin-bottom: 50px;
+    }
+
+    .mes h2 {
+      color: #6a1b9a;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      background-color: #e1bee7;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 90vw;
+    }
+
+    .dia, .titulo-dia {
+      width: 40px;
+      height: 40px;
+      background-color: #f8bbd0;
+      color: #6a1b9a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .titulo-dia {
+      background-color: #ce93d8;
+    }
+
+    .dia:hover::after {
+      content: attr(data-frase);
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff3ff;
+      color: #6a1b9a;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+      .dia, .titulo-dia {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Calendario de Amor 💜</h1>
+
+  <div class="calendario">
+    <!-- Junio -->
+    <div class="mes">
+      <h2>Junio 2025</h2>
+      <div class="grid">
+        <div class="titulo-dia">L</div>
+        <div class="titulo-dia">M</div>
+        <div class="titulo-dia">X</div>
+        <div class="titulo-dia">J</div>
+        <div class="titulo-dia">V</div>
+        <div class="titulo-dia">S</div>
+        <div class="titulo-dia">D</div>
+        <!-- Comienza el mes en sábado -->
+        <div></div><div></div><div></div><div></div><div></div>
+        <div class="dia" data-frase="Eres la razón de todas mis sonrisas">1</div>
+        <div class="dia" data-frase="Tu amor me hace mejor persona">2</div>
+        <div class="dia" data-frase="Contigo cada día es mágico">3</div>
+        <div class="dia" data-frase="Tú haces latir mi corazón más fuerte">4</div>
+        <div class="dia" data-frase="Gracias por amarme como lo haces">5</div>
+        <div class="dia" data-frase="Siempre tú, en mis pensamientos">6</div>
+        <div class="dia" data-frase="Contigo soy feliz de verdad">7</div>
+        <div class="dia" data-frase="Nuestro amor es eterno">8</div>
+        <div class="dia" data-frase="Nada se compara a tu ternura">9</div>
+        <div class="dia" data-frase="Quiero envejecer contigo">10</div>
+        <div class="dia" data-frase="Eres mi lugar favorito">11</div>
+        <div class="dia" data-frase="Nunca dejaré de amarte">12</div>
+        <div class="dia" data-frase="Mi corazón es tuyo por siempre">13</div>
+        <div class="dia" data-frase="Tus besos me salvan">14</div>
+        <div class="dia" data-frase="Gracias por existir">15</div>
+        <div class="dia" data-frase="Contigo todo es mejor">16</div>
+        <div class="dia" data-frase="Eres mi felicidad diaria">17</div>
+        <div class="dia" data-frase="Tu voz es mi melodía favorita">18</div>
+        <div class="dia" data-frase="Nuestro amor es único">19</div>
+        <div class="dia" data-frase="Cada día te amo más">20</div>
+        <div class="dia" data-frase="Hoy celebramos nuestro amor">21</div>
+        <div class="dia" data-frase="Nunca dudes de mi amor">22</div>
+        <div class="dia" data-frase="Estoy contigo en todo momento">23</div>
+        <div class="dia" data-frase="Solo tú me haces volar">24</div>
+        <div class="dia" data-frase="Me haces tan feliz">25</div>
+        <div class="dia" data-frase="Siempre serás mi niña">26</div>
+        <div class="dia" data-frase="Te amo sin medida">27</div>
+        <div class="dia" data-frase="Mi vida contigo es perfecta">28</div>
+        <div class="dia" data-frase="Contigo quiero todo">29</div>
+        <div class="dia" data-frase="Lo mejor está por venir">30</div>
+      </div>
+    </div>
+
+    <!-- Julio -->
+    <div class="mes">
+      <h2>Julio 2025</h2>
+      <div class="grid">
+        <div class="titulo-dia">L</div>
+        <div class="titulo-dia">M</div>
+        <div class="titulo-dia">X</div>
+        <div class="titulo-dia">J</div>
+        <div class="titulo-dia">V</div>
+        <div class="titulo-dia">S</div>
+        <div class="titulo-dia">D</div>
+        <!-- Comienza el mes en martes -->
+        <div></div><div class="dia" data-frase="Juntos somos invencibles">1</div>
+        <div class="dia" data-frase="Tu sonrisa me ilumina">2</div>
+        <div class="dia" data-frase="A tu lado, siempre">3</div>
+        <div class="dia" data-frase="Mi amor por ti es eterno">4</div>
+        <div class="dia" data-frase="Siempre tú en mi mente">5</div>
+        <div class="dia" data-frase="Eres mi mayor fortuna">6</div>
+        <!-- puedes seguir añadiendo frases hasta el 31 si deseas -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>
