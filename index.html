@@ -1,144 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Siempre Serás Mi Niña 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background-color: #ffe6f0;
-      overflow: hidden;
-      position: relative;
-    }
-    .corazon {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://i.imgur.com/wO1zF1z.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: flotar 10s linear infinite;
-      opacity: 0.7;
-    }
-    @keyframes flotar {
-      0% {transform: translateY(100vh); opacity: 0;}
-      50% {opacity: 1;}
-      100% {transform: translateY(-100vh); opacity: 0;}
-    }
-    .marco-texto {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-      z-index: 100;
-    }
-    .marco-texto span {
-      position: absolute;
-      font-family: 'Great Vibes', cursive;
-      font-size: 22px;
-      color: #d63384;
-      white-space: nowrap;
-      animation: moverTexto 20s linear infinite;
-    }
-    .marco-texto .top { top: 0; left: 0; right: 0; text-align: center; }
-    .marco-texto .bottom { bottom: 0; left: 0; right: 0; text-align: center; }
-    .marco-texto .left { writing-mode: vertical-rl; top: 0; bottom: 0; left: 0; text-align: center; }
-    .marco-texto .right { writing-mode: vertical-rl; top: 0; bottom: 0; right: 0; text-align: center; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Para mi princesa Dayara 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset y body */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #ffe6f0;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
 
-    @keyframes moverTexto {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
+  /* Texto en movimiento en los 4 bordes */
+  .scroll-border {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    background: #ffcce5;
+  }
+  .scroll-border.top {
+    top: 0; left: 0; right: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .scroll-border.top span {
+    white-space: nowrap;
+    font-family: 'Great Vibes', cursive;
+    color: #d63384;
+    font-weight: 700;
+    font-size: 20px;
+    animation: scrollHorizontal 20s linear infinite;
+  }
+  .scroll-border.bottom {
+    bottom: 0; left: 0; right: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .scroll-border.bottom span {
+    white-space: nowrap;
+    font-family: 'Great Vibes', cursive;
+    color: #d63384;
+    font-weight: 700;
+    font-size: 20px;
+    animation: scrollHorizontalReverse 20s linear infinite;
+  }
+  .scroll-border.left {
+    top: 32px; bottom: 32px; left: 0;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .scroll-border.left span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Great Vibes', cursive;
+    color: #d63384;
+    font-weight: 700;
+    font-size: 20px;
+    animation: scrollVertical 25s linear infinite;
+  }
+  .scroll-border.right {
+    top: 32px; bottom: 32px; right: 0;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .scroll-border.right span {
+    writing-mode: vertical-rl;
+    font-family: 'Great Vibes', cursive;
+    color: #d63384;
+    font-weight: 700;
+    font-size: 20px;
+    animation: scrollVerticalReverse 25s linear infinite;
+  }
 
-    .contenedor-central {
-      position: relative;
-      z-index: 10;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      text-align: center;
-    }
+  /* Animaciones textos */
+  @keyframes scrollHorizontal {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes scrollHorizontalReverse {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  @keyframes scrollVertical {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+  @keyframes scrollVerticalReverse {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
 
-    .contenedor-central h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      color: #c2185b;
-      background-color: rgba(255,255,255,0.8);
-      padding: 20px;
-      border-radius: 20px;
-    }
+  /* Corazones animados (sin imágenes) */
+  .heart {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #ff6b81;
+    transform: rotate(45deg);
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+    border-radius: 3px 3px 0 0;
+    box-shadow:
+      -10px 0 0 #ff6b81,
+      0 -10px 0 #ff6b81;
+    z-index: 0;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff6b81;
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+  .heart::after {
+    left: -10px;
+    top: 0;
+  }
 
-    .botones {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) rotate(45deg);
+      opacity: 0;
     }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150px) rotate(45deg);
+      opacity: 0;
+    }
+  }
 
-    .botones a {
-      padding: 15px 30px;
-      text-decoration: none;
-      font-size: 18px;
-      border-radius: 12px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+  /* Gran corazón animado */
+  .big-heart {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    background-color: #ff6b81;
+    transform: rotate(45deg);
+    z-index: 0;
+    animation: heartbeat 2s infinite;
+    border-radius: 3px 3px 0 0;
+    box-shadow:
+      -75px 0 0 #ff6b81,
+      0 -75px 0 #ff6b81;
+    pointer-events: none;
+  }
+  .big-heart::before,
+  .big-heart::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: #ff6b81;
+    border-radius: 50%;
+  }
+  .big-heart::before {
+    top: -75px;
+    left: 0;
+  }
+  .big-heart::after {
+    left: -75px;
+    top: 0;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    50% { transform: rotate(45deg) scale(1.15); }
+  }
 
-    .regalo1 {
-      background-color: #2196F3;
-      color: white;
-    }
+  /* Contenedor principal */
+  .container {
+    position: relative;
+    z-index: 20;
+    padding: 60px 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    text-align: center;
+  }
 
-    .regalo1:hover {
-      background-color: #1976D2;
-    }
+  /* Titulo principal */
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: #b30059;
+    margin-bottom: 50px;
+    user-select: none;
+  }
 
-    .regalo2 {
-      background-color: #e53935;
-      color: white;
-    }
-
-    .regalo2:hover {
-      background-color: #c62828;
-    }
-  </style>
+  /* Botones regalo */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  button {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 15px 50px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button#regalo1 {
+    background-color: #2196F3;
+  }
+  button#regalo1:hover {
+    background-color: #0b7dda;
+  }
+  button#regalo2 {
+    background-color: #e91e63;
+  }
+  button#regalo2:hover {
+    background-color: #c2185b;
+  }
+</style>
 </head>
 <body>
-  <div class="marco-texto">
-    <span class="top">Siempre serás mi niña – 21/06/2025</span>
-    <span class="bottom">Siempre serás mi niña – 21/06/2025</span>
-    <span class="left">Siempre serás mi niña – 21/06/2025</span>
-    <span class="right">Siempre serás mi niña – 21/06/2025</span>
+
+  <!-- Texto en movimiento en los bordes -->
+  <div class="scroll-border top" aria-hidden="true">
+    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp; siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
+  </div>
+  <div class="scroll-border bottom" aria-hidden="true">
+    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp; siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
+  </div>
+  <div class="scroll-border left" aria-hidden="true">
+    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
+  </div>
+  <div class="scroll-border right" aria-hidden="true">
+    <span>siempre seras mi niña 21/06/2025 &nbsp; • &nbsp;</span>
   </div>
 
-  <div class="contenedor-central">
-    <h1>Bienvenida, mi princesa 💖</h1>
-    <div class="botones">
-      <a class="regalo1" href="regalo1.html">REGALO 1</a>
-      <a class="regalo2" href="regalo2.html">REGALO 2</a>
+  <!-- Corazones flotantes -->
+  <div aria-hidden="true">
+    <div class="heart" style="left: 5%; animation-duration: 15s; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 12%; animation-duration: 12s; animation-delay: 3s;"></div>
+    <div class="heart" style="left: 20%; animation-duration: 18s; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 28%; animation-duration: 14s; animation-delay: 4s;"></div>
+    <div class="heart" style="left: 35%; animation-duration: 16s; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 42%; animation-duration: 13s; animation-delay: 6s;"></div>
+    <div class="heart" style="left: 50%; animation-duration: 19s; animation-delay: 5s;"></div>
+    <div class="heart" style="left: 58%; animation-duration: 11s; animation-delay: 1.5s;"></div>
+    <div class="heart" style="left: 65%; animation-duration: 15s; animation-delay: 0.5s;"></div>
+    <div class="heart" style="left: 72%; animation-duration: 17s; animation-delay: 3.5s;"></div>
+    <div class="heart" style="left: 80%; animation-duration: 14s; animation-delay: 2.5s;"></div>
+    <div class="heart" style="left: 88%; animation-duration: 16s; animation-delay: 4.5s;"></div>
+  </div>
+
+  <!-- Gran sticker corazón animado -->
+  <div class="big-heart" aria-hidden="true"></div>
+
+  <div class="container">
+    <h1>Para mi princesa Dayara 💖</h1>
+    <div class="buttons">
+      <button id="regalo1" onclick="location.href='regalo1.html'">REGALO 1</button>
+      <button id="regalo2" onclick="location.href='regalo2.html'">REGALO 2</button>
     </div>
   </div>
 
-  <script>
-    // Crear corazones flotantes
-    for (let i = 0; i < 30; i++) {
-      const corazon = document.createElement('div');
-      corazon.classList.add('corazon');
-      corazon.style.left = Math.random() * 100 + 'vw';
-      corazon.style.animationDuration = (5 + Math.random() * 10) + 's';
-      document.body.appendChild(corazon);
-    }
-  </script>
 </body>
 </html>
+
