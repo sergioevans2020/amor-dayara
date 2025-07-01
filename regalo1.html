@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regalo 1 para Dayara 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <style>
@@ -14,6 +14,7 @@
       overflow-x: hidden;
       position: relative;
     }
+
     .mensaje-movimiento {
       width: 100%;
       text-align: center;
@@ -25,18 +26,21 @@
       animation: deslizar 12s linear infinite;
       z-index: 2;
       position: relative;
-      background-color: #ffd6eb;
+      background-color: #ffcce5;
     }
+
     @keyframes deslizar {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
+
     .centro {
       text-align: center;
-      margin-top: 120px;
+      margin-top: 100px;
       z-index: 2;
       position: relative;
     }
+
     .texto-centro {
       font-size: 36px;
       color: #c71585;
@@ -46,7 +50,8 @@
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
-    .boton, .boton-si {
+
+    .boton {
       margin-top: 25px;
       padding: 15px 35px;
       font-size: 20px;
@@ -58,10 +63,12 @@
       transition: background 0.3s;
       font-weight: bold;
     }
-    .boton:hover, .boton-si:hover {
+
+    .boton:hover {
       background-color: #0b7dda;
     }
-    .mensaje-escondido, .respuesta-escondida {
+
+    .mensaje-escondido {
       display: none;
       margin-top: 30px;
       font-size: 22px;
@@ -74,65 +81,61 @@
       border-radius: 10px;
       font-family: 'Quicksand', sans-serif;
     }
-    .pregunta {
-      margin-top: 30px;
-      font-size: 24px;
+
+    .respuesta {
+      display: none;
+      margin-top: 20px;
+      font-size: 20px;
+      color: #d63384;
       font-weight: bold;
-      color: #b30059;
     }
-    .frase {
-      position: absolute;
-      font-weight: bold;
-      font-family: 'Great Vibes', cursive;
-      font-size: 22px;
-      color: #b30059;
-      max-width: 200px;
-      text-align: center;
-      opacity: 0.9;
-      background-color: #ffe6f6;
+
+    .piramide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .piramide .fila {
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+    }
+
+    .frase-box {
+      background-color: #ffccdd;
+      padding: 10px 15px;
+      margin: 5px;
       border-radius: 10px;
-      padding: 5px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 20px;
+      color: #b30059;
+      position: relative;
+      transition: transform 0.2s;
     }
-    .frase:hover::after {
+
+    .frase-box:hover::after {
       content: attr(data-poema);
       position: absolute;
       top: -60px;
       left: 50%;
       transform: translateX(-50%);
-      background: #fff0f5;
+      background-color: #fff0f5;
+      color: #c71585;
       padding: 10px;
       border-radius: 10px;
-      font-size: 16px;
-      font-family: 'Great Vibes', cursive;
-      color: #c71585;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      white-space: pre-line;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      font-size: 14px;
+      white-space: nowrap;
       z-index: 10;
     }
-    .fr1 { top: 10%; left: 5%; }
-    .fr2 { top: 20%; right: 10%; }
-    .fr3 { bottom: 20%; left: 8%; }
-    .fr4 { bottom: 15%; right: 12%; }
-    .fr5 { top: 50%; left: 45%; }
-    .fr6 { top: 30%; left: 30%; }
-    .fr7 { bottom: 40%; right: 20%; }
-    .fr8 { bottom: 10%; left: 40%; }
   </style>
 </head>
 <body>
   <div class="mensaje-movimiento">
-    Te amo mi princesa, siempre serás mi amor perfecto 💕
+    Te amo mi princesa, siempre serás mi amor perfecto
   </div>
-
-  <!-- Frases en pirámide del amor -->
-  <div class="frase fr1" data-poema="Eres mi todo\nSin ti, mi mundo se detiene">Eres mi todo</div>
-  <div class="frase fr2" data-poema="Nuestro amor es eterno\nComo estrellas que no dejan de brillar">Nuestro amor es eterno</div>
-  <div class="frase fr3" data-poema="Siempre tú y yo\nComo dos almas bailando juntas">Siempre tú y yo</div>
-  <div class="frase fr4" data-poema="Gracias por existir\nTu luz ilumina mis días">Gracias por existir</div>
-  <div class="frase fr5" data-poema="Tú haces mi vida mejor\nCon cada sonrisa tuya florezco">Tú haces mi vida mejor</div>
-  <div class="frase fr6" data-poema="Eres mi inspiración\nMi verso más dulce y tierno">Eres mi inspiración</div>
-  <div class="frase fr7" data-poema="Tu risa es mi melodía\nUna canción que siempre quiero oír">Tu risa es mi melodía</div>
-  <div class="frase fr8" data-poema="Junto a ti soy feliz\nEres mi casa, mi paz, mi amor">Junto a ti soy feliz</div>
 
   <div class="centro">
     <div class="texto-centro">
@@ -142,10 +145,25 @@
     <div id="mensaje" class="mensaje-escondido">
       Desde ese primer día que te vi, supe que eras para mí. <br />
       Dayara, el amor de mi vida, pero también la dueña de mis sueños y de mi vida.
-      <div class="pregunta">¿Te gustó?</div>
-      <button class="boton-si" onclick="mostrarRespuesta()">SI &lt;3</button>
-      <div id="respuesta" class="respuesta-escondida">
-        ME ALEGRO MI NIÑA, PORQUE ERES LO MÁS VALIOSO QUE TENGO MI DAYARA PRECIOSA 💖
+      <div style="margin-top: 20px;">
+        <p>¿Te gustó?</p>
+        <button class="boton" style="background-color: #e91e63;" onclick="mostrarRespuesta()">SI <3</button>
+        <div class="respuesta" id="respuesta">ME ALEGRO MI NIÑA POR QUE ERES LO MÁS VALIOSO QUE TENGO MI DAYARA PRECIOSA.</div>
+      </div>
+    </div>
+
+    <div class="piramide">
+      <div class="fila">
+        <div class="frase-box" data-poema="Sin ti el día es gris, contigo todo es luz.">Eres mi sol</div>
+      </div>
+      <div class="fila">
+        <div class="frase-box" data-poema="Tú y yo, destino trazado por las estrellas.">Nuestro amor es destino</div>
+        <div class="frase-box" data-poema="Tus abrazos son mi paz, tus besos mi refugio.">Eres mi refugio</div>
+      </div>
+      <div class="fila">
+        <div class="frase-box" data-poema="Cada instante contigo es eternidad de amor.">Contigo el tiempo vuela</div>
+        <div class="frase-box" data-poema="Mi corazón sonríe con tu mirada.">Tus ojos, mi mundo</div>
+        <div class="frase-box" data-poema="Amarte es mi destino eterno.">Siempre tú y yo</div>
       </div>
     </div>
   </div>
@@ -153,45 +171,11 @@
   <script>
     function mostrarMensaje() {
       document.getElementById("mensaje").style.display = "block";
-      explosionCorazones();
     }
     function mostrarRespuesta() {
       document.getElementById("respuesta").style.display = "block";
-      explosionArcoiris();
-    }
-    function explosionCorazones() {
-      for (let i = 0; i < 30; i++) {
-        const heart = document.createElement("div");
-        heart.textContent = "💖";
-        heart.style.position = "fixed";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = Math.random() * 100 + "vh";
-        heart.style.fontSize = "2rem";
-        heart.style.animation = "fadeOut 2s forwards";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 2000);
-      }
-    }
-    function explosionArcoiris() {
-      const colores = ['❤️','🧡','💛','💚','💙','💜'];
-      for (let i = 0; i < 30; i++) {
-        const emoji = document.createElement("div");
-        emoji.textContent = colores[i % colores.length];
-        emoji.style.position = "fixed";
-        emoji.style.left = Math.random() * 100 + "vw";
-        emoji.style.top = Math.random() * 100 + "vh";
-        emoji.style.fontSize = "2rem";
-        emoji.style.animation = "fadeOut 2s forwards";
-        document.body.appendChild(emoji);
-        setTimeout(() => emoji.remove(), 2000);
-      }
     }
   </script>
-  <style>
-    @keyframes fadeOut {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0; transform: scale(2); }
-    }
-  </style>
 </body>
 </html>
+
