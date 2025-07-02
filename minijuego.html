@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Minijuego Corazón Kawaii</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
+
+  /* Reset y cuerpo */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #ffe6f0 0%, #ffd1da 100%);
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+  /* Contenedor del juego */
+  #game-container {
+    position: relative;
+    width: 90vw;
+    max-width: 600px;
+    height: 180px;
+    background: #fff0f5;
+    border: 4px solid #e91e63;
+    border-radius: 18px;
+    box-shadow: 0 0 15px #e91e6350;
+    overflow: hidden;
+  }
+
+  /* Suelo */
+  #ground {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 20px;
+    background: linear-gradient(90deg, #ff8aa1 0%, #ff5a7a 100%);
+    box-shadow: inset 0 4px 6px #ffaec0;
+  }
+
+  /* Corazon avatar */
+  #player {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    width: 50px; height: 50px;
+    background: #e91e63;
+    transform: rotate(45deg);
+    border-radius: 4px 4px 0 0;
+    filter: drop-shadow(0 0 6px #ff4c91);
+    transition: bottom 0.15s ease-out;
+    z-index: 10;
+  }
+  #player::before,
+  #player::after {
+    content: "";
+    position: absolute;
+    width: 50px; height: 50px;
+    background: #e91e63;
+    border-radius: 50%;
+  }
+  #player::before {
+    top: -25px; left: 0;
+  }
+  #player::after {
+    left: 25px; top: 0;
+  }
+
+  /* Ojos kawaii */
+  #eye-left, #eye-right {
+    position: absolute;
+    width: 9px; height: 9px;
+    background: white;
+    border-radius: 50%;
+    top: 18px;
+    filter: drop-shadow(0 0 1px #93003e);
+  }
+  #eye-left {
+    left: 9px;
+  }
+  #eye-right {
+    left: 25px;
+  }
+  .pupil {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 5px; height: 5px;
+    background: #93003e;
+    border-radius: 50%;
+  }
+
+  /* Obstáculos - flechas */
+  .obstacle {
+    position: absolute;
+    bottom: 20px;
+    width: 35px; height: 25px;
+    background: transparent;
+    border-left: 15px solid #ff2d68;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    animation: moveObstacle linear forwards;
+    filter: drop-shadow(0 0 3px #ff4c91);
+  }
+  .obstacle::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 6px;
+    width: 8px; height: 8px;
+    background: #ff2d68;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  @keyframes moveObstacle {
+    from { right: -40px; }
+    to { right: 110%; }
+  }
+
+  /* Texto de puntaje */
+  #score {
+    position: absolute;
+    top: 8px; right: 12px;
+    font-weight: 700;
+    font-size: 22px;
+    color: #e91e63;
+    text-shadow: 1px 1px 2px #fff0f5;
+    user-select: none;
+  }
+
+  /* Mensaje game over */
+  #game-over {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    color: #b30059;
+    background: #ffe6f0dd;
+    padding: 20px 35px;
+    border-radius: 14px;
+    box-shadow: 0 0 15px #b3005980;
+    display: none;
+    text-align: center;
+    user-select: none;
+    z-index: 20;
+  }
+
+  /* Botón reiniciar */
+  #restart-btn {
+    margin-top: 14px;
+    padding: 10px 22px;
+    font-size: 18px;
+    font-weight: 700;
+    background: #b30059;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 8px #b3005999;
+    transition: background-color 0.3s ease;
+  }
+  #restart-btn:hover {
+    background: #e91e63;
+  }
+
+  /* Instrucciones */
+  #instructions {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: #b30059;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="game-container" role="main" aria-label="Minijuego corazón kawaii para saltar obstáculos">
+  <div id="player" aria-label="Avatar corazón kawaii" role="img" aria-live="polite" tabindex="0">
+    <div id="eye-left" aria-hidden="true"><div class="pupil"></div></div>
+    <div id="eye-right" aria-hidden="true"><div class="pupil"></div></div>
+  </div>
+  <div id="ground"></div>
+  <div id="score" aria-live="polite" aria-atomic="true">Puntaje: 0</div>
+  <div id="game-over" role="alert" aria-live="assertive">
+    ¡Game Over!<br />
+    <button id="restart-btn" aria-label="Reiniciar juego">Reiniciar</button>
+  </div>
+  <div id="instructions">Presiona ESPACIO o toca para saltar</div>
+</div>
+
+<script>
+  (() => {
+    const player = document.getElementById('player');
+    const gameContainer = document.getElementById('game-container');
+    const scoreDisplay = document.getElementById('score');
+    const gameOverDisplay = document.getElementById('game-over');
+    const restartBtn = document.getElementById('restart-btn');
+
+    const jumpHeight = 90; // px salto máximo
+    const jumpDuration = 600; // ms salto completo arriba y abajo
+    let isJumping = false;
+    let isGameOver = false;
+    let score = 0;
+    let obstacleInterval = null;
+    let obstacles = [];
+
+    function jump() {
+      if (isJumping || isGameOver) return;
+      isJumping = true;
+      let start = null;
+      const startBottom = 20;
+      function animateJump(timestamp) {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        if (elapsed < jumpDuration / 2) {
+          // Subida
+          const newBottom = startBottom + (jumpHeight * (elapsed / (jumpDuration / 2)));
+          player.style.bottom = newBottom + "px";
+          requestAnimationFrame(animateJump);
+        } else if (elapsed < jumpDuration) {
+          // Bajada
+          const newBottom = startBottom + jumpHeight - (jumpHeight * ((elapsed - jumpDuration / 2) / (jumpDuration / 2)));
+          player.style.bottom = newBottom + "px";
+          requestAnimationFrame(animateJump);
+        } else {
+          // Fin salto
+          player.style.bottom = startBottom + "px";
+          isJumping = false;
+        }
+      }
+      requestAnimationFrame(animateJump);
+    }
+
+    // Crear obstáculo (flecha)
+    function crearObstaculo() {
+      if (isGameOver) return;
+      const obstacle = document.createElement('div');
+      obstacle.classList.add('obstacle');
+      gameContainer.appendChild(obstacle);
+
+      // Animación duración variable según score, mínimo 3s máximo 6s
+      const duration = Math.max(3000 - score * 20, 1500);
+      obstacle.style.animationDuration = duration + 'ms';
+
+      obstacle.style.right = '-40px';
+
+      // Añadir a lista para control
+      obstacles.push(obstacle);
+
+      // Cuando termina animación, eliminar obstáculo
+      obstacle.addEventListener('animationend', () => {
+        obstacle.remove();
+        obstacles = obstacles.filter(o => o !== obstacle);
+        if (!isGameOver) {
+          score++;
+          scoreDisplay.textContent = `Puntaje: ${score}`;
+        }
+      });
+    }
+
+    // Controlar colisión jugador-obstáculo
+    function revisarColisiones() {
+      if (isGameOver) return;
+      const playerRect = player.getBoundingClientRect();
+
+      for (let obstacle of obstacles) {
+        const obsRect = obstacle.getBoundingClientRect();
+
+        // Ajustamos los límites para colisión más exacta
+        const colisiona = !(
+          playerRect.right < obsRect.left + 8 ||
+          playerRect.left > obsRect.right - 8 ||
+          playerRect.bottom < obsRect.top + 5 ||
+          playerRect.top > obsRect.bottom - 5
+        );
+        if (colisiona) {
+          terminarJuego();
+          break;
+        }
+      }
+    }
+
+    function terminarJuego() {
+      isGameOver = true;
+      gameOverDisplay.style.display = 'block';
+      obstacles.forEach(o => o.style.animationPlayState = 'paused');
+      clearInterval(obstacleInterval);
+    }
+
+    function reiniciarJuego() {
+      isGameOver = false;
+      score = 0;
+      scoreDisplay.textContent = `Puntaje: ${score}`;
+      gameOverDisplay.style.display = 'none';
+
+      // Eliminar obstáculos existentes
+      obstacles.forEach(o => o.remove());
+      obstacles = [];
+
+      // Reset player posición
+      player.style.bottom = "20px";
+
+      // Reiniciar intervalo de obstáculos
+      obstacleInterval = setInterval(crearObstaculo, 2200);
+
+      // Focus para accesibilidad
+      player.focus();
+    }
+
+    // Eventos salto
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        jump();
+      }
+    });
+    document.addEventListener('touchstart', e => {
+      e.preventDefault();
+      jump();
+    }, {passive:false});
+
+    // Reiniciar botón
+    restartBtn.addEventListener('click', () => {
+      reiniciarJuego();
+    });
+
+    // Loop principal para colisiones
+    function gameLoop() {
+      if (!isGameOver) {
+        revisarColisiones();
+        requestAnimationFrame(gameLoop);
+      }
+    }
+
+    // Iniciar juego
+    reiniciarJuego();
+    requestAnimationFrame(gameLoop);
+
+  })();
+</script>
+
+</body>
+</html>
