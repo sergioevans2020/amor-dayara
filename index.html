@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para mi princesa Dayara 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <style>
@@ -52,18 +52,19 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      background: transparent;
+      background-color: red;
       transform: rotate(-45deg);
       animation: flotar 8s infinite ease-in;
+      clip-path: path("M10 30 C-10 0, 40 0, 10 30 Z");
     }
 
     .corazon::before,
     .corazon::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 20px;
       height: 20px;
-      background: #ff4d88;
+      background: red;
       border-radius: 50%;
     }
 
@@ -73,23 +74,13 @@
     }
 
     .corazon::after {
-      left: -10px;
       top: 0;
-    }
-
-    .corazon {
-      background: #ff4d88;
+      left: -10px;
     }
 
     @keyframes flotar {
-      0% {
-        transform: translateY(100vh) rotate(-45deg) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) rotate(-45deg) scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.3) rotate(-45deg); opacity: 0; }
     }
 
     .contenedor {
@@ -109,8 +100,8 @@
     .botones {
       display: flex;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 20px;
     }
 
     .boton {
@@ -124,20 +115,76 @@
       transition: 0.3s;
     }
 
-    .boton.azul {
-      background-color: #2196F3;
+    .boton.azul { background-color: #2196F3; }
+    .boton.azul:hover { background-color: #0b7dda; }
+
+    .boton.rojo { background-color: #e91e63; }
+    .boton.rojo:hover { background-color: #c2185b; }
+
+    .boton.verde { background-color: #98e6a7; color: #333; }
+    .boton.verde:hover { background-color: #6fd490; }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 20;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
     }
 
-    .boton.azul:hover {
-      background-color: #0b7dda;
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 30px;
+      border: 2px solid #d63384;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+      border-radius: 15px;
     }
 
-    .boton.rojo {
-      background-color: #e91e63;
+    .close {
+      color: #888;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .boton.rojo:hover {
-      background-color: #c2185b;
+    .close:hover {
+      color: black;
+    }
+
+    .input-codigo {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    .desbloqueo {
+      margin-top: 20px;
+    }
+
+    .btn-desbloqueo {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #d63384;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-desbloqueo:hover {
+      background-color: #b30059;
     }
   </style>
 </head>
@@ -156,7 +203,20 @@
     <div class="botones">
       <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
       <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="boton" style="background-color: #a3d9a5;">REGALO 3</button></a>
+      <button class="boton verde" onclick="abrirModal()">REGALO 3</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalRegalo3" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <h3>Introduce el código secreto 💌</h3>
+      <input type="text" id="codigoInput" class="input-codigo" placeholder="Escribe el código aquí">
+      <div class="desbloqueo">
+        <button class="btn-desbloqueo" onclick="verificarCodigo()">Desbloquear</button>
+      </div>
+      <div id="mensajeExito" style="margin-top: 15px;"></div>
     </div>
   </div>
 
@@ -172,7 +232,25 @@
         corazon.remove();
       }, 10000);
     }
-    setInterval(crearCorazon, 400);
+    setInterval(crearCorazon, 500);
+
+    function abrirModal() {
+      document.getElementById("modalRegalo3").style.display = "block";
+    }
+
+    function cerrarModal() {
+      document.getElementById("modalRegalo3").style.display = "none";
+    }
+
+    function verificarCodigo() {
+      const input = document.getElementById("codigoInput").value;
+      const mensaje = document.getElementById("mensajeExito");
+      if (input === "21062025") {
+        mensaje.innerHTML = `<a href="regalo3.html"><button class="btn-desbloqueo">TOMA TU REGALO BEBÉ</button></a>`;
+      } else {
+        mensaje.textContent = "Código incorrecto 😢";
+      }
+    }
   </script>
 </body>
 </html>
