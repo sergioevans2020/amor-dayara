@@ -118,16 +118,20 @@
       color: white;
     }
 
-    .modo-oscuro .titulo {
+    .tema-rosado {
+      background: linear-gradient(135deg, #ffccd5, #f8bbd0);
+      color: #4a0033;
+    }
+
+    .modo-oscuro .titulo,
+    .tema-rosado .titulo {
       color: #f8bbd0;
     }
 
-    .toggle-btn {
+    .toggle-btn,
+    .theme-btn {
       position: fixed;
       top: 20px;
-      right: 20px;
-      background: #555;
-      color: white;
       padding: 10px 15px;
       border: none;
       border-radius: 10px;
@@ -135,17 +139,34 @@
       z-index: 10;
     }
 
-    .toggle-btn:hover {
-      background: #333;
+    .toggle-btn {
+      right: 80px;
+      background: #555;
+      color: white;
+    }
+
+    .theme-btn {
+      right: 20px;
+      background: #ff99bb;
+      color: white;
+    }
+
+    .toggle-btn:hover,
+    .theme-btn:hover {
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
+  <!-- Botones arriba a la derecha -->
   <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Modo</button>
+  <button class="theme-btn" onclick="setRosado()">💗 Rosado</button>
 
+  <!-- Avatar animado -->
   <div class="avatar">💖</div>
   <div class="mensaje-avatar">Bienvenida doncella 💖</div>
 
+  <!-- Contenido principal -->
   <div class="contenedor">
     <div class="titulo">Bienvenida, mi amor 💕</div>
     <div class="botones">
@@ -160,7 +181,13 @@
 
   <script>
     function toggleDarkMode() {
+      document.body.classList.remove('tema-rosado');
       document.body.classList.toggle('modo-oscuro');
+    }
+
+    function setRosado() {
+      document.body.classList.remove('modo-oscuro');
+      document.body.classList.toggle('tema-rosado');
     }
   </script>
 </body>
