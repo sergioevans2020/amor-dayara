@@ -3,240 +3,343 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Minijuego Amor: Salta el Corazón Kawaii 💖</title>
+<title>Minijuego Corazón Saltarín 💖</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
-
-  body {
-    margin: 0;
+  body, html {
+    margin: 0; padding: 0;
     background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     font-family: 'Quicksand', sans-serif;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  #game-container {
-    position: relative;
-    width: 100vw;
-    max-width: 600px;
-    height: 200px;
-    background: #ffe6f0;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(255, 20, 60, 0.3);
     overflow: hidden;
-  }
-
-  #ground {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 20px;
-    background: #d63384;
-  }
-
-  #heart {
-    position: absolute;
-    bottom: 20px;
-    left: 50px;
-    width: 50px;
-    height: 50px;
-    background: #ff4d94;
-    transform: rotate(45deg);
-    border-radius: 15px 15px 15px 15px;
-    animation: heart-beat 1.2s infinite;
-    cursor: pointer;
-  }
-
-  #heart::before,
-  #heart::after {
-    content: "";
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background: #ff4d94;
-    border-radius: 50%;
-  }
-
-  #heart::before {
-    top: -25px;
-    left: 0;
-  }
-
-  #heart::after {
-    left: 25px;
-    top: 0;
-  }
-
-  /* Ojos kawai */
-  #eye-left, #eye-right {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    width: 10px;
-    height: 14px;
-    top: 15px;
-  }
-  #eye-left {
-    left: 10px;
-  }
-  #eye-right {
-    right: 10px;
-  }
-  #eye-left::after, #eye-right::after {
-    content: "";
-    position: absolute;
-    background: black;
-    width: 5px;
-    height: 7px;
-    border-radius: 50%;
-    top: 3px;
-    left: 2px;
-  }
-
-  /* Obstacle */
-  .obstacle {
-    position: absolute;
-    bottom: 20px;
-    right: -30px;
-    width: 30px;
-    height: 50px;
-    background: #d63384;
-    border-radius: 8px;
-    animation: obstacle-move 2.5s linear infinite;
-  }
-
-  @keyframes obstacle-move {
-    0% { right: -30px; }
-    100% { right: 100%; }
-  }
-
-  @keyframes heart-beat {
-    0%, 100% { transform: rotate(45deg) scale(1); }
-    50% { transform: rotate(45deg) scale(1.1); }
-  }
-
-  #score {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-weight: 700;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
     color: #b30059;
-    font-size: 22px;
-    user-select: none;
   }
-
-  #instructions {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    font-size: 14px;
-    color: #6a1b4d;
-    user-select: none;
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    margin-bottom: 10px;
+    font-size: 3rem;
+  }
+  #nivel {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  canvas {
+    background: #fff0f6;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #d63384aa;
+    display: block;
+  }
+  #puntaje {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  #btn-reiniciar {
+    margin-top: 15px;
+    padding: 10px 30px;
+    font-size: 18px;
+    background-color: #d63384;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    display: none;
+  }
+  #btn-reiniciar:hover {
+    background-color: #a5275c;
   }
 </style>
 </head>
 <body>
-<div id="game-container" tabindex="0">
-  <div id="score">Puntos: 0</div>
-  <div id="instructions">Presiona ESPACIO o toca para saltar</div>
-  <div id="ground"></div>
-  <div id="heart">
-    <div id="eye-left"></div>
-    <div id="eye-right"></div>
-  </div>
-  <div class="obstacle"></div>
-</div>
+
+  <h1>Corazón Saltarín 💖</h1>
+  <div id="nivel">Nivel: Fácil</div>
+  <canvas id="juego" width="600" height="150" aria-label="Juego de saltar corazón"></canvas>
+  <div id="puntaje">Puntuación: 0</div>
+  <button id="btn-reiniciar" aria-label="Reiniciar juego">Reiniciar</button>
 
 <script>
-  const heart = document.getElementById('heart');
-  const obstacle = document.querySelector('.obstacle');
-  const scoreDisplay = document.getElementById('score');
-  const gameContainer = document.getElementById('game-container');
+(() => {
+  const canvas = document.getElementById('juego');
+  const ctx = canvas.getContext('2d');
 
-  let isJumping = false;
-  let position = 0;
-  let score = 0;
+  // Tamaños y posiciones
+  const sueloY = canvas.height - 30;
+  const gravedad = 0.7;
+  let puntaje = 0;
+  let velocidad = 6;
+  let nivel = 1;
+
+  // Niveles: 1 - Fácil, 2 - Intermedio, 3 - Difícil
+  const nivelesTexto = ['Fácil', 'Intermedio', 'Difícil'];
+  const nivelElem = document.getElementById('nivel');
+  const puntajeElem = document.getElementById('puntaje');
+  const btnReiniciar = document.getElementById('btn-reiniciar');
+
+  // Avatar Corazón kawai con pies
+  const avatar = {
+    x: 50,
+    y: sueloY,
+    width: 40,
+    height: 40,
+    dy: 0,
+    saltando: false,
+    saltarFuerza: -15,
+    piesAltura: 10,
+
+    dibujar() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+
+      // Cuerpo: corazón rotado 45°
+      ctx.fillStyle = '#e91e63';
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(this.width / 2, -this.height / 2);
+      ctx.arc(this.width / 4, -this.height / 2, this.width / 4, Math.PI, 0, false);
+      ctx.arc(this.width * 3 / 4, -this.height / 2, this.width / 4, Math.PI, 0, false);
+      ctx.lineTo(this.width, 0);
+      ctx.closePath();
+      ctx.fill();
+
+      // Ojos kawai
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.ellipse(this.width * 0.35, -this.height * 0.6, 6, 8, 0, 0, 2 * Math.PI);
+      ctx.ellipse(this.width * 0.65, -this.height * 0.6, 6, 8, 0, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.fillStyle = '#b30059';
+      ctx.beginPath();
+      ctx.ellipse(this.width * 0.35, -this.height * 0.6, 3, 4, 0, 0, 2 * Math.PI);
+      ctx.ellipse(this.width * 0.65, -this.height * 0.6, 3, 4, 0, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // Brillo ojos
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(this.width * 0.37, -this.height * 0.63, 2, 0, 2 * Math.PI);
+      ctx.arc(this.width * 0.67, -this.height * 0.63, 2, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // Pies (dos pequeños corazones rotados)
+      ctx.fillStyle = '#b30059';
+      // pie izquierdo
+      ctx.save();
+      ctx.translate(this.width * 0.2, 0);
+      ctx.rotate(45 * Math.PI / 180);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(10, 10);
+      ctx.arc(5, 0, 5, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+
+      // pie derecho
+      ctx.save();
+      ctx.translate(this.width * 0.7, 0);
+      ctx.rotate(45 * Math.PI / 180);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(10, 10);
+      ctx.arc(5, 0, 5, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+
+      ctx.restore();
+    },
+
+    actualizar() {
+      this.dy += gravedad;
+      this.y += this.dy;
+      if (this.y > sueloY) {
+        this.y = sueloY;
+        this.dy = 0;
+        this.saltando = false;
+      }
+    },
+
+    saltar() {
+      if (!this.saltando) {
+        this.dy = this.saltarFuerza;
+        this.saltando = true;
+      }
+    }
+  };
+
+  // Obstáculos - pequeños y variados
+  class Obstaculo {
+    constructor() {
+      this.width = 15 + Math.random() * 10;
+      this.height = 20 + Math.random() * 10;
+      this.x = canvas.width + this.width;
+      this.y = sueloY + avatar.piesAltura - this.height;
+      this.color = '#b30059';
+      this.velocidad = velocidad;
+    }
+    dibujar() {
+      ctx.fillStyle = this.color;
+      // Forma corazón pequeño con pies
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(45 * Math.PI / 180);
+      // cuerpo
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(this.width / 2, -this.height / 2);
+      ctx.arc(this.width / 4, -this.height / 2, this.width / 4, Math.PI, 0, false);
+      ctx.arc(this.width * 3 / 4, -this.height / 2, this.width / 4, Math.PI, 0, false);
+      ctx.lineTo(this.width, 0);
+      ctx.closePath();
+      ctx.fill();
+      // pies (simplificados)
+      ctx.fillRect(this.width * 0.2, 0, 4, 6);
+      ctx.fillRect(this.width * 0.6, 0, 4, 6);
+      ctx.restore();
+    }
+    actualizar() {
+      this.x -= this.velocidad;
+    }
+  }
+
+  let obstaculos = [];
+  let frameCount = 0;
   let gameOver = false;
 
-  // Control salto
-  function jump() {
-    if (isJumping || gameOver) return;
-    isJumping = true;
+  function detectarColision(av, ob) {
+    // Simple bounding box mejorada con zona corazón
+    const avBox = {
+      x: av.x,
+      y: av.y - av.height,
+      width: av.width,
+      height: av.height
+    };
+    const obBox = {
+      x: ob.x,
+      y: ob.y,
+      width: ob.width,
+      height: ob.height
+    };
 
-    let upInterval = setInterval(() => {
-      if (position >= 100) {
-        clearInterval(upInterval);
-        let downInterval = setInterval(() => {
-          if (position <= 0) {
-            clearInterval(downInterval);
-            isJumping = false;
-            position = 0;
-            heart.style.bottom = position + 20 + 'px';
-          } else {
-            position -= 10;
-            heart.style.bottom = position + 20 + 'px';
-          }
-        }, 20);
-      } else {
-        position += 10;
-        heart.style.bottom = position + 20 + 'px';
-      }
-    }, 20);
+    return (
+      avBox.x < obBox.x + obBox.width &&
+      avBox.x + avBox.width > obBox.x &&
+      avBox.y < obBox.y + obBox.height &&
+      avBox.y + avBox.height > obBox.y
+    );
   }
 
-  // Detección de colisión
-  function checkCollision() {
-    const heartRect = heart.getBoundingClientRect();
-    const obstacleRect = obstacle.getBoundingClientRect();
+  function mostrarGameOver() {
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#b30059';
+    ctx.font = 'bold 36px Quicksand, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('¡Game Over!', canvas.width / 2, canvas.height / 2 - 20);
+    ctx.font = '22px Quicksand, sans-serif';
+    ctx.fillText(`Puntuación: ${puntaje}`, canvas.width / 2, canvas.height / 2 + 20);
+    btnReiniciar.style.display = 'inline-block';
+  }
 
-    if (
-      heartRect.right > obstacleRect.left + 5 &&
-      heartRect.left < obstacleRect.right - 5 &&
-      heartRect.bottom > obstacleRect.top + 5 &&
-      heartRect.top < obstacleRect.bottom - 5
-    ) {
-      gameOver = true;
-      alert('¡Juego terminado! Tu puntaje: ' + score);
-      document.location.reload();
+  function actualizarNivel() {
+    if (puntaje >= 40) {
+      nivel = 3;
+      velocidad = 12;
+    } else if (puntaje >= 20) {
+      nivel = 2;
+      velocidad = 9;
+    } else {
+      nivel = 1;
+      velocidad = 6;
     }
+    nivelElem.textContent = `Nivel: ${nivelesTexto[nivel -1]}`;
   }
 
-  // Incrementar puntos
-  function updateScore() {
-    if (!gameOver) {
-      score++;
-      scoreDisplay.textContent = 'Puntos: ' + score;
-    }
+  function reiniciarJuego() {
+    obstaculos = [];
+    puntaje = 0;
+    frameCount = 0;
+    gameOver = false;
+    velocidad = 6;
+    nivel = 1;
+    nivelElem.textContent = `Nivel: ${nivelesTexto[0]}`;
+    puntajeElem.textContent = `Puntuación: 0`;
+    btnReiniciar.style.display = 'none';
+    avatar.y = sueloY;
+    avatar.dy = 0;
+    avatar.saltando = false;
+    requestAnimationFrame(loop);
   }
 
-  // Juego principal
-  function gameLoop() {
+  function loop() {
     if (gameOver) return;
-    checkCollision();
-    updateScore();
-    requestAnimationFrame(gameLoop);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Suelo
+    ctx.fillStyle = '#d63384';
+    ctx.fillRect(0, sueloY + avatar.piesAltura, canvas.width, canvas.height - sueloY);
+
+    avatar.actualizar();
+    avatar.dibujar();
+
+    // Crear obstáculo cada cierto frames segun dificultad
+    if (frameCount % Math.floor(60 - nivel * 10) === 0) {
+      obstaculos.push(new Obstaculo());
+    }
+
+    for (let i = 0; i < obstaculos.length; i++) {
+      const ob = obstaculos[i];
+      ob.velocidad = velocidad;
+      ob.actualizar();
+      ob.dibujar();
+
+      if (detectarColision(avatar, ob)) {
+        gameOver = true;
+        mostrarGameOver();
+        return;
+      }
+
+      if (ob.x + ob.width < 0) {
+        obstaculos.splice(i, 1);
+        i--;
+        puntaje++;
+        puntajeElem.textContent = `Puntuación: ${puntaje}`;
+        actualizarNivel();
+      }
+    }
+
+    frameCount++;
+    requestAnimationFrame(loop);
   }
 
-  gameLoop();
-
-  // Evento salto con teclado y touch
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space') {
+  // Control saltar con click o tecla espacio / flecha arriba
+  window.addEventListener('keydown', (e) => {
+    if ((e.code === 'Space' || e.code === 'ArrowUp') && !gameOver) {
       e.preventDefault();
-      jump();
+      avatar.saltar();
     }
   });
 
-  gameContainer.addEventListener('touchstart', e => {
-    e.preventDefault();
-    jump();
+  canvas.addEventListener('click', () => {
+    if (!gameOver) avatar.saltar();
   });
 
-  // Hacer el corazón "clickeable" para saltar también
-  heart.addEventListener('click', jump);
+  btnReiniciar.addEventListener('click', () => {
+    reiniciarJuego();
+  });
+
+  // Empieza el juego
+  reiniciarJuego();
+
+})();
 </script>
 </body>
 </html>
