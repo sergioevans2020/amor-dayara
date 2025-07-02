@@ -1,156 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regalo 3 - 30 razones por las que te amo 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regalo 3 - 30 Razones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
+      background: #ffe6f0;
       font-family: 'Quicksand', sans-serif;
-      background: #e0f7f4;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
 
     .libro {
-      width: 90%;
-      max-width: 600px;
-      height: 400px;
-      background: #fff;
+      background: #fff0f5;
+      padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 80%;
+      max-width: 600px;
       position: relative;
       overflow: hidden;
-      padding: 2rem;
-      box-sizing: border-box;
     }
 
     .pagina {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.7rem;
-      color: #b30059;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
-      right: 2rem;
-      bottom: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       text-align: center;
-    }
-
-    .pagina.activa {
+      font-size: 20px;
+      padding: 20px;
+      background: #ffffff80;
+      border: 2px dashed #ff69b4;
+      border-radius: 15px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
       opacity: 1;
+      transform: translateX(0);
     }
 
-    .controles {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
+    .pagina.fade-out {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    .pagina.fade-in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .navegacion {
+      margin-top: 20px;
       display: flex;
       justify-content: space-between;
-      padding: 0 20px;
     }
 
-    .boton {
-      background-color: #ff8da7;
+    button {
+      background-color: #ff69b4;
       color: white;
+      font-size: 18px;
+      padding: 10px 20px;
       border: none;
       border-radius: 10px;
-      padding: 10px 20px;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
+      transition: background-color 0.3s;
     }
 
-    .boton:hover {
-      background-color: #e86c90;
+    button:hover {
+      background-color: #e0559d;
+    }
+
+    .titulo-portada {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #c71585;
     }
   </style>
 </head>
 <body>
   <div class="libro">
-    <div id="paginas-container">
-      <!-- Las páginas serán insertadas aquí -->
+    <div id="contenido" class="pagina">
+      <div class="titulo-portada">30 razones por las que te amo</div>
+      <div>Presiona siguiente para descubrir cada una 💖</div>
     </div>
-    <div class="controles">
-      <button class="boton" onclick="anteriorPagina()">⟵ Atrás</button>
-      <button class="boton" onclick="siguientePagina()">Siguiente ⟶</button>
+    <div class="navegacion">
+      <button onclick="anterior()">⟵ Atrás</button>
+      <button onclick="siguiente()">Siguiente ⟶</button>
     </div>
   </div>
 
   <script>
     const frases = [
-      "Bienvenida a este pequeño libro...",
-      "1. Amo tu sonrisa porque ilumina mis días",
-      "2. Amo tu forma de mirar, tan profunda y sincera",
-      "3. Amo cómo me haces sentir amado siempre",
-      "4. Amo tus abrazos, son mi refugio favorito",
-      "5. Amo cuando te ríes conmigo, incluso sin sentido",
-      "6. Amo cómo te preocupas por mí",
-      "7. Amo tus detalles inesperados",
-      "8. Amo que siempre estás cuando te necesito",
-      "9. Amo cómo transformas mis días grises en color",
-      "10. Amo tu voz, es mi melodía de paz",
-      "11. Amo nuestra conexión única",
-      "12. Amo cómo haces especial lo simple",
-      "13. Amo tus mensajes llenos de amor",
-      "14. Amo tus ocurrencias que me hacen reír",
-      "15. Amo cómo te ves cuando duermes",
-      "16. Amo tu ternura infinita",
-      "17. Amo cómo me inspiras a ser mejor",
-      "18. Amo tu paciencia y comprensión",
-      "19. Amo cómo celebras mis logros",
-      "20. Amo compartir mis sueños contigo",
-      "21. Amo tus besos que lo curan todo",
-      "22. Amo tus manías, porque son parte de ti",
-      "23. Amo cuando me llamas mi amor",
-      "24. Amo que nunca te rindes",
-      "25. Amo cómo haces que confíe más en mí",
-      "26. Amo cómo caminas a mi lado en la vida",
-      "27. Amo cómo decoras mi mundo de amor",
-      "28. Amo cómo haces que todo valga la pena",
-      "29. Amo el futuro que sueño contigo",
-      "30. Amo todo de ti, simplemente porque eres tú 💖"
+      "Amo tu sonrisa, ilumina mis días ☀️",
+      "Tu forma de mirar me hace sentir en casa 🏡",
+      "Eres mi lugar favorito 💗",
+      "Contigo todo es mejor, incluso los días grises 🌧️",
+      "Tu voz es mi sonido favorito 🎶",
+      "Amo cómo me haces reír sin parar 😂",
+      "Tu ternura derrite mi corazón 💞",
+      "Eres mi paz y mi aventura 🛤️",
+      "Siempre sabes cómo animarme 🌈",
+      "Eres la persona más especial en mi vida ✨",
+      "Tu abrazo es mi lugar seguro 🤗",
+      "Me haces creer en el amor verdadero 💘",
+      "Amo cómo me entiendes sin palabras 🫶",
+      "Eres la parte más bonita de mis días 🌸",
+      "Nunca dejo de pensar en ti 💭",
+      "Tienes el alma más bonita 💫",
+      "Amo cómo cuidas de mí 🧸",
+      "Me haces sentir amado cada segundo 💌",
+      "Siempre estás en mis sueños 🌙",
+      "Amo tus locuras y tu risa contagiosa 😍",
+      "Tu felicidad es mi prioridad 💝",
+      "Quiero estar contigo siempre 💍",
+      "Eres arte en forma de persona 🎨",
+      "Amo compartir mi vida contigo 📖",
+      "No hay nadie como tú 💎",
+      "Eres mi inspiración cada día 🌟",
+      "Tú y yo somos magia pura ✨",
+      "Mi corazón late por ti 💓",
+      "Gracias por existir 💗",
+      "Te amo con todo lo que soy ❤️"
     ];
 
-    const contenedor = document.getElementById("paginas-container");
-    let paginaActual = 0;
+    let indice = -1;
+    const contenido = document.getElementById("contenido");
 
-    frases.forEach((frase, index) => {
-      const div = document.createElement("div");
-      div.classList.add("pagina");
-      if (index === 0) div.classList.add("activa");
-      div.innerText = frase;
-      contenedor.appendChild(div);
-    });
-
-    function actualizarPagina() {
-      const paginas = document.querySelectorAll(".pagina");
-      paginas.forEach(p => p.classList.remove("activa"));
-      paginas[paginaActual].classList.add("activa");
+    function mostrarFrase(i) {
+      contenido.classList.add("fade-out");
+      setTimeout(() => {
+        contenido.innerHTML = `<div class='pagina fade-in'>${frases[i]}</div>`;
+        contenido.classList.remove("fade-out");
+      }, 500);
     }
 
-    function siguientePagina() {
-      if (paginaActual < frases.length - 1) {
-        paginaActual++;
-        actualizarPagina();
+    function siguiente() {
+      if (indice < frases.length - 1) {
+        indice++;
+        mostrarFrase(indice);
       }
     }
 
-    function anteriorPagina() {
-      if (paginaActual > 0) {
-        paginaActual--;
-        actualizarPagina();
+    function anterior() {
+      if (indice > 0) {
+        indice--;
+        mostrarFrase(indice);
       }
     }
   </script>
