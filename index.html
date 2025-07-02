@@ -2,28 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para mi princesa Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienvenida amorosa 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <style>
+    /* Fuentes */
     body {
       margin: 0;
       padding: 0;
-      background: #ffe6f0;
       font-family: 'Quicksand', sans-serif;
+      background: #ffe6f0;
       overflow: hidden;
-      transition: background-color 0.5s;
+      transition: background-color 0.6s ease;
+      color: #b30059;
     }
 
-    .borde-texto span {
-      position: absolute;
-      white-space: nowrap;
-      font-size: 20px;
-      font-family: 'Great Vibes', cursive;
-      color: #d63384;
-      animation: borderScroll 20s linear infinite;
+    /* Modos */
+    body.pastel-oscuro {
+      background: #402342;
+      color: #f8cde6;
     }
 
+    /* Texto en borde animado */
     .borde-texto {
       position: absolute;
       width: 100%;
@@ -32,12 +32,25 @@
       pointer-events: none;
       z-index: 10;
     }
+    .borde-texto span {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 24px;
+      font-family: 'Great Vibes', cursive;
+      color: #d63384;
+      animation: borderScroll 20s linear infinite;
+      user-select: none;
+    }
+    body.pastel-oscuro .borde-texto span {
+      color: #f8a6d6;
+    }
 
     @keyframes borderScroll {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
 
+    /* Corazones animados */
     .corazones {
       position: fixed;
       width: 100%;
@@ -48,189 +61,185 @@
       z-index: 1;
       overflow: hidden;
     }
-
     .corazon {
       position: absolute;
-      width: 18px;
-      height: 18px;
-      background: red;
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #ff6699 0%, #ffb3c6 100%);
       transform: rotate(45deg);
-      animation: flotar 8s infinite;
-      border-radius: 2px;
+      animation: flotar 8s infinite ease-in-out;
+      filter: drop-shadow(0 0 3px #f08ab0);
+      border-radius: 4px;
     }
-
-    .corazon::before,
-    .corazon::after {
+    .corazon::before, .corazon::after {
       content: '';
       position: absolute;
-      width: 18px;
-      height: 18px;
-      background: red;
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #ff6699 0%, #ffb3c6 100%);
       border-radius: 50%;
     }
-
     .corazon::before {
-      top: -9px;
+      top: -12px;
       left: 0;
     }
-
     .corazon::after {
-      left: -9px;
+      left: -12px;
       top: 0;
     }
-
+    body.pastel-oscuro .corazon, body.pastel-oscuro .corazon::before, body.pastel-oscuro .corazon::after {
+      background: linear-gradient(135deg, #bf6fb7 0%, #7f497f 100%);
+      filter: drop-shadow(0 0 5px #bc73a7);
+    }
     @keyframes flotar {
       0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
       100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
 
+    /* Contenedor principal */
     .contenedor {
       position: relative;
       z-index: 5;
       text-align: center;
-      top: 25%;
+      top: 30vh;
     }
-
     .titulo {
-      font-size: 42px;
+      font-size: 48px;
       font-family: 'Great Vibes', cursive;
       color: #b30059;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      user-select: none;
+    }
+    body.pastel-oscuro .titulo {
+      color: #f9bee1;
     }
 
+    /* Botones contenedor */
     .botones {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      padding: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
+    /* Botones estilo */
     .boton {
-      padding: 14px 28px;
-      font-size: 18px;
+      padding: 15px 35px;
+      font-size: 20px;
       border: none;
       border-radius: 12px;
       color: white;
       cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .boton.azul {
-      background-color: #2196F3;
-    }
-
-    .boton.rojo {
-      background-color: #e91e63;
-    }
-
-    .boton.verde {
-      background-color: #4CAF50;
-    }
-
-    .boton.rosa {
-      background-color: #f48fb1;
-    }
-
-    .boton.lila {
-      background-color: #ce93d8;
-    }
-
-    .boton.amarillo {
-      background-color: #ffe082;
-      color: #5d4037;
-    }
-
-    .boton:hover {
-      filter: brightness(1.1);
-      transform: scale(1.05);
-    }
-
-    /* Corazón kawaii animado */
-    .avatar-corazon {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      width: 80px;
-      height: 80px;
-      background: pink;
-      border-radius: 50% 50% 40% 40%;
-      animation: caminar 10s linear infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      z-index: 20;
-    }
-
-    .mensaje-avatar {
-      position: fixed;
-      bottom: 100px;
-      left: 20px;
-      background: #fff0f5;
-      color: #d63384;
-      padding: 10px 15px;
-      border-radius: 20px;
+      font-weight: 700;
       font-family: 'Quicksand', sans-serif;
-      font-size: 16px;
-      animation: aparecer 2s ease;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(179, 0, 89, 0.4);
+      user-select: none;
+    }
+    .boton:focus {
+      outline: 3px solid #ffb3c6;
+      outline-offset: 2px;
+    }
+
+    .boton.laberinto {
+      background-color: #d880b6;
+    }
+    .boton.laberinto:hover {
+      background-color: #bf6fb7;
+      box-shadow: 0 6px 12px rgba(191, 111, 183, 0.7);
+    }
+
+    /* Boton modo color */
+    .boton.color-toggle {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, #f8cde6, #fbe6f0);
+      color: #b30059;
+      box-shadow: 0 4px 10px rgba(179,0,89,0.3);
+      padding: 12px 18px;
+      font-size: 18px;
+      border-radius: 50px;
+      user-select: none;
       z-index: 20;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    .boton.color-toggle:hover {
+      background: linear-gradient(135deg, #f2a7cd, #f9cee0);
+      box-shadow: 0 6px 14px rgba(179,0,89,0.6);
+    }
+    body.pastel-oscuro .boton.color-toggle {
+      background: linear-gradient(135deg, #602a5e, #4c234a);
+      color: #f9bee1;
+      box-shadow: 0 4px 10px rgba(255, 182, 225, 0.5);
+    }
+    body.pastel-oscuro .boton.color-toggle:hover {
+      background: linear-gradient(135deg, #7d3d7e, #6b366b);
+      box-shadow: 0 6px 14px rgba(255, 182, 225, 0.8);
     }
 
-    @keyframes caminar {
-      0% { left: 0; }
-      50% { left: 60%; }
-      100% { left: 0; }
-    }
-
-    @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
   </style>
 </head>
 <body>
-  <div class="borde-texto">
-    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña - 21/06/2025 • </span>
+  <div class="borde-texto" aria-hidden="true">
+    <span style="top: 0; left: 0;">
+      siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 •
+    </span>
+    <span style="bottom: 0; left: 0;">
+      siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 •
+    </span>
+    <span style="top: 0; left: -100%; transform: rotate(90deg);">
+      siempre serás mi niña - 21/06/2025 •
+    </span>
+    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">
+      siempre serás mi niña - 21/06/2025 •
+    </span>
   </div>
 
-  <div class="corazones" id="corazones"></div>
+  <div class="corazones" aria-hidden="true"></div>
 
-  <div class="contenedor">
-    <div class="titulo">Bienvenida, mi amor 💕</div>
-    <div class="botones">
-      <a href="regalo1.html" class="boton azul">REGALO 1</a>
-      <a href="regalo2.html" class="boton rojo">REGALO 2</a>
-      <a href="regalo3.html" class="boton verde">REGALO 3</a>
-      <a href="minijuego.html" class="boton rosa">MINIJUEGO</a>
-      <a href="nuestra_libreta.html" class="boton lila">NUESTRA LIBRETA</a>
-      <a href="listas_deseos.html" class="boton azul">LISTA DE DESEOS</a>
-      <a href="laberinto.html" class="boton verde">LABERINTO</a>
-      <a href="caja_sorpresa.html" class="boton amarillo">🎁 CAJA SORPRESA</a>
+  <main class="contenedor" role="main">
+    <h1 class="titulo">Bienvenida, mi amor 💕</h1>
+    <div class="botones" role="navigation" aria-label="Opciones de regalo y juegos">
+      <a href="regalo1.html"><button class="boton" aria-label="Ir a Regalo 1">REGALO 1</button></a>
+      <a href="regalo2.html"><button class="boton" aria-label="Ir a Regalo 2" style="background:#e91e63; box-shadow: 0 4px 8px rgba(233,30,99,0.4); border-radius:12px;">REGALO 2</button></a>
+      <a href="regalo3.html"><button class="boton" aria-label="Ir a Regalo 3" style="background:#8bc34a; box-shadow: 0 4px 8px rgba(139,195,74,0.4); border-radius:12px; color:#fff;">REGALO 3</button></a>
+      <a href="nuestra_libreta.html"><button class="boton" aria-label="Ir a Nuestra Libreta" style="background:#f9a825; box-shadow: 0 4px 8px rgba(249,168,37,0.4); border-radius:12px; color:#fff;">NUESTRA LIBRETA</button></a>
+      <a href="listas_deseos.html"><button class="boton" aria-label="Ir a Lista de Deseos" style="background:#ffeb3b; box-shadow: 0 4px 8px rgba(255,235,59,0.4); border-radius:12px; color:#444;">LISTA DE DESEOS</button></a>
+      <a href="laberinto.html"><button class="boton laberinto" aria-label="Ir a Laberinto">LABERINTO</button></a>
+      <a href="caja_sorpresa.html"><button class="boton" style="background:#fff176; box-shadow: 0 4px 8px rgba(255,241,118,0.4); border-radius:12px; color:#444;" aria-label="Ir a Caja Sorpresa">CAJA SORPRESA</button></a>
     </div>
-  </div>
+  </main>
 
-  <div class="avatar-corazon">💖</div>
-  <div class="mensaje-avatar">¡Bienvenida, doncella! 🌸</div>
+  <button class="boton color-toggle" aria-label="Cambiar modo color pastel">Modo Pastel</button>
 
   <script>
-    const corazonesContainer = document.getElementById("corazones");
+    // Crear corazones flotantes
+    const container = document.querySelector('.corazones');
     function crearCorazon() {
-      const corazon = document.createElement("div");
-      corazon.classList.add("corazon");
-      corazon.style.left = Math.random() * 100 + "vw";
-      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      corazonesContainer.appendChild(corazon);
-      setTimeout(() => {
-        corazon.remove();
-      }, 10000);
+      const corazon = document.createElement('div');
+      corazon.classList.add('corazon');
+      corazon.style.left = Math.random() * 100 + 'vw';
+      corazon.style.animationDuration = 6 + Math.random() * 6 + 's';
+      corazon.style.animationDelay = Math.random() * 6 + 's';
+      container.appendChild(corazon);
+      setTimeout(() => container.removeChild(corazon), 12000);
     }
     setInterval(crearCorazon, 500);
+
+    // Modo pastel toggle
+    const botonColor = document.querySelector('.color-toggle');
+    botonColor.addEventListener('click', () => {
+      document.body.classList.toggle('pastel-oscuro');
+      if(document.body.classList.contains('pastel-oscuro')) {
+        botonColor.textContent = 'Modo Pastel Claro';
+      } else {
+        botonColor.textContent = 'Modo Pastel Oscuro';
+      }
+    });
+
   </script>
 </body>
 </html>
