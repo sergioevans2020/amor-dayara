@@ -5,28 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amor y Regalos</title>
 <style>
-  /* -- Variables básicas y estilos generales -- */
+  /* === VARIABLES Y BASES === */
   :root {
     --color-bg: #fff8f0;
     --color-text: #633;
     --font-size-base: 18px;
+    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --color-dark-bg: #3a005f;
+    --color-dark-text: #f8b9d4;
   }
 
+  /* === MODO OSCURO */
+  body.dark-mode {
+    background: var(--color-dark-bg);
+    color: var(--color-dark-text);
+  }
+
+  /* === ESTILOS GENERALES === */
   body {
     margin: 0;
     background: var(--color-bg);
     color: var(--color-text);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family-base);
     font-size: var(--font-size-base);
-    transition: background 0.5s ease, color 0.5s ease, font-size 0.3s ease;
     overflow-x: hidden;
+    transition: background 0.6s ease, color 0.6s ease, font-size 0.3s ease, font-family 0.3s ease;
   }
 
-  /* Fondo animado (default) */
+  /* === FONDO CON GRADIENTE ANIMADO === */
   #background-container {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(135deg, #fceabb, #f8b500);
+    background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
     z-index: -1;
   }
@@ -36,96 +47,214 @@
     100% {background-position: 0% 50%;}
   }
 
-  /* Contenedor principal */
+  /* === CONTENEDOR PRINCIPAL === */
   #main-content {
     max-width: 960px;
     margin: 0 auto;
     padding: 30px 15px;
   }
 
-  /* Botones similares estilo */
+  /* === BOTONES PRINCIPALES === */
   .btn {
     background-color: #ffdb70;
     border: none;
-    padding: 12px 18px;
-    margin: 6px;
+    padding: 12px 20px;
+    margin: 6px 8px;
     border-radius: 20px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     user-select: none;
+    font-family: inherit;
   }
   .btn:hover {
     background-color: #ffd647;
   }
-
-  /* Selector de fuentes desplegable */
-  #fontSelector {
-    position: relative;
-    display: inline-block;
-  }
-  #fontList {
-    display: none;
-    position: absolute;
-    background: #fff;
-    border: 1px solid #ccaa66;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    max-height: 160px;
-    overflow-y: auto;
-    width: 180px;
-    z-index: 100;
-    border-radius: 8px;
-  }
-  #fontList div {
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  #fontList div:hover {
-    background-color: #ffefc1;
+  .btn.caja-sorpresa {
+    background-color: #fff8a8;
   }
 
-  /* Slider tamaño fuente */
-  #fontSizeControl {
-    margin: 15px 0;
-  }
-  input[type="range"] {
-    width: 200px;
-  }
-
-  /* Selector de fondo */
-  #backgroundSelector {
-    margin-left: 12px;
-  }
-  #backgroundOptions {
-    display: none;
-    position: absolute;
-    background: #fff;
-    border: 1px solid #ccaa66;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    max-height: 160px;
-    overflow-y: auto;
-    width: 220px;
-    z-index: 100;
-    border-radius: 8px;
-  }
-  #backgroundOptions div {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 15px;
-    border-bottom: 1px solid #f0d97a;
-  }
-  #backgroundOptions div:last-child {
-    border-bottom: none;
-  }
-  #backgroundOptions div:hover {
-    background-color: #ffefc1;
-  }
-
-  /* Área donde van los botones */
+  /* === AREA DE BOTONES PRINCIPALES === */
   #controls {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+  }
+
+  /* === AVATAR KAWAII (corazón) === */
+  #avatar-container {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    user-select: none;
+    animation: walkSideways 4s linear infinite;
+    z-index: 10;
+  }
+  /* El corazón kawai con pies y manos simplificados en SVG */
+  #avatar {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 2px #c4007a);
+  }
+
+  /* Animación caminar lado a lado */
+  @keyframes walkSideways {
+    0%, 100% { transform: translateX(0);}
+    50% { transform: translateX(150px);}
+  }
+
+  /* Saludo mensaje */
+  #avatar-msg {
+    position: fixed;
+    bottom: 130px;
+    left: 10px;
+    background: rgba(255 200 230 / 0.85);
+    border-radius: 12px;
+    padding: 10px 18px;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #a50062;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #avatar-container:hover + #avatar-msg {
+    opacity: 1;
+  }
+
+  /* === TEXTOS EN MOVIMIENTO + CORAZONES ANIMADOS === */
+  .moving-text {
+    font-weight: 700;
+    font-size: 1.8em;
+    color: #b2005c;
+    animation: floatUpDown 4s ease-in-out infinite;
+    text-shadow: 1px 1px 2px #f9c1d7;
+  }
+  @keyframes floatUpDown {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-8px);}
+  }
+
+  /* Corazones que flotan */
+  .heart {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: #ff8ac7;
+    clip-path: polygon(50% 0%, 61% 10%, 70% 20%, 78% 29%, 82% 38%, 82% 49%, 78% 59%, 72% 66%, 65% 73%, 58% 78%, 50% 85%, 42% 78%, 35% 73%, 28% 66%, 22% 59%, 18% 49%, 18% 38%, 22% 29%, 30% 20%, 39% 10%);
+    animation: heartFloat 6s ease-in-out infinite;
+    opacity: 0.8;
+  }
+  @keyframes heartFloat {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+  }
+
+  /* Colocar corazones en distintas posiciones */
+  #heart1 {top: 20%; left: 15%; animation-delay: 0s;}
+  #heart2 {top: 50%; left: 80%; animation-delay: 2s;}
+  #heart3 {top: 70%; left: 30%; animation-delay: 1.5s;}
+  #heart4 {top: 40%; left: 55%; animation-delay: 3s;}
+
+  /* === MODO OSCURO BOTÓN === */
+  #darkModeToggle {
+    background: linear-gradient(135deg, #9c27b0, #e91e63);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 6px rgba(156,39,176,0.7);
+  }
+  #darkModeToggle:hover {
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+  }
+
+  /* === NUEVOS BOTONES DE CONFIGURACIÓN ABAJO EN TRIÁNGULOS === */
+  #config-buttons {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+  }
+  .triangle-btn {
+    width: 48px;
+    height: 48px;
+    background: #ffd87e;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+    position: relative;
+  }
+  .triangle-btn:hover {
+    background: #ffeaa3;
+  }
+  .triangle-btn::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff7d9;
+    color: #633;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .triangle-btn:hover::after {
+    opacity: 1;
+  }
+
+  /* === DESPLEGABLES DE CONFIGURACION === */
+  .config-panel {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background: rgba(255 255 255 / 0.95);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    padding: 15px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 280px;
+    color: #633;
+    display: none;
+    z-index: 21;
+  }
+  .config-panel h4 {
+    margin-top: 0;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .config-panel label {
+    display: block;
+    margin: 8px 0 4px 0;
+    font-weight: 600;
+  }
+  .config-panel select,
+  .config-panel input[type=range] {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1.5px solid #cca;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  /* Lista de fuentes para vista en el select con estilos en cada opción */
+  select option {
+    font-family: inherit;
   }
 
 </style>
@@ -136,147 +265,227 @@
 
 <div id="main-content">
 
-  <h1>Amor y Regalos 💖</h1>
+  <h1 class="moving-text">Bienvenida a nuestro rincón romántico 💖</h1>
+  <p class="moving-text" style="animation-delay: 1s;">
+    Explora los regalos, laberintos y sorpresas con mucho amor y magia.
+  </p>
 
   <div id="controls">
-    <!-- Botones existentes -->
     <button class="btn" onclick="location.href='regalo1.html'">Regalo 1</button>
     <button class="btn" onclick="location.href='regalo2.html'">Regalo 2</button>
     <button class="btn" onclick="location.href='regalo3.html'">Regalo 3</button>
-    <button class="btn" onclick="location.href='laberinto.html'">Laberinto</button>
+    <button class="btn" onclick="location.href='laberinto.html'">Laberintos</button>
+    <button class="btn caja-sorpresa" onclick="location.href='caja_sorpresa.html'">Caja Sorpresa</button>
     <button class="btn" onclick="location.href='nuestra_libreta.html'">Nuestra Libreta</button>
     <button class="btn" onclick="location.href='listas_deseos.html'">Lista de Deseos</button>
-    <button class="btn" onclick="location.href='caja_sorpresa.html'" style="background-color: #fff8a8;">Caja Sorpresa</button>
-
-    <!-- NUEVAS CONFIGURACIONES -->
-
-    <!-- Selector de fuentes -->
-    <span id="fontSelector" style="position: relative;">
-      <button class="btn" id="fontSelectBtn">Cambiar Fuente ▾</button>
-      <div id="fontList">
-        <div style="font-family: Arial, sans-serif;" data-font="Arial, sans-serif">Arial</div>
-        <div style="font-family: 'Times New Roman', serif;" data-font="'Times New Roman', serif">Times New Roman</div>
-        <div style="font-family: 'Courier New', monospace;" data-font="'Courier New', monospace">Courier New</div>
-        <div style="font-family: Georgia, serif;" data-font="Georgia, serif">Georgia</div>
-        <div style="font-family: Verdana, sans-serif;" data-font="Verdana, sans-serif">Verdana</div>
-        <div style="font-family: 'Lucida Handwriting', cursive;" data-font="'Lucida Handwriting', cursive">Lucida Handwriting</div>
-        <div style="font-family: 'Comic Sans MS', cursive, sans-serif;" data-font="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</div>
-        <div style="font-family: 'Palatino Linotype', serif;" data-font="'Palatino Linotype', serif">Palatino Linotype</div>
-        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" data-font="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</div>
-      </div>
-    </span>
-
-    <!-- Control tamaño fuente -->
-    <label for="fontSizeControl" style="margin-left: 20px; font-weight:600;">Tamaño Fuente:</label>
-    <input type="range" id="fontSizeControl" min="12" max="30" value="18" step="1" title="Ajustar tamaño de fuente">
-
-    <!-- Selector fondo -->
-    <span id="backgroundSelector" style="position: relative;">
-      <button class="btn" id="backgroundSelectBtn">Cambiar Fondo ▾</button>
-      <div id="backgroundOptions">
-        <div data-bg="gradient1">Gradiente Amarillo Dorado</div>
-        <div data-bg="gradient2">Gradiente Rosa Pastel</div>
-        <div data-bg="gradient3">Gradiente Morado Suave</div>
-        <div data-bg="animated1">Animación Suave 1</div>
-        <div data-bg="animated2">Animación Suave 2</div>
-      </div>
-    </span>
-
   </div>
-
-  <p>Contenido principal de la página con textos y enlaces a regalos, juegos, etc.</p>
 
 </div>
 
+<!-- Avatar kawai saludando -->
+<div id="avatar-container" title="Haz click para activar modo oscuro">
+  <svg id="avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar corazón kawaii">
+    <g>
+      <!-- Corazón base -->
+      <path fill="#ff5ca1" stroke="#a4006d" stroke-width="2"
+        d="M50 15
+           C35 0 0 25 50 75
+           C100 25 65 0 50 15Z"/>
+      <!-- Ojos -->
+      <circle cx="35" cy="40" r="5" fill="#fff" />
+      <circle cx="65" cy="40" r="5" fill="#fff" />
+      <circle cx="35" cy="40" r="2" fill="#a4006d" />
+      <circle cx="65" cy="40" r="2" fill="#a4006d" />
+      <!-- Boca sonriente -->
+      <path stroke="#a4006d" stroke-width="2" fill="none" d="M35 60 Q50 75 65 60" />
+      <!-- Manos -->
+      <circle cx="25" cy="75" r="10" fill="#ffb6ca" />
+      <circle cx="75" cy="75" r="10" fill="#ffb6ca" />
+      <!-- Pies -->
+      <ellipse cx="35" cy="95" rx="10" ry="5" fill="#ff8ac7" />
+      <ellipse cx="65" cy="95" rx="10" ry="5" fill="#ff8ac7" />
+    </g>
+  </svg>
+</div>
+<div id="avatar-msg">Bienvenida doncella 💜</div>
+
+<!-- NUEVOS BOTONES TRIANGULARES ABAJO -->
+<div id="config-buttons" aria-label="Configuraciones adicionales">
+  <button class="triangle-btn" id="btn-font" data-title="Fuente" aria-haspopup="listbox" aria-expanded="false" aria-controls="font-select">F</button>
+  <button class="triangle-btn" id="btn-size" data-title="Tamaño" aria-haspopup="slider" aria-expanded="false" aria-controls="size-slider">A</button>
+  <button class="triangle-btn" id="btn-bg" data-title="Fondo" aria-haspopup="listbox" aria-expanded="false" aria-controls="bg-select">B</button>
+</div>
+
+<!-- Paneles desplegables -->
+<div class="config-panel" id="font-panel" role="listbox" aria-label="Selector de fuentes">
+  <h4>Selecciona fuente</h4>
+  <select id="font-select" aria-live="polite" aria-describedby="fontHelp">
+    <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" selected>Sego UI / Tahoma</option>
+    <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
+    <option value="'Georgia', serif">Georgia</option>
+    <option value="'Courier New', monospace">Courier New</option>
+    <option value="'Lucida Handwriting', cursive">Lucida Handwriting</option>
+    <option value="'Arial Black', Gadget, sans-serif">Arial Black</option>
+    <option value="'Brush Script MT', cursive">Brush Script MT</option>
+    <option value="'Palatino Linotype', serif">Palatino Linotype</option>
+  </select>
+  <small id="fontHelp">La fuente se aplicará a toda la página.</small>
+</div>
+
+<div class="config-panel" id="size-panel" role="region" aria-label="Control de tamaño de fuente">
+  <h4>Ajusta tamaño de texto</h4>
+  <input type="range" id="size-slider" min="12" max="36" value="18" aria-valuemin="12" aria-valuemax="36" aria-valuenow="18" aria-label="Tamaño de fuente" />
+</div>
+
+<div class="config-panel" id="bg-panel" role="listbox" aria-label="Selector de fondo">
+  <h4>Selecciona fondo</h4>
+  <select id="bg-select" aria-live="polite">
+    <option value="gradient1" selected>Amarillo Pastel</option>
+    <option value="gradient2">Rosa Suave</option>
+    <option value="pattern1">Corazones Animados</option>
+    <option value="gradient3">Lavanda</option>
+    <option value="gradient4">Rosa y Morado</option>
+  </select>
+</div>
+
 <script>
-  // Selector de fuente
-  const fontSelectBtn = document.getElementById('fontSelectBtn');
-  const fontList = document.getElementById('fontList');
-  fontSelectBtn.addEventListener('click', () => {
-    fontList.style.display = fontList.style.display === 'block' ? 'none' : 'block';
+  // --- MODO OSCURO ---
+  const avatar = document.getElementById('avatar-container');
+  const body = document.body;
+  const avatarMsg = document.getElementById('avatar-msg');
+  const darkModeBtn = null; // no separate button, avatar click toggles
+
+  avatar.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    // Cambiar colores de avatar según modo
+    if(body.classList.contains('dark-mode')){
+      avatarMsg.textContent = 'Modo oscuro activado 💜';
+    } else {
+      avatarMsg.textContent = 'Bienvenida doncella 💜';
+    }
+    avatarMsg.style.opacity = '1';
+    setTimeout(() => avatarMsg.style.opacity = '0', 3000);
   });
-  fontList.addEventListener('click', (e) => {
-    if (e.target.dataset.font) {
-      document.body.style.fontFamily = e.target.dataset.font;
-      fontList.style.display = 'none';
+
+  // === Config botones y paneles ===
+  const btnFont = document.getElementById('btn-font');
+  const btnSize = document.getElementById('btn-size');
+  const btnBg = document.getElementById('btn-bg');
+  const fontPanel = document.getElementById('font-panel');
+  const sizePanel = document.getElementById('size-panel');
+  const bgPanel = document.getElementById('bg-panel');
+
+  function closeAllPanels(except=null) {
+    if(except !== fontPanel) fontPanel.style.display = 'none';
+    if(except !== sizePanel) sizePanel.style.display = 'none';
+    if(except !== bgPanel) bgPanel.style.display = 'none';
+
+    btnFont.setAttribute('aria-expanded', except === fontPanel);
+    btnSize.setAttribute('aria-expanded', except === sizePanel);
+    btnBg.setAttribute('aria-expanded', except === bgPanel);
+  }
+
+  btnFont.onclick = () => {
+    if(fontPanel.style.display === 'block') {
+      closeAllPanels();
+    } else {
+      fontPanel.style.display = 'block';
+      sizePanel.style.display = 'none';
+      bgPanel.style.display = 'none';
+      btnFont.setAttribute('aria-expanded', 'true');
+      btnSize.setAttribute('aria-expanded', 'false');
+      btnBg.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  btnSize.onclick = () => {
+    if(sizePanel.style.display === 'block') {
+      closeAllPanels();
+    } else {
+      sizePanel.style.display = 'block';
+      fontPanel.style.display = 'none';
+      bgPanel.style.display = 'none';
+      btnSize.setAttribute('aria-expanded', 'true');
+      btnFont.setAttribute('aria-expanded', 'false');
+      btnBg.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  btnBg.onclick = () => {
+    if(bgPanel.style.display === 'block') {
+      closeAllPanels();
+    } else {
+      bgPanel.style.display = 'block';
+      fontPanel.style.display = 'none';
+      sizePanel.style.display = 'none';
+      btnBg.setAttribute('aria-expanded', 'true');
+      btnFont.setAttribute('aria-expanded', 'false');
+      btnSize.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  // --- Cambiar fuente ---
+  const fontSelect = document.getElementById('font-select');
+  fontSelect.addEventListener('change', () => {
+    const val = fontSelect.value;
+    document.documentElement.style.setProperty('--font-family-base', val);
+    document.body.style.fontFamily = val;
+  });
+
+  // --- Cambiar tamaño ---
+  const sizeSlider = document.getElementById('size-slider');
+  sizeSlider.addEventListener('input', () => {
+    const val = sizeSlider.value;
+    document.documentElement.style.setProperty('--font-size-base', val + 'px');
+    document.body.style.fontSize = val + 'px';
+  });
+
+  // --- Cambiar fondo ---
+  const bgSelect = document.getElementById('bg-select');
+  const bgContainer = document.getElementById('background-container');
+
+  const backgrounds = {
+    gradient1: 'linear-gradient(135deg, #fceabb, #f8b500)', // Amarillo Pastel
+    gradient2: 'linear-gradient(135deg, #ffd0e8, #ff85b3)', // Rosa Suave
+    pattern1: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><circle cx=\'20\' cy=\'20\' r=\'8\' fill=\'%23ff8ac7\'/><circle cx=\'20\' cy=\'20\' r=\'4\' fill=\'%23ff5ca1\'/></svg>") #fff0f6 repeat', // Corazones animados con patrón SVG
+    gradient3: 'linear-gradient(135deg, #e0bbff, #b392ff)', // Lavanda
+    gradient4: 'linear-gradient(135deg, #fce4ec, #ba68c8)', // Rosa y Morado
+  };
+
+  bgSelect.addEventListener('change', () => {
+    const val = bgSelect.value;
+    if(val === 'pattern1'){
+      bgContainer.style.background = backgrounds[val];
+      bgContainer.style.backgroundSize = '40px 40px';
+      bgContainer.style.animation = 'none';
+    } else {
+      bgContainer.style.background = backgrounds[val];
+      bgContainer.style.backgroundSize = '400% 400%';
+      bgContainer.style.animation = 'gradientMove 15s ease infinite';
     }
   });
-  // Cerrar al hacer clic fuera
-  window.addEventListener('click', e => {
-    if (!fontSelectBtn.contains(e.target) && !fontList.contains(e.target)) {
-      fontList.style.display = 'none';
-    }
-  });
 
-  // Control tamaño fuente
-  const fontSizeControl = document.getElementById('fontSizeControl');
-  fontSizeControl.addEventListener('input', () => {
-    document.documentElement.style.setProperty('--font-size-base', fontSizeControl.value + 'px');
-  });
+  // === Inicializar con valores por defecto ===
+  document.body.style.fontFamily = fontSelect.value;
+  document.body.style.fontSize = sizeSlider.value + 'px';
+  bgContainer.style.background = backgrounds[bgSelect.value];
+  bgContainer.style.backgroundSize = '400% 400%';
+  bgContainer.style.animation = 'gradientMove 15s ease infinite';
 
-  // Selector fondo
-  const backgroundSelectBtn = document.getElementById('backgroundSelectBtn');
-  const backgroundOptions = document.getElementById('backgroundOptions');
-  const backgroundContainer = document.getElementById('background-container');
-
-  backgroundSelectBtn.addEventListener('click', () => {
-    backgroundOptions.style.display = backgroundOptions.style.display === 'block' ? 'none' : 'block';
-  });
-
-  backgroundOptions.addEventListener('click', (e) => {
-    if (!e.target.dataset.bg) return;
-
-    // Limpio animaciones anteriores
-    backgroundContainer.style.animation = '';
-    backgroundContainer.style.background = '';
-
-    switch (e.target.dataset.bg) {
-      case 'gradient1':
-        backgroundContainer.style.background = 'linear-gradient(135deg, #fceabb, #f8b500)';
-        backgroundContainer.style.animation = 'gradientMove 15s ease infinite';
-        break;
-      case 'gradient2':
-        backgroundContainer.style.background = 'linear-gradient(135deg, #f8cdda, #1d2b64)';
-        backgroundContainer.style.animation = 'gradientMove 20s ease infinite';
-        break;
-      case 'gradient3':
-        backgroundContainer.style.background = 'linear-gradient(135deg, #c3cfe2, #6a7bd2)';
-        backgroundContainer.style.animation = 'gradientMove 10s ease infinite';
-        break;
-      case 'animated1':
-        backgroundContainer.style.background = 'radial-gradient(circle, #ffe3f0 10%, #fbd0d0 80%)';
-        backgroundContainer.style.animation = 'pulseGlow 4s ease-in-out infinite';
-        break;
-      case 'animated2':
-        backgroundContainer.style.background = 'repeating-conic-gradient(#f6d1d1 0% 10%, #fcc9c9 10% 20%)';
-        backgroundContainer.style.animation = 'spinGradient 20s linear infinite';
-        break;
-    }
-    backgroundOptions.style.display = 'none';
-  });
-
-  // Animaciones adicionales para fondos animados
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes pulseGlow {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.1); }
-    }
-    @keyframes spinGradient {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 360deg 360deg; }
-    }
-  `;
-  document.head.appendChild(style);
-
-  // Cerrar selector fondo al hacer clic fuera
-  window.addEventListener('click', e => {
-    if (!backgroundSelectBtn.contains(e.target) && !backgroundOptions.contains(e.target)) {
-      backgroundOptions.style.display = 'none';
+  // Cerrar paneles si clic fuera
+  window.addEventListener('click', (e) => {
+    if(!e.target.closest('#config-buttons') && !e.target.closest('.config-panel')){
+      closeAllPanels();
     }
   });
 
 </script>
+
+<!-- Corazones flotando -->
+<div id="heart1" class="heart"></div>
+<div id="heart2" class="heart"></div>
+<div id="heart3" class="heart"></div>
+<div id="heart4" class="heart"></div>
 
 </body>
 </html>
