@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Regalo 3 - 30 Razones por las que te Amo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@500&display=swap');
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fff0f6; /* pastel rosa claro */
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      user-select: none;
+      color: #8b3a62;
+    }
+
+    .carta-container {
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 8px 24px rgba(139, 58, 98, 0.3);
+      width: 90vw;
+      max-width: 600px;
+      height: 420px;
+      padding: 35px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      position: relative;
+    }
+
+    .titulo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      margin: 0 0 15px 0;
+      user-select: text;
+      color: #a3486d;
+      letter-spacing: 1.2px;
+    }
+
+    .razon {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      min-height: 150px;
+      padding: 0 12px;
+      user-select: text;
+      transition: opacity 0.3s ease;
+      color: #7e3e57;
+    }
+
+    .pagina-info {
+      font-size: 0.95rem;
+      color: #b87f9b;
+      margin-top: 8px;
+      user-select: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .navegacion {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+
+    button {
+      background: #a3486d;
+      border: none;
+      color: #fff;
+      padding: 14px 30px;
+      font-size: 1.15rem;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(163, 72, 109, 0.6);
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
+      user-select: none;
+    }
+
+    button:disabled {
+      background: #dbafc0;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    button:hover:not(:disabled) {
+      background: #852b54;
+      box-shadow: 0 8px 20px rgba(133, 43, 84, 0.8);
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .carta-container {
+        height: auto;
+        padding: 30px 25px;
+      }
+      .titulo {
+        font-size: 2.6rem;
+      }
+      .razon {
+        font-size: 1.2rem;
+        min-height: 120px;
+      }
+      button {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="carta-container" role="main" aria-label="Carta interactiva con 30 razones por las que te amo">
+
+    <h1 class="titulo">30 Razones por las que te Amo</h1>
+
+    <section id="razonTexto" class="razon" tabindex="0" aria-live="polite" aria-atomic="true">
+      <!-- Texto de la razón aparecerá aquí -->
+    </section>
+
+    <div class="pagina-info" id="paginaInfo">Página 1 de 30</div>
+
+    <nav class="navegacion" aria-label="Navegación de razones">
+      <button id="btnAtras" aria-label="Razón anterior" disabled>Atrás</button>
+      <button id="btnSiguiente" aria-label="Siguiente razón">Siguiente</button>
+    </nav>
+
+  </main>
+
+  <script>
+    const razones = [
+      "Amo tu sonrisa que ilumina mis días más oscuros.",
+      "Porque eres mi compañera perfecta en cada aventura.",
+      "Por cómo me entiendes sin necesidad de palabras.",
+      "Amo tu corazón bondadoso y lleno de amor.",
+      "Porque contigo aprendí lo que significa amar de verdad.",
+      "Amo cada pequeño detalle que me regalas sin esperar nada a cambio.",
+      "Por hacerme sentir siempre apoyado y valorado.",
+      "Porque eres mi inspiración y fuerza para seguir adelante.",
+      "Amo la manera en que me haces reír incluso en los momentos difíciles.",
+      "Por compartir conmigo tus sueños y esperanzas.",
+      "Porque contigo, la vida es una hermosa canción.",
+      "Amo cómo haces que todo a nuestro alrededor sea especial.",
+      "Por ser mi refugio seguro y mi paz interior.",
+      "Porque tu ternura es un bálsamo para mi alma.",
+      "Amo cómo enfrentas los retos con valentía y esperanza.",
+      "Por cada abrazo que me hace sentir en casa.",
+      "Porque tu voz es la melodía que calma mi corazón.",
+      "Amo la sinceridad y honestidad que siempre tienes conmigo.",
+      "Por enseñarme a ser mejor cada día.",
+      "Porque tu amor me da alas para volar alto.",
+      "Amo tus locuras que llenan mi vida de alegría.",
+      "Por cada momento compartido, grande o pequeño.",
+      "Porque eres la razón por la que creo en los milagros.",
+      "Amo la forma en que miras el mundo con esperanza.",
+      "Por tus palabras que siempre me levantan el ánimo.",
+      "Porque contigo aprendí a valorar lo simple y verdadero.",
+      "Amo cada segundo que paso a tu lado.",
+      "Por tu paciencia infinita y tu dulce comprensión.",
+      "Porque eres mi sueño hecho realidad.",
+      "Amo el amor que me das sin condiciones ni límites."
+    ];
+
+    let paginaActual = 0;
+
+    const razonTexto = document.getElementById('razonTexto');
+    const btnAtras = document.getElementById('btnAtras');
+    const btnSiguiente = document.getElementById('btnSiguiente');
+    const paginaInfo = document.getElementById('paginaInfo');
+
+    function mostrarPagina(index) {
+      razonTexto.style.opacity = 0;
+      setTimeout(() => {
+        razonTexto.textContent = razones[index];
+        paginaInfo.textContent = `Página ${index + 1} de ${razones.length}`;
+        btnAtras.disabled = index === 0;
+        btnSiguiente.disabled = index === razones.length - 1;
+        razonTexto.style.opacity = 1;
+        razonTexto.focus();
+      }, 250);
+    }
+
+    btnAtras.addEventListener('click', () => {
+      if (paginaActual > 0) {
+        paginaActual--;
+        mostrarPagina(paginaActual);
+      }
+    });
+
+    btnSiguiente.addEventListener('click', () => {
+      if (paginaActual < razones.length - 1) {
+        paginaActual++;
+        mostrarPagina(paginaActual);
+      }
+    });
+
+    // Mostrar la primera razón al cargar
+    mostrarPagina(paginaActual);
+  </script>
+</body>
+</html>
