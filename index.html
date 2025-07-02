@@ -3,38 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para mi princesa Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <title>Regalos para mi amor</title>
   <style>
-    * {
-      box-sizing: border-box;
-      transition: all 0.5s ease;
-    }
-
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background: #ffe6f0;
-      overflow-x: hidden;
-      animation: fadeIn 1.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .contenedor {
+      background: #fff0f5;
       text-align: center;
-      padding-top: 10vh;
+      overflow-x: hidden;
     }
 
-    .titulo {
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      color: #b30059;
-      margin-bottom: 40px;
+    h1 {
+      margin-top: 30px;
+      font-size: 3em;
+      color: #d81b60;
     }
 
     .botones {
@@ -42,153 +24,96 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
-      margin-bottom: 40px;
+      margin: 40px 0;
     }
 
-    .boton {
+    .botones a {
       padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      cursor: pointer;
+      background: #ffd6ec;
+      color: #880e4f;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 1.2em;
       font-weight: bold;
-      transition: 0.3s;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, background 0.3s;
     }
 
-    .azul { background-color: #2196F3; }
-    .azul:hover { background-color: #0b7dda; }
-
-    .rojo { background-color: #e91e63; }
-    .rojo:hover { background-color: #c2185b; }
-
-    .verde { background-color: #4CAF50; }
-    .verde:hover { background-color: #388E3C; }
-
-    .morado { background-color: #9c27b0; }
-    .morado:hover { background-color: #7b1fa2; }
-
-    .amarillo { background-color: #FFD54F; color: #333; }
-    .amarillo:hover { background-color: #FFCA28; }
+    .botones a:hover {
+      background: #f8bbd0;
+      transform: scale(1.05);
+    }
 
     .avatar {
       position: fixed;
-      bottom: 20px;
-      left: 0;
-      width: 80px;
-      height: 80px;
-      background: pink;
-      border-radius: 50%;
-      animation: caminar 8s linear infinite;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      bottom: 10px;
+      left: 10px;
+      animation: caminar 10s linear infinite;
       font-size: 40px;
     }
 
     @keyframes caminar {
-      0% { left: -100px; transform: scaleX(1); }
-      50% { left: calc(100% - 100px); transform: scaleX(1); }
-      51% { transform: scaleX(-1); }
-      100% { left: -100px; transform: scaleX(-1); }
+      0% { left: 0; }
+      50% { left: 80%; }
+      100% { left: 0; }
     }
 
     .mensaje-avatar {
       position: fixed;
-      bottom: 120px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      color: #e91e63;
-      border-radius: 10px;
+      bottom: 60px;
+      left: 20px;
+      background: #ffc1e3;
       padding: 10px 20px;
+      border-radius: 15px;
+      color: #6a1b9a;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      animation: flotar 3s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
-    @keyframes flotar {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-10px); }
-    }
-
-    .modo-oscuro {
-      background: linear-gradient(135deg, #4a148c, #880e4f);
-      color: white;
-    }
-
-    .tema-rosado {
-      background: linear-gradient(135deg, #ffccd5, #f8bbd0);
-      color: #4a0033;
-    }
-
-    .modo-oscuro .titulo,
-    .tema-rosado .titulo {
-      color: #f8bbd0;
-    }
-
-    .toggle-btn,
-    .theme-btn {
+    /* Botón modo rosado */
+    #modoRosado {
       position: fixed;
       top: 20px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .toggle-btn {
-      right: 80px;
-      background: #555;
-      color: white;
-    }
-
-    .theme-btn {
       right: 20px;
-      background: #ff99bb;
-      color: white;
-    }
-
-    .toggle-btn:hover,
-    .theme-btn:hover {
-      opacity: 0.8;
+      background: #ffdce5;
+      color: #880e4f;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <!-- Botones arriba a la derecha -->
-  <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Modo</button>
-  <button class="theme-btn" onclick="setRosado()">💗 Rosado</button>
 
-  <!-- Avatar animado -->
-  <div class="avatar">💖</div>
-  <div class="mensaje-avatar">Bienvenida doncella 💖</div>
+  <button id="modoRosado">🎨 Modo Pastel</button>
 
-  <!-- Contenido principal -->
-  <div class="contenedor">
-    <div class="titulo">Bienvenida, mi amor 💕</div>
-    <div class="botones">
-      <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
-      <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="boton verde">REGALO 3</button></a>
-      <a href="minijuego.html"><button class="boton morado">MINIJUEGO</button></a>
-      <a href="nuestra_libreta.html"><button class="boton rojo">NUESTRA LIBRETA</button></a>
-      <a href="lista_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
-    </div>
+  <h1>Bienvenida a tu rincón mágico 💕</h1>
+
+  <div class="botones">
+    <a href="regalo1.html">🎁 Regalo 1</a>
+    <a href="regalo2.html">💌 Regalo 2</a>
+    <a href="regalo3.html">🌸 Regalo 3</a>
+    <a href="minijuego.html">🎮 Mini Juego</a>
+    <a href="nuestra_libreta.html">📖 Nuestra Libreta</a>
+    <a href="listas_deseos.html">🌟 Lista de Deseos</a>
+    <a href="laberinto.html">💗 Laberinto del Amor</a> <!-- NUEVO BOTÓN -->
   </div>
 
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.remove('tema-rosado');
-      document.body.classList.toggle('modo-oscuro');
-    }
+  <div class="avatar">💖</div>
+  <div class="mensaje-avatar">Bienvenida, doncella 💌</div>
 
-    function setRosado() {
-      document.body.classList.remove('modo-oscuro');
-      document.body.classList.toggle('tema-rosado');
-    }
+  <script>
+    const modoBtn = document.getElementById("modoRosado");
+    let pastelActivo = false;
+
+    modoBtn.addEventListener("click", () => {
+      document.body.style.background = pastelActivo ? "#fff0f5" : "#f8e1f4";
+      document.body.style.color = pastelActivo ? "#880e4f" : "#4a0072";
+      pastelActivo = !pastelActivo;
+    });
   </script>
+
 </body>
 </html>
