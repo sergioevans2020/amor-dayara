@@ -7,106 +7,106 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
 <style>
   body {
-    background: #fff0f5;
+    background: #ffe4e1;
     font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 40px 20px;
+    color: #800000;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #7d3c98;
-    min-height: 100vh;
   }
   h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 30px;
-    color: #9b59b6;
-    text-shadow: 1px 1px 2px #bfa2db;
+    color: #b22222;
+    text-shadow: 1px 1px 2px #f08080;
   }
-  .contenedor-botones {
+  .botones-container {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
     justify-content: center;
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
   }
-  .boton {
-    background-color: #d7bde2;
-    border: none;
-    border-radius: 12px;
-    padding: 18px 38px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #4a235a;
-    cursor: pointer;
-    box-shadow: 0 6px 10px rgba(148, 85, 173, 0.4);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  button {
     font-family: 'Quicksand', sans-serif;
-    user-select: none;
-    text-align: center;
-    min-width: 180px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(178, 34, 34, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 160px;
   }
-  .boton:hover {
-    background-color: #af7ac5;
-    transform: scale(1.05);
-    color: #3e1d45;
+  button:hover {
+    transform: translateY(-3px);
   }
-  .boton.rosa {
-    background-color: #f7c6d0;
-    color: #812f42;
-    box-shadow: 0 6px 10px rgba(199, 80, 110, 0.4);
+  /* Botones con colores diferentes */
+  #btnRegalo1 {
+    background-color: #f8b195;
+    color: #641e16;
   }
-  .boton.rosa:hover {
-    background-color: #f392a2;
-    color: #610d1d;
+  #btnRegalo1:hover {
+    background-color: #f67280;
   }
-  .boton.amarillo {
-    background-color: #f9e79f;
-    color: #6e5700;
-    box-shadow: 0 6px 10px rgba(183, 149, 14, 0.4);
+  #btnRegalo2 {
+    background-color: #c06c84;
+    color: #fff0f5;
   }
-  .boton.amarillo:hover {
-    background-color: #f7dc6f;
-    color: #5a4700;
+  #btnRegalo2:hover {
+    background-color: #a35574;
   }
-  .boton.verde {
-    background-color: #a3e4d7;
-    color: #0b5345;
-    box-shadow: 0 6px 10px rgba(18, 121, 107, 0.4);
+  #btnRegalo3 {
+    background-color: #6c5b7b;
+    color: #f0e6f6;
   }
-  .boton.verde:hover {
-    background-color: #76d7c4;
-    color: #083d31;
+  #btnRegalo3:hover {
+    background-color: #59486a;
   }
-  .boton.azul {
-    background-color: #85c1e9;
-    color: #154360;
-    box-shadow: 0 6px 10px rgba(22, 78, 137, 0.4);
+  #btnMiniJuego {
+    background-color: #355c7d;
+    color: #d1e8ff;
   }
-  .boton.azul:hover {
-    background-color: #5499c7;
-    color: #0d3250;
+  #btnMiniJuego:hover {
+    background-color: #27495a;
   }
-  @media (max-width: 480px) {
-    .boton {
-      min-width: 100%;
-      padding: 16px 0;
-      font-size: 1.2rem;
-    }
+  #btnNuestraLibreta {
+    background-color: #f67280;
+    color: #fff5f7;
+  }
+  #btnNuestraLibreta:hover {
+    background-color: #e75c69;
+  }
+  /* Botón lista de deseos amarillo pastel */
+  #btnListaDeseos {
+    background-color: #fff4b1;
+    color: #7a6f0e;
+    box-shadow: 0 6px 12px rgba(186, 173, 0, 0.4);
+  }
+  #btnListaDeseos:hover {
+    background-color: #f7e568;
+    color: #5e580a;
   }
 </style>
 </head>
 <body>
-  <h1>Regalos y Sorpresas 💜</h1>
-  <div class="contenedor-botones">
-    <a href="regalo1.html"><button class="boton rosa">REGALO 1</button></a>
-    <a href="regalo2.html"><button class="boton verde">REGALO 2</button></a>
-    <a href="regalo3.html"><button class="boton azul">REGALO 3</button></a>
-    <a href="minijuego.html"><button class="boton rosa">MINIJUEGO</button></a>
-    <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
-    <a href="lista_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
-  </div>
+
+<h1>Regalos y Sorpresas</h1>
+
+<div class="botones-container">
+  <button id="btnRegalo1" onclick="window.location.href='regalo1.html'">REGALO 1</button>
+  <button id="btnRegalo2" onclick="window.location.href='regalo2.html'">REGALO 2</button>
+  <button id="btnRegalo3" onclick="window.location.href='regalo3.html'">REGALO 3</button>
+  <button id="btnMiniJuego" onclick="window.location.href='minijuego.html'">MINIJUEGO</button>
+  <button id="btnNuestraLibreta" onclick="window.location.href='nuestra_libreta.html'">NUESTRA LIBRETA</button>
+  <button id="btnListaDeseos" onclick="window.location.href='lista_deseos.html'">LISTA DE DESEOS</button>
+</div>
+
 </body>
 </html>
