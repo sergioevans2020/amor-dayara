@@ -3,343 +3,372 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Laberinto - Niveles</title>
+<title>Laberinto Romántico</title>
 <style>
   body {
     font-family: 'Quicksand', sans-serif;
     background: #ffe6f0;
     color: #b30059;
     margin: 0; padding: 0;
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
   }
-  body.dark {
-    background: #402342;
-    color: #f8cde6;
-  }
+
   h1 {
-    margin-top: 30px;
     font-family: 'Great Vibes', cursive;
-    font-size: 48px;
-    user-select: none;
-  }
-  #mensaje {
-    margin: 15px 0 30px 0;
-    font-size: 22px;
-    font-style: italic;
+    font-size: 3rem;
+    margin: 20px 0;
   }
 
   #laberinto {
     display: grid;
-    grid-template-columns: repeat(8, 40px);
-    grid-template-rows: repeat(8, 40px);
-    gap: 2px;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    gap: 4px;
+    margin-bottom: 20px;
+    background: #fff0f6;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #f48fb1aa;
     user-select: none;
   }
 
   .celda {
-    width: 40px; height: 40px;
-    border-radius: 6px;
-    background: #fce4ec;
-    box-shadow: inset 0 0 5px #e1bee7;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  body.dark .celda {
-    background: #5a3e5f;
-    box-shadow: inset 0 0 5px #9575cd;
+    width: 50px; height: 50px;
+    background: #ffd6e8;
+    border-radius: 8px;
+    position: relative;
   }
 
   .pared {
     background: #b30059;
-    box-shadow: none;
-    cursor: default;
-  }
-  body.dark .pared {
-    background: #a23e6e;
-  }
-
-  .camino {
-    background: #f8bbd0;
-  }
-  body.dark .camino {
-    background: #8e6996;
-  }
-
-  .jugador {
-    background: #d81b60;
-    box-shadow: 0 0 8px 2px #ff80ab;
-  }
-  body.dark .jugador {
-    background: #e87cbf;
-    box-shadow: 0 0 8px 2px #ffb3d9;
+    border-radius: 8px;
   }
 
   .salida {
-    background: #a5d6a7;
-    box-shadow: 0 0 8px 2px #66bb6a;
-  }
-  body.dark .salida {
-    background: #82b366;
-    box-shadow: 0 0 8px 2px #a5d6a7;
-  }
-
-  /* Navegación */
-  #controles {
-    margin-top: 30px;
-    display: flex;
-    gap: 20px;
-  }
-  button {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    background: #d880b6;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(191, 111, 183, 0.7);
-    transition: background-color 0.3s ease;
-    user-select: none;
-  }
-  button:disabled {
-    background: #f0a9d6;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-  button:hover:not(:disabled) {
-    background: #bf6fb7;
-  }
-
-  /* Animación celebración */
-  #celebracion {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(255, 192, 203, 0.85);
+    background: #f48fb1;
+    border: 2px solid #b30059;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Great Vibes', cursive;
-    font-size: 48px;
-    color: #b30059;
-    text-shadow: 0 0 8px #ff80ab;
-    user-select: none;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    z-index: 1000;
   }
-  #celebracion.show {
-    opacity: 1;
-    pointer-events: all;
+
+  /* Avatar corazón kawaii pequeño */
+  #avatar {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 3px 7px rgba(243, 105, 135, 0.7);
+    animation: latir 1.5s infinite ease-in-out;
+    z-index: 10;
+    top: 5px;
+    left: 5px;
+  }
+
+  @keyframes latir {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  /* Manos y pies avatar */
+  #avatar::before, #avatar::after {
+    content: "";
+    position: absolute;
+    background: #f06292;
+    border-radius: 50%;
+  }
+  #avatar::before {
+    width: 10px; height: 10px;
+    top: 10px; left: -10px;
+    box-shadow: 0 0 6px #f48fb1;
+  }
+  #avatar::after {
+    width: 10px; height: 10px;
+    top: 10px; right: -10px;
+    box-shadow: 0 0 6px #f48fb1;
+  }
+  /* Pies */
+  #pies {
+    position: absolute;
+    display: flex;
+    gap: 6px;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .pie {
+    width: 10px; height: 10px;
+    background: #f06292;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #f48fb1;
+    animation: moverPies 1.5s infinite ease-in-out;
+  }
+  .pie.derecha {
+    animation-delay: 0.75s;
+  }
+  @keyframes moverPies {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+  }
+
+  /* Botón siguiente nivel */
+  #btn-siguiente {
+    display: none;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background: #f48fb1;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 3px 8px #b30059aa;
+    user-select: none;
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease;
+  }
+  #btn-siguiente:hover {
+    background-color: #b30059;
+  }
+
+  /* Mensajes */
+  #mensaje {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #b30059;
+    margin-bottom: 15px;
+    min-height: 36px;
+    user-select: none;
   }
 </style>
 </head>
 <body>
-<h1>Laberinto: Nivel <span id="nivel-num">1</span></h1>
-<div id="mensaje">Encuentra la salida para avanzar al siguiente nivel.</div>
-<div id="laberinto" aria-label="Laberinto"></div>
-<div id="controles">
-  <button id="btnAnterior" aria-label="Nivel anterior" disabled>⬅ Nivel Anterior</button>
-  <button id="btnSiguiente" aria-label="Siguiente nivel" disabled>Siguiente Nivel ➡</button>
-  <button id="btnModo" aria-label="Cambiar modo oscuro/claro">Modo Oscuro</button>
-</div>
 
-<div id="celebracion" role="alert" aria-live="assertive">¡Felicidades! Nivel completado 💖</div>
+<h1>Laberinto Romántico 💖</h1>
+<div id="mensaje">Nivel 1 - Fácil</div>
+<div id="laberinto"></div>
+<button id="btn-siguiente">Siguiente Nivel ➡️</button>
 
 <script>
+  // Definición de niveles: 0 = camino, 1 = pared, 2 = salida
   const niveles = [
-    // Nivel 1 (8x8)
-    [
-      "XXXXXXXX",
-      "X J    X",
-      "X XXX XX",
-      "X   X  X",
-      "XXX X XX",
-      "X     SX",
-      "X XXX  X",
-      "XXXXXXXX"
-    ],
-    // Nivel 2 (8x8)
-    [
-      "XXXXXXXX",
-      "XJ  X  X",
-      "XX XX XX",
-      "X  X   X",
-      "X XX XXS",
-      "X      X",
-      "XX XXX X",
-      "XXXXXXXX"
-    ],
-    // Nivel 3 (8x8)
-    [
-      "XXXXXXXX",
-      "XJ X   X",
-      "X XX X X",
-      "X    X X",
-      "XXX XX X",
-      "X     SX",
-      "X XXXXX",
-      "XXXXXXXX"
-    ],
-    // Nivel 4 (8x8)
-    [
-      "XXXXXXXX",
-      "XJ     X",
-      "X XXXX X",
-      "X X  X X",
-      "X X XX X",
-      "X    XSX",
-      "XXXXXXXX",
-      "XXXXXXXX"
-    ],
-    // Nivel 5 (8x8)
-    [
-      "XXXXXXXX",
-      "XJ  XX X",
-      "X  X X X",
-      "XX X X X",
-      "X     SX",
-      "X XXX XX",
-      "X       ",
-      "XXXXXXXX"
-    ],
-    // Nivel 6 (8x8)
-    [
-      "XXXXXXXX",
-      "XJ     X",
-      "X XXXX X",
-      "X X  X X",
-      "X XX X X",
-      "X    SX ",
-      "XXXXXXXX",
-      "XXXXXXXX"
-    ]
+    { nivel: 1, dificultad: 'Fácil', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,0,0,1,0,1],
+      [1,0,1,1,0,1,0,1],
+      [1,0,1,0,0,0,0,1],
+      [1,0,1,0,1,1,0,1],
+      [1,0,0,0,1,2,0,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 2, dificultad: 'Fácil', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,1,0,0,0,0,1],
+      [1,0,1,0,1,1,0,1],
+      [1,0,0,0,1,0,0,1],
+      [1,1,1,0,1,0,1,1],
+      [1,0,0,0,0,0,2,1],
+      [1,0,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 3, dificultad: 'Intermedio', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,1,0,0,0,1],
+      [1,1,0,1,0,1,0,1],
+      [1,0,0,0,0,1,0,1],
+      [1,0,1,1,0,1,0,1],
+      [1,0,0,1,0,0,2,1],
+      [1,1,0,0,0,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 4, dificultad: 'Intermedio', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,0,1],
+      [1,0,1,0,1,0,1,1],
+      [1,0,1,0,0,0,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,0,0,0,0,2,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 5, dificultad: 'Intermedio', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,0,1],
+      [1,0,1,0,1,1,0,1],
+      [1,0,1,0,0,0,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,0,0,0,0,2,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 6, dificultad: 'Difícil', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,1,0,0,0,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,0,0,0,1,0,1],
+      [1,1,1,1,0,1,0,1],
+      [1,0,0,1,0,0,2,1],
+      [1,1,0,0,0,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 7, dificultad: 'Difícil', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,1,0,0,1,0,1],
+      [1,0,1,1,0,1,0,1],
+      [1,0,0,0,0,0,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,0,0,0,0,2,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 8, dificultad: 'Difícil', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,0,1],
+      [1,0,1,0,1,0,1,1],
+      [1,0,1,0,0,0,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,0,0,0,0,2,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
+    { nivel: 9, dificultad: 'Difícil', laberinto: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,1,0,1,0,0,1],
+      [1,0,1,0,1,1,0,1],
+      [1,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,0,1],
+      [1,0,0,0,0,0,2,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1]
+    ] },
   ];
 
-  const FILAS = 8;
-  const COLUMNAS = 8;
-
   let nivelActual = 0;
-  let jugadorPos = {x:0, y:0};
 
   const laberintoDiv = document.getElementById('laberinto');
-  const mensajeDiv = document.getElementById('mensaje');
-  const nivelNumSpan = document.getElementById('nivel-num');
-  const btnAnterior = document.getElementById('btnAnterior');
-  const btnSiguiente = document.getElementById('btnSiguiente');
-  const btnModo = document.getElementById('btnModo');
-  const celebracionDiv = document.getElementById('celebracion');
+  const mensaje = document.getElementById('mensaje');
+  const btnSiguiente = document.getElementById('btn-siguiente');
 
-  function dibujarLaberinto() {
+  let avatarPos = { x: 1, y: 1 }; // posición inicial
+
+  function crearLaberinto() {
     laberintoDiv.innerHTML = '';
-    const mapa = niveles[nivelActual];
-    for(let y=0; y<FILAS; y++) {
-      for(let x=0; x<COLUMNAS; x++) {
+    const matriz = niveles[nivelActual].laberinto;
+
+    for(let y = 0; y < matriz.length; y++) {
+      for(let x = 0; x < matriz[y].length; x++) {
         const celda = document.createElement('div');
         celda.classList.add('celda');
 
-        const char = mapa[y][x];
-        if(char === 'X') {
+        if(matriz[y][x] === 1) {
           celda.classList.add('pared');
-        } else if (char === 'J') {
-          celda.classList.add('jugador');
-          jugadorPos = {x,y};
-        } else if (char === 'S') {
+        } else if(matriz[y][x] === 2) {
           celda.classList.add('salida');
-        } else {
-          celda.classList.add('camino');
+          celda.textContent = '🏆';
+          celda.style.fontSize = '24px';
+          celda.style.textAlign = 'center';
+          celda.style.lineHeight = '50px';
         }
-        celda.setAttribute('data-x', x);
-        celda.setAttribute('data-y', y);
+
+        celda.id = `celda-${x}-${y}`;
         laberintoDiv.appendChild(celda);
       }
     }
   }
 
-  function moverJugador(dx, dy) {
-    const mapa = niveles[nivelActual];
-    const nx = jugadorPos.x + dx;
-    const ny = jugadorPos.y + dy;
-    if(nx < 0 || ny < 0 || nx >= COLUMNAS || ny >= FILAS) return; // fuera limites
-    const destino = mapa[ny][nx];
-    if(destino === 'X') return; // pared
-    // Actualizar mapa: cambiar la 'J' vieja por espacio
-    let filaArray = mapa[jugadorPos.y].split('');
-    filaArray[jugadorPos.x] = ' ';
-    mapa[jugadorPos.y] = filaArray.join('');
-    // Mover jugador
-    filaArray = mapa[ny].split('');
-    filaArray[nx] = 'J';
-    mapa[ny] = filaArray.join('');
-    jugadorPos = {x: nx, y: ny};
-    dibujarLaberinto();
-    chequearSalida();
+  function posicionAvatar() {
+    // Mover el avatar al div correspondiente
+    // Lo insertamos en la celda actual:
+    const avatar = document.getElementById('avatar');
+    const celdaActual = document.getElementById(`celda-${avatarPos.x}-${avatarPos.y}`);
+    if(!celdaActual) return;
+
+    // Asegurar que avatar está dentro de celda
+    celdaActual.appendChild(avatar);
   }
 
-  function chequearSalida() {
-    if(niveles[nivelActual][jugadorPos.y][jugadorPos.x] === 'S') {
-      mostrarCelebracion();
-      btnSiguiente.disabled = false;
-      mensajeDiv.textContent = "¡Nivel completado! Presiona Siguiente Nivel para continuar.";
+  function crearAvatar() {
+    const avatar = document.createElement('div');
+    avatar.id = 'avatar';
+
+    // Añadimos pies dentro del avatar
+    const pies = document.createElement('div');
+    pies.id = 'pies';
+
+    const pie1 = document.createElement('div');
+    pie1.classList.add('pie');
+    const pie2 = document.createElement('div');
+    pie2.classList.add('pie', 'derecha');
+
+    pies.appendChild(pie1);
+    pies.appendChild(pie2);
+    avatar.appendChild(pies);
+
+    laberintoDiv.appendChild(avatar);
+    posicionAvatar();
+  }
+
+  function puedeMover(x, y) {
+    const matriz = niveles[nivelActual].laberinto;
+    if(x < 0 || y < 0 || y >= matriz.length || x >= matriz[0].length) return false;
+    return matriz[y][x] !== 1;
+  }
+
+  function verificarSalida() {
+    const matriz = niveles[nivelActual].laberinto;
+    if(matriz[avatarPos.y][avatarPos.x] === 2) {
+      mensaje.textContent = `¡Felicidades! Nivel ${niveles[nivelActual].nivel} completado.`;
+      btnSiguiente.style.display = 'inline-block';
     } else {
-      btnSiguiente.disabled = true;
-      mensajeDiv.textContent = "Encuentra la salida para avanzar al siguiente nivel.";
+      btnSiguiente.style.display = 'none';
+      mensaje.textContent = `Nivel ${niveles[nivelActual].nivel} - ${niveles[nivelActual].dificultad}`;
     }
   }
 
-  function mostrarCelebracion() {
-    celebracionDiv.textContent = `¡Felicidades! Has completado el nivel ${nivelActual+1} 💖`;
-    celebracionDiv.classList.add('show');
-    setTimeout(() => {
-      celebracionDiv.classList.remove('show');
-    }, 3500);
+  function moverAvatar(dx, dy) {
+    const nuevoX = avatarPos.x + dx;
+    const nuevoY = avatarPos.y + dy;
+    if(puedeMover(nuevoX, nuevoY)) {
+      avatarPos.x = nuevoX;
+      avatarPos.y = nuevoY;
+      posicionAvatar();
+      verificarSalida();
+    }
   }
 
-  // Control de botones y teclado
-  btnAnterior.addEventListener('click', () => {
-    if(nivelActual > 0) {
-      nivelActual--;
-      iniciarNivel();
-    }
-  });
-  btnSiguiente.addEventListener('click', () => {
-    if(nivelActual < niveles.length -1) {
-      nivelActual++;
-      iniciarNivel();
-    }
-  });
-
-  btnModo.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    if(document.body.classList.contains('dark')) {
-      btnModo.textContent = "Modo Claro";
-    } else {
-      btnModo.textContent = "Modo Oscuro";
-    }
-  });
-
-  function iniciarNivel() {
-    nivelNumSpan.textContent = nivelActual + 1;
-    btnAnterior.disabled = (nivelActual === 0);
-    btnSiguiente.disabled = true; // se habilita solo al terminar nivel
-    dibujarLaberinto();
-    mensajeDiv.textContent = "Encuentra la salida para avanzar al siguiente nivel.";
-  }
-
-  window.addEventListener('keydown', (e) => {
+  // Control de teclado
+  window.addEventListener('keydown', e => {
     switch(e.key) {
-      case 'ArrowUp': moverJugador(0, -1); break;
-      case 'ArrowDown': moverJugador(0, 1); break;
-      case 'ArrowLeft': moverJugador(-1, 0); break;
-      case 'ArrowRight': moverJugador(1, 0); break;
+      case 'ArrowUp': e.preventDefault(); moverAvatar(0, -1); break;
+      case 'ArrowDown': e.preventDefault(); moverAvatar(0, 1); break;
+      case 'ArrowLeft': e.preventDefault(); moverAvatar(-1, 0); break;
+      case 'ArrowRight': e.preventDefault(); moverAvatar(1, 0); break;
     }
   });
 
-  iniciarNivel();
+  btnSiguiente.addEventListener('click', () => {
+    if(nivelActual < niveles.length -1){
+      nivelActual++;
+      avatarPos = { x: 1, y: 1 };
+      crearLaberinto();
+      posicionAvatar();
+      verificarSalida();
+      btnSiguiente.style.display = 'none';
+    } else {
+      mensaje.textContent = "¡Has completado todos los niveles! 💖";
+      btnSiguiente.style.display = 'none';
+    }
+  });
+
+  // Inicialización
+  crearLaberinto();
+  crearAvatar();
+  verificarSalida();
+
 </script>
 </body>
 </html>
