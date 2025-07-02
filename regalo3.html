@@ -1,317 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Regalo 3 - Libro de frases (doble página)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      background: #fff0f5; /* suave rosa lavanda */
-      font-family: 'Quicksand', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      user-select: none;
-      padding: 20px;
-      perspective: 1400px; /* para 3D */
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regalo 3 - Libro de Frases Románticas</title>
+<style>
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: #fff0f6;
+    margin: 0;
+    padding: 2rem;
+    color: #b30059;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .libro {
+    width: 90vw;
+    max-width: 900px;
+    height: 600px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(179, 0, 89, 0.4);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+  .pagina {
+    width: 50%;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    border-left: 2px solid #f2c1d1;
+    border-right: 2px solid #f2c1d1;
+    background: #fff0f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.6s ease;
+    user-select: none;
+  }
+  .pagina.izquierda {
+    border-left: none;
+    border-radius: 16px 0 0 16px;
+  }
+  .pagina.derecha {
+    border-right: none;
+    border-radius: 0 16px 16px 0;
+  }
+  .numero-frase {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #b30059;
+    font-family: 'Great Vibes', cursive;
+  }
+  .texto-frase {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    border: 3px solid #f2c1d1;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffdce6;
+    box-shadow: inset 0 0 8px #f2a8c7;
+    font-style: italic;
+  }
 
-    /* Fondo decorativo romántico sutil con CSS */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background:
-        radial-gradient(circle at 20% 30%, #f8c8dc33 10%, transparent 11%),
-        radial-gradient(circle at 80% 70%, #f8c8dc33 10%, transparent 11%);
-      background-repeat: repeat;
-      background-size: 200px 200px;
-      pointer-events: none;
-      z-index: 0;
-    }
+  /* Botones */
+  .controles {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+  }
+  button {
+    background-color: #d63384;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 5px 15px #b30059aa;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button:hover {
+    background-color: #b30059;
+  }
 
-    .libro {
-      display: flex;
-      gap: 30px;
-      width: 880px; /* 2 páginas de 420px + gap */
-      height: 320px;
-      transform-style: preserve-3d;
-      position: relative;
-      z-index: 10;
-    }
-
-    .pagina {
-      width: 420px;
-      height: 320px;
-      background: #fff;
-      border-radius: 25px;
-      box-shadow:
-        inset 0 0 40px #f9c4d7,
-        0 10px 30px rgba(204, 99, 118, 0.3);
-      padding: 30px 35px 40px 35px;
-      box-sizing: border-box;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-      color: #962c4a;
-      user-select: text;
-      backface-visibility: hidden;
-      transform-origin: center center;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-
-    /* Animaciones pasar página */
-    .pagina.pasando {
-      transform: rotateY(-90deg);
-      opacity: 0;
-    }
-    .pagina.volviendo {
-      transform: rotateY(0deg);
-      opacity: 1;
-    }
-
-    /* Para la página izquierda, girar el origen a la derecha para efecto más natural */
-    .pagina.izquierda {
-      transform-origin: right center;
-    }
-
-    /* Para la página derecha, origen a la izquierda */
-    .pagina.derecha {
-      transform-origin: left center;
-    }
-
-    /* Texto frase */
-    .frase-texto {
-      font-size: 22px;
-      font-style: italic;
-      font-weight: 600;
-      line-height: 1.4;
-      text-align: center;
-      max-width: 360px;
-      margin-bottom: 30px;
-      font-family: 'Great Vibes', cursive;
-      text-shadow: 1px 1px 2px #ffcde2;
-      color: #6b213f;
-      position: relative;
-    }
-
-    /* Número frase */
-    .numero-frase {
-      position: absolute;
-      top: 25px;
-      right: 30px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: #c7496a;
-      background: #fddde6;
-      padding: 6px 15px;
-      border-radius: 30px 0 30px 0;
-      box-shadow: 1px 1px 5px #c7496a99;
-      user-select: none;
-      letter-spacing: 0.06em;
-    }
-
-    /* Botones flechas */
-    .controles {
-      margin-top: 370px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      user-select: none;
-    }
-    button {
-      background-color: #c7496a;
-      border: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 24px;
-      padding: 12px 20px;
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px #c7496aaa;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-    button:disabled {
-      background-color: #e3a6b5;
-      cursor: default;
-      box-shadow: none;
-    }
-    button:hover:not(:disabled) {
-      background-color: #9e3952;
-    }
-
-    /* Portada estilo especial */
-    .portada .frase-texto {
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 700;
-      color: #b34766;
-      text-shadow: 1px 1px 3px #e0a9b6;
-    }
-    .portada .numero-frase {
-      display: none;
-    }
-
-  </style>
+</style>
 </head>
 <body>
 
-  <main class="libro" aria-label="Libro digital de frases románticas">
-    <section class="pagina izquierda volviendo portada" role="region" aria-live="polite" aria-atomic="true" id="paginaIzquierda">
-      <div class="numero-frase" id="numeroFraseIzq"></div>
-      <div class="frase-texto" id="textoFraseIzq">30 Razones por las que te amo</div>
-    </section>
+<div class="libro" aria-label="Libro digital de frases románticas" role="region">
+  <div class="pagina izquierda" id="paginaIzq" aria-live="polite" aria-atomic="true" aria-relevant="additions"></div>
+  <div class="pagina derecha" id="paginaDer" aria-live="polite" aria-atomic="true" aria-relevant="additions"></div>
 
-    <section class="pagina derecha volviendo" role="region" aria-live="polite" aria-atomic="true" id="paginaDerecha">
-      <div class="numero-frase" id="numeroFraseDer"></div>
-      <div class="frase-texto" id="textoFraseDer">Pulsa siguiente para empezar</div>
-    </section>
-  </main>
+  <div class="controles">
+    <button id="btnAnterior" aria-label="Página anterior">← Página anterior</button>
+    <button id="btnSiguiente" aria-label="Página siguiente">Página siguiente →</button>
+  </div>
+</div>
 
-  <nav class="controles" aria-label="Controles de navegación del libro">
-    <button id="prev" aria-label="Página anterior" disabled>&larr; Anterior</button>
-    <button id="next" aria-label="Página siguiente">Siguiente &rarr;</button>
-  </nav>
+<script>
+  const frases = [
+    "Eres la luz que ilumina mis días más oscuros.",
+    "Cada momento a tu lado es un tesoro que guardo en mi corazón.",
+    "Tu sonrisa es la melodía que alegra mi alma.",
+    "En tus ojos encuentro mi hogar.",
+    "Amarte es la aventura más dulce que he vivido.",
+    "Eres el latido constante de mi corazón.",
+    "Contigo aprendí el verdadero significado del amor.",
+    "Tu voz es el susurro que calma todas mis tormentas.",
+    "Cada día contigo es un capítulo hermoso en nuestra historia.",
+    "Eres mi inspiración y mi fuerza para seguir adelante.",
+    "Nuestro amor es un viaje sin fin lleno de magia.",
+    "Gracias por ser mi refugio en los momentos difíciles.",
+    "Eres mi sol en días nublados.",
+    "Tus abrazos son el lugar donde encuentro paz.",
+    "El amor que siento por ti crece con cada amanecer.",
+    "Eres mi sueño hecho realidad.",
+    "Cada instante contigo es un regalo del destino.",
+    "Nuestro amor es la poesía que escribe el universo.",
+    "Eres mi compañero de vida y mi mejor amigo.",
+    "Tu amor es la melodía que quiero escuchar siempre.",
+    "En tus brazos encontré mi lugar en el mundo.",
+    "Eres la razón por la que sonrío sin motivo.",
+    "Amarte es mi alegría y mi paz.",
+    "Tu amor es el motor que mueve mi corazón.",
+    "Juntos somos invencibles y eternos.",
+    "Eres el sueño que nunca quiero despertar.",
+    "Cada beso tuyo es una promesa de amor eterno.",
+    "Tu amor ilumina mi camino cada día.",
+    "Eres el regalo más hermoso que la vida me ha dado.",
+    "Contigo, todo es posible y maravilloso."
+  ];
 
-  <script>
-    const frases = [
-      "Cada día a tu lado es un capítulo maravilloso de nuestra historia.",
-      "Eres el latido que da vida a mi corazón.",
-      "Contigo, cada momento es eterno y lleno de amor.",
-      "Tu sonrisa ilumina mis días más oscuros.",
-      "Nuestro amor es el libro más hermoso que he leído.",
-      "En tus brazos encuentro mi lugar favorito.",
-      "Cada palabra tuya es poesía para mi alma.",
-      "Gracias por ser mi compañera y mi mejor amiga.",
-      "Amarte es la aventura más dulce de mi vida.",
-      "Juntos escribimos el mejor cuento de amor.",
-      "Tu voz es la melodía que calma mis tormentas.",
-      "No hay distancia que pueda apagar este fuego que siento por ti.",
-      "Eres mi inspiración y mi refugio seguro.",
-      "A tu lado, el tiempo se detiene para que vivamos el presente.",
-      "Mi corazón late con más fuerza cuando pienso en ti.",
-      "Nuestro amor es un viaje sin final, lleno de magia y sueños.",
-      "Cada beso tuyo es un capítulo inolvidable.",
-      "Contigo aprendí que el verdadero amor es paciente y eterno.",
-      "Eres la razón de mis sonrisas y mis suspiros.",
-      "En tus ojos encuentro la paz que siempre busqué.",
-      "Tu amor me hace querer ser mejor cada día.",
-      "Eres el sol que ilumina mi mundo gris.",
-      "Juntos construimos un castillo de sueños y esperanzas.",
-      "Eres mi cuento favorito, el que siempre quiero leer.",
-      "Cada instante contigo es un regalo del destino.",
-      "Nuestro amor es un poema que escribimos sin palabras.",
-      "Eres la melodía que alegra mi corazón cansado.",
-      "A tu lado, la vida tiene un color más brillante.",
-      "Eres mi todo, mi ahora y mi siempre.",
-      "Gracias por llenar mi vida de amor y felicidad."
-    ];
+  let paginaActual = 0; // mostrará frases en pares (dos páginas)
 
-    // índice para las páginas dobles (portada es 0 izquierda y 0 derecha)
-    // frases comienzan en la derecha página 1 (índice 1 en el arreglo)
-    // página izquierda muestra frases pares (índice par), derecha las impares (índice impar)
-    let paginaActual = 0; // Contamos en pares, portada = 0
+  const paginaIzq = document.getElementById('paginaIzq');
+  const paginaDer = document.getElementById('paginaDer');
+  const btnAnterior = document.getElementById('btnAnterior');
+  const btnSiguiente = document.getElementById('btnSiguiente');
 
-    const paginaIzquierda = document.getElementById('paginaIzquierda');
-    const paginaDerecha = document.getElementById('paginaDerecha');
+  function mostrarPaginas() {
+    // Mostrar la frase par en página izquierda y la impar en derecha (si existe)
+    const fraseIzq = frases[paginaActual];
+    const fraseDer = frases[paginaActual + 1];
 
-    const textoFraseIzq = document.getElementById('textoFraseIzq');
-    const textoFraseDer = document.getElementById('textoFraseDer');
-
-    const numeroFraseIzq = document.getElementById('numeroFraseIzq');
-    const numeroFraseDer = document.getElementById('numeroFraseDer');
-
-    const btnPrev = document.getElementById('prev');
-    const btnNext = document.getElementById('next');
-
-    let animando = false;
-
-    function mostrarPaginas(indice) {
-      animando = true;
-
-      // Animar páginas (salida)
-      paginaIzquierda.classList.add('pasando');
-      paginaDerecha.classList.add('pasando');
-
-      // Después del tiempo de la animación (600ms), cambiar texto y animar entrada
-      setTimeout(() => {
-        // Página izquierda (frase par)
-        if (indice === 0) {
-          textoFraseIzq.textContent = "30 Razones por las que te amo";
-          numeroFraseIzq.textContent = "";
-          paginaIzquierda.classList.add('portada');
-        } else {
-          paginaIzquierda.classList.remove('portada');
-          const idxIzq = (indice * 2) - 2; // Índice en frases para página izquierda
-          if (idxIzq >= 0 && idxIzq < frases.length) {
-            textoFraseIzq.textContent = frases[idxIzq];
-            numeroFraseIzq.textContent = `Frase ${idxIzq + 1}`;
-          } else {
-            textoFraseIzq.textContent = "";
-            numeroFraseIzq.textContent = "";
-          }
-        }
-
-        // Página derecha (frase impar)
-        const idxDer = (indice * 2) - 1; // Índice en frases para página derecha
-        if (indice === 0) {
-          textoFraseDer.textContent = "Pulsa siguiente para empezar";
-          numeroFraseDer.textContent = "";
-        } else if (idxDer >= 0 && idxDer < frases.length) {
-          textoFraseDer.textContent = frases[idxDer];
-          numeroFraseDer.textContent = `Frase ${idxDer + 1}`;
-        } else {
-          textoFraseDer.textContent = "";
-          numeroFraseDer.textContent = "";
-        }
-
-        // Animar páginas (entrada)
-        paginaIzquierda.classList.remove('pasando');
-        paginaDerecha.classList.remove('pasando');
-
-        paginaIzquierda.classList.add('volviendo');
-        paginaDerecha.classList.add('volviendo');
-
-        animando = false;
-
-        actualizarBotones();
-      }, 600);
+    if(fraseIzq) {
+      paginaIzq.innerHTML = `<div class="numero-frase">Frase ${paginaActual + 1}</div><div class="texto-frase">${fraseIzq}</div>`;
+    } else {
+      paginaIzq.innerHTML = '';
+    }
+    if(fraseDer) {
+      paginaDer.innerHTML = `<div class="numero-frase">Frase ${paginaActual + 2}</div><div class="texto-frase">${fraseDer}</div>`;
+    } else {
+      paginaDer.innerHTML = '';
     }
 
-    function actualizarBotones() {
-      btnPrev.disabled = paginaActual === 0;
-      // Máximo índice para la derecha:
-      // Cada índice representa 2 frases, max: ceil(frases.length / 2)
-      btnNext.disabled = paginaActual >= Math.ceil(frases.length / 2);
+    // Deshabilitar botones cuando no haya más páginas
+    btnAnterior.disabled = paginaActual === 0;
+    btnSiguiente.disabled = paginaActual >= frases.length - 2;
+  }
+
+  btnAnterior.addEventListener('click', () => {
+    if(paginaActual > 0) {
+      paginaActual -= 2;
+      mostrarPaginas();
     }
+  });
 
-    btnPrev.addEventListener('click', () => {
-      if (paginaActual > 0 && !animando) {
-        paginaActual--;
-        mostrarPaginas(paginaActual);
-      }
-    });
+  btnSiguiente.addEventListener('click', () => {
+    if(paginaActual < frases.length - 2) {
+      paginaActual += 2;
+      mostrarPaginas();
+    }
+  });
 
-    btnNext.addEventListener('click', () => {
-      if (paginaActual < Math.ceil(frases.length / 2) && !animando) {
-        paginaActual++;
-        mostrarPaginas(paginaActual);
-      }
-    });
+  mostrarPaginas();
+</script>
 
-    // Mostrar portada al cargar
-    mostrarPaginas(0);
-  </script>
 </body>
 </html>
