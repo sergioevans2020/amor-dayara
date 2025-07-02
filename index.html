@@ -3,20 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Regalos para mi amor</title>
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
+      padding: 0;
+      background: #ffe6f0;
       font-family: 'Quicksand', sans-serif;
-      background: #fff0f5;
-      text-align: center;
-      overflow-x: hidden;
+      overflow: hidden;
+      transition: background-color 0.5s;
     }
 
-    h1 {
-      margin-top: 30px;
-      font-size: 3em;
-      color: #d81b60;
+    .borde-texto span {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 20px;
+      font-family: 'Great Vibes', cursive;
+      color: #d63384;
+      animation: borderScroll 20s linear infinite;
+    }
+
+    .borde-texto {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes borderScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .corazones {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .corazon {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      transform: rotate(45deg);
+      animation: flotar 8s infinite;
+      border-radius: 2px;
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .corazon::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .corazon::after {
+      left: -9px;
+      top: 0;
+    }
+
+    @keyframes flotar {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+
+    .contenedor {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      top: 25%;
+    }
+
+    .titulo {
+      font-size: 42px;
+      font-family: 'Great Vibes', cursive;
+      color: #b30059;
+      margin-bottom: 40px;
     }
 
     .botones {
@@ -24,96 +103,134 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
-      margin: 40px 0;
+      padding: 20px;
     }
 
-    .botones a {
-      padding: 15px 30px;
-      background: #ffd6ec;
-      color: #880e4f;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 1.2em;
+    .boton {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
       font-weight: bold;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease, background 0.3s;
+      text-decoration: none;
+      transition: 0.3s;
     }
 
-    .botones a:hover {
-      background: #f8bbd0;
+    .boton.azul {
+      background-color: #2196F3;
+    }
+
+    .boton.rojo {
+      background-color: #e91e63;
+    }
+
+    .boton.verde {
+      background-color: #4CAF50;
+    }
+
+    .boton.rosa {
+      background-color: #f48fb1;
+    }
+
+    .boton.lila {
+      background-color: #ce93d8;
+    }
+
+    .boton.amarillo {
+      background-color: #ffe082;
+      color: #5d4037;
+    }
+
+    .boton:hover {
+      filter: brightness(1.1);
       transform: scale(1.05);
     }
 
-    .avatar {
+    /* Corazón kawaii animado */
+    .avatar-corazon {
       position: fixed;
       bottom: 10px;
       left: 10px;
+      width: 80px;
+      height: 80px;
+      background: pink;
+      border-radius: 50% 50% 40% 40%;
       animation: caminar 10s linear infinite;
-      font-size: 40px;
-    }
-
-    @keyframes caminar {
-      0% { left: 0; }
-      50% { left: 80%; }
-      100% { left: 0; }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      z-index: 20;
     }
 
     .mensaje-avatar {
       position: fixed;
-      bottom: 60px;
+      bottom: 100px;
       left: 20px;
-      background: #ffc1e3;
-      padding: 10px 20px;
-      border-radius: 15px;
-      color: #6a1b9a;
-      font-weight: bold;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      background: #fff0f5;
+      color: #d63384;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16px;
+      animation: aparecer 2s ease;
+      z-index: 20;
     }
 
-    /* Botón modo rosado */
-    #modoRosado {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ffdce5;
-      color: #880e4f;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    @keyframes caminar {
+      0% { left: 0; }
+      50% { left: 60%; }
+      100% { left: 0; }
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-
-  <button id="modoRosado">🎨 Modo Pastel</button>
-
-  <h1>Bienvenida a tu rincón mágico 💕</h1>
-
-  <div class="botones">
-    <a href="regalo1.html">🎁 Regalo 1</a>
-    <a href="regalo2.html">💌 Regalo 2</a>
-    <a href="regalo3.html">🌸 Regalo 3</a>
-    <a href="minijuego.html">🎮 Mini Juego</a>
-    <a href="nuestra_libreta.html">📖 Nuestra Libreta</a>
-    <a href="listas_deseos.html">🌟 Lista de Deseos</a>
-    <a href="laberinto.html">💗 Laberinto del Amor</a> <!-- NUEVO BOTÓN -->
+  <div class="borde-texto">
+    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña - 21/06/2025 • </span>
   </div>
 
-  <div class="avatar">💖</div>
-  <div class="mensaje-avatar">Bienvenida, doncella 💌</div>
+  <div class="corazones" id="corazones"></div>
+
+  <div class="contenedor">
+    <div class="titulo">Bienvenida, mi amor 💕</div>
+    <div class="botones">
+      <a href="regalo1.html" class="boton azul">REGALO 1</a>
+      <a href="regalo2.html" class="boton rojo">REGALO 2</a>
+      <a href="regalo3.html" class="boton verde">REGALO 3</a>
+      <a href="minijuego.html" class="boton rosa">MINIJUEGO</a>
+      <a href="nuestra_libreta.html" class="boton lila">NUESTRA LIBRETA</a>
+      <a href="listas_deseos.html" class="boton azul">LISTA DE DESEOS</a>
+      <a href="laberinto.html" class="boton verde">LABERINTO</a>
+      <a href="caja_sorpresa.html" class="boton amarillo">🎁 CAJA SORPRESA</a>
+    </div>
+  </div>
+
+  <div class="avatar-corazon">💖</div>
+  <div class="mensaje-avatar">¡Bienvenida, doncella! 🌸</div>
 
   <script>
-    const modoBtn = document.getElementById("modoRosado");
-    let pastelActivo = false;
-
-    modoBtn.addEventListener("click", () => {
-      document.body.style.background = pastelActivo ? "#fff0f5" : "#f8e1f4";
-      document.body.style.color = pastelActivo ? "#880e4f" : "#4a0072";
-      pastelActivo = !pastelActivo;
-    });
+    const corazonesContainer = document.getElementById("corazones");
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      corazonesContainer.appendChild(corazon);
+      setTimeout(() => {
+        corazon.remove();
+      }, 10000);
+    }
+    setInterval(crearCorazon, 500);
   </script>
-
 </body>
 </html>
