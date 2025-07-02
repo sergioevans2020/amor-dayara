@@ -4,411 +4,238 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Amor Dayara - Página Principal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <style>
-    /* Reset y base */
-    * {
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
     body {
-      margin: 0; padding: 0;
+      margin: 0;
+      background: #ffe6f0;
       font-family: 'Quicksand', sans-serif;
-      background: #f9e7f0;
+      overflow-x: hidden;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
-      color: #b30059;
-      margin-bottom: 40px;
-      text-align: center;
+      color: #8b3a62;
     }
 
-    /* Botones Regalos */
-    .botones-regalos {
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+      user-select: none;
+      color: #a3486d;
+    }
+
+    .botones-container {
       display: flex;
       gap: 25px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
-    .btn-regalo {
-      padding: 18px 50px;
+
+    button {
+      padding: 14px 28px;
       font-size: 1.25rem;
-      border-radius: 15px;
+      border-radius: 18px;
       border: none;
       cursor: pointer;
       font-weight: 700;
-      font-family: 'Quicksand', sans-serif;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(163, 72, 109, 0.6);
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
       user-select: none;
+      color: #fff;
     }
-    .btn-azul {
-      background-color: #2196F3;
-      color: white;
+
+    button#btnRegalo1 {
+      background-color: #357edd;
     }
-    .btn-azul:hover {
-      background-color: #0b7dda;
-      box-shadow: 0 8px 20px rgba(11,125,218,0.6);
+    button#btnRegalo1:hover {
+      background-color: #265ca9;
+      box-shadow: 0 8px 20px rgba(38, 92, 169, 0.8);
     }
-    .btn-rojo {
+
+    button#btnRegalo2 {
       background-color: #e63946;
-      color: white;
     }
-    .btn-rojo:hover {
-      background-color: #b83038;
-      box-shadow: 0 8px 20px rgba(184,48,56,0.6);
+    button#btnRegalo2:hover {
+      background-color: #ab2a33;
+      box-shadow: 0 8px 20px rgba(171, 42, 51, 0.8);
     }
-    .btn-verde {
-      background-color: #a3d9a5; /* verde pastel clarito */
+
+    button#btnRegalo3 {
+      background-color: #8fcf99; /* verde pastel clarito */
       color: #2f4f2f;
-      font-weight: 800;
     }
-    .btn-verde:hover {
-      background-color: #89c87a;
-      box-shadow: 0 8px 20px rgba(137,200,122,0.6);
-    }
-
-    /* Texto en movimiento borde */
-    .texto-movimiento-borde {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: #d63384;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .texto-movimiento-borde span {
-      position: absolute;
-      animation: movimiento-borde 20s linear infinite;
-      user-select: none;
-      text-shadow: 0 0 5px #fff;
-    }
-    /* Animaciones para texto en cada borde */
-    @keyframes movimiento-borde {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    /* Coloca el texto alrededor, 4 líneas (top, bottom, left, right) */
-    .texto-arriba {
-      top: 5px;
-      left: 0;
-      right: 0;
-      overflow: hidden;
-      height: 2.5rem;
-      line-height: 2.5rem;
-    }
-    .texto-abajo {
-      bottom: 5px;
-      left: 0;
-      right: 0;
-      overflow: hidden;
-      height: 2.5rem;
-      line-height: 2.5rem;
-    }
-    .texto-izquierda, .texto-derecha {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 2.5rem;
-      overflow: hidden;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      line-height: 2.5rem;
-    }
-    .texto-izquierda {
-      left: 5px;
-    }
-    .texto-derecha {
-      right: 5px;
-    }
-    /* Animación vertical para textos laterales */
-    @keyframes movimiento-vertical {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
-    }
-    .texto-izquierda span, .texto-derecha span {
-      animation: movimiento-vertical 20s linear infinite;
-      user-select: none;
-      text-shadow: 0 0 5px #fff;
+    button#btnRegalo3:hover {
+      background-color: #74b77a;
+      box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
     }
 
-    /* Stickers corazones animados fondo (CSS sin imágenes) */
-    .fondo-corazones {
-      pointer-events: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      overflow: hidden;
-      z-index: -1;
-    }
-    .corazon {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: #f48fb1;
-      border-radius: 50% 50% 0 0;
-      transform: rotate(-45deg);
-      animation-name: flotar;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      filter: drop-shadow(0 0 2px #d63384);
-    }
-    .corazon::before,
-    .corazon::after {
-      content: "";
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: #f48fb1;
-      border-radius: 50%;
-    }
-    .corazon::before {
-      top: -15px;
-      left: 0;
-    }
-    .corazon::after {
-      left: 15px;
-      top: 0;
-    }
-    @keyframes flotar {
-      0%, 100% {
-        transform: translateY(0) rotate(-45deg);
-        opacity: 1;
-      }
-      50% {
-        transform: translateY(-15px) rotate(-45deg);
-        opacity: 0.6;
-      }
-    }
-
-    /* Posiciones aleatorias para corazones (se setearán via JS) */
-
-    /* Modal Regalo 3 */
-    .modal-overlay {
+    /* Modal Styles */
+    #modalOverlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.5);
       display: none;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       z-index: 9999;
     }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-content {
-      background: white;
-      border-radius: 12px;
-      padding: 25px 30px 30px;
+
+    #modal {
+      background: #fff0f6;
+      padding: 25px 30px 30px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(139, 58, 98, 0.25);
       width: 90%;
-      max-width: 420px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      max-width: 380px;
+      text-align: center;
       position: relative;
+    }
+
+    #modal h2 {
+      margin: 0 0 18px 0;
       font-family: 'Quicksand', sans-serif;
+      color: #a3486d;
       user-select: none;
     }
-    .modal-close {
-      position: absolute;
-      top: 10px; right: 15px;
-      font-size: 24px;
-      color: #888;
-      cursor: pointer;
-      font-weight: 700;
-      transition: color 0.2s ease;
-    }
-    .modal-close:hover {
-      color: #b30059;
-    }
-    .modal-content h2 {
-      margin-top: 0;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: #b30059;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .modal-content label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
+
+    #modal input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
       font-size: 1.1rem;
-      color: #333;
-    }
-    .modal-content input[type="password"] {
-      width: 100%;
-      padding: 10px 15px;
-      font-size: 1rem;
-      border: 2px solid #b30059;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.3s ease;
-      box-sizing: border-box;
-    }
-    .modal-content input[type="password"]:focus {
-      border-color: #d63384;
-    }
-    .modal-content button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px 0;
-      background-color: #a3d9a5;
-      border: none;
       border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #2f4f2f;
+      border: 2px solid #a3486d;
+      margin-bottom: 20px;
+      outline: none;
+      font-family: 'Quicksand', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+
+    #modal input[type="password"]:focus {
+      border-color: #e63946;
+    }
+
+    #modal button {
+      padding: 12px 28px;
+      font-size: 1.15rem;
+      border-radius: 16px;
+      background-color: #8fcf99;
+      border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-    .modal-content button:hover {
-      background-color: #89c87a;
-    }
-    .modal-error {
-      color: #e63946;
-      margin-top: 10px;
       font-weight: 700;
-      text-align: center;
-      font-size: 0.9rem;
-      min-height: 22px;
+      color: #2f4f2f;
+      box-shadow: 0 5px 15px rgba(116, 183, 122, 0.6);
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
     }
 
-    /* Contenido desbloqueado REGALO 3 */
-    #contenido-regalo3 {
-      display: none;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 30px 20px;
-      border-radius: 18px;
-      background: #e7f5ea;
-      color: #2f4f2f;
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.9rem;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      text-align: center;
+    #modal button:hover {
+      background-color: #74b77a;
+      box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
+    }
+
+    #modal .closeBtn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: #a3486d;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+    }
+
+    #modal .errorMsg {
+      color: #e63946;
+      font-size: 0.95rem;
+      margin-top: -12px;
+      margin-bottom: 12px;
+      min-height: 18px;
       user-select: none;
     }
 
-    /* Responsive */
-    @media (max-width: 520px) {
-      .botones-regalos {
-        flex-direction: column;
-        gap: 18px;
-      }
-      .btn-regalo {
-        width: 100%;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <h1>Amor Dayara 💖</h1>
+  <h1>Bienvenida a Amor Dayara</h1>
 
-  <div class="botones-regalos">
-    <button class="btn-regalo btn-azul" onclick="window.open('regalo1.html', '_self')">REGALO 1</button>
-    <button class="btn-regalo btn-rojo" onclick="window.open('regalo2.html', '_self')">REGALO 2</button>
-    <button class="btn-regalo btn-verde" id="btnRegalo3">REGALO 3</button>
+  <div class="botones-container">
+    <button id="btnRegalo1" aria-label="Abrir Regalo 1">REGALO 1</button>
+    <button id="btnRegalo2" aria-label="Abrir Regalo 2">REGALO 2</button>
+    <button id="btnRegalo3" aria-label="Abrir Regalo 3">REGALO 3</button>
   </div>
 
-  <!-- Contenido oculto del REGALO 3 que se mostrará al desbloquear -->
-  <section id="contenido-regalo3" tabindex="0" aria-live="polite" role="region" aria-label="Contenido del Regalo 3 desbloqueado">
-    <p>¡Felicidades! Has desbloqueado el Regalo 3. Aquí aparecerá el contenido secreto y especial para ti, mi amor.</p>
-  </section>
-
-  <!-- Modal para introducir código secreto -->
-  <div class="modal-overlay" id="modalRegalo3" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="Cerrar modal">&times;</button>
+  <!-- Modal para código secreto -->
+  <div id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div id="modal">
+      <button class="closeBtn" aria-label="Cerrar ventana">&times;</button>
       <h2 id="modalTitle">Introduce el código secreto</h2>
-      <label for="codigoSecreto">Código:</label>
-      <input type="password" id="codigoSecreto" autocomplete="off" />
-      <button id="btnValidarCodigo">Desbloquear</button>
-      <div class="modal-error" id="errorMensaje"></div>
+      <input type="password" id="codigoInput" placeholder="Código secreto" autocomplete="off" aria-describedby="modalDesc" />
+      <div class="errorMsg" id="errorMsg" aria-live="polite"></div>
+      <button id="btnValidar">Desbloquear</button>
     </div>
   </div>
 
-  <!-- Texto en movimiento alrededor -->
-  <div class="texto-movimiento-borde texto-arriba"><span>siempre seras mi niña &nbsp;&nbsp; 21/06/2025 &nbsp;&nbsp; siempre seras mi niña &nbsp;&nbsp; 21/06/2025 &nbsp;&nbsp;</span></div>
-  <div class="texto-movimiento-borde texto-abajo"><span>siempre seras mi niña &nbsp;&nbsp; 21/06/2025 &nbsp;&nbsp; siempre seras mi niña &nbsp;&nbsp; 21/06/2025 &nbsp;&nbsp;</span></div>
-  <div class="texto-movimiento-borde texto-izquierda"><span>siempre seras mi niña &nbsp;&nbsp; 21/06/2025 &nbsp;&nbsp;</span></div>
-  <div class="texto-movimiento-borde texto-derecha"><span>siempre seras mi niña &nbsp;&nbsp; 21/06/2025 &nbsp;&nbsp;</span></div>
+<script>
+  const btnRegalo1 = document.getElementById('btnRegalo1');
+  const btnRegalo2 = document.getElementById('btnRegalo2');
+  const btnRegalo3 = document.getElementById('btnRegalo3');
 
-  <!-- Fondo con corazones animados -->
-  <div class="fondo-corazones" aria-hidden="true"></div>
+  const modalOverlay = document.getElementById('modalOverlay');
+  const closeBtn = modalOverlay.querySelector('.closeBtn');
+  const btnValidar = document.getElementById('btnValidar');
+  const codigoInput = document.getElementById('codigoInput');
+  const errorMsg = document.getElementById('errorMsg');
 
-  <script>
-    // Crear corazones en fondo (sin imagenes)
-    const fondo = document.querySelector('.fondo-corazones');
-    const numCorazones = 30;
-    for(let i=0; i<numCorazones; i++){
-      const c = document.createElement('div');
-      c.classList.add('corazon');
-      // Posiciones aleatorias iniciales
-      c.style.left = Math.random() * 100 + 'vw';
-      c.style.top = Math.random() * 100 + 'vh';
-      // Duración y delay aleatorios para animacion flotante
-      c.style.animationDuration = (4 + Math.random() * 4) + 's';
-      c.style.animationDelay = (Math.random() * 5) + 's';
-      fondo.appendChild(c);
+  // Abrir regalos 1 y 2 directamente
+  btnRegalo1.addEventListener('click', () => {
+    window.location.href = 'regalo1.html';
+  });
+  btnRegalo2.addEventListener('click', () => {
+    window.location.href = 'regalo2.html';
+  });
+
+  // Abrir modal para regalo 3
+  btnRegalo3.addEventListener('click', () => {
+    errorMsg.textContent = '';
+    codigoInput.value = '';
+    modalOverlay.style.display = 'flex';
+    codigoInput.focus();
+  });
+
+  // Cerrar modal
+  closeBtn.addEventListener('click', () => {
+    modalOverlay.style.display = 'none';
+    errorMsg.textContent = '';
+  });
+
+  // Validar código
+  btnValidar.addEventListener('click', () => {
+    const codigo = codigoInput.value.trim();
+    if(codigo === '21062025') {
+      modalOverlay.style.display = 'none';
+      window.location.href = 'regalo3.html';
+    } else {
+      errorMsg.textContent = 'Código incorrecto, intenta de nuevo.';
+      codigoInput.focus();
     }
+  });
 
-    // Modal elementos
-    const btnRegalo3 = document.getElementById('btnRegalo3');
-    const modal = document.getElementById('modalRegalo3');
-    const modalClose = document.getElementById('modalClose');
-    const btnValidar = document.getElementById('btnValidarCodigo');
-    const inputCodigo = document.getElementById('codigoSecreto');
-    const errorMensaje = document.getElementById('errorMensaje');
-    const contenidoRegalo3 = document.getElementById('contenido-regalo3');
-
-    // Abrir modal al click REGALO 3
-    btnRegalo3.addEventListener('click', () => {
-      errorMensaje.textContent = '';
-      inputCodigo.value = '';
-      modal.classList.add('active');
-      inputCodigo.focus();
-    });
-
-    // Cerrar modal al click en X
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-    // Validar código
-    btnValidar.addEventListener('click', validarCodigo);
-    // Enter también valida
-    inputCodigo.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){
-        validarCodigo();
-      }
-    });
-
-    function validarCodigo(){
-      const codigoIngresado = inputCodigo.value.trim();
-      if(codigoIngresado === '21062025'){
-        errorMensaje.textContent = '';
-        modal.classList.remove('active');
-        contenidoRegalo3.style.display = 'block';
-        contenidoRegalo3.focus();
-      } else {
-        errorMensaje.textContent = 'Código incorrecto. Inténtalo de nuevo.';
-      }
+  // Permitir cerrar modal con tecla Escape
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modalOverlay.style.display === 'flex') {
+      modalOverlay.style.display = 'none';
+      errorMsg.textContent = '';
     }
-  </script>
+  });
+
+</script>
 
 </body>
 </html>
