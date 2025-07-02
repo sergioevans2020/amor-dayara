@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lista de Deseos</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+<style>
+  body {
+    background: #fff8dc;
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    color: #856404;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    margin-bottom: 25px;
+    color: #d4ac0d;
+    text-shadow: 1px 1px 2px #f7dc6f;
+  }
+  #listaDeseos {
+    background: #fff7d6;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(212, 172, 13, 0.3);
+    padding: 20px 25px;
+    width: 100%;
+    max-width: 600px;
+    font-size: 1.2rem;
+    color: #6e5700;
+    list-style-position: inside;
+  }
+  #listaDeseos li {
+    margin: 10px 0;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: #fffbe6;
+    box-shadow: inset 1px 1px 3px #d4ac0d;
+    cursor: text;
+  }
+  #listaDeseos li[contenteditable="true"]:focus {
+    outline: 2px solid #f7dc6f;
+    background: #fffde3;
+  }
+  #nuevoDeseo {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+  }
+  #nuevoDeseo input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 2px solid #d4ac0d;
+    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    color: #6e5700;
+  }
+  #nuevoDeseo input:focus {
+    outline: none;
+    border-color: #f7dc6f;
+    background: #fffde3;
+  }
+  #nuevoDeseo button {
+    background-color: #f7dc6f;
+    border: none;
+    padding: 0 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #856404;
+    box-shadow: 0 3px 7px rgba(212, 172, 13, 0.5);
+    transition: background-color 0.3s ease;
+  }
+  #nuevoDeseo button:hover {
+    background-color: #d4ac0d;
+    color: #fffbe6;
+  }
+  .boton-borrar {
+    float: right;
+    background: transparent;
+    border: none;
+    color: #b22222;
+    font-weight: 900;
+    font-size: 1.3rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .boton-borrar:hover {
+    color: #7a0c0c;
+  }
+  p.instrucciones {
+    max-width: 600px;
+    font-style: italic;
+    margin-bottom: 10px;
+    color: #a67c00;
+  }
+</style>
+</head>
+<body>
+
+<h1>Lista de Deseos</h1>
+<p class="instrucciones">Haz clic sobre un deseo para modificarlo. Los cambios se guardan automáticamente.</p>
+
+<ol id="listaDeseos" spellcheck="false"></ol>
+
+<div id="nuevoDeseo">
+  <input type="text" id="inputDeseo" placeholder="Escribe un nuevo deseo..." autocomplete="off" />
+  <button id="btnAgregar">Agregar</button>
+</div>
+
+<script>
+  const lista = document.getElementById('listaDeseos');
+  const input = document.getElementById('inputDeseo');
+  const btnAgregar = document.getElementById('btnAgregar');
+
+  // Cargar deseos desde localStorage o iniciar vacío
+  let deseos = JSON.parse(localStorage.getItem('listaDeseos')) || [];
+
+  // Función para guardar deseos
+  function guardarDeseos() {
+    localStorage.setItem('listaDeseos', JSON.stringify(deseos));
+  }
+
+  // Crear ítem en el DOM
+  function crearItem(texto, index) {
+    const li = document.createElement('li');
+    li.textContent = texto;
+    li.contentEditable = true;
+    li.spellcheck = false;
+
+    // Botón para borrar
+    const btnBorrar = document.createElement('button');
+    btnBorrar.textContent = '×';
+    btnBorrar.title = 'Eliminar deseo';
+    btnBorrar.className = 'boton-borrar';
+    btnBorrar.onclick = (e) => {
+      e.stopPropagation();
+      deseos.splice(index, 1);
+      guardarDeseos();
+      renderizarLista();
+    };
+    li.appendChild(btnBorrar);
+
+    // Guardar cambios al perder foco o al presionar Enter
+    li.addEventListener('blur', () => {
+      deseos[index] = li.textContent.trim();
+      if(deseos[index] === '') {
+        deseos.splice(index, 1);
+      }
+      guardarDeseos();
+      renderizarLista();
+    });
+
+    li.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') {
+        e.preventDefault();
+        li.blur();
+      }
+    });
+
+    return li;
+  }
+
+  // Renderizar lista completa
+  function renderizarLista() {
+    lista.innerHTML = '';
+    deseos.forEach((deseo, i) => {
+      const li = crearItem(deseo, i);
+      lista.appendChild(li);
+    });
+  }
+
+  // Agregar nuevo deseo
+  btnAgregar.addEventListener('click', () => {
+    const valor = input.value.trim();
+    if(valor) {
+      deseos.push(valor);
+      guardarDeseos();
+      renderizarLista();
+      input.value = '';
+      input.focus();
+    }
+  });
+
+  // Permitir agregar con Enter en input
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+      btnAgregar.click();
+    }
+  });
+
+  // Inicializar
+  renderizarLista();
+</script>
+
+</body>
+</html>
