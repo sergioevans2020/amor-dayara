@@ -1,171 +1,235 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Caja Sorpresa 💝</title>
+  <meta charset="UTF-8">
+  <title>Caja Sorpresa</title>
   <style>
-    /* Fuente personalizada integrada */
-    @font-face {
-      font-family: 'Romantic';
-      src: local('Comic Sans MS'), cursive;
-    }
-
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Romantic', cursive;
-      background: linear-gradient(180deg, #ffe4e1, #fff0f5);
+      background: linear-gradient(135deg, #ffe4ec, #ffd6f5);
+      font-family: 'Courier New', cursive;
       overflow: hidden;
+    }
+
+    .contenedor {
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
-      animation: backgroundMove 10s ease-in-out infinite alternate;
+      flex-direction: column;
+      position: relative;
     }
 
-    @keyframes backgroundMove {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 50px; }
-    }
-
-    h1 {
-      color: #d63384;
-      font-size: 2.5rem;
-      text-shadow: 1px 1px #fff;
-      margin-bottom: 30px;
+    .alfombra {
+      width: 250px;
+      height: 20px;
+      background: radial-gradient(circle, #ffb6c1, #f08080);
+      border-radius: 50%;
+      position: absolute;
+      bottom: 120px;
+      transition: opacity 0.5s ease;
     }
 
     .caja {
+      width: 200px;
+      height: 200px;
+      background: #ff69b4;
       position: relative;
-      width: 220px;
-      height: 160px;
-      background: linear-gradient(135deg, #ffb6c1, #ff69b4);
-      border: 3px solid #d63384;
-      border-radius: 12px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       cursor: pointer;
-      transition: transform 0.5s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 1s ease;
     }
 
-    .tapa {
+    .caja::before {
+      content: '';
       position: absolute;
-      top: -45px;
-      left: 0;
       width: 100%;
-      height: 45px;
-      background: radial-gradient(#ffc0cb, #ff69b4);
-      border-bottom: 3px solid #c2185b;
-      border-radius: 12px 12px 0 0;
-      transition: transform 0.5s ease;
-      z-index: 2;
+      height: 50px;
+      background: #ff85c1;
+      top: -50px;
+      border-radius: 20px 20px 0 0;
+      box-shadow: inset 0 -5px 0 #fff;
     }
 
-    .tarjeta {
+    .lazo {
       position: absolute;
-      top: 50%;
+      top: -60px;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      width: 300px;
-      height: auto;
-      background: #fff0f5;
-      border: 2px dashed #d63384;
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      padding: 25px;
-      font-size: 1.1rem;
-      color: #c2185b;
-      line-height: 1.6;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 40px;
+      background: #fff;
+      border-radius: 50% 50% 0 0;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .mensaje {
+      margin-top: 30px;
+      max-width: 80%;
       text-align: center;
-      z-index: 1;
-      transition: all 0.6s ease;
+      font-size: 1.2rem;
+      color: #b4005c;
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ffc0cb;
+      display: none;
+      animation: aparecer 1s forwards;
+      position: relative;
+      z-index: 10;
     }
 
-    .caja.abierta .tapa {
-      transform: translateY(-80px) rotate(-10deg);
-    }
-
-    .caja.abierta .tarjeta {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .volver {
-      margin-top: 40px;
-      text-decoration: none;
-      padding: 12px 24px;
-      background-color: #f48fb1;
-      color: white;
-      font-weight: bold;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .volver:hover {
-      background-color: #ec407a;
-    }
-
-    /* Confeti */
     .confeti {
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background-color: pink;
-      opacity: 0.9;
-      animation: caer 3s ease-out forwards;
+      top: 0;
+      animation: caer 3s linear infinite;
       border-radius: 50%;
+      z-index: 1000;
     }
 
     @keyframes caer {
-      0% {
-        transform: translateY(0) rotate(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(600px) rotate(720deg);
+      to {
+        transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
     }
+
+    .corazon {
+      position: absolute;
+      color: #ff69b4;
+      font-size: 2rem;
+      animation: flotar 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .anim1 { transform: rotateY(360deg); }
+    .anim2 { transform: scale(1.2) rotate(20deg); }
+    .anim3 { transform: translateY(-20px) scale(1.1); }
+
+    #reiniciarBtn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ffe4e1;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      color: #b4005c;
+      transition: background 0.3s ease;
+    }
+
+    #reiniciarBtn:hover {
+      background-color: #ffc1d3;
+    }
+
   </style>
 </head>
 <body>
-
-  <h1>¡Haz clic en la caja sorpresa! 🎁</h1>
-
-  <div class="caja" id="caja">
-    <div class="tapa"></div>
-    <div class="tarjeta">
-      🌟 Mi amor, en esta pequeña caja no cabe todo lo que siento por ti, pero quiero que sepas que cada día contigo es una nueva razón para sonreír. <br><br>
-      Eres mi paz, mi risa inesperada, mi refugio y mi aventura favorita. Gracias por llenar mi mundo de ternura, por tus gestos, tus palabras, tus silencios. <br><br>
-      ¡Te amo más de lo que jamás podrían expresar las palabras! 💖💫
+  <div class="contenedor">
+    <div class="alfombra" id="alfombra"></div>
+    <div class="caja" id="caja">
+      <div class="lazo"></div>
     </div>
+    <div class="mensaje" id="mensaje"></div>
+    <button id="reiniciarBtn">Cerrar caja y volver a abrir</button>
   </div>
 
-  <a href="index.html" class="volver">⬅ Volver al inicio</a>
-
   <script>
+    const frases = [
+      "Eres la sorpresa más hermosa que la vida me ha dado. Gracias por ser mi motivo favorito.",
+      "Abrir esta caja es como abrir mi corazón para ti: puro amor y ternura.",
+      "Nuestro amor es como una caja mágica, siempre tiene nuevas formas de sorprendernos.",
+      "Dentro de esta caja no hay nada más valioso que lo que compartimos: amor sincero.",
+      "¡Sorpresa! Cada día contigo es un regalo que no quiero devolver nunca.",
+      "Como esta caja, mi amor por ti siempre guarda una nueva sorpresa para emocionarte.",
+      "Tu sonrisa es el verdadero regalo, pero igual quería darte uno más.",
+      "Al abrir esta caja, recuerda que hay un millón de razones por las que te amo.",
+      "Eres magia envuelta en dulzura. Gracias por existir. 💝",
+      "Cada sorpresa contigo es mejor que cualquier regalo. Tú eres mi alegría diaria."
+    ];
+
     const caja = document.getElementById("caja");
+    const mensaje = document.getElementById("mensaje");
+    const alfombra = document.getElementById("alfombra");
+    const reiniciarBtn = document.getElementById("reiniciarBtn");
+
+    let aperturas = 0;
 
     function lanzarConfeti() {
       for (let i = 0; i < 50; i++) {
         const confeti = document.createElement("div");
         confeti.classList.add("confeti");
         confeti.style.left = Math.random() * window.innerWidth + "px";
-        confeti.style.backgroundColor = ["#ff69b4", "#ffc0cb", "#ffe4e1", "#f8bbd0"][Math.floor(Math.random()*4)];
+        confeti.style.backgroundColor = ["#ff69b4", "#ffc0cb", "#ffe4e1", "#f8bbd0"][Math.floor(Math.random() * 4)];
         confeti.style.animationDuration = (Math.random() * 2 + 2) + "s";
         document.body.appendChild(confeti);
-
         setTimeout(() => confeti.remove(), 4000);
       }
     }
 
-    caja.addEventListener("click", () => {
-      if (!caja.classList.contains("abierta")) {
-        caja.classList.add("abierta");
-        lanzarConfeti();
+    function lanzarCorazones() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("corazon");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+        heart.textContent = "💖";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
       }
-    });
-  </script>
+    }
 
+    function abrirCaja() {
+      if (!caja.classList.contains("abierta")) {
+        const animClass = "anim" + (Math.floor(Math.random() * 3) + 1);
+        caja.classList.add("abierta", animClass);
+        alfombra.style.opacity = 0;
+
+        const randomIndex = Math.floor(Math.random() * frases.length);
+        mensaje.innerHTML = "✨ " + frases[randomIndex];
+        mensaje.style.display = "block";
+        reiniciarBtn.style.display = "inline-block";
+
+        lanzarConfeti();
+        aperturas++;
+
+        if (aperturas > 1) {
+          lanzarCorazones();
+        }
+      }
+    }
+
+    function reiniciarCaja() {
+      caja.className = "caja";
+      mensaje.style.display = "none";
+      reiniciarBtn.style.display = "none";
+      alfombra.style.opacity = 1;
+    }
+
+    caja.addEventListener("click", abrirCaja);
+    reiniciarBtn.addEventListener("click", reiniciarCaja);
+  </script>
 </body>
 </html>
