@@ -1,190 +1,347 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amor Dayara - Página Principal</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amor Dayara - Página Principal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
-    body {
-      margin: 0;
-      background: #ffe6f0;
-      font-family: 'Quicksand', sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      color: #8b3a62;
-    }
+  /* Reset y base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #ffe6f0;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #8b3a62;
+    position: relative;
+  }
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 30px;
-      text-align: center;
-      user-select: none;
-      color: #a3486d;
-    }
+  /* Fondo animado corazones sticker */
+  .heart {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #ff77a9, #ffbfdc);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: rotate(-45deg);
+    animation-name: floatUp;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 8s;
+    opacity: 0.75;
+    filter: drop-shadow(0 0 3px #ff77a9);
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #ff77a9, #ffbfdc);
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -15px;
+    left: 0;
+  }
+  .heart::after {
+    top: 0;
+    left: 15px;
+  }
 
-    .botones-container {
-      display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 40px;
-      position: relative;
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 0.75;
     }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-120vh) rotate(-45deg);
+      opacity: 0;
+    }
+  }
 
-    button {
-      padding: 14px 28px;
-      font-size: 1.25rem;
-      border-radius: 18px;
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 5px 15px rgba(163, 72, 109, 0.6);
-      transition: background-color 0.25s ease, box-shadow 0.25s ease;
-      user-select: none;
-      color: #fff;
-    }
+  /* Genera varios corazones animados */
+  #heartContainer {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+  }
 
-    button#btnRegalo1 {
-      background-color: #357edd;
-    }
-    button#btnRegalo1:hover {
-      background-color: #265ca9;
-      box-shadow: 0 8px 20px rgba(38, 92, 169, 0.8);
-    }
+  /* Texto en movimiento alrededor del marco */
+  #marqueeContainer {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .marqueeVertical {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: #ffbfdc99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-weight: 700;
+    color: #a3486d;
+    font-size: 14px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    user-select: none;
+    animation: scrollVertical 12s linear infinite;
+    font-family: 'Quicksand', sans-serif;
+  }
+  #marqueeLeft {
+    left: 0;
+  }
+  #marqueeRight {
+    right: 0;
+    animation-direction: reverse;
+  }
+  @keyframes scrollVertical {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
 
-    button#btnRegalo2 {
-      background-color: #e63946;
-    }
-    button#btnRegalo2:hover {
-      background-color: #ab2a33;
-      box-shadow: 0 8px 20px rgba(171, 42, 51, 0.8);
-    }
+  .marqueeHorizontal {
+    position: fixed;
+    height: 40px;
+    left: 0;
+    right: 0;
+    background: #ffbfdc99;
+    color: #a3486d;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    white-space: nowrap;
+    animation: scrollHorizontal 15s linear infinite;
+    box-sizing: border-box;
+  }
+  #marqueeTop {
+    top: 0;
+  }
+  #marqueeBottom {
+    bottom: 0;
+    animation-direction: reverse;
+  }
+  @keyframes scrollHorizontal {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
 
-    button#btnRegalo3 {
-      background-color: #8fcf99; /* verde pastel clarito */
-      color: #2f4f2f;
-      position: relative;
-    }
-    button#btnRegalo3:hover {
-      background-color: #74b77a;
-      box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
-    }
+  /* Título */
+  h1 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    text-align: center;
+    user-select: none;
+    color: #a3486d;
+    z-index: 20;
+    position: relative;
+  }
 
-    /* Botón que aparece tras desbloquear */
-    #btnAbrirRegalo3 {
-      margin-top: 18px;
-      background-color: #74b77a;
-      color: #fff;
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      border-radius: 22px;
-      font-weight: 700;
-      box-shadow: 0 6px 18px rgba(116, 183, 122, 0.7);
-      cursor: pointer;
-      border: none;
-      user-select: none;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
+  /* Botones contenedor */
+  .botones-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 20;
+  }
 
-    #btnAbrirRegalo3:hover {
-      background-color: #5ea15b;
-      box-shadow: 0 10px 28px rgba(94, 161, 91, 0.9);
-    }
+  /* Botones */
+  button {
+    padding: 14px 28px;
+    font-size: 1.25rem;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(163, 72, 109, 0.6);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    user-select: none;
+    color: #fff;
+    min-width: 130px;
+  }
 
-    /* Modal Styles */
-    #modalOverlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+  button#btnRegalo1 {
+    background-color: #357edd;
+  }
+  button#btnRegalo1:hover {
+    background-color: #265ca9;
+    box-shadow: 0 8px 20px rgba(38, 92, 169, 0.8);
+  }
 
-    #modal {
-      background: #fff0f6;
-      padding: 25px 30px 30px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(139, 58, 98, 0.25);
-      width: 90%;
-      max-width: 380px;
-      text-align: center;
-      position: relative;
-    }
+  button#btnRegalo2 {
+    background-color: #e63946;
+  }
+  button#btnRegalo2:hover {
+    background-color: #ab2a33;
+    box-shadow: 0 8px 20px rgba(171, 42, 51, 0.8);
+  }
 
-    #modal h2 {
-      margin: 0 0 18px 0;
-      font-family: 'Quicksand', sans-serif;
-      color: #a3486d;
-      user-select: none;
-    }
+  button#btnRegalo3 {
+    background-color: #8fcf99; /* verde pastel clarito */
+    color: #2f4f2f;
+    position: relative;
+  }
+  button#btnRegalo3:hover {
+    background-color: #74b77a;
+    box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
+  }
 
-    #modal input[type="password"] {
-      width: 100%;
-      padding: 12px 15px;
-      font-size: 1.1rem;
-      border-radius: 12px;
-      border: 2px solid #a3486d;
-      margin-bottom: 20px;
-      outline: none;
-      font-family: 'Quicksand', sans-serif;
-      transition: border-color 0.3s ease;
-    }
+  /* Botón que aparece tras desbloquear */
+  #btnAbrirRegalo3 {
+    margin-top: 18px;
+    background-color: #74b77a;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 22px;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(116, 183, 122, 0.7);
+    cursor: pointer;
+    border: none;
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    #modal input[type="password"]:focus {
-      border-color: #e63946;
-    }
+  #btnAbrirRegalo3:hover {
+    background-color: #5ea15b;
+    box-shadow: 0 10px 28px rgba(94, 161, 91, 0.9);
+  }
 
-    #modal button {
-      padding: 12px 28px;
-      font-size: 1.15rem;
-      border-radius: 16px;
-      background-color: #8fcf99;
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      color: #2f4f2f;
-      box-shadow: 0 5px 15px rgba(116, 183, 122, 0.6);
-      transition: background-color 0.25s ease, box-shadow 0.25s ease;
-    }
+  /* Modal Styles */
+  #modalOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
 
-    #modal button:hover {
-      background-color: #74b77a;
-      box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
-    }
+  #modal {
+    background: #fff0f6;
+    padding: 25px 30px 30px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(139, 58, 98, 0.25);
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    position: relative;
+  }
 
-    #modal .closeBtn {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      background: transparent;
-      border: none;
-      font-size: 1.8rem;
-      color: #a3486d;
-      cursor: pointer;
-      user-select: none;
-      font-weight: 700;
-    }
+  #modal h2 {
+    margin: 0 0 18px 0;
+    font-family: 'Quicksand', sans-serif;
+    color: #a3486d;
+    user-select: none;
+  }
 
-    #modal .errorMsg {
-      color: #e63946;
-      font-size: 0.95rem;
-      margin-top: -12px;
-      margin-bottom: 12px;
-      min-height: 18px;
-      user-select: none;
-    }
+  #modal input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    border: 2px solid #a3486d;
+    margin-bottom: 20px;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+    transition: border-color 0.3s ease;
+  }
 
-  </style>
+  #modal input[type="password"]:focus {
+    border-color: #e63946;
+  }
+
+  #modal button {
+    padding: 12px 28px;
+    font-size: 1.15rem;
+    border-radius: 16px;
+    background-color: #8fcf99;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: #2f4f2f;
+    box-shadow: 0 5px 15px rgba(116, 183, 122, 0.6);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  #modal button:hover {
+    background-color: #74b77a;
+    box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
+  }
+
+  #modal .closeBtn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: #a3486d;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 700;
+  }
+
+  #modal .errorMsg {
+    color: #e63946;
+    font-size: 0.95rem;
+    margin-top: -12px;
+    margin-bottom: 12px;
+    min-height: 18px;
+    user-select: none;
+  }
+
+</style>
 </head>
 <body>
+
+  <!-- Fondo animado corazones -->
+  <div id="heartContainer"></div>
+
+  <!-- Texto en movimiento alrededor -->
+  <div id="marqueeContainer">
+    <div id="marqueeLeft" class="marqueeVertical" aria-hidden="true">
+      AMOR DAYARA • AMOR DAYARA • AMOR DAYARA •
+    </div>
+    <div id="marqueeRight" class="marqueeVertical" aria-hidden="true">
+      AMOR DAYARA • AMOR DAYARA • AMOR DAYARA •
+    </div>
+    <div id="marqueeTop" class="marqueeHorizontal" aria-hidden="true">
+      AMOR DAYARA • AMOR DAYARA • AMOR DAYARA • AMOR DAYARA • AMOR DAYARA •
+    </div>
+    <div id="marqueeBottom" class="marqueeHorizontal" aria-hidden="true">
+      AMOR DAYARA • AMOR DAYARA • AMOR DAYARA • AMOR DAYARA • AMOR DAYARA •
+    </div>
+  </div>
 
   <h1>Bienvenida a Amor Dayara</h1>
 
@@ -193,7 +350,6 @@
     <button id="btnRegalo2" aria-label="Abrir Regalo 2">REGALO 2</button>
     <div style="display:flex; flex-direction: column; align-items: center;">
       <button id="btnRegalo3" aria-label="Abrir Regalo 3">REGALO 3</button>
-      <!-- Aquí aparecerá el botón extra tras desbloquear -->
       <div id="btnContainer"></div>
     </div>
   </div>
@@ -210,6 +366,26 @@
   </div>
 
 <script>
+  // Crear varios corazones animados en el fondo
+  const heartContainer = document.getElementById('heartContainer');
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = '110vh'; // empieza abajo
+    heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+    heart.style.animationDelay = (Math.random() * 8) + 's';
+    heartContainer.appendChild(heart);
+
+    // Eliminar el corazón luego de animación para no saturar el DOM
+    setTimeout(() => {
+      heart.remove();
+    }, 14000);
+  }
+  // Generar varios corazones periódicamente
+  setInterval(createHeart, 700);
+
+  // Botones y modal
   const btnRegalo1 = document.getElementById('btnRegalo1');
   const btnRegalo2 = document.getElementById('btnRegalo2');
   const btnRegalo3 = document.getElementById('btnRegalo3');
@@ -265,7 +441,6 @@
   });
 
   function mostrarBotonRegalo3() {
-    // Si ya existe, no crear otra vez
     if(document.getElementById('btnAbrirRegalo3')) return;
 
     const nuevoBtn = document.createElement('button');
@@ -277,7 +452,6 @@
     });
 
     btnContainer.appendChild(nuevoBtn);
-    // Opcional: desplazar foco al nuevo botón
     nuevoBtn.focus();
   }
 </script>
