@@ -1,220 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienvenida amorosa 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
-  <style>
-    /* Reset y base */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      background: #ffd9e8; /* rosa pastel claro */
-      font-family: 'Quicksand', sans-serif;
-      overflow-x: hidden;
-      height: 100vh;
-      position: relative;
-      color: #b30059;
-    }
-    /* Texto animado en bordes */
-    .borde-texto {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      pointer-events: none;
-      z-index: 10;
-      font-family: 'Great Vibes', cursive;
-      font-size: 20px;
-      font-weight: 600;
-      color: #b30059;
-    }
-    .borde-texto span {
-      position: absolute;
-      white-space: nowrap;
-      animation: borderScroll 20s linear infinite;
-      user-select: none;
-    }
-    @keyframes borderScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .borde-texto span.top-left {
-      top: 5px; left: 0;
-    }
-    .borde-texto span.bottom-left {
-      bottom: 5px; left: 0;
-    }
-    .borde-texto span.left-top {
-      top: 0; left: -120%; transform: rotate(90deg);
-      animation-duration: 25s;
-    }
-    .borde-texto span.right-bottom {
-      bottom: 0; right: -120%; transform: rotate(270deg);
-      animation-duration: 25s;
-    }
-
-    /* Corazones animados fondo */
-    .corazones {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      top: 0; left: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
-    }
-    .corazon {
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      background: #d63384;
-      transform: rotate(45deg);
-      animation: flotar linear infinite;
-      opacity: 0.85;
-    }
-    .corazon::before,
-    .corazon::after {
-      content: "";
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      background: #d63384;
-      border-radius: 50%;
-    }
-    .corazon::before {
-      top: -11px;
-      left: 0;
-    }
-    .corazon::after {
-      left: -11px;
-      top: 0;
-    }
-    @keyframes flotar {
-      0% {
-        transform: translateY(100vh) rotate(45deg);
-        opacity: 0.9;
-      }
-      100% {
-        transform: translateY(-150px) rotate(45deg);
-        opacity: 0;
-      }
-    }
-
-    /* Contenedor central */
-    .contenedor {
-      position: relative;
-      z-index: 5;
-      top: 30vh;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 20px;
-      background: rgba(255 255 255 / 0.8);
-      border-radius: 25px;
-      box-shadow: 0 4px 15px rgba(179,0,89,0.25);
-    }
-    .titulo {
-      font-size: 3rem;
-      font-family: 'Great Vibes', cursive;
-      margin-bottom: 40px;
-      color: #b30059;
-    }
-    /* Botones */
-    .botones {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regalos y Sorpresas</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+<style>
+  body {
+    background: #fff0f5;
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #7d3c98;
+    min-height: 100vh;
+  }
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    color: #9b59b6;
+    text-shadow: 1px 1px 2px #bfa2db;
+  }
+  .contenedor-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    max-width: 700px;
+    width: 100%;
+  }
+  .boton {
+    background-color: #d7bde2;
+    border: none;
+    border-radius: 12px;
+    padding: 18px 38px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4a235a;
+    cursor: pointer;
+    box-shadow: 0 6px 10px rgba(148, 85, 173, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Quicksand', sans-serif;
+    user-select: none;
+    text-align: center;
+    min-width: 180px;
+  }
+  .boton:hover {
+    background-color: #af7ac5;
+    transform: scale(1.05);
+    color: #3e1d45;
+  }
+  .boton.rosa {
+    background-color: #f7c6d0;
+    color: #812f42;
+    box-shadow: 0 6px 10px rgba(199, 80, 110, 0.4);
+  }
+  .boton.rosa:hover {
+    background-color: #f392a2;
+    color: #610d1d;
+  }
+  .boton.amarillo {
+    background-color: #f9e79f;
+    color: #6e5700;
+    box-shadow: 0 6px 10px rgba(183, 149, 14, 0.4);
+  }
+  .boton.amarillo:hover {
+    background-color: #f7dc6f;
+    color: #5a4700;
+  }
+  .boton.verde {
+    background-color: #a3e4d7;
+    color: #0b5345;
+    box-shadow: 0 6px 10px rgba(18, 121, 107, 0.4);
+  }
+  .boton.verde:hover {
+    background-color: #76d7c4;
+    color: #083d31;
+  }
+  .boton.azul {
+    background-color: #85c1e9;
+    color: #154360;
+    box-shadow: 0 6px 10px rgba(22, 78, 137, 0.4);
+  }
+  .boton.azul:hover {
+    background-color: #5499c7;
+    color: #0d3250;
+  }
+  @media (max-width: 480px) {
     .boton {
-      padding: 15px 30px;
-      font-size: 1.3rem;
-      border: none;
-      border-radius: 15px;
-      color: white;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 3px 7px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      min-width: 140px;
-      user-select: none;
-      font-family: 'Quicksand', sans-serif;
+      min-width: 100%;
+      padding: 16px 0;
+      font-size: 1.2rem;
     }
-    .boton.azul {
-      background-color: #2196F3;
-    }
-    .boton.azul:hover {
-      background-color: #0b7dda;
-      box-shadow: 0 6px 12px rgba(11,125,218,0.5);
-    }
-    .boton.rojo {
-      background-color: #e91e63;
-    }
-    .boton.rojo:hover {
-      background-color: #c2185b;
-      box-shadow: 0 6px 12px rgba(194,24,91,0.5);
-    }
-    .boton.verde {
-      background-color: #7ed6a0;
-      color: #155724;
-    }
-    .boton.verde:hover {
-      background-color: #61c77c;
-      box-shadow: 0 6px 12px rgba(33, 150, 83, 0.5);
-    }
-    .boton.morado {
-      background-color: #9b59b6;
-    }
-    .boton.morado:hover {
-      background-color: #7d3c98;
-      box-shadow: 0 6px 12px rgba(125,60,152,0.5);
-    }
-    .boton.naranja {
-      background-color: #ff7043;
-    }
-    .boton.naranja:hover {
-      background-color: #e64a19;
-      box-shadow: 0 6px 12px rgba(230,74,25,0.5);
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="borde-texto">
-    <span class="top-left">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span class="bottom-left">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span class="left-top">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span class="right-bottom">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+  <h1>Regalos y Sorpresas 💜</h1>
+  <div class="contenedor-botones">
+    <a href="regalo1.html"><button class="boton rosa">REGALO 1</button></a>
+    <a href="regalo2.html"><button class="boton verde">REGALO 2</button></a>
+    <a href="regalo3.html"><button class="boton azul">REGALO 3</button></a>
+    <a href="minijuego.html"><button class="boton rosa">MINIJUEGO</button></a>
+    <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
+    <a href="lista_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
   </div>
-
-  <div class="corazones" id="corazones"></div>
-
-  <div class="contenedor">
-    <div class="titulo">Bienvenida, mi amor 💕</div>
-    <div class="botones">
-      <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
-      <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="boton morado">REGALO 3</button></a>
-      <a href="minijuego.html"><button class="boton naranja">MINIJUEGO</button></a>
-      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
-    </div>
-  </div>
-
-  <script>
-    const corazonesContainer = document.getElementById("corazones");
-    function crearCorazon() {
-      const corazon = document.createElement("div");
-      corazon.classList.add("corazon");
-      corazon.style.left = Math.random() * 100 + "vw";
-      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      corazonesContainer.appendChild(corazon);
-      setTimeout(() => corazon.remove(), 10000);
-    }
-    setInterval(crearCorazon, 450);
-  </script>
 </body>
 </html>
