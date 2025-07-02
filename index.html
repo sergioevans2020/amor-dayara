@@ -1,245 +1,271 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienvenida amorosa 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
-  <style>
-    /* Fuentes */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: #ffe6f0;
-      overflow: hidden;
-      transition: background-color 0.6s ease;
-      color: #b30059;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mi página romántica - Inicio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap');
 
-    /* Modos */
-    body.pastel-oscuro {
-      background: #402342;
-      color: #f8cde6;
-    }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: #ffe6f0;
+    color: #b30059;
+    margin: 0; padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    transition: background-color 0.5s, color 0.5s;
+  }
 
-    /* Texto en borde animado */
-    .borde-texto {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .borde-texto span {
-      position: absolute;
-      white-space: nowrap;
-      font-size: 24px;
-      font-family: 'Great Vibes', cursive;
-      color: #d63384;
-      animation: borderScroll 20s linear infinite;
-      user-select: none;
-    }
-    body.pastel-oscuro .borde-texto span {
-      color: #f8a6d6;
-    }
+  body.dark {
+    background: #402342;
+    color: #f8cde6;
+  }
 
-    @keyframes borderScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
+  header {
+    margin-top: 40px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    user-select: none;
+    text-shadow: 0 2px 6px #b30059aa;
+  }
 
-    /* Corazones animados */
-    .corazones {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .corazon {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(135deg, #ff6699 0%, #ffb3c6 100%);
-      transform: rotate(45deg);
-      animation: flotar 8s infinite ease-in-out;
-      filter: drop-shadow(0 0 3px #f08ab0);
-      border-radius: 4px;
-    }
-    .corazon::before, .corazon::after {
-      content: '';
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(135deg, #ff6699 0%, #ffb3c6 100%);
-      border-radius: 50%;
-    }
-    .corazon::before {
-      top: -12px;
-      left: 0;
-    }
-    .corazon::after {
-      left: -12px;
-      top: 0;
-    }
-    body.pastel-oscuro .corazon, body.pastel-oscuro .corazon::before, body.pastel-oscuro .corazon::after {
-      background: linear-gradient(135deg, #bf6fb7 0%, #7f497f 100%);
-      filter: drop-shadow(0 0 5px #bc73a7);
-    }
-    @keyframes flotar {
-      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
-    }
+  main {
+    margin: 40px 0 80px 0;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90vw;
+    max-width: 900px;
+  }
 
-    /* Contenedor principal */
-    .contenedor {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      top: 30vh;
-    }
-    .titulo {
-      font-size: 48px;
-      font-family: 'Great Vibes', cursive;
-      color: #b30059;
-      margin-bottom: 50px;
-      user-select: none;
-    }
-    body.pastel-oscuro .titulo {
-      color: #f9bee1;
-    }
+  button {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(191, 111, 183, 0.7);
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex: 1 1 140px;
+    max-width: 180px;
+  }
 
-    /* Botones contenedor */
-    .botones {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      max-width: 700px;
-      margin: 0 auto;
-    }
+  /* Botones específicos */
+  #btn-laberinto {
+    background-color: #f8bbd0;
+    color: #b30059;
+  }
+  #btn-laberinto:hover {
+    background-color: #d880b6;
+    color: white;
+  }
 
-    /* Botones estilo */
-    .boton {
-      padding: 15px 35px;
-      font-size: 20px;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      cursor: pointer;
-      font-weight: 700;
-      font-family: 'Quicksand', sans-serif;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 8px rgba(179, 0, 89, 0.4);
-      user-select: none;
-    }
-    .boton:focus {
-      outline: 3px solid #ffb3c6;
-      outline-offset: 2px;
-    }
+  #btn-nuestra-libreta {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+  }
+  #btn-nuestra-libreta:hover {
+    background-color: #81c784;
+    color: white;
+  }
 
-    .boton.laberinto {
-      background-color: #d880b6;
-    }
-    .boton.laberinto:hover {
-      background-color: #bf6fb7;
-      box-shadow: 0 6px 12px rgba(191, 111, 183, 0.7);
-    }
+  #btn-lista-deseos {
+    background-color: #fff9c4;
+    color: #fbc02d;
+  }
+  #btn-lista-deseos:hover {
+    background-color: #fff176;
+    color: #a17a00;
+  }
 
-    /* Boton modo color */
-    .boton.color-toggle {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background: linear-gradient(135deg, #f8cde6, #fbe6f0);
-      color: #b30059;
-      box-shadow: 0 4px 10px rgba(179,0,89,0.3);
-      padding: 12px 18px;
-      font-size: 18px;
-      border-radius: 50px;
-      user-select: none;
-      z-index: 20;
-      transition: background 0.5s ease, color 0.5s ease;
-    }
-    .boton.color-toggle:hover {
-      background: linear-gradient(135deg, #f2a7cd, #f9cee0);
-      box-shadow: 0 6px 14px rgba(179,0,89,0.6);
-    }
-    body.pastel-oscuro .boton.color-toggle {
-      background: linear-gradient(135deg, #602a5e, #4c234a);
-      color: #f9bee1;
-      box-shadow: 0 4px 10px rgba(255, 182, 225, 0.5);
-    }
-    body.pastel-oscuro .boton.color-toggle:hover {
-      background: linear-gradient(135deg, #7d3d7e, #6b366b);
-      box-shadow: 0 6px 14px rgba(255, 182, 225, 0.8);
-    }
+  #btn-caja-sorpresa {
+    background-color: #fff3e0;
+    color: #ffb74d;
+  }
+  #btn-caja-sorpresa:hover {
+    background-color: #ffcc80;
+    color: #8c5e00;
+  }
 
-  </style>
+  #btn-cambiar-tema {
+    background-color: #d1c4e9;
+    color: #5e35b1;
+  }
+  #btn-cambiar-tema:hover {
+    background-color: #b39ddb;
+    color: white;
+  }
+
+  /* Avatar kawaii abajo */
+  #avatar-container {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    cursor: pointer;
+    animation: caminar 3s ease-in-out infinite alternate;
+    z-index: 100;
+  }
+
+  @keyframes caminar {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(calc(-50% + 10px)) translateY(-5px); }
+    100% { transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Corazón kawaii animado */
+  #avatar {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 3px 7px rgba(243, 105, 135, 0.7);
+    animation: latir 1.5s infinite ease-in-out;
+  }
+
+  @keyframes latir {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  /* Manos y pies */
+  #avatar::before, #avatar::after {
+    content: "";
+    position: absolute;
+    background: #f06292;
+    border-radius: 50%;
+  }
+  /* Manos */
+  #avatar::before {
+    width: 16px; height: 16px;
+    top: 18px; left: -18px;
+    box-shadow: 0 0 8px #f48fb1;
+  }
+  #avatar::after {
+    width: 16px; height: 16px;
+    top: 18px; right: -18px;
+    box-shadow: 0 0 8px #f48fb1;
+  }
+
+  /* Pies - con hijos */
+  #pies {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .pie {
+    width: 16px; height: 16px;
+    background: #f06292;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #f48fb1;
+    animation: moverPies 1.5s infinite ease-in-out;
+  }
+  .pie.derecha {
+    animation-delay: 0.75s;
+  }
+
+  @keyframes moverPies {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* Mensaje bienvenida */
+  #mensaje-bienvenida {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #b30059;
+    user-select: none;
+    animation: aparecer 2s ease forwards;
+  }
+
+  body.dark #mensaje-bienvenida {
+    color: #f8cde6;
+  }
+
+  @keyframes aparecer {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+</style>
 </head>
 <body>
-  <div class="borde-texto" aria-hidden="true">
-    <span style="top: 0; left: 0;">
-      siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 •
-    </span>
-    <span style="bottom: 0; left: 0;">
-      siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 •
-    </span>
-    <span style="top: 0; left: -100%; transform: rotate(90deg);">
-      siempre serás mi niña - 21/06/2025 •
-    </span>
-    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">
-      siempre serás mi niña - 21/06/2025 •
-    </span>
+
+<header>Bienvenidos a Nuestro Sitio Romántico</header>
+
+<main>
+  <button id="btn-laberinto" title="Juega al laberinto romántico">LABERINTO</button>
+  <button id="btn-nuestra-libreta" title="Nuestra libreta para escribir juntos">NUESTRA LIBRETA</button>
+  <button id="btn-lista-deseos" title="Agrega tus deseos aquí">LISTA DE DESEOS</button>
+  <button id="btn-caja-sorpresa" title="Abre la caja sorpresa romántica">CAJA SORPRESA</button>
+  <button id="btn-cambiar-tema" title="Cambiar tema claro/oscuro">CAMBIAR TEMA</button>
+</main>
+
+<!-- Avatar kawaii -->
+<div id="avatar-container" tabindex="0" aria-label="Avatar que saluda">
+  <div id="avatar" role="img" aria-hidden="true"></div>
+  <div id="pies">
+    <div class="pie izquierda"></div>
+    <div class="pie derecha"></div>
   </div>
+  <div id="mensaje-bienvenida" aria-live="polite">Bienvenida doncella 💖</div>
+</div>
 
-  <div class="corazones" aria-hidden="true"></div>
+<script>
+  // Navegación botones
+  document.getElementById('btn-laberinto').addEventListener('click', () => {
+    window.location.href = 'laberinto.html';
+  });
+  document.getElementById('btn-nuestra-libreta').addEventListener('click', () => {
+    window.location.href = 'nuestra_libreta.html';
+  });
+  document.getElementById('btn-lista-deseos').addEventListener('click', () => {
+    window.location.href = 'listas_deseos.html';
+  });
+  document.getElementById('btn-caja-sorpresa').addEventListener('click', () => {
+    window.location.href = 'caja_sorpresa.html';
+  });
 
-  <main class="contenedor" role="main">
-    <h1 class="titulo">Bienvenida, mi amor 💕</h1>
-    <div class="botones" role="navigation" aria-label="Opciones de regalo y juegos">
-      <a href="regalo1.html"><button class="boton" aria-label="Ir a Regalo 1">REGALO 1</button></a>
-      <a href="regalo2.html"><button class="boton" aria-label="Ir a Regalo 2" style="background:#e91e63; box-shadow: 0 4px 8px rgba(233,30,99,0.4); border-radius:12px;">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="boton" aria-label="Ir a Regalo 3" style="background:#8bc34a; box-shadow: 0 4px 8px rgba(139,195,74,0.4); border-radius:12px; color:#fff;">REGALO 3</button></a>
-      <a href="nuestra_libreta.html"><button class="boton" aria-label="Ir a Nuestra Libreta" style="background:#f9a825; box-shadow: 0 4px 8px rgba(249,168,37,0.4); border-radius:12px; color:#fff;">NUESTRA LIBRETA</button></a>
-      <a href="listas_deseos.html"><button class="boton" aria-label="Ir a Lista de Deseos" style="background:#ffeb3b; box-shadow: 0 4px 8px rgba(255,235,59,0.4); border-radius:12px; color:#444;">LISTA DE DESEOS</button></a>
-      <a href="laberinto.html"><button class="boton laberinto" aria-label="Ir a Laberinto">LABERINTO</button></a>
-      <a href="caja_sorpresa.html"><button class="boton" style="background:#fff176; box-shadow: 0 4px 8px rgba(255,241,118,0.4); border-radius:12px; color:#444;" aria-label="Ir a Caja Sorpresa">CAJA SORPRESA</button></a>
-    </div>
-  </main>
-
-  <button class="boton color-toggle" aria-label="Cambiar modo color pastel">Modo Pastel</button>
-
-  <script>
-    // Crear corazones flotantes
-    const container = document.querySelector('.corazones');
-    function crearCorazon() {
-      const corazon = document.createElement('div');
-      corazon.classList.add('corazon');
-      corazon.style.left = Math.random() * 100 + 'vw';
-      corazon.style.animationDuration = 6 + Math.random() * 6 + 's';
-      corazon.style.animationDelay = Math.random() * 6 + 's';
-      container.appendChild(corazon);
-      setTimeout(() => container.removeChild(corazon), 12000);
+  // Cambiar tema
+  const btnTema = document.getElementById('btn-cambiar-tema');
+  btnTema.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    if(document.body.classList.contains('dark')) {
+      btnTema.textContent = 'Modo Claro';
+    } else {
+      btnTema.textContent = 'Modo Oscuro';
     }
-    setInterval(crearCorazon, 500);
+  });
 
-    // Modo pastel toggle
-    const botonColor = document.querySelector('.color-toggle');
-    botonColor.addEventListener('click', () => {
-      document.body.classList.toggle('pastel-oscuro');
-      if(document.body.classList.contains('pastel-oscuro')) {
-        botonColor.textContent = 'Modo Pastel Claro';
-      } else {
-        botonColor.textContent = 'Modo Pastel Oscuro';
-      }
-    });
+  // Avatar saluda con animación más notable (ya con CSS animaciones)
+  // Al hacer click en avatar cambia colores (modo oscuro especial morado-rosa)
+  const avatarContainer = document.getElementById('avatar-container');
+  avatarContainer.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    if(document.body.classList.contains('dark')) {
+      document.body.style.background = 'linear-gradient(135deg, #5b2e7a, #b64a89)';
+      document.body.style.color = '#f8cde6';
+      btnTema.textContent = 'Modo Claro';
+    } else {
+      document.body.style.background = '#ffe6f0';
+      document.body.style.color = '#b30059';
+      btnTema.textContent = 'Modo Oscuro';
+    }
+  });
+</script>
 
-  </script>
 </body>
 </html>
