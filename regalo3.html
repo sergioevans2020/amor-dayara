@@ -2,210 +2,157 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Regalo 3 - 30 Razones por las que te Amo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regalo 3 - 30 razones por las que te amo 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@500&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@500&display=swap');
-
-    /* Reset */
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      background: #fff0f6; /* pastel rosa claro */
+      padding: 0;
       font-family: 'Quicksand', sans-serif;
+      background: #e0f7f4;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      user-select: none;
-      color: #8b3a62;
+      overflow: hidden;
     }
 
-    .carta-container {
-      background: #fff;
-      border-radius: 25px;
-      box-shadow: 0 8px 24px rgba(139, 58, 98, 0.3);
-      width: 90vw;
+    .libro {
+      width: 90%;
       max-width: 600px;
-      height: 420px;
-      padding: 35px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: center;
+      height: 400px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      box-sizing: border-box;
     }
 
-    .titulo {
+    .pagina {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
-      margin: 0 0 15px 0;
-      user-select: text;
-      color: #a3486d;
-      letter-spacing: 1.2px;
+      font-size: 1.7rem;
+      color: #b30059;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      right: 2rem;
+      bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    .razon {
-      font-size: 1.4rem;
-      line-height: 1.6;
-      min-height: 150px;
-      padding: 0 12px;
-      user-select: text;
-      transition: opacity 0.3s ease;
-      color: #7e3e57;
+    .pagina.activa {
+      opacity: 1;
     }
 
-    .pagina-info {
-      font-size: 0.95rem;
-      color: #b87f9b;
-      margin-top: 8px;
-      user-select: none;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .navegacion {
+    .controles {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
       display: flex;
       justify-content: space-between;
-      margin-top: 25px;
+      padding: 0 20px;
     }
 
-    button {
-      background: #a3486d;
+    .boton {
+      background-color: #ff8da7;
+      color: white;
       border: none;
-      color: #fff;
-      padding: 14px 30px;
-      font-size: 1.15rem;
-      border-radius: 16px;
+      border-radius: 10px;
+      padding: 10px 20px;
       cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 5px 15px rgba(163, 72, 109, 0.6);
-      transition: background-color 0.25s ease, box-shadow 0.25s ease;
-      user-select: none;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
-    button:disabled {
-      background: #dbafc0;
-      cursor: default;
-      box-shadow: none;
-    }
-
-    button:hover:not(:disabled) {
-      background: #852b54;
-      box-shadow: 0 8px 20px rgba(133, 43, 84, 0.8);
-    }
-
-    /* Responsive */
-    @media (max-width: 500px) {
-      .carta-container {
-        height: auto;
-        padding: 30px 25px;
-      }
-      .titulo {
-        font-size: 2.6rem;
-      }
-      .razon {
-        font-size: 1.2rem;
-        min-height: 120px;
-      }
-      button {
-        padding: 12px 25px;
-        font-size: 1rem;
-      }
+    .boton:hover {
+      background-color: #e86c90;
     }
   </style>
 </head>
 <body>
-
-  <main class="carta-container" role="main" aria-label="Carta interactiva con 30 razones por las que te amo">
-
-    <h1 class="titulo">30 Razones por las que te Amo</h1>
-
-    <section id="razonTexto" class="razon" tabindex="0" aria-live="polite" aria-atomic="true">
-      <!-- Texto de la razón aparecerá aquí -->
-    </section>
-
-    <div class="pagina-info" id="paginaInfo">Página 1 de 30</div>
-
-    <nav class="navegacion" aria-label="Navegación de razones">
-      <button id="btnAtras" aria-label="Razón anterior" disabled>Atrás</button>
-      <button id="btnSiguiente" aria-label="Siguiente razón">Siguiente</button>
-    </nav>
-
-  </main>
+  <div class="libro">
+    <div id="paginas-container">
+      <!-- Las páginas serán insertadas aquí -->
+    </div>
+    <div class="controles">
+      <button class="boton" onclick="anteriorPagina()">⟵ Atrás</button>
+      <button class="boton" onclick="siguientePagina()">Siguiente ⟶</button>
+    </div>
+  </div>
 
   <script>
-    const razones = [
-      "Amo tu sonrisa que ilumina mis días más oscuros.",
-      "Porque eres mi compañera perfecta en cada aventura.",
-      "Por cómo me entiendes sin necesidad de palabras.",
-      "Amo tu corazón bondadoso y lleno de amor.",
-      "Porque contigo aprendí lo que significa amar de verdad.",
-      "Amo cada pequeño detalle que me regalas sin esperar nada a cambio.",
-      "Por hacerme sentir siempre apoyado y valorado.",
-      "Porque eres mi inspiración y fuerza para seguir adelante.",
-      "Amo la manera en que me haces reír incluso en los momentos difíciles.",
-      "Por compartir conmigo tus sueños y esperanzas.",
-      "Porque contigo, la vida es una hermosa canción.",
-      "Amo cómo haces que todo a nuestro alrededor sea especial.",
-      "Por ser mi refugio seguro y mi paz interior.",
-      "Porque tu ternura es un bálsamo para mi alma.",
-      "Amo cómo enfrentas los retos con valentía y esperanza.",
-      "Por cada abrazo que me hace sentir en casa.",
-      "Porque tu voz es la melodía que calma mi corazón.",
-      "Amo la sinceridad y honestidad que siempre tienes conmigo.",
-      "Por enseñarme a ser mejor cada día.",
-      "Porque tu amor me da alas para volar alto.",
-      "Amo tus locuras que llenan mi vida de alegría.",
-      "Por cada momento compartido, grande o pequeño.",
-      "Porque eres la razón por la que creo en los milagros.",
-      "Amo la forma en que miras el mundo con esperanza.",
-      "Por tus palabras que siempre me levantan el ánimo.",
-      "Porque contigo aprendí a valorar lo simple y verdadero.",
-      "Amo cada segundo que paso a tu lado.",
-      "Por tu paciencia infinita y tu dulce comprensión.",
-      "Porque eres mi sueño hecho realidad.",
-      "Amo el amor que me das sin condiciones ni límites."
+    const frases = [
+      "Bienvenida a este pequeño libro...",
+      "1. Amo tu sonrisa porque ilumina mis días",
+      "2. Amo tu forma de mirar, tan profunda y sincera",
+      "3. Amo cómo me haces sentir amado siempre",
+      "4. Amo tus abrazos, son mi refugio favorito",
+      "5. Amo cuando te ríes conmigo, incluso sin sentido",
+      "6. Amo cómo te preocupas por mí",
+      "7. Amo tus detalles inesperados",
+      "8. Amo que siempre estás cuando te necesito",
+      "9. Amo cómo transformas mis días grises en color",
+      "10. Amo tu voz, es mi melodía de paz",
+      "11. Amo nuestra conexión única",
+      "12. Amo cómo haces especial lo simple",
+      "13. Amo tus mensajes llenos de amor",
+      "14. Amo tus ocurrencias que me hacen reír",
+      "15. Amo cómo te ves cuando duermes",
+      "16. Amo tu ternura infinita",
+      "17. Amo cómo me inspiras a ser mejor",
+      "18. Amo tu paciencia y comprensión",
+      "19. Amo cómo celebras mis logros",
+      "20. Amo compartir mis sueños contigo",
+      "21. Amo tus besos que lo curan todo",
+      "22. Amo tus manías, porque son parte de ti",
+      "23. Amo cuando me llamas mi amor",
+      "24. Amo que nunca te rindes",
+      "25. Amo cómo haces que confíe más en mí",
+      "26. Amo cómo caminas a mi lado en la vida",
+      "27. Amo cómo decoras mi mundo de amor",
+      "28. Amo cómo haces que todo valga la pena",
+      "29. Amo el futuro que sueño contigo",
+      "30. Amo todo de ti, simplemente porque eres tú 💖"
     ];
 
+    const contenedor = document.getElementById("paginas-container");
     let paginaActual = 0;
 
-    const razonTexto = document.getElementById('razonTexto');
-    const btnAtras = document.getElementById('btnAtras');
-    const btnSiguiente = document.getElementById('btnSiguiente');
-    const paginaInfo = document.getElementById('paginaInfo');
+    frases.forEach((frase, index) => {
+      const div = document.createElement("div");
+      div.classList.add("pagina");
+      if (index === 0) div.classList.add("activa");
+      div.innerText = frase;
+      contenedor.appendChild(div);
+    });
 
-    function mostrarPagina(index) {
-      razonTexto.style.opacity = 0;
-      setTimeout(() => {
-        razonTexto.textContent = razones[index];
-        paginaInfo.textContent = `Página ${index + 1} de ${razones.length}`;
-        btnAtras.disabled = index === 0;
-        btnSiguiente.disabled = index === razones.length - 1;
-        razonTexto.style.opacity = 1;
-        razonTexto.focus();
-      }, 250);
+    function actualizarPagina() {
+      const paginas = document.querySelectorAll(".pagina");
+      paginas.forEach(p => p.classList.remove("activa"));
+      paginas[paginaActual].classList.add("activa");
     }
 
-    btnAtras.addEventListener('click', () => {
+    function siguientePagina() {
+      if (paginaActual < frases.length - 1) {
+        paginaActual++;
+        actualizarPagina();
+      }
+    }
+
+    function anteriorPagina() {
       if (paginaActual > 0) {
         paginaActual--;
-        mostrarPagina(paginaActual);
+        actualizarPagina();
       }
-    });
-
-    btnSiguiente.addEventListener('click', () => {
-      if (paginaActual < razones.length - 1) {
-        paginaActual++;
-        mostrarPagina(paginaActual);
-      }
-    });
-
-    // Mostrar la primera razón al cargar
-    mostrarPagina(paginaActual);
+    }
   </script>
 </body>
 </html>
