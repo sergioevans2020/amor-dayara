@@ -11,232 +11,202 @@
       margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
+      background: #ffd9e8; /* rosa pastel claro */
       font-family: 'Quicksand', sans-serif;
-      background: #ffe6f0;
+      overflow-x: hidden;
       height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: relative;
       color: #b30059;
-      user-select: none;
     }
-
     /* Texto animado en bordes */
-    .border-text {
+    .borde-texto {
       position: fixed;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
       pointer-events: none;
       z-index: 10;
       font-family: 'Great Vibes', cursive;
-      font-size: 24px;
-      color: #d63384;
-      white-space: nowrap;
-      overflow: hidden;
+      font-size: 20px;
+      font-weight: 600;
+      color: #b30059;
     }
-    .border-text span {
+    .borde-texto span {
       position: absolute;
-      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+      animation: borderScroll 20s linear infinite;
+      user-select: none;
     }
-    .border-top {
-      top: 0; left: 0;
-      width: 100%;
-      height: 40px;
-    }
-    .border-bottom {
-      bottom: 0; left: 0;
-      width: 100%;
-      height: 40px;
-      animation-direction: reverse;
-    }
-    .border-left {
-      top: 0; left: 0;
-      width: 40px;
-      height: 100%;
-      writing-mode: vertical-rl;
-      animation-duration: 25s;
-    }
-    .border-right {
-      top: 0; right: 0;
-      width: 40px;
-      height: 100%;
-      writing-mode: vertical-rl;
-      animation-duration: 25s;
-      animation-direction: reverse;
-    }
-    @keyframes marquee {
+    @keyframes borderScroll {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
+    .borde-texto span.top-left {
+      top: 5px; left: 0;
+    }
+    .borde-texto span.bottom-left {
+      bottom: 5px; left: 0;
+    }
+    .borde-texto span.left-top {
+      top: 0; left: -120%; transform: rotate(90deg);
+      animation-duration: 25s;
+    }
+    .borde-texto span.right-bottom {
+      bottom: 0; right: -120%; transform: rotate(270deg);
+      animation-duration: 25s;
+    }
 
     /* Corazones animados fondo */
-    #corazones {
+    .corazones {
       position: fixed;
+      width: 100vw;
+      height: 100vh;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
       pointer-events: none;
       overflow: hidden;
       z-index: 1;
     }
     .corazon {
       position: absolute;
-      width: 25px; height: 25px;
-      background: linear-gradient(45deg, #ff5f7e, #ff85a2);
-      clip-path: polygon(
-        50% 0%,
-        61% 12%,
-        75% 12%,
-        87% 25%,
-        87% 40%,
-        75% 55%,
-        50% 80%,
-        25% 55%,
-        13% 40%,
-        13% 25%,
-        25% 12%,
-        39% 12%
-      );
-      opacity: 0.8;
-      animation-name: floatUp;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-duration: 8s;
+      width: 22px;
+      height: 22px;
+      background: #d63384;
+      transform: rotate(45deg);
+      animation: flotar linear infinite;
+      opacity: 0.85;
     }
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(1); opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    .corazon::before,
+    .corazon::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: #d63384;
+      border-radius: 50%;
+    }
+    .corazon::before {
+      top: -11px;
+      left: 0;
+    }
+    .corazon::after {
+      left: -11px;
+      top: 0;
+    }
+    @keyframes flotar {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-150px) rotate(45deg);
+        opacity: 0;
+      }
     }
 
     /* Contenedor central */
-    .container {
+    .contenedor {
       position: relative;
       z-index: 5;
-      background: #ffd9e8cc;
-      padding: 40px 60px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(179, 0, 89, 0.3);
+      top: 30vh;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
       text-align: center;
-      max-width: 420px;
-      width: 90vw;
+      padding: 20px;
+      background: rgba(255 255 255 / 0.8);
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(179,0,89,0.25);
     }
-    .title {
+    .titulo {
+      font-size: 3rem;
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      margin-bottom: 50px;
-      color: #9e0055;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 4px #ffccddaa;
+      margin-bottom: 40px;
+      color: #b30059;
     }
-
     /* Botones */
-    .buttons {
+    .botones {
       display: flex;
       justify-content: center;
-      gap: 24px;
       flex-wrap: wrap;
+      gap: 20px;
     }
-    .btn {
-      flex: 1 1 120px;
-      padding: 16px 0;
+    .boton {
+      padding: 15px 30px;
       font-size: 1.3rem;
-      font-weight: 700;
       border: none;
-      border-radius: 12px;
-      cursor: pointer;
+      border-radius: 15px;
       color: white;
-      box-shadow: 0 6px 12px rgba(179, 0, 89, 0.3);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      min-width: 140px;
       user-select: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-family: 'Quicksand', sans-serif;
     }
-    .btn:focus {
-      outline: none;
-      box-shadow: 0 0 12px 3px #ff85a2;
+    .boton.azul {
+      background-color: #2196F3;
     }
-    .btn-blue {
-      background: linear-gradient(135deg, #2196F3, #42a5f5);
+    .boton.azul:hover {
+      background-color: #0b7dda;
+      box-shadow: 0 6px 12px rgba(11,125,218,0.5);
     }
-    .btn-blue:hover {
-      background: linear-gradient(135deg, #0b7dda, #2196F3);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(33, 150, 243, 0.5);
+    .boton.rojo {
+      background-color: #e91e63;
     }
-    .btn-red {
-      background: linear-gradient(135deg, #e91e63, #ec407a);
+    .boton.rojo:hover {
+      background-color: #c2185b;
+      box-shadow: 0 6px 12px rgba(194,24,91,0.5);
     }
-    .btn-red:hover {
-      background: linear-gradient(135deg, #c2185b, #e91e63);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.5);
+    .boton.verde {
+      background-color: #7ed6a0;
+      color: #155724;
     }
-    .btn-green {
-      background: linear-gradient(135deg, #a5d6a7, #81c784);
-      color: #1b5e20;
-      font-weight: 800;
+    .boton.verde:hover {
+      background-color: #61c77c;
+      box-shadow: 0 6px 12px rgba(33, 150, 83, 0.5);
     }
-    .btn-green:hover {
-      background: linear-gradient(135deg, #81c784, #a5d6a7);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(129, 199, 132, 0.6);
+    .boton.morado {
+      background-color: #9b59b6;
+    }
+    .boton.morado:hover {
+      background-color: #7d3c98;
+      box-shadow: 0 6px 12px rgba(125,60,152,0.5);
     }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .title {
-        font-size: 2.5rem;
-        margin-bottom: 35px;
-      }
-      .btn {
-        font-size: 1.1rem;
-        padding: 14px 0;
-      }
-      .container {
-        padding: 30px 20px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="border-text">
-    <span class="border-top">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
-    <span class="border-bottom">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
-    <span class="border-left">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
-    <span class="border-right">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
+  <div class="borde-texto">
+    <span class="top-left">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span class="bottom-left">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span class="left-top">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span class="right-bottom">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
   </div>
 
-  <div id="corazones"></div>
+  <div class="corazones" id="corazones"></div>
 
-  <div class="container" role="main" aria-label="Página principal con regalos y minijuegos">
-    <h1 class="title" aria-level="1">Bienvenida, mi amor 💕</h1>
-    <nav class="buttons" role="navigation" aria-label="Navegación de regalos y juegos">
-      <a href="regalo1.html"><button class="btn btn-blue" aria-label="Acceder a regalo uno">REGALO 1</button></a>
-      <a href="regalo2.html"><button class="btn btn-red" aria-label="Acceder a regalo dos">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="btn btn-green" aria-label="Acceder a regalo tres">REGALO 3</button></a>
-      <a href="minijuego.html"><button class="btn btn-red" aria-label="Jugar al minijuego">JUGAR</button></a>
-    </nav>
+  <div class="contenedor">
+    <div class="titulo">Bienvenida, mi amor 💕</div>
+    <div class="botones">
+      <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
+      <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
+      <a href="regalo3.html"><button class="boton morado">REGALO 3</button></a>
+      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
+    </div>
   </div>
 
   <script>
     const corazonesContainer = document.getElementById("corazones");
-
     function crearCorazon() {
       const corazon = document.createElement("div");
       corazon.classList.add("corazon");
       corazon.style.left = Math.random() * 100 + "vw";
-      corazon.style.animationDuration = (6 + Math.random() * 4) + "s";
-      corazon.style.width = corazon.style.height = (15 + Math.random() * 20) + "px";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
       corazonesContainer.appendChild(corazon);
-
-      setTimeout(() => {
-        corazon.remove();
-      }, 10000);
+      setTimeout(() => corazon.remove(), 10000);
     }
-
-    setInterval(crearCorazon, 300);
+    setInterval(crearCorazon, 450);
   </script>
 </body>
 </html>
