@@ -1,316 +1,327 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amor Dayara - Inicio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
-  <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background: #ffdce5; /* rosa pastel claro */
-      overflow-x: hidden;
-      height: 100vh;
-      position: relative;
-      user-select: none;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amor Dayara</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap');
 
-    /* Texto en movimiento en bordes */
-    .borde-texto {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 15;
-      box-sizing: border-box;
-    }
-    .borde-texto span {
-      position: absolute;
-      white-space: nowrap;
-      font-size: 24px; /* tamaño más grande */
-      font-family: 'Great Vibes', cursive;
-      color: #d63384;
-      animation: borderScroll 20s linear infinite;
-      user-select: none;
-      pointer-events: none;
-      letter-spacing: 0.05em;
-    }
-    /* Ajuste para rotados verticales */
-    .borde-texto span.vertical {
-      font-size: 24px;
-      font-weight: 600;
-      width: max-content;
-    }
-    .borde-texto span.top-left {
-      top: 0;
-      left: 0;
-    }
-    .borde-texto span.bottom-left {
-      bottom: 0;
-      left: 0;
-    }
-    .borde-texto span.top-right {
-      top: 0;
-      left: -100%;
-      transform: rotate(90deg);
-      transform-origin: left top;
-    }
-    .borde-texto span.bottom-right {
-      bottom: 0;
-      right: -100%;
-      transform: rotate(270deg);
-      transform-origin: right bottom;
-    }
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #ffe6f0;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+  }
 
-    @keyframes borderScroll {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
+  /* Texto animado borde */
+  .borde-texto {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .borde-texto span {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 24px;
+    font-family: 'Great Vibes', cursive;
+    color: #d63384;
+    animation: borderScroll 20s linear infinite;
+    user-select: none;
+  }
+  .borde-texto span:nth-child(1) { top: 0; left: 0; }
+  .borde-texto span:nth-child(2) { bottom: 0; left: 0; }
+  .borde-texto span:nth-child(3) {
+    top: 0;
+    left: -100%;
+    transform: rotate(90deg);
+    transform-origin: left top;
+  }
+  .borde-texto span:nth-child(4) {
+    bottom: 0;
+    right: -100%;
+    transform: rotate(270deg);
+    transform-origin: right bottom;
+  }
 
-    /* Corazones animados estilo corazón no círculo */
-    .corazones {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 10;
-      overflow: hidden;
-    }
-    .corazon {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #e91e63;
-      transform: rotate(45deg);
-      animation: flotar 7s linear infinite;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 1px #b30059);
-      border-radius: 0 0 20px 20px;
-    }
-    .corazon::before,
-    .corazon::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #e91e63;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 1px #b30059);
-    }
-    .corazon::before {
-      top: -10px;
-      left: 0;
-    }
-    .corazon::after {
-      left: -10px;
-      top: 0;
-    }
-    @keyframes flotar {
-      0% {
-        transform: translateY(100vh) rotate(45deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(45deg);
-        opacity: 0;
-      }
-    }
+  @keyframes borderScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
 
-    /* Contenedor principal */
-    .contenedor {
-      position: relative;
-      z-index: 20;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      padding: 20px;
-      text-align: center;
-    }
-    .titulo {
-      font-family: 'Great Vibes', cursive;
-      font-size: 64px;
-      color: #b30059;
-      user-select: none;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    }
+  /* Corazones fondo */
+  .corazones {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
 
-    /* Botones */
+  /* Corazon con forma más estilizada */
+  .corazon {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-color: #e91e63;
+    transform: rotate(45deg);
+    animation: flotar 8s linear forwards;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 3px #ff69b4);
+    border-radius: 4px 4px 0 0;
+  }
+  .corazon::before,
+  .corazon::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-color: #e91e63;
+    border-radius: 50%;
+  }
+  .corazon::before {
+    top: -11px;
+    left: 0;
+  }
+  .corazon::after {
+    left: 11px;
+    top: 0;
+  }
+  @keyframes flotar {
+    0% {
+      transform: translateY(100vh) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  /* Contenedor central */
+  .contenedor {
+    position: relative;
+    z-index: 5;
+    top: 28vh;
+    width: 100%;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  /* Titulo */
+  .titulo {
+    font-size: 38px;
+    font-family: 'Great Vibes', cursive;
+    color: #b30059;
+    margin-bottom: 40px;
+    user-select: none;
+  }
+
+  /* Botones container */
+  .botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Botones generales */
+  .boton {
+    padding: 15px 36px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    user-select: none;
+  }
+
+  /* Colores de botones */
+  .boton.azul {
+    background-color: #2196F3;
+  }
+  .boton.azul:hover {
+    background-color: #0b7dda;
+  }
+
+  .boton.rojo {
+    background-color: #e91e63;
+  }
+  .boton.rojo:hover {
+    background-color: #c2185b;
+  }
+
+  .boton.verde {
+    background-color: #a8d5a3;
+    color: #355e3b;
+  }
+  .boton.verde:hover {
+    background-color: #81b277;
+  }
+
+  .boton.naranja {
+    background-color: #ff8c42;
+    color: #fff;
+  }
+  .boton.naranja:hover {
+    background-color: #e67300;
+  }
+
+  /* Botón JUGAR con mando */
+  .mando {
+    width: 22px;
+    height: 22px;
+    background: #ff4081;
+    border-radius: 6px;
+    margin-right: 10px;
+    position: relative;
+    box-shadow: 0 0 8px #ff4081aa;
+  }
+  .boton-arriba, .boton-abajo, .boton-izquierda, .boton-derecha {
+    position: absolute;
+    background: white;
+    border-radius: 2px;
+  }
+  .boton-arriba {
+    width: 4px; height: 8px;
+    top: 2px; left: 9px;
+  }
+  .boton-abajo {
+    width: 4px; height: 8px;
+    bottom: 2px; left: 9px;
+  }
+  .boton-izquierda {
+    width: 8px; height: 4px;
+    left: 2px; top: 9px;
+  }
+  .boton-derecha {
+    width: 8px; height: 4px;
+    right: 2px; top: 9px;
+  }
+  .boton-texto {
+    font-weight: 700;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
     .botones {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-      max-width: 600px;
+      flex-direction: column;
+      gap: 15px;
     }
     .boton {
-      flex: 1 1 150px;
-      min-width: 140px;
-      max-width: 180px;
-      padding: 15px 25px;
-      font-size: 20px;
-      font-weight: 700;
-      border: none;
-      border-radius: 15px;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      user-select: none;
-      font-family: 'Quicksand', sans-serif;
-    }
-    .boton:focus {
-      outline: 3px solid #ffa6c9;
-      outline-offset: 2px;
-    }
-    .boton:active {
-      transform: scale(0.97);
-    }
-    .boton.azul {
-      background-color: #2196f3;
-      box-shadow: 0 5px 15px rgba(33, 150, 243, 0.5);
-    }
-    .boton.azul:hover {
-      background-color: #0b7dda;
-    }
-    .boton.rojo {
-      background-color: #e91e63;
-      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.5);
-    }
-    .boton.rojo:hover {
-      background-color: #c2185b;
-    }
-    .boton.verde {
-      background-color: #a2d5ab;
-      color: #3a6b35;
-      box-shadow: 0 5px 15px rgba(162, 213, 171, 0.6);
-      font-weight: 800;
-    }
-    .boton.verde:hover {
-      background-color: #8bc99e;
-    }
-
-    /* Modal */
-    #modal {
-      display: none;
-      position: fixed;
-      z-index: 50;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(3px);
+      width: 80vw;
       justify-content: center;
-      align-items: center;
     }
-    #modal.active {
-      display: flex;
-    }
-    #modal .contenido {
-      background: #fff;
-      border-radius: 20px;
-      padding: 30px 40px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      font-family: 'Quicksand', sans-serif;
-      position: relative;
-    }
-    #modal .contenido h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 36px;
-      margin-bottom: 25px;
-      color: #3a6b35;
-    }
-    #modal .contenido input[type="text"] {
-      width: 100%;
-      padding: 12px 15px;
-      font-size: 18px;
-      border: 2px solid #a2d5ab;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      font-family: 'Quicksand', sans-serif;
-      outline-offset: 2px;
-      transition: border-color 0.3s ease;
-    }
-    #modal .contenido input[type="text"]:focus {
-      border-color: #3a6b35;
-    }
-    #modal .contenido button {
-      padding: 12px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      background-color: #a2d5ab;
-      color: #3a6b35;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: 'Quicksand', sans-serif;
-    }
-    #modal .contenido button:hover {
-      background-color: #8bc99e;
-    }
-    #modal .cerrar {
-      position: absolute;
-      top: 12px;
-      right: 15px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #3a6b35;
-      cursor: pointer;
-      font-weight: 700;
-      user-select: none;
-    }
-    #modal .cerrar:hover {
-      color: #6baa6e;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
+
+  <!-- Texto animado en bordes -->
   <div class="borde-texto" aria-hidden="true">
-    <span class="top-left">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span class="bottom-left">siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
-    <span class="top-right vertical">siempre serás mi niña - 21/06/2025 • </span>
-    <span class="bottom-right vertical">siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • </span>
   </div>
 
+  <!-- Corazones animados de fondo -->
   <div class="corazones" id="corazones"></div>
 
-  <main class="contenedor" role="main">
-    <h1 class="titulo">Bienvenida, mi amor 💕</h1>
-    <nav class="botones" aria-label="Navegación de regalos">
-      <a href="regalo1.html"><button class="boton azul" type="button">REGALO 1</button></a>
-      <a href="regalo2.html"><button class="boton rojo" type="button">REGALO 2</button></a>
-      <button id="btnDesbloquear" class="boton verde" type="button" aria-haspopup="dialog" aria-controls="modal">DESBLOQUEAR REGALO 3</button>
-    </nav>
-  </main>
-
-  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-describedby="modalDesc">
-    <div class="contenido">
-      <button class="cerrar" aria-label="Cerrar modal">&times;</button>
-      <h2 id="modalTitulo">Introduce el código para desbloquear</h2>
-      <input id="codigoInput" type="text" aria-describedby="modalDesc" placeholder="Código aquí" autocomplete="off" />
-      <button id="btnAceptar" type="button">Aceptar</button>
+  <!-- Contenedor principal -->
+  <div class="contenedor" role="main">
+    <h1 class="titulo" tabindex="0">Bienvenida, mi amor 💕</h1>
+    <div class="botones" role="navigation" aria-label="Navegación principal">
+      <a href="regalo1.html" style="text-decoration:none;">
+        <button class="boton azul" aria-label="Abrir Regalo 1">REGALO 1</button>
+      </a>
+      <a href="regalo2.html" style="text-decoration:none;">
+        <button class="boton rojo" aria-label="Abrir Regalo 2">REGALO 2</button>
+      </a>
+      <button class="boton verde" id="botonDesbloquear" aria-haspopup="dialog" aria-controls="modalCodigo" aria-expanded="false">
+        REGALO 3
+      </button>
+      <a href="minijuego.html" style="text-decoration:none;">
+        <button class="boton naranja" aria-label="Jugar Minijuego">
+          <div class="mando" aria-hidden="true">
+            <div class="boton-arriba"></div>
+            <div class="boton-abajo"></div>
+            <div class="boton-izquierda"></div>
+            <div class="boton-derecha"></div>
+          </div>
+          <div class="boton-texto">JUGAR</div>
+        </button>
+      </a>
     </div>
+  </div>
+
+  <!-- Modal para código secreto -->
+  <div id="modalCodigo" role="dialog" aria-modal="true" aria-labelledby="tituloModal" aria-hidden="true" style="
+    display:none;
+    position: fixed;
+    z-index: 20;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;">
+    <div style="
+      background: #a8d5a3;
+      border-radius: 16px;
+      max-width: 320px;
+      padding: 25px 20px;
+      margin: 20px;
+      text-align: center;
+      box-shadow: 0 0 14px #355e3bcc;">
+      <h2 id="tituloModal" style="font-family:'Great Vibes', cursive; color:#355e3b;">Introduce el código</h2>
+      <input id="inputCodigo" type="text" maxlength="8" placeholder="Código secreto" style="
+        width: 80%;
+        padding: 12px 10px;
+        margin: 15px 0;
+        border-radius: 10px;
+        border: 2px solid #355e3b;
+        font-size: 18px;
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        letter-spacing: 2px;
+        outline: none;
+      " aria-label="Campo para introducir código" />
+      <div>
+        <button id="btnValidar" style="
+          background:#355e3b; color:#a8d5a3; padding: 10px 24px;
+          border:none; border-radius: 10px; font-weight: 700;
+          cursor: pointer;
+          font-family: 'Quicksand', sans-serif;
+          font-size: 16px;
+          margin-right: 10px;">Desbloquear</button>
+        <button id="btnCerrarModal" style="
+          background:#d64564; color:white; padding: 10px 24px;
+          border:none; border-radius: 10px; font-weight: 700;
+          cursor: pointer;
+          font-family: 'Quicksand', sans-serif;
+          font-size: 16px;">Cancelar</button>
+      </div>
+      <p id="mensajeError" role="alert" style="color:#b30059; font-weight:700; margin-top:12px; min-height:1.2em;"></p>
+    </div>
+  </div>
+
+  <!-- Botón para tomar regalo después de validar -->
+  <div id="botonTomarRegalo" style="display:none; margin-top: 25px; text-align:center;">
+    <a href="regalo3.html" style="text-decoration:none;">
+      <button class="boton verde" aria-label="Tomar regalo 3">TOMA TU REGALO BEBÉ</button>
+    </a>
   </div>
 
   <script>
@@ -320,54 +331,60 @@
       const corazon = document.createElement("div");
       corazon.classList.add("corazon");
       corazon.style.left = Math.random() * 100 + "vw";
-      corazon.style.animationDuration = (Math.random() * 3 + 5) + "s";
-      corazon.style.animationDelay = Math.random() * 5 + "s";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
       corazonesContainer.appendChild(corazon);
-      setTimeout(() => corazon.remove(), 8000);
+      setTimeout(() => {
+        corazon.remove();
+      }, 10000);
     }
-    setInterval(crearCorazon, 300);
+    setInterval(crearCorazon, 350);
 
-    // Modal y validación código
-    const modal = document.getElementById("modal");
-    const btnDesbloquear = document.getElementById("btnDesbloquear");
-    const btnCerrar = modal.querySelector(".cerrar");
-    const btnAceptar = document.getElementById("btnAceptar");
-    const codigoInput = document.getElementById("codigoInput");
-    const CODIGO_CORRECTO = "21062025";
+    // Modal y validación código regalo 3
+    const modal = document.getElementById("modalCodigo");
+    const btnAbrir = document.getElementById("botonDesbloquear");
+    const btnCerrar = document.getElementById("btnCerrarModal");
+    const btnValidar = document.getElementById("btnValidar");
+    const inputCodigo = document.getElementById("inputCodigo");
+    const mensajeError = document.getElementById("mensajeError");
+    const botonTomarRegalo = document.getElementById("botonTomarRegalo");
 
-    btnDesbloquear.addEventListener("click", () => {
-      modal.classList.add("active");
-      codigoInput.value = "";
-      codigoInput.focus();
+    btnAbrir.addEventListener("click", () => {
+      modal.style.display = "flex";
+      modal.setAttribute("aria-hidden", "false");
+      btnAbrir.setAttribute("aria-expanded", "true");
+      inputCodigo.value = "";
+      mensajeError.textContent = "";
+      botonTomarRegalo.style.display = "none";
+      inputCodigo.focus();
     });
 
     btnCerrar.addEventListener("click", () => {
-      modal.classList.remove("active");
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+      btnAbrir.setAttribute("aria-expanded", "false");
+      mensajeError.textContent = "";
+      botonTomarRegalo.style.display = "none";
     });
 
-    btnAceptar.addEventListener("click", () => {
-      if (codigoInput.value.trim() === CODIGO_CORRECTO) {
-        modal.classList.remove("active");
-        // Mostrar botón para ir al regalo 3
-        if (!document.getElementById("btnRegalo3")) {
-          const btnRegalo3 = document.createElement("a");
-          btnRegalo3.href = "regalo3.html";
-          btnRegalo3.id = "btnRegalo3";
-          btnRegalo3.innerHTML = '<button class="boton verde" type="button" style="margin-top:30px; font-weight: 900;">TOMA TU REGALO BEBÉ</button>';
-          document.querySelector(".contenedor").appendChild(btnRegalo3);
-          btnRegalo3.querySelector("button").focus();
-        }
+    btnValidar.addEventListener("click", () => {
+      const codigoIngresado = inputCodigo.value.trim();
+      if (codigoIngresado === "21062025") {
+        mensajeError.textContent = "";
+        botonTomarRegalo.style.display = "block";
+        inputCodigo.value = "";
+        inputCodigo.disabled = true;
+        btnValidar.disabled = true;
+        inputCodigo.blur();
       } else {
-        alert("Código incorrecto. Intenta nuevamente.");
-        codigoInput.focus();
+        mensajeError.textContent = "Código incorrecto, intenta de nuevo.";
+        inputCodigo.focus();
       }
     });
 
-    // Cerrar modal con tecla Esc
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("active")) {
-        modal.classList.remove("active");
-        btnDesbloquear.focus();
+    // Permitir validar con Enter
+    inputCodigo.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") {
+        btnValidar.click();
       }
     });
   </script>
