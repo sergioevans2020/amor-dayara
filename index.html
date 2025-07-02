@@ -3,367 +3,134 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Regalos Románticos 💖</title>
-
-<!-- Fuentes -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
-
+<title>Regalos de Amor</title>
 <style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap');
+
   body {
-    margin: 0; padding: 0;
-    background: #e0f7fa; /* Celeste pastel claro */
+    margin: 0;
+    background: #fff0f6;
     font-family: 'Quicksand', sans-serif;
-    color: #b30059;
-    overflow-x: hidden;
-    position: relative;
+    color: #880e4f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  /* Texto en movimiento (bordes) */
-  .borde-texto {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 10;
-    overflow: hidden;
-  }
-  .borde-texto span {
-    position: absolute;
-    white-space: nowrap;
-    font-family: 'Great Vibes', cursive;
-    font-weight: 700;
-    color: #ff66b2;
-    font-size: 24px;
-    user-select: none;
-    animation: borderScroll 20s linear infinite;
-  }
-  .borde-texto span.top, .borde-texto span.bottom {
-    left: 0;
-    width: 200%;
-  }
-  .borde-texto span.left, .borde-texto span.right {
-    width: 100vh;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-size: 22px;
-  }
-  .borde-texto span.top {
-    top: 0;
-    animation-name: scrollLeft;
-  }
-  .borde-texto span.bottom {
-    bottom: 0;
-    animation-name: scrollRight;
-  }
-  .borde-texto span.left {
-    top: 0;
-    left: 0;
-    animation-name: scrollUp;
-  }
-  .borde-texto span.right {
-    bottom: 0;
-    right: 0;
-    animation-name: scrollDown;
-  }
-
-  @keyframes scrollLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes scrollRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
-  @keyframes scrollUp {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-  }
-  @keyframes scrollDown {
-    0% { transform: translateY(-50%); }
-    100% { transform: translateY(0); }
-  }
-
-  /* Corazones animados */
-  .corazones {
-    pointer-events: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 5;
-    overflow: hidden;
-  }
-  .corazon {
-    position: absolute;
-    width: 25px;
-    height: 23px;
-    background: #ff4da6;
-    transform: rotate(45deg);
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    border-radius: 4px 4px 0 0;
-    filter: drop-shadow(0 0 3px #b30059aa);
-  }
-  .corazon::before,
-  .corazon::after {
-    content: "";
-    position: absolute;
-    width: 25px;
-    height: 23px;
-    background: #ff4da6;
-    border-radius: 50%;
-  }
-  .corazon::before {
-    top: -13px;
-    left: 0;
-  }
-  .corazon::after {
-    left: 13px;
-    top: 0;
-  }
-  @keyframes flotar {
-    0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
-    100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
-  }
-
-  /* Contenedor central */
-  .contenedor {
-    position: relative;
-    z-index: 20;
-    text-align: center;
-    margin-top: 10vh;
-  }
   h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
-    margin-bottom: 0.3em;
-    color: #b30059;
-    text-shadow: 1px 1px 4px #ff99cc;
-  }
-  p.subtitulo {
-    font-size: 1.3rem;
-    margin-top: 0;
-    margin-bottom: 40px;
-    color: #d63384cc;
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    user-select: none;
+    color: #ad1457;
+    text-shadow: 1px 1px 3px #fce4ec;
   }
 
-  /* Botones */
-  .botones {
+  .btn-container {
+    margin-top: 30px;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
   button {
-    background-color: #d63384;
+    background: #ad1457;
     border: none;
     border-radius: 12px;
-    padding: 15px 32px;
+    padding: 15px 30px;
     font-size: 1.3rem;
+    font-weight: 600;
     color: white;
-    font-weight: 700;
     cursor: pointer;
-    font-family: 'Quicksand', sans-serif;
-    box-shadow: 0 5px 15px #b30059aa;
+    box-shadow: 0 5px 15px #ad1457cc;
     transition: background-color 0.3s ease;
     user-select: none;
   }
   button:hover {
-    background-color: #b30059;
+    background: #880e4f;
   }
 
-  /* Modal para desbloquear Regalo 3 */
-  .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    z-index: 100;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(3px);
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-content {
-    background: #fff0f6;
-    border-radius: 18px;
-    padding: 30px 40px;
-    max-width: 380px;
-    width: 90%;
-    box-shadow: 0 0 20px #b30059cc;
-    text-align: center;
+  /* Corazones mejorados */
+  .heart {
     position: relative;
+    width: 32px;
+    height: 28px;
+    background: #ad1457;
+    transform: rotate(-45deg);
+    margin: 0 5px;
+    display: inline-block;
   }
-  .modal-content h2 {
-    font-family: 'Great Vibes', cursive;
-    color: #b30059;
-    margin-top: 0;
-  }
-  .modal-content input[type="text"] {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #d63384;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    font-family: 'Quicksand', sans-serif;
-    margin: 15px 0 25px;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  .modal-content input[type="text"]:focus {
-    border-color: #b30059;
-  }
-  .modal-content .mensaje {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-top: 10px;
-    color: #b30059;
-    min-height: 24px;
-  }
-  .modal-content button {
-    padding: 12px 25px;
-    font-size: 1.2rem;
-    margin-top: 10px;
-  }
-  .cerrar {
+  .heart::before,
+  .heart::after {
+    content: "";
     position: absolute;
-    top: 12px;
-    right: 20px;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #b30059;
-    cursor: pointer;
+    width: 32px;
+    height: 28px;
+    background: #ad1457;
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -14px;
+    left: 0;
+  }
+  .heart::after {
+    top: 0;
+    left: 14px;
+  }
+
+  /* Texto animado marco superior */
+  .top-marquee {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fce4ec;
+    overflow: hidden;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(136, 14, 79, 0.2);
     user-select: none;
+    z-index: 10;
   }
-  .boton-regalo3 {
-    margin-top: 20px;
-    background-color: #77c18c; /* verde pastel claro */
-    box-shadow: 0 5px 15px #40914e88;
+
+  .top-marquee p {
+    white-space: nowrap;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: #9c27b0;
+    animation: marquee 20s linear infinite;
+    margin: 0;
   }
-  .boton-regalo3:hover {
-    background-color: #4a7f44;
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
   }
 </style>
 </head>
 <body>
 
-<!-- Texto borde animado -->
-<div class="borde-texto" aria-hidden="true">
-  <span class="top">Siempre serás mi niña - 21/06/2025 • Siempre serás mi niña - 21/06/2025 • </span>
-  <span class="bottom">Siempre serás mi niña - 21/06/2025 • Siempre serás mi niña - 21/06/2025 • </span>
-  <span class="left">Te amo ❤ Te amo ❤ Te amo ❤ Te amo ❤ Te amo ❤ </span>
-  <span class="right">Te amo ❤ Te amo ❤ Te amo ❤ Te amo ❤ Te amo ❤ </span>
+<div class="top-marquee" aria-hidden="true">
+  <p>💖 Te amo más que a nada en este mundo... 💖</p>
 </div>
 
-<!-- Corazones animados -->
-<div class="corazones" aria-hidden="true"></div>
+<h1>Mis Regalos de Amor</h1>
 
-<!-- Contenedor principal -->
-<div class="contenedor" role="main" aria-label="Menú principal de regalos y juego">
-
-  <h1>Regalos Románticos 💖</h1>
-  <p class="subtitulo">Explora tus regalos especiales y un divertido juego para ti</p>
-
-  <div class="botones">
-    <button type="button" onclick="location.href='regalo1.html'">Regalo 1 - Frases</button>
-    <button type="button" onclick="location.href='regalo2.html'">Regalo 2 - Calendario</button>
-    <button type="button" id="btnRegalo3" aria-haspopup="dialog" aria-controls="modalRegalo3">Regalo 3 - Libro de frases (Código)</button>
-    <button type="button" onclick="location.href='minijuego.html'">Jugar Laberinto del Amor</button>
-  </div>
+<div class="btn-container">
+  <button onclick="location.href='regalo3.html'">Ver Razones por las que te Amo</button>
+  <button onclick="location.href='regalo2.html'">Calendario de Frases</button>
+  <button onclick="location.href='minijuego.html'">Jugar Minijuego Kawaii</button>
 </div>
 
-<!-- Modal para desbloquear Regalo 3 -->
-<div id="modalRegalo3" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
-  <div class="modal-content">
-    <span class="cerrar" id="cerrarModal" role="button" tabindex="0" aria-label="Cerrar modal">&times;</span>
-    <h2 id="modalTitle">Introduce el código para desbloquear Regalo 3</h2>
-    <p id="modalDesc">Ingresa el código secreto que recibiste para abrir el libro de frases.</p>
-    <input type="text" id="codigoInput" aria-label="Campo para introducir código" placeholder="Ejemplo: AMOR123" />
-    <button type="button" id="validarCodigo">Validar Código</button>
-    <div class="mensaje" id="mensajeCodigo" aria-live="polite"></div>
-  </div>
+<div style="margin-top: 30px; user-select:none;">
+  <span class="heart" aria-hidden="true"></span>
+  <span class="heart" aria-hidden="true"></span>
+  <span class="heart" aria-hidden="true"></span>
 </div>
-
-<script>
-  // Animar corazones que suben
-  const corazonesContainer = document.querySelector('.corazones');
-  function crearCorazon() {
-    const corazon = document.createElement('div');
-    corazon.classList.add('corazon');
-    corazon.style.left = Math.random() * 100 + 'vw';
-    corazon.style.animationDuration = (5 + Math.random() * 7) + 's';
-    corazon.style.animationName = 'flotar';
-    corazon.style.animationTimingFunction = 'linear';
-    corazonesContainer.appendChild(corazon);
-    setTimeout(() => {
-      corazon.remove();
-    }, 12000);
-  }
-  setInterval(crearCorazon, 400);
-
-  // Modal para Regalo 3
-  const modal = document.getElementById('modalRegalo3');
-  const btnRegalo3 = document.getElementById('btnRegalo3');
-  const cerrarModal = document.getElementById('cerrarModal');
-  const validarBtn = document.getElementById('validarCodigo');
-  const codigoInput = document.getElementById('codigoInput');
-  const mensaje = document.getElementById('mensajeCodigo');
-
-  // Código válido para desbloquear regalo 3
-  const codigoValido = 'AMOR123';
-
-  btnRegalo3.addEventListener('click', () => {
-    mensaje.textContent = '';
-    codigoInput.value = '';
-    modal.style.display = 'flex';
-    codigoInput.focus();
-  });
-
-  cerrarModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-  cerrarModal.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      modal.style.display = 'none';
-      btnRegalo3.focus();
-    }
-  });
-
-  validarBtn.addEventListener('click', () => {
-    const codigo = codigoInput.value.trim().toUpperCase();
-    if(codigo === codigoValido) {
-      mensaje.style.color = 'green';
-      mensaje.textContent = 'Código correcto. Abriendo Regalo 3...';
-      setTimeout(() => {
-        modal.style.display = 'none';
-        window.location.href = 'regalo3.html';
-      }, 1500);
-    } else {
-      mensaje.style.color = 'red';
-      mensaje.textContent = 'Código incorrecto. Intenta de nuevo.';
-    }
-  });
-
-  // Cerrar modal si se hace click fuera del contenido
-  window.addEventListener('click', e => {
-    if(e.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-
-  // Cerrar modal con ESC
-  window.addEventListener('keydown', e => {
-    if(e.key === 'Escape' && modal.style.display === 'flex') {
-      modal.style.display = 'none';
-      btnRegalo3.focus();
-    }
-  });
-</script>
 
 </body>
 </html>
