@@ -1,135 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Regalo 2 - Momentos Juntos 💘</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario de Amor 💜</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #ffe6f0;
+      background: #cce6ff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="pink" opacity="0.2"/></svg>') repeat;
       font-family: 'Quicksand', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      overflow: hidden;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      color: #d63384;
-      font-size: 36px;
-      margin-bottom: 30px;
+      font-size: 40px;
+      color: #800080;
+      margin-top: 20px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, 60px);
-      grid-gap: 20px;
-    }
-
-    .numero {
-      width: 60px;
-      height: 60px;
-      background: #e91e63;
-      color: white;
-      font-weight: bold;
+    .calendarios {
       display: flex;
-      align-items: center;
+      gap: 50px;
+      margin-top: 30px;
+      flex-wrap: wrap;
       justify-content: center;
-      border-radius: 50%;
+    }
+
+    .calendario {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .mes {
+      font-size: 24px;
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+
+    .dias {
+      display: grid;
+      grid-template-columns: repeat(7, 40px);
+      gap: 10px;
+    }
+
+    .dia {
+      width: 40px;
+      height: 40px;
+      background-color: #ffe6f0;
+      border-radius: 8px;
+      line-height: 40px;
+      text-align: center;
       cursor: pointer;
-      font-size: 20px;
       position: relative;
-      transition: transform 0.3s;
+      font-weight: bold;
+      transition: background 0.3s;
     }
 
-    .numero:hover {
-      transform: scale(1.2);
-      background-color: #c2185b;
+    .dia:hover {
+      background-color: #ffcce0;
     }
 
-    .frase {
+    .mensaje {
       position: absolute;
-      bottom: -40px;
+      top: -60px;
       left: 50%;
       transform: translateX(-50%);
-      background: white;
-      color: #d63384;
+      background: #fff0f5;
       padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 12px;
       white-space: nowrap;
-      display: none;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 5;
+    }
+
+    .dia:hover .mensaje,
+    .dia:focus .mensaje {
+      opacity: 1;
+    }
+
+    .dedicatoria {
+      margin-top: 50px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #b30059;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>25 Momentos Mágicos ✨</h1>
-  <div class="grid" id="grid"></div>
+  <h1>Calendario de Amor para Mi Princesa 💖</h1>
+  <div class="calendarios">
+    <div class="calendario">
+      <div class="mes">Junio</div>
+      <div class="dias">
+        <!-- Junio tiene 30 días -->
+        <script>
+          const frasesJunio = [
+            "Tu sonrisa ilumina mis días.",
+            "Eres la razón de mis pensamientos.",
+            "Amarte es lo más bonito que me ha pasado.",
+            "Cada día contigo es un regalo.",
+            "Tu voz es mi melodía favorita.",
+            "Contigo aprendí a amar de verdad.",
+            "Eres mi sueño hecho realidad.",
+            "Te amo con cada parte de mí.",
+            "Tus abrazos son mi refugio.",
+            "Eres mi todo.",
+            "A tu lado todo es mejor.",
+            "Gracias por existir.",
+            "Contigo soy feliz.",
+            "Eres mi inspiración.",
+            "Cada momento contigo es mágico.",
+            "Eres mi paz.",
+            "Te amo más cada día.",
+            "Siempre serás mi niña.",
+            "Nuestro amor es eterno.",
+            "No hay nadie como tú.",
+            "Eres mi alegría diaria.",
+            "Tú haces especial mi vida.",
+            "Mi corazón es tuyo.",
+            "Eres mi hogar.",
+            "Todo en ti me enamora.",
+            "Eres única.",
+            "Te necesito a mi lado.",
+            "Te elijo siempre.",
+            "Eres mi princesa.",
+            "Tú y yo por siempre."
+          ];
+          for (let i = 0; i < 30; i++) {
+            document.write(`<div class="dia" tabindex="0">${i+1}<div class="mensaje">${frasesJunio[i]}</div></div>`);
+          }
+        </script>
+      </div>
+    </div>
 
-  <script>
-    const frases = [
-      "Tu sonrisa es mi lugar favorito",
-      "Cada momento contigo es un regalo",
-      "Amarte es lo más fácil del mundo",
-      "Contigo, todo tiene sentido",
-      "Tu voz es mi melodía preferida",
-      "Me haces sentir la persona más especial",
-      "Tus abrazos son mi hogar",
-      "Eres mi sueño hecho realidad",
-      "Estar contigo es mi paz",
-      "Tu amor me hace volar",
-      "Siempre serás mi elección",
-      "Eres mi pensamiento favorito",
-      "No hay día que no te piense",
-      "Tu ternura me desarma",
-      "Eres el regalo que la vida me dio",
-      "Tus besos son mi debilidad",
-      "Contigo quiero todo",
-      "Eres mi lugar seguro",
-      "No necesito más que tu amor",
-      "Amarte me completa",
-      "Gracias por existir",
-      "Eres mi razón para sonreír",
-      "Cada día a tu lado es mágico",
-      "Eres mi siempre",
-      "Te amo más de lo que imaginas"
-    ];
+    <div class="calendario">
+      <div class="mes">Julio</div>
+      <div class="dias">
+        <!-- Julio tiene 31 días -->
+        <script>
+          const frasesJulio = [
+            "Tu ternura me derrite.",
+            "Gracias por ser mi amor.",
+            "Tú eres mi vida.",
+            "Eres la dulzura en persona.",
+            "Siempre te elegiría a ti.",
+            "Eres mi mejor decisión.",
+            "Tú haces latir mi corazón.",
+            "Tu mirada me hipnotiza.",
+            "A tu lado todo es alegría.",
+            "Contigo todo es posible.",
+            "Mi amor por ti es infinito.",
+            "Nunca me sueltes.",
+            "Tú me completas.",
+            "Juntos somos invencibles.",
+            "Tú haces que todo valga la pena.",
+            "Estoy orgulloso de ti.",
+            "Tu amor me llena el alma.",
+            "Siempre en mi mente.",
+            "Eres lo más tierno.",
+            "Tu sonrisa vale millones.",
+            "Mi mundo eres tú.",
+            "Nuestro amor es magia.",
+            "Tú lo eres todo.",
+            "No me imagino sin ti.",
+            "Contigo soy yo mismo.",
+            "Tu amor es mi motor.",
+            "Gracias por amarme.",
+            "Mi princesa hermosa.",
+            "Nunca dejes de sonreír.",
+            "Siempre juntos, mi vida.",
+            "Tú eres mi razón."
+          ];
+          for (let i = 0; i < 31; i++) {
+            document.write(`<div class="dia" tabindex="0">${i+1}<div class="mensaje">${frasesJulio[i]}</div></div>`);
+          }
+        </script>
+      </div>
+    </div>
+  </div>
 
-    const grid = document.getElementById("grid");
-
-    for (let i = 1; i <= 25; i++) {
-      const div = document.createElement("div");
-      div.classList.add("numero");
-      div.textContent = i;
-
-      const frase = document.createElement("div");
-      frase.classList.add("frase");
-      frase.textContent = frases[i - 1];
-      div.appendChild(frase);
-
-      div.addEventListener("mouseenter", () => {
-        frase.style.display = "block";
-      });
-
-      div.addEventListener("mouseleave", () => {
-        frase.style.display = "none";
-      });
-
-      div.addEventListener("click", () => {
-        frase.style.display = frase.style.display === "block" ? "none" : "block";
-      });
-
-      grid.appendChild(div);
-    }
-  </script>
+  <div class="dedicatoria">Para mi novia que amo y amaré siempre.</div>
 </body>
 </html>
-
