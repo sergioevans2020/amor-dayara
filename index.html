@@ -1,137 +1,242 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Regalos de Amor</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienvenida amorosa 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset y base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #ffe6f0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: #b30059;
+      user-select: none;
+    }
 
-  body {
-    margin: 0;
-    background: #fff0f6;
-    font-family: 'Quicksand', sans-serif;
-    color: #880e4f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+    /* Texto animado en bordes */
+    .border-text {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+      font-family: 'Great Vibes', cursive;
+      font-size: 24px;
+      color: #d63384;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .border-text span {
+      position: absolute;
+      animation: marquee 20s linear infinite;
+    }
+    .border-top {
+      top: 0; left: 0;
+      width: 100%;
+      height: 40px;
+    }
+    .border-bottom {
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 40px;
+      animation-direction: reverse;
+    }
+    .border-left {
+      top: 0; left: 0;
+      width: 40px;
+      height: 100%;
+      writing-mode: vertical-rl;
+      animation-duration: 25s;
+    }
+    .border-right {
+      top: 0; right: 0;
+      width: 40px;
+      height: 100%;
+      writing-mode: vertical-rl;
+      animation-duration: 25s;
+      animation-direction: reverse;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
 
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-    user-select: none;
-    color: #ad1457;
-    text-shadow: 1px 1px 3px #fce4ec;
-  }
+    /* Corazones animados fondo */
+    #corazones {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .corazon {
+      position: absolute;
+      width: 25px; height: 25px;
+      background: linear-gradient(45deg, #ff5f7e, #ff85a2);
+      clip-path: polygon(
+        50% 0%,
+        61% 12%,
+        75% 12%,
+        87% 25%,
+        87% 40%,
+        75% 55%,
+        50% 80%,
+        25% 55%,
+        13% 40%,
+        13% 25%,
+        25% 12%,
+        39% 12%
+      );
+      opacity: 0.8;
+      animation-name: floatUp;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-duration: 8s;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(1); opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
 
-  .btn-container {
-    margin-top: 30px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    /* Contenedor central */
+    .container {
+      position: relative;
+      z-index: 5;
+      background: #ffd9e8cc;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(179, 0, 89, 0.3);
+      text-align: center;
+      max-width: 420px;
+      width: 90vw;
+    }
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 50px;
+      color: #9e0055;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 4px #ffccddaa;
+    }
 
-  button {
-    background: #ad1457;
-    border: none;
-    border-radius: 12px;
-    padding: 15px 30px;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 5px 15px #ad1457cc;
-    transition: background-color 0.3s ease;
-    user-select: none;
-  }
-  button:hover {
-    background: #880e4f;
-  }
+    /* Botones */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      flex: 1 1 120px;
+      padding: 16px 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 6px 12px rgba(179, 0, 89, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn:focus {
+      outline: none;
+      box-shadow: 0 0 12px 3px #ff85a2;
+    }
+    .btn-blue {
+      background: linear-gradient(135deg, #2196F3, #42a5f5);
+    }
+    .btn-blue:hover {
+      background: linear-gradient(135deg, #0b7dda, #2196F3);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(33, 150, 243, 0.5);
+    }
+    .btn-red {
+      background: linear-gradient(135deg, #e91e63, #ec407a);
+    }
+    .btn-red:hover {
+      background: linear-gradient(135deg, #c2185b, #e91e63);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.5);
+    }
+    .btn-green {
+      background: linear-gradient(135deg, #a5d6a7, #81c784);
+      color: #1b5e20;
+      font-weight: 800;
+    }
+    .btn-green:hover {
+      background: linear-gradient(135deg, #81c784, #a5d6a7);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(129, 199, 132, 0.6);
+    }
 
-  /* Corazones mejorados */
-  .heart {
-    position: relative;
-    width: 32px;
-    height: 28px;
-    background: #ad1457;
-    transform: rotate(-45deg);
-    margin: 0 5px;
-    display: inline-block;
-  }
-  .heart::before,
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 32px;
-    height: 28px;
-    background: #ad1457;
-    border-radius: 50%;
-  }
-  .heart::before {
-    top: -14px;
-    left: 0;
-  }
-  .heart::after {
-    top: 0;
-    left: 14px;
-  }
-
-  /* Texto animado marco superior */
-  .top-marquee {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #fce4ec;
-    overflow: hidden;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(136, 14, 79, 0.2);
-    user-select: none;
-    z-index: 10;
-  }
-
-  .top-marquee p {
-    white-space: nowrap;
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.2rem;
-    color: #9c27b0;
-    animation: marquee 20s linear infinite;
-    margin: 0;
-  }
-
-  @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
-</style>
+    /* Responsive */
+    @media (max-width: 480px) {
+      .title {
+        font-size: 2.5rem;
+        margin-bottom: 35px;
+      }
+      .btn {
+        font-size: 1.1rem;
+        padding: 14px 0;
+      }
+      .container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="border-text">
+    <span class="border-top">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
+    <span class="border-bottom">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
+    <span class="border-left">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
+    <span class="border-right">Siempre serás mi niña • 21/06/2025 • Siempre serás mi niña • 21/06/2025 • </span>
+  </div>
 
-<div class="top-marquee" aria-hidden="true">
-  <p>💖 Te amo más que a nada en este mundo... 💖</p>
-</div>
+  <div id="corazones"></div>
 
-<h1>Mis Regalos de Amor</h1>
+  <div class="container" role="main" aria-label="Página principal con regalos y minijuegos">
+    <h1 class="title" aria-level="1">Bienvenida, mi amor 💕</h1>
+    <nav class="buttons" role="navigation" aria-label="Navegación de regalos y juegos">
+      <a href="regalo1.html"><button class="btn btn-blue" aria-label="Acceder a regalo uno">REGALO 1</button></a>
+      <a href="regalo2.html"><button class="btn btn-red" aria-label="Acceder a regalo dos">REGALO 2</button></a>
+      <a href="regalo3.html"><button class="btn btn-green" aria-label="Acceder a regalo tres">REGALO 3</button></a>
+      <a href="minijuego.html"><button class="btn btn-red" aria-label="Jugar al minijuego">JUGAR</button></a>
+    </nav>
+  </div>
 
-<div class="btn-container">
-  <button onclick="location.href='regalo3.html'">REGALO 3</button>
-  <button onclick="location.href='regalo2.html'">REGALO 2</button>
-  <button onclick="location.href='minijuego.html'">MINIJUEGO</button>
-  <button onclick="location.href='regalo1.html'">REGALO 1</button>
-</div>
+  <script>
+    const corazonesContainer = document.getElementById("corazones");
 
-<div style="margin-top: 30px; user-select:none;">
-  <span class="heart" aria-hidden="true"></span>
-  <span class="heart" aria-hidden="true"></span>
-  <span class="heart" aria-hidden="true"></span>
-</div>
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = (6 + Math.random() * 4) + "s";
+      corazon.style.width = corazon.style.height = (15 + Math.random() * 20) + "px";
+      corazonesContainer.appendChild(corazon);
 
+      setTimeout(() => {
+        corazon.remove();
+      }, 10000);
+    }
+
+    setInterval(crearCorazon, 300);
+  </script>
 </body>
 </html>
