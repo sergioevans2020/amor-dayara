@@ -34,6 +34,7 @@
       flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 40px;
+      position: relative;
     }
 
     button {
@@ -68,10 +69,32 @@
     button#btnRegalo3 {
       background-color: #8fcf99; /* verde pastel clarito */
       color: #2f4f2f;
+      position: relative;
     }
     button#btnRegalo3:hover {
       background-color: #74b77a;
       box-shadow: 0 8px 20px rgba(116, 183, 122, 0.8);
+    }
+
+    /* Botón que aparece tras desbloquear */
+    #btnAbrirRegalo3 {
+      margin-top: 18px;
+      background-color: #74b77a;
+      color: #fff;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border-radius: 22px;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(116, 183, 122, 0.7);
+      cursor: pointer;
+      border: none;
+      user-select: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #btnAbrirRegalo3:hover {
+      background-color: #5ea15b;
+      box-shadow: 0 10px 28px rgba(94, 161, 91, 0.9);
     }
 
     /* Modal Styles */
@@ -168,7 +191,11 @@
   <div class="botones-container">
     <button id="btnRegalo1" aria-label="Abrir Regalo 1">REGALO 1</button>
     <button id="btnRegalo2" aria-label="Abrir Regalo 2">REGALO 2</button>
-    <button id="btnRegalo3" aria-label="Abrir Regalo 3">REGALO 3</button>
+    <div style="display:flex; flex-direction: column; align-items: center;">
+      <button id="btnRegalo3" aria-label="Abrir Regalo 3">REGALO 3</button>
+      <!-- Aquí aparecerá el botón extra tras desbloquear -->
+      <div id="btnContainer"></div>
+    </div>
   </div>
 
   <!-- Modal para código secreto -->
@@ -192,6 +219,7 @@
   const btnValidar = document.getElementById('btnValidar');
   const codigoInput = document.getElementById('codigoInput');
   const errorMsg = document.getElementById('errorMsg');
+  const btnContainer = document.getElementById('btnContainer');
 
   // Abrir regalos 1 y 2 directamente
   btnRegalo1.addEventListener('click', () => {
@@ -220,7 +248,8 @@
     const codigo = codigoInput.value.trim();
     if(codigo === '21062025') {
       modalOverlay.style.display = 'none';
-      window.location.href = 'regalo3.html';
+      errorMsg.textContent = '';
+      mostrarBotonRegalo3();
     } else {
       errorMsg.textContent = 'Código incorrecto, intenta de nuevo.';
       codigoInput.focus();
@@ -235,6 +264,22 @@
     }
   });
 
+  function mostrarBotonRegalo3() {
+    // Si ya existe, no crear otra vez
+    if(document.getElementById('btnAbrirRegalo3')) return;
+
+    const nuevoBtn = document.createElement('button');
+    nuevoBtn.id = 'btnAbrirRegalo3';
+    nuevoBtn.textContent = 'TOMA TU REGALO BEBÉ';
+    nuevoBtn.setAttribute('aria-label', 'Abrir regalo 3');
+    nuevoBtn.addEventListener('click', () => {
+      window.location.href = 'regalo3.html';
+    });
+
+    btnContainer.appendChild(nuevoBtn);
+    // Opcional: desplazar foco al nuevo botón
+    nuevoBtn.focus();
+  }
 </script>
 
 </body>
