@@ -1,198 +1,315 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calendario de Amor 💜</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #cce6ff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="pink" opacity="0.2"/></svg>') repeat;
+      background: #cce6f5; /* azul celeste suave */
       font-family: 'Quicksand', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      overflow-x: hidden;
+      user-select: none;
     }
-
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 40px;
-      color: #800080;
+      text-align: center;
+      color: #7a3e87;
       margin-top: 20px;
+      margin-bottom: 40px;
+      font-size: 3rem;
     }
-
-    .calendarios {
+    .calendarios-container {
       display: flex;
-      gap: 50px;
-      margin-top: 30px;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 30px;
+      padding: 0 10px 80px;
     }
-
     .calendario {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
+      background: #f9e6ff;
       border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(122, 62, 135, 0.3);
+      padding: 15px;
+      width: 320px;
+      user-select: none;
+    }
+    .mes-nombre {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
       text-align: center;
+      color: #9b4d99;
+      margin-bottom: 15px;
+      letter-spacing: 1.3px;
+      user-select: none;
     }
-
-    .mes {
-      font-size: 24px;
-      color: #d63384;
-      margin-bottom: 10px;
+    .dias-semana {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-weight: bold;
+      color: #6a2876;
+      margin-bottom: 5px;
+      user-select: none;
     }
-
+    .dias-semana div {
+      padding: 5px 0;
+      font-size: 0.9rem;
+    }
     .dias {
       display: grid;
-      grid-template-columns: repeat(7, 40px);
-      gap: 10px;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      user-select: none;
     }
-
     .dia {
-      width: 40px;
+      background: #f7d6fa;
+      border-radius: 12px;
       height: 40px;
-      background-color: #ffe6f0;
-      border-radius: 8px;
-      line-height: 40px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #4b1856;
+      font-weight: 600;
+      font-size: 1.1rem;
       cursor: pointer;
       position: relative;
-      font-weight: bold;
-      transition: background 0.3s;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      box-shadow: inset 0 0 5px #a96db7;
     }
-
-    .dia:hover {
-      background-color: #ffcce0;
+    .dia:hover, .dia:focus {
+      background: #d1a3d8;
+      outline: none;
     }
-
-    .mensaje {
+    /* Tooltip / Nube de frase */
+    .tooltip {
       position: absolute;
-      top: -60px;
+      top: -75px;
       left: 50%;
       transform: translateX(-50%);
-      background: #fff0f5;
-      padding: 8px 12px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      font-size: 12px;
-      white-space: nowrap;
+      background: #fce4f7;
+      color: #7a3e87;
+      padding: 10px 14px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(122, 62, 135, 0.3);
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.1rem;
+      width: 220px;
+      text-align: center;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
-      z-index: 5;
+      z-index: 100;
+      user-select: none;
+      line-height: 1.3;
     }
-
-    .dia:hover .mensaje,
-    .dia:focus .mensaje {
+    .tooltip.visible {
       opacity: 1;
+      pointer-events: auto;
     }
-
-    .dedicatoria {
-      margin-top: 50px;
+    /* Flechas para calendario (oculto por ahora) */
+    /* Texto final */
+    .mensaje-final {
       font-family: 'Great Vibes', cursive;
-      font-size: 28px;
-      color: #b30059;
       text-align: center;
+      margin-top: 30px;
+      font-size: 1.8rem;
+      color: #6a2876;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px 15px;
+      border: 2px solid #b490c1;
+      border-radius: 20px;
+      background: #f4e6f9;
+      user-select: none;
+      box-shadow: 0 0 12px #b490c1;
+      letter-spacing: 1.1px;
+      line-height: 1.4;
+    }
+    /* Para colocar días vacíos al inicio del mes */
+    .dia.vacio {
+      background: transparent;
+      cursor: default;
+      box-shadow: none;
+      pointer-events: none;
+    }
+    /* Animación fuegos artificiales - más grandes */
+    @keyframes fuegos {
+      0% {
+        transform: scale(0.1);
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+    .fuegos {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #ff99cc 0%, transparent 70%);
+      animation: fuegos 1s ease forwards;
+      z-index: 5000;
+      filter: drop-shadow(0 0 8px #ff66aa);
     }
   </style>
 </head>
 <body>
-  <h1>Calendario de Amor para Mi Princesa 💖</h1>
-  <div class="calendarios">
-    <div class="calendario">
-      <div class="mes">Junio</div>
-      <div class="dias">
-        <!-- Junio tiene 30 días -->
-        <script>
-          const frasesJunio = [
-            "Tu sonrisa ilumina mis días.",
-            "Eres la razón de mis pensamientos.",
-            "Amarte es lo más bonito que me ha pasado.",
-            "Cada día contigo es un regalo.",
-            "Tu voz es mi melodía favorita.",
-            "Contigo aprendí a amar de verdad.",
-            "Eres mi sueño hecho realidad.",
-            "Te amo con cada parte de mí.",
-            "Tus abrazos son mi refugio.",
-            "Eres mi todo.",
-            "A tu lado todo es mejor.",
-            "Gracias por existir.",
-            "Contigo soy feliz.",
-            "Eres mi inspiración.",
-            "Cada momento contigo es mágico.",
-            "Eres mi paz.",
-            "Te amo más cada día.",
-            "Siempre serás mi niña.",
-            "Nuestro amor es eterno.",
-            "No hay nadie como tú.",
-            "Eres mi alegría diaria.",
-            "Tú haces especial mi vida.",
-            "Mi corazón es tuyo.",
-            "Eres mi hogar.",
-            "Todo en ti me enamora.",
-            "Eres única.",
-            "Te necesito a mi lado.",
-            "Te elijo siempre.",
-            "Eres mi princesa.",
-            "Tú y yo por siempre."
-          ];
-          for (let i = 0; i < 30; i++) {
-            document.write(`<div class="dia" tabindex="0">${i+1}<div class="mensaje">${frasesJunio[i]}</div></div>`);
-          }
-        </script>
-      </div>
-    </div>
+  <h1>Para mi princesa Dayara 💖</h1>
 
-    <div class="calendario">
-      <div class="mes">Julio</div>
-      <div class="dias">
-        <!-- Julio tiene 31 días -->
-        <script>
-          const frasesJulio = [
-            "Tu ternura me derrite.",
-            "Gracias por ser mi amor.",
-            "Tú eres mi vida.",
-            "Eres la dulzura en persona.",
-            "Siempre te elegiría a ti.",
-            "Eres mi mejor decisión.",
-            "Tú haces latir mi corazón.",
-            "Tu mirada me hipnotiza.",
-            "A tu lado todo es alegría.",
-            "Contigo todo es posible.",
-            "Mi amor por ti es infinito.",
-            "Nunca me sueltes.",
-            "Tú me completas.",
-            "Juntos somos invencibles.",
-            "Tú haces que todo valga la pena.",
-            "Estoy orgulloso de ti.",
-            "Tu amor me llena el alma.",
-            "Siempre en mi mente.",
-            "Eres lo más tierno.",
-            "Tu sonrisa vale millones.",
-            "Mi mundo eres tú.",
-            "Nuestro amor es magia.",
-            "Tú lo eres todo.",
-            "No me imagino sin ti.",
-            "Contigo soy yo mismo.",
-            "Tu amor es mi motor.",
-            "Gracias por amarme.",
-            "Mi princesa hermosa.",
-            "Nunca dejes de sonreír.",
-            "Siempre juntos, mi vida.",
-            "Tú eres mi razón."
-          ];
-          for (let i = 0; i < 31; i++) {
-            document.write(`<div class="dia" tabindex="0">${i+1}<div class="mensaje">${frasesJulio[i]}</div></div>`);
-          }
-        </script>
-      </div>
-    </div>
+  <div class="calendarios-container" aria-label="Calendarios románticos de junio a diciembre">
+
+    <!-- Los meses se generan con JS -->
+
   </div>
 
-  <div class="dedicatoria">Para mi novia que amo y amaré siempre.</div>
+  <div class="mensaje-final" aria-live="polite">
+    Para mi novia que amo y amaré siempre.
+  </div>
+
+  <script>
+    const calendariosContainer = document.querySelector('.calendarios-container');
+
+    const meses = [
+      { nombre: 'Junio', dias: 30, primerDiaSemana: 4 },    // junio 2025 empieza domingo=0? pero aquí ponemos lunes=1? Para simplificar, pondremos que 0=domingo, 1=lunes...
+      { nombre: 'Julio', dias: 31, primerDiaSemana: 2 },    // 1 de julio 2025 es martes (2)
+      { nombre: 'Agosto', dias: 31, primerDiaSemana: 5 },  // 1 ago 2025 es viernes (5)
+      { nombre: 'Septiembre', dias: 30, primerDiaSemana: 1 }, // 1 sept 2025 es lunes (1)
+      { nombre: 'Octubre', dias: 31, primerDiaSemana: 3 },   // 1 oct 2025 es miércoles (3)
+      { nombre: 'Noviembre', dias: 30, primerDiaSemana: 6 }, // 1 nov 2025 es sábado (6)
+      { nombre: 'Diciembre', dias: 31, primerDiaSemana: 1 }  // 1 dic 2025 es lunes (1)
+    ];
+
+    // Días de la semana
+    const diasSemana = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+
+    // Frases románticas para usar, se repetirán o se usan por día (puedes agregar más)
+    const frases = [
+      "Eres la luz que ilumina mi vida cada día.",
+      "Contigo todo es más hermoso y especial.",
+      "Tu sonrisa es mi motor para seguir adelante.",
+      "Cada momento a tu lado es un tesoro eterno.",
+      "Eres mi sueño hecho realidad, mi mayor alegría.",
+      "Tu amor me da fuerzas para superar cualquier cosa.",
+      "Juntos somos invencibles, mi dulce compañera.",
+      "Tu mirada me enamora una y otra vez.",
+      "Gracias por ser mi refugio y mi paz.",
+      "Cada día contigo es una nueva aventura maravillosa.",
+      "Eres el latido de mi corazón, mi razón de ser.",
+      "No hay nada que ame más que estar contigo.",
+      "Tu voz es la melodía que alegra mis días.",
+      "Eres mi inspiración para ser mejor cada día.",
+      "Nuestro amor es un viaje sin fin ni destino.",
+      "Me pierdo en tu abrazo y encuentro mi hogar.",
+      "Eres la magia que transforma mi mundo.",
+      "Tu ternura me envuelve y me hace feliz.",
+      "Cada detalle tuyo es una joya que guardo.",
+      "Te amo más allá de las palabras y el tiempo.",
+      "Eres mi compañera en este camino de vida.",
+      "Tu risa es la banda sonora de mi felicidad.",
+      "Gracias por ser la luz en mis días nublados.",
+      "Con cada beso, sellamos nuestro amor eterno.",
+      "Eres el regalo más hermoso que he recibido.",
+      "Juntos construimos sueños y realidades.",
+      "Tu amor es mi mayor bendición y fortuna.",
+      "Siempre estaré aquí para protegerte y amarte.",
+      "Eres mi todo, mi principio y mi final.",
+      "Contigo la vida es un poema de amor infinito."
+    ];
+
+    // Crear calendario mes por mes
+    meses.forEach(({ nombre, dias, primerDiaSemana }, mesIndex) => {
+      const calendario = document.createElement('section');
+      calendario.classList.add('calendario');
+      calendario.setAttribute('aria-label', `Calendario del mes de ${nombre} 2025`);
+
+      const tituloMes = document.createElement('h2');
+      tituloMes.className = 'mes-nombre';
+      tituloMes.textContent = nombre;
+      calendario.appendChild(tituloMes);
+
+      const diasSem = document.createElement('div');
+      diasSem.className = 'dias-semana';
+      diasSemana.forEach(dia => {
+        const d = document.createElement('div');
+        d.textContent = dia;
+        diasSem.appendChild(d);
+      });
+      calendario.appendChild(diasSem);
+
+      const diasGrid = document.createElement('div');
+      diasGrid.className = 'dias';
+
+      // Añadir días vacíos para alinear el primer día de la semana
+      // En JS Date Domingo=0, Lunes=1 ... pero aquí usamos Lunes=0 para cuadrar con español
+      // Pero para simplificar ajustamos según el primerDiaSemana que hemos definido (0=domingo,...)
+      // Queremos que la semana empiece Lunes, por eso ajustamos:
+      let ajuste = primerDiaSemana - 1;
+      if (ajuste < 0) ajuste = 6;
+
+      for (let i = 0; i < ajuste; i++) {
+        const vacio = document.createElement('div');
+        vacio.className = 'dia vacio';
+        diasGrid.appendChild(vacio);
+      }
+
+      for (let diaNum = 1; diaNum <= dias; diaNum++) {
+        const diaDiv = document.createElement('div');
+        diaDiv.className = 'dia';
+        diaDiv.tabIndex = 0;
+        diaDiv.textContent = diaNum;
+
+        // Asignar frase al día (repetimos si más días que frases)
+        const frase = frases[(mesIndex * 31 + diaNum - 1) % frases.length];
+
+        // Crear tooltip
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = frase;
+        diaDiv.appendChild(tooltip);
+
+        // Mostrar tooltip al hover o focus
+        diaDiv.addEventListener('mouseenter', () => {
+          tooltip.classList.add('visible');
+        });
+        diaDiv.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('visible');
+        });
+        diaDiv.addEventListener('focus', () => {
+          tooltip.classList.add('visible');
+        });
+        diaDiv.addEventListener('blur', () => {
+          tooltip.classList.remove('visible');
+        });
+
+        // Para móviles, toggle con click
+        diaDiv.addEventListener('click', () => {
+          if (tooltip.classList.contains('visible')) {
+            tooltip.classList.remove('visible');
+          } else {
+            // cerrar otras tooltips abiertas
+            document.querySelectorAll('.tooltip.visible').forEach(t => t.classList.remove('visible'));
+            tooltip.classList.add('visible');
+          }
+        });
+
+        diasGrid.appendChild(diaDiv);
+      }
+
+      calendario.appendChild(diasGrid);
+      calendariosContainer.appendChild(calendario);
+    });
+  </script>
 </body>
 </html>
