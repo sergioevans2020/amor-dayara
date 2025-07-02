@@ -1,192 +1,282 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Principal</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #ffe4e6, #f8bbd0);
-      color: #4b286d;
-      overflow-x: hidden;
-    }
-    h1 {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 3rem;
-      text-shadow: 1px 1px 3px #b4587d;
-    }
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    button {
-      background-color: #f9d5e5;
-      border: 2px solid #d07aa1;
-      border-radius: 12px;
-      box-shadow: 2px 2px 8px rgba(180, 88, 125, 0.5);
-      padding: 14px 24px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #6b2e4a;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      min-width: 180px;
-      text-align: center;
-      user-select: none;
-    }
-    button:hover {
-      background-color: #d07aa1;
-      color: #fff;
-      transform: translateY(-4px);
-      box-shadow: 4px 6px 12px rgba(180, 88, 125, 0.7);
-    }
-    button:active {
-      transform: translateY(0);
-      box-shadow: 1px 1px 5px rgba(180, 88, 125, 0.3);
-    }
-    .btn-amarillo {
-      background-color: #fff7c0;
-      border-color: #d4c56f;
-      color: #665d1e;
-    }
-    .btn-amarillo:hover {
-      background-color: #d4c56f;
-      color: white;
-    }
-    /* Corazon kawai avatar abajo con mensaje */
-    #avatar-wrapper {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      user-select: none;
-      z-index: 100;
-    }
-    #avatar {
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-      animation: caminar 2s infinite alternate ease-in-out;
-      filter: drop-shadow(1px 2px 1px #bb82a2);
-    }
-    @keyframes caminar {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-5px) rotate(5deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
-    #mensaje-avatar {
-      font-size: 1.1rem;
-      color: #6b2e4a;
-      font-weight: 600;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-shadow: 1px 1px 2px #f7c1d6;
-    }
-    /* Botón modo nocturno */
-    #btn-modo {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #d07aa1;
-      border: none;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 2px 2px 8px #b4587d;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      z-index: 100;
-    }
-    #btn-modo.modo-activado {
-      background: linear-gradient(135deg, #6a2c91, #d33f8a);
-    }
-    /* Modo oscuro */
-    body.modo-oscuro {
-      background: linear-gradient(135deg, #331a3d, #5e2150);
-      color: #f1d1e6;
-    }
-    body.modo-oscuro button {
-      background-color: #6a2c91;
-      border-color: #d33f8a;
-      color: #f1d1e6;
-      box-shadow: 2px 2px 8px rgba(211, 63, 138, 0.6);
-    }
-    body.modo-oscuro button:hover {
-      background-color: #d33f8a;
-      color: white;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amor y Regalos</title>
+<style>
+  /* -- Variables básicas y estilos generales -- */
+  :root {
+    --color-bg: #fff8f0;
+    --color-text: #633;
+    --font-size-base: 18px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: var(--font-size-base);
+    transition: background 0.5s ease, color 0.5s ease, font-size 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  /* Fondo animado (default) */
+  #background-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, #fceabb, #f8b500);
+    animation: gradientMove 15s ease infinite;
+    z-index: -1;
+  }
+  @keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* Contenedor principal */
+  #main-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 15px;
+  }
+
+  /* Botones similares estilo */
+  .btn {
+    background-color: #ffdb70;
+    border: none;
+    padding: 12px 18px;
+    margin: 6px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    user-select: none;
+  }
+  .btn:hover {
+    background-color: #ffd647;
+  }
+
+  /* Selector de fuentes desplegable */
+  #fontSelector {
+    position: relative;
+    display: inline-block;
+  }
+  #fontList {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccaa66;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    max-height: 160px;
+    overflow-y: auto;
+    width: 180px;
+    z-index: 100;
+    border-radius: 8px;
+  }
+  #fontList div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #fontList div:hover {
+    background-color: #ffefc1;
+  }
+
+  /* Slider tamaño fuente */
+  #fontSizeControl {
+    margin: 15px 0;
+  }
+  input[type="range"] {
+    width: 200px;
+  }
+
+  /* Selector de fondo */
+  #backgroundSelector {
+    margin-left: 12px;
+  }
+  #backgroundOptions {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccaa66;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    max-height: 160px;
+    overflow-y: auto;
+    width: 220px;
+    z-index: 100;
+    border-radius: 8px;
+  }
+  #backgroundOptions div {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    border-bottom: 1px solid #f0d97a;
+  }
+  #backgroundOptions div:last-child {
+    border-bottom: none;
+  }
+  #backgroundOptions div:hover {
+    background-color: #ffefc1;
+  }
+
+  /* Área donde van los botones */
+  #controls {
+    margin-bottom: 30px;
+  }
+
+</style>
 </head>
 <body>
 
-  <h1>Bienvenida a Nuestro Sitio Romántico 💖</h1>
+<div id="background-container"></div>
 
-  <div class="container">
-    <button onclick="location.href='regalo1.html'">REGALO 1</button>
-    <button onclick="location.href='regalo2.html'">REGALO 2</button>
-    <button onclick="location.href='regalo3.html'">REGALO 3</button>
-    <button onclick="location.href='laberinto.html'">LABERINTO</button>
-    <button onclick="location.href='listas_deseos.html'" class="btn-amarillo">LISTA DE DESEOS</button>
-    <button onclick="location.href='nuestra_libreta.html'">NUESTRA LIBRETA</button>
-    <button onclick="location.href='caja_sorpresa.html'" class="btn-amarillo">CAJA SORPRESA</button>
+<div id="main-content">
+
+  <h1>Amor y Regalos 💖</h1>
+
+  <div id="controls">
+    <!-- Botones existentes -->
+    <button class="btn" onclick="location.href='regalo1.html'">Regalo 1</button>
+    <button class="btn" onclick="location.href='regalo2.html'">Regalo 2</button>
+    <button class="btn" onclick="location.href='regalo3.html'">Regalo 3</button>
+    <button class="btn" onclick="location.href='laberinto.html'">Laberinto</button>
+    <button class="btn" onclick="location.href='nuestra_libreta.html'">Nuestra Libreta</button>
+    <button class="btn" onclick="location.href='listas_deseos.html'">Lista de Deseos</button>
+    <button class="btn" onclick="location.href='caja_sorpresa.html'" style="background-color: #fff8a8;">Caja Sorpresa</button>
+
+    <!-- NUEVAS CONFIGURACIONES -->
+
+    <!-- Selector de fuentes -->
+    <span id="fontSelector" style="position: relative;">
+      <button class="btn" id="fontSelectBtn">Cambiar Fuente ▾</button>
+      <div id="fontList">
+        <div style="font-family: Arial, sans-serif;" data-font="Arial, sans-serif">Arial</div>
+        <div style="font-family: 'Times New Roman', serif;" data-font="'Times New Roman', serif">Times New Roman</div>
+        <div style="font-family: 'Courier New', monospace;" data-font="'Courier New', monospace">Courier New</div>
+        <div style="font-family: Georgia, serif;" data-font="Georgia, serif">Georgia</div>
+        <div style="font-family: Verdana, sans-serif;" data-font="Verdana, sans-serif">Verdana</div>
+        <div style="font-family: 'Lucida Handwriting', cursive;" data-font="'Lucida Handwriting', cursive">Lucida Handwriting</div>
+        <div style="font-family: 'Comic Sans MS', cursive, sans-serif;" data-font="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</div>
+        <div style="font-family: 'Palatino Linotype', serif;" data-font="'Palatino Linotype', serif">Palatino Linotype</div>
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" data-font="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</div>
+      </div>
+    </span>
+
+    <!-- Control tamaño fuente -->
+    <label for="fontSizeControl" style="margin-left: 20px; font-weight:600;">Tamaño Fuente:</label>
+    <input type="range" id="fontSizeControl" min="12" max="30" value="18" step="1" title="Ajustar tamaño de fuente">
+
+    <!-- Selector fondo -->
+    <span id="backgroundSelector" style="position: relative;">
+      <button class="btn" id="backgroundSelectBtn">Cambiar Fondo ▾</button>
+      <div id="backgroundOptions">
+        <div data-bg="gradient1">Gradiente Amarillo Dorado</div>
+        <div data-bg="gradient2">Gradiente Rosa Pastel</div>
+        <div data-bg="gradient3">Gradiente Morado Suave</div>
+        <div data-bg="animated1">Animación Suave 1</div>
+        <div data-bg="animated2">Animación Suave 2</div>
+      </div>
+    </span>
+
   </div>
 
-  <div id="avatar-wrapper" title="Haz click para activar modo nocturno">
-    <svg id="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#D6338A" stroke-width="2">
-      <path d="M32 12c-10 0-18 8-18 18 0 12 18 30 18 30s18-18 18-30c0-10-8-18-18-18z" fill="#F48FB1"/>
-      <circle cx="22" cy="25" r="4" fill="#fff"/>
-      <circle cx="22" cy="25" r="2" fill="#333"/>
-      <circle cx="42" cy="25" r="4" fill="#fff"/>
-      <circle cx="42" cy="25" r="2" fill="#333"/>
-      <path d="M24 42c4 6 8 6 12 0" stroke="#D6338A" stroke-linecap="round"/>
-      <path d="M20 40l-4 8" stroke="#D6338A" stroke-linecap="round"/>
-      <path d="M44 40l4 8" stroke="#D6338A" stroke-linecap="round"/>
-      <path d="M18 54h28" stroke="#D6338A" stroke-linecap="round"/>
-    </svg>
-    <span id="mensaje-avatar">Bienvenida doncella 💕</span>
-  </div>
+  <p>Contenido principal de la página con textos y enlaces a regalos, juegos, etc.</p>
 
-  <button id="btn-modo" title="Cambiar modo claro/oscuro">Modo Nocturno</button>
+</div>
 
-  <script>
-    const body = document.body;
-    const btnModo = document.getElementById('btn-modo');
-    const avatar = document.getElementById('avatar');
-    const mensajeAvatar = document.getElementById('mensaje-avatar');
-
-    function activarModoOscuro() {
-      body.classList.toggle('modo-oscuro');
-      btnModo.classList.toggle('modo-activado');
-      if (body.classList.contains('modo-oscuro')) {
-        mensajeAvatar.textContent = 'Modo Nocturno Activado 🌙';
-      } else {
-        mensajeAvatar.textContent = 'Bienvenida doncella 💕';
-      }
+<script>
+  // Selector de fuente
+  const fontSelectBtn = document.getElementById('fontSelectBtn');
+  const fontList = document.getElementById('fontList');
+  fontSelectBtn.addEventListener('click', () => {
+    fontList.style.display = fontList.style.display === 'block' ? 'none' : 'block';
+  });
+  fontList.addEventListener('click', (e) => {
+    if (e.target.dataset.font) {
+      document.body.style.fontFamily = e.target.dataset.font;
+      fontList.style.display = 'none';
     }
+  });
+  // Cerrar al hacer clic fuera
+  window.addEventListener('click', e => {
+    if (!fontSelectBtn.contains(e.target) && !fontList.contains(e.target)) {
+      fontList.style.display = 'none';
+    }
+  });
 
-    btnModo.addEventListener('click', activarModoOscuro);
+  // Control tamaño fuente
+  const fontSizeControl = document.getElementById('fontSizeControl');
+  fontSizeControl.addEventListener('input', () => {
+    document.documentElement.style.setProperty('--font-size-base', fontSizeControl.value + 'px');
+  });
 
-    avatar.addEventListener('click', activarModoOscuro);
+  // Selector fondo
+  const backgroundSelectBtn = document.getElementById('backgroundSelectBtn');
+  const backgroundOptions = document.getElementById('backgroundOptions');
+  const backgroundContainer = document.getElementById('background-container');
 
-    // Animación notable al cargar
-    window.onload = () => {
-      document.body.style.opacity = '0';
-      document.body.style.transition = 'opacity 1.5s ease-in-out';
-      setTimeout(() => {
-        document.body.style.opacity = '1';
-      }, 100);
-    };
-  </script>
+  backgroundSelectBtn.addEventListener('click', () => {
+    backgroundOptions.style.display = backgroundOptions.style.display === 'block' ? 'none' : 'block';
+  });
+
+  backgroundOptions.addEventListener('click', (e) => {
+    if (!e.target.dataset.bg) return;
+
+    // Limpio animaciones anteriores
+    backgroundContainer.style.animation = '';
+    backgroundContainer.style.background = '';
+
+    switch (e.target.dataset.bg) {
+      case 'gradient1':
+        backgroundContainer.style.background = 'linear-gradient(135deg, #fceabb, #f8b500)';
+        backgroundContainer.style.animation = 'gradientMove 15s ease infinite';
+        break;
+      case 'gradient2':
+        backgroundContainer.style.background = 'linear-gradient(135deg, #f8cdda, #1d2b64)';
+        backgroundContainer.style.animation = 'gradientMove 20s ease infinite';
+        break;
+      case 'gradient3':
+        backgroundContainer.style.background = 'linear-gradient(135deg, #c3cfe2, #6a7bd2)';
+        backgroundContainer.style.animation = 'gradientMove 10s ease infinite';
+        break;
+      case 'animated1':
+        backgroundContainer.style.background = 'radial-gradient(circle, #ffe3f0 10%, #fbd0d0 80%)';
+        backgroundContainer.style.animation = 'pulseGlow 4s ease-in-out infinite';
+        break;
+      case 'animated2':
+        backgroundContainer.style.background = 'repeating-conic-gradient(#f6d1d1 0% 10%, #fcc9c9 10% 20%)';
+        backgroundContainer.style.animation = 'spinGradient 20s linear infinite';
+        break;
+    }
+    backgroundOptions.style.display = 'none';
+  });
+
+  // Animaciones adicionales para fondos animados
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes pulseGlow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.1); }
+    }
+    @keyframes spinGradient {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 360deg 360deg; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Cerrar selector fondo al hacer clic fuera
+  window.addEventListener('click', e => {
+    if (!backgroundSelectBtn.contains(e.target) && !backgroundOptions.contains(e.target)) {
+      backgroundOptions.style.display = 'none';
+    }
+  });
+
+</script>
 
 </body>
 </html>
