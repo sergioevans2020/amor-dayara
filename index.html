@@ -1,271 +1,192 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mi página romántica - Inicio</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap');
-
-  body {
-    font-family: 'Quicksand', sans-serif;
-    background: #ffe6f0;
-    color: #b30059;
-    margin: 0; padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-    transition: background-color 0.5s, color 0.5s;
-  }
-
-  body.dark {
-    background: #402342;
-    color: #f8cde6;
-  }
-
-  header {
-    margin-top: 40px;
-    font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
-    user-select: none;
-    text-shadow: 0 2px 6px #b30059aa;
-  }
-
-  main {
-    margin: 40px 0 80px 0;
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 90vw;
-    max-width: 900px;
-  }
-
-  button {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 1.3rem;
-    padding: 14px 28px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(191, 111, 183, 0.7);
-    user-select: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    flex: 1 1 140px;
-    max-width: 180px;
-  }
-
-  /* Botones específicos */
-  #btn-laberinto {
-    background-color: #f8bbd0;
-    color: #b30059;
-  }
-  #btn-laberinto:hover {
-    background-color: #d880b6;
-    color: white;
-  }
-
-  #btn-nuestra-libreta {
-    background-color: #c8e6c9;
-    color: #2e7d32;
-  }
-  #btn-nuestra-libreta:hover {
-    background-color: #81c784;
-    color: white;
-  }
-
-  #btn-lista-deseos {
-    background-color: #fff9c4;
-    color: #fbc02d;
-  }
-  #btn-lista-deseos:hover {
-    background-color: #fff176;
-    color: #a17a00;
-  }
-
-  #btn-caja-sorpresa {
-    background-color: #fff3e0;
-    color: #ffb74d;
-  }
-  #btn-caja-sorpresa:hover {
-    background-color: #ffcc80;
-    color: #8c5e00;
-  }
-
-  #btn-cambiar-tema {
-    background-color: #d1c4e9;
-    color: #5e35b1;
-  }
-  #btn-cambiar-tema:hover {
-    background-color: #b39ddb;
-    color: white;
-  }
-
-  /* Avatar kawaii abajo */
-  #avatar-container {
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    user-select: none;
-    cursor: pointer;
-    animation: caminar 3s ease-in-out infinite alternate;
-    z-index: 100;
-  }
-
-  @keyframes caminar {
-    0% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(calc(-50% + 10px)) translateY(-5px); }
-    100% { transform: translateX(-50%) translateY(0); }
-  }
-
-  /* Corazón kawaii animado */
-  #avatar {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #f48fb1, #f06292);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    box-shadow: 0 3px 7px rgba(243, 105, 135, 0.7);
-    animation: latir 1.5s infinite ease-in-out;
-  }
-
-  @keyframes latir {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-  }
-
-  /* Manos y pies */
-  #avatar::before, #avatar::after {
-    content: "";
-    position: absolute;
-    background: #f06292;
-    border-radius: 50%;
-  }
-  /* Manos */
-  #avatar::before {
-    width: 16px; height: 16px;
-    top: 18px; left: -18px;
-    box-shadow: 0 0 8px #f48fb1;
-  }
-  #avatar::after {
-    width: 16px; height: 16px;
-    top: 18px; right: -18px;
-    box-shadow: 0 0 8px #f48fb1;
-  }
-
-  /* Pies - con hijos */
-  #pies {
-    display: flex;
-    gap: 10px;
-    margin-top: 4px;
-  }
-  .pie {
-    width: 16px; height: 16px;
-    background: #f06292;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #f48fb1;
-    animation: moverPies 1.5s infinite ease-in-out;
-  }
-  .pie.derecha {
-    animation-delay: 0.75s;
-  }
-
-  @keyframes moverPies {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
-  }
-
-  /* Mensaje bienvenida */
-  #mensaje-bienvenida {
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.8rem;
-    color: #b30059;
-    user-select: none;
-    animation: aparecer 2s ease forwards;
-  }
-
-  body.dark #mensaje-bienvenida {
-    color: #f8cde6;
-  }
-
-  @keyframes aparecer {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Principal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffe4e6, #f8bbd0);
+      color: #4b286d;
+      overflow-x: hidden;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 3rem;
+      text-shadow: 1px 1px 3px #b4587d;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      background-color: #f9d5e5;
+      border: 2px solid #d07aa1;
+      border-radius: 12px;
+      box-shadow: 2px 2px 8px rgba(180, 88, 125, 0.5);
+      padding: 14px 24px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #6b2e4a;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      min-width: 180px;
+      text-align: center;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #d07aa1;
+      color: #fff;
+      transform: translateY(-4px);
+      box-shadow: 4px 6px 12px rgba(180, 88, 125, 0.7);
+    }
+    button:active {
+      transform: translateY(0);
+      box-shadow: 1px 1px 5px rgba(180, 88, 125, 0.3);
+    }
+    .btn-amarillo {
+      background-color: #fff7c0;
+      border-color: #d4c56f;
+      color: #665d1e;
+    }
+    .btn-amarillo:hover {
+      background-color: #d4c56f;
+      color: white;
+    }
+    /* Corazon kawai avatar abajo con mensaje */
+    #avatar-wrapper {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+      z-index: 100;
+    }
+    #avatar {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      animation: caminar 2s infinite alternate ease-in-out;
+      filter: drop-shadow(1px 2px 1px #bb82a2);
+    }
+    @keyframes caminar {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    #mensaje-avatar {
+      font-size: 1.1rem;
+      color: #6b2e4a;
+      font-weight: 600;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-shadow: 1px 1px 2px #f7c1d6;
+    }
+    /* Botón modo nocturno */
+    #btn-modo {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #d07aa1;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 2px 2px 8px #b4587d;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      z-index: 100;
+    }
+    #btn-modo.modo-activado {
+      background: linear-gradient(135deg, #6a2c91, #d33f8a);
+    }
+    /* Modo oscuro */
+    body.modo-oscuro {
+      background: linear-gradient(135deg, #331a3d, #5e2150);
+      color: #f1d1e6;
+    }
+    body.modo-oscuro button {
+      background-color: #6a2c91;
+      border-color: #d33f8a;
+      color: #f1d1e6;
+      box-shadow: 2px 2px 8px rgba(211, 63, 138, 0.6);
+    }
+    body.modo-oscuro button:hover {
+      background-color: #d33f8a;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
-<header>Bienvenidos a Nuestro Sitio Romántico</header>
+  <h1>Bienvenida a Nuestro Sitio Romántico 💖</h1>
 
-<main>
-  <button id="btn-laberinto" title="Juega al laberinto romántico">LABERINTO</button>
-  <button id="btn-nuestra-libreta" title="Nuestra libreta para escribir juntos">NUESTRA LIBRETA</button>
-  <button id="btn-lista-deseos" title="Agrega tus deseos aquí">LISTA DE DESEOS</button>
-  <button id="btn-caja-sorpresa" title="Abre la caja sorpresa romántica">CAJA SORPRESA</button>
-  <button id="btn-cambiar-tema" title="Cambiar tema claro/oscuro">CAMBIAR TEMA</button>
-</main>
-
-<!-- Avatar kawaii -->
-<div id="avatar-container" tabindex="0" aria-label="Avatar que saluda">
-  <div id="avatar" role="img" aria-hidden="true"></div>
-  <div id="pies">
-    <div class="pie izquierda"></div>
-    <div class="pie derecha"></div>
+  <div class="container">
+    <button onclick="location.href='regalo1.html'">REGALO 1</button>
+    <button onclick="location.href='regalo2.html'">REGALO 2</button>
+    <button onclick="location.href='regalo3.html'">REGALO 3</button>
+    <button onclick="location.href='laberinto.html'">LABERINTO</button>
+    <button onclick="location.href='listas_deseos.html'" class="btn-amarillo">LISTA DE DESEOS</button>
+    <button onclick="location.href='nuestra_libreta.html'">NUESTRA LIBRETA</button>
+    <button onclick="location.href='caja_sorpresa.html'" class="btn-amarillo">CAJA SORPRESA</button>
   </div>
-  <div id="mensaje-bienvenida" aria-live="polite">Bienvenida doncella 💖</div>
-</div>
 
-<script>
-  // Navegación botones
-  document.getElementById('btn-laberinto').addEventListener('click', () => {
-    window.location.href = 'laberinto.html';
-  });
-  document.getElementById('btn-nuestra-libreta').addEventListener('click', () => {
-    window.location.href = 'nuestra_libreta.html';
-  });
-  document.getElementById('btn-lista-deseos').addEventListener('click', () => {
-    window.location.href = 'listas_deseos.html';
-  });
-  document.getElementById('btn-caja-sorpresa').addEventListener('click', () => {
-    window.location.href = 'caja_sorpresa.html';
-  });
+  <div id="avatar-wrapper" title="Haz click para activar modo nocturno">
+    <svg id="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#D6338A" stroke-width="2">
+      <path d="M32 12c-10 0-18 8-18 18 0 12 18 30 18 30s18-18 18-30c0-10-8-18-18-18z" fill="#F48FB1"/>
+      <circle cx="22" cy="25" r="4" fill="#fff"/>
+      <circle cx="22" cy="25" r="2" fill="#333"/>
+      <circle cx="42" cy="25" r="4" fill="#fff"/>
+      <circle cx="42" cy="25" r="2" fill="#333"/>
+      <path d="M24 42c4 6 8 6 12 0" stroke="#D6338A" stroke-linecap="round"/>
+      <path d="M20 40l-4 8" stroke="#D6338A" stroke-linecap="round"/>
+      <path d="M44 40l4 8" stroke="#D6338A" stroke-linecap="round"/>
+      <path d="M18 54h28" stroke="#D6338A" stroke-linecap="round"/>
+    </svg>
+    <span id="mensaje-avatar">Bienvenida doncella 💕</span>
+  </div>
 
-  // Cambiar tema
-  const btnTema = document.getElementById('btn-cambiar-tema');
-  btnTema.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    if(document.body.classList.contains('dark')) {
-      btnTema.textContent = 'Modo Claro';
-    } else {
-      btnTema.textContent = 'Modo Oscuro';
+  <button id="btn-modo" title="Cambiar modo claro/oscuro">Modo Nocturno</button>
+
+  <script>
+    const body = document.body;
+    const btnModo = document.getElementById('btn-modo');
+    const avatar = document.getElementById('avatar');
+    const mensajeAvatar = document.getElementById('mensaje-avatar');
+
+    function activarModoOscuro() {
+      body.classList.toggle('modo-oscuro');
+      btnModo.classList.toggle('modo-activado');
+      if (body.classList.contains('modo-oscuro')) {
+        mensajeAvatar.textContent = 'Modo Nocturno Activado 🌙';
+      } else {
+        mensajeAvatar.textContent = 'Bienvenida doncella 💕';
+      }
     }
-  });
 
-  // Avatar saluda con animación más notable (ya con CSS animaciones)
-  // Al hacer click en avatar cambia colores (modo oscuro especial morado-rosa)
-  const avatarContainer = document.getElementById('avatar-container');
-  avatarContainer.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    if(document.body.classList.contains('dark')) {
-      document.body.style.background = 'linear-gradient(135deg, #5b2e7a, #b64a89)';
-      document.body.style.color = '#f8cde6';
-      btnTema.textContent = 'Modo Claro';
-    } else {
-      document.body.style.background = '#ffe6f0';
-      document.body.style.color = '#b30059';
-      btnTema.textContent = 'Modo Oscuro';
-    }
-  });
-</script>
+    btnModo.addEventListener('click', activarModoOscuro);
+
+    avatar.addEventListener('click', activarModoOscuro);
+
+    // Animación notable al cargar
+    window.onload = () => {
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 1.5s ease-in-out';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    };
+  </script>
 
 </body>
 </html>
