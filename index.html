@@ -3,219 +3,197 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Amor y Regalos</title>
+<title>Rincón Romántico - Inicio</title>
 <style>
-  /* === VARIABLES Y BASES === */
   :root {
-    --color-bg: #fff8f0;
-    --color-text: #633;
-    --font-size-base: 18px;
     --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --color-dark-bg: #3a005f;
-    --color-dark-text: #f8b9d4;
+    --font-size-base: 18px;
   }
-
-  /* === MODO OSCURO */
-  body.dark-mode {
-    background: var(--color-dark-bg);
-    color: var(--color-dark-text);
+  /* RESET & BASE */
+  * {
+    box-sizing: border-box;
   }
-
-  /* === ESTILOS GENERALES === */
   body {
-    margin: 0;
-    background: var(--color-bg);
-    color: var(--color-text);
+    margin: 0; padding: 0;
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
-    overflow-x: hidden;
-    transition: background 0.6s ease, color 0.6s ease, font-size 0.3s ease, font-family 0.3s ease;
-  }
-
-  /* === FONDO CON GRADIENTE ANIMADO === */
-  #background-container {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(135deg, #fceabb, #f8b500);
     background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
-    z-index: -1;
+    color: #633;
+    overflow-x: hidden;
+    position: relative;
   }
   @keyframes gradientMove {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
   }
 
-  /* === CONTENEDOR PRINCIPAL === */
+  /* CONTENEDOR DE FONDO PARA PATRONES */
+  #background-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* CONTENIDO PRINCIPAL */
   #main-content {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 30px 15px;
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    margin: 120px auto 150px auto;
+    padding: 0 20px;
+    text-align: center;
   }
 
-  /* === BOTONES PRINCIPALES === */
+  /* Intro animada */
+  #intro-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #a4006d;
+    opacity: 0;
+    animation: fadeInSlideDown 2s forwards;
+    margin-bottom: 15px;
+  }
+  #intro-subtext {
+    font-size: 1.25rem;
+    color: #ff5ca1;
+    opacity: 0;
+    animation: fadeInSlideUp 2s forwards;
+    animation-delay: 2s;
+  }
+  @keyframes fadeInSlideDown {
+    from {opacity: 0; transform: translateY(-40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes fadeInSlideUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* BOTONES GRANDES DE NAVEGACION */
+  #controls {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    z-index: 10;
+  }
   .btn {
-    background-color: #ffdb70;
-    border: none;
-    padding: 12px 20px;
-    margin: 6px 8px;
+    background: #ffb6ca;
+    border: 2px solid #a4006d;
     border-radius: 20px;
-    font-weight: 600;
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #a4006d;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background 0.3s, color 0.3s;
+    box-shadow: 0 5px 10px rgba(255, 92, 161, 0.4);
     user-select: none;
-    font-family: inherit;
   }
   .btn:hover {
-    background-color: #ffd647;
+    background: #a4006d;
+    color: #ffb6ca;
   }
   .btn.caja-sorpresa {
-    background-color: #fff8a8;
+    background: #fff3a6;
+    border-color: #d6bf49;
+    color: #6b4d00;
+    box-shadow: 0 5px 10px rgba(214, 191, 73, 0.5);
+  }
+  .btn.caja-sorpresa:hover {
+    background: #d6bf49;
+    color: #fff3a6;
   }
 
-  /* === AREA DE BOTONES PRINCIPALES === */
-  #controls {
-    margin-bottom: 40px;
-  }
-
-  /* === AVATAR KAWAII (corazón) === */
+  /* AVATAR KAWAII */
   #avatar-container {
     position: fixed;
-    bottom: 10px;
+    bottom: 20px;
     left: 20px;
     width: 120px;
     height: 120px;
     cursor: pointer;
-    user-select: none;
-    animation: walkSideways 4s linear infinite;
-    z-index: 10;
+    z-index: 15;
+    animation: walkCycle 3s linear infinite;
   }
-  /* El corazón kawai con pies y manos simplificados en SVG */
+  @keyframes walkCycle {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(15px) rotate(3deg); }
+    50% { transform: translateX(30px) rotate(0deg); }
+    75% { transform: translateX(15px) rotate(-3deg); }
+  }
   #avatar {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 2px #c4007a);
   }
-
-  /* Animación caminar lado a lado */
-  @keyframes walkSideways {
-    0%, 100% { transform: translateX(0);}
-    50% { transform: translateX(150px);}
-  }
-
-  /* Saludo mensaje */
   #avatar-msg {
     position: fixed;
-    bottom: 130px;
-    left: 10px;
-    background: rgba(255 200 230 / 0.85);
-    border-radius: 12px;
+    bottom: 150px;
+    left: 20px;
+    background: rgba(255 92 161 / 0.85);
+    color: #fff;
+    font-weight: 700;
     padding: 10px 18px;
-    font-weight: 700;
+    border-radius: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #a50062;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-    pointer-events: none;
-    user-select: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  #avatar-container:hover + #avatar-msg {
-    opacity: 1;
-  }
-
-  /* === TEXTOS EN MOVIMIENTO + CORAZONES ANIMADOS === */
-  .moving-text {
-    font-weight: 700;
-    font-size: 1.8em;
-    color: #b2005c;
-    animation: floatUpDown 4s ease-in-out infinite;
-    text-shadow: 1px 1px 2px #f9c1d7;
-  }
-  @keyframes floatUpDown {
-    0%, 100% {transform: translateY(0);}
-    50% {transform: translateY(-8px);}
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    user-select: none;
+    z-index: 20;
   }
 
-  /* Corazones que flotan */
-  .heart {
-    position: fixed;
-    width: 30px;
-    height: 30px;
-    background: #ff8ac7;
-    clip-path: polygon(50% 0%, 61% 10%, 70% 20%, 78% 29%, 82% 38%, 82% 49%, 78% 59%, 72% 66%, 65% 73%, 58% 78%, 50% 85%, 42% 78%, 35% 73%, 28% 66%, 22% 59%, 18% 49%, 18% 38%, 22% 29%, 30% 20%, 39% 10%);
-    animation: heartFloat 6s ease-in-out infinite;
-    opacity: 0.8;
+  /* MODO OSCURO */
+  body.dark-mode {
+    background: linear-gradient(135deg, #2c003e, #4b006d);
+    color: #e6d5f3;
   }
-  @keyframes heartFloat {
-    0%, 100% {transform: translateY(0);}
-    50% {transform: translateY(-15px);}
+  body.dark-mode #controls .btn {
+    background: #4b006d;
+    border-color: #ff85b3;
+    color: #ffb6ca;
+    box-shadow: 0 5px 10px rgba(255, 133, 179, 0.5);
   }
-
-  /* Colocar corazones en distintas posiciones */
-  #heart1 {top: 20%; left: 15%; animation-delay: 0s;}
-  #heart2 {top: 50%; left: 80%; animation-delay: 2s;}
-  #heart3 {top: 70%; left: 30%; animation-delay: 1.5s;}
-  #heart4 {top: 40%; left: 55%; animation-delay: 3s;}
-
-  /* === MODO OSCURO BOTÓN === */
-  #darkModeToggle {
-    background: linear-gradient(135deg, #9c27b0, #e91e63);
-    color: white;
-    font-weight: 700;
-    box-shadow: 0 3px 6px rgba(156,39,176,0.7);
+  body.dark-mode #controls .btn:hover {
+    background: #ff85b3;
+    color: #4b006d;
   }
-  #darkModeToggle:hover {
-    background: linear-gradient(135deg, #e91e63, #9c27b0);
+  body.dark-mode #avatar-msg {
+    background: rgba(171, 54, 116, 0.85);
   }
 
-  /* === NUEVOS BOTONES DE CONFIGURACIÓN ABAJO EN TRIÁNGULOS === */
+  /* NUEVOS BOTONES DE CONFIGURACION - RECTANGULARES ABAJO DERECHA */
   #config-buttons {
     position: fixed;
-    bottom: 15px;
+    bottom: 20px;
     right: 20px;
     display: flex;
     gap: 12px;
-    z-index: 20;
+    z-index: 25;
   }
-  .triangle-btn {
-    width: 48px;
-    height: 48px;
-    background: #ffd87e;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: background-color 0.3s ease;
-    position: relative;
-  }
-  .triangle-btn:hover {
-    background: #ffeaa3;
-  }
-  .triangle-btn::after {
-    content: attr(data-title);
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff7d9;
-    color: #633;
+  .rect-btn {
+    background: #ffb6ca;
+    border: 2px solid #a4006d;
+    border-radius: 12px;
+    padding: 8px 16px;
     font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+    font-size: 1rem;
+    color: #a4006d;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255, 92, 161, 0.4);
+    user-select: none;
+    transition: background 0.3s, color 0.3s;
   }
-  .triangle-btn:hover::after {
-    opacity: 1;
+  .rect-btn:hover {
+    background: #a4006d;
+    color: #ffb6ca;
   }
 
-  /* === DESPLEGABLES DE CONFIGURACION === */
+  /* PANELES DE CONFIGURACION */
   .config-panel {
     position: fixed;
     bottom: 70px;
@@ -228,7 +206,7 @@
     max-width: 280px;
     color: #633;
     display: none;
-    z-index: 21;
+    z-index: 30;
   }
   .config-panel h4 {
     margin-top: 0;
@@ -252,11 +230,30 @@
     cursor: pointer;
   }
 
-  /* Lista de fuentes para vista en el select con estilos en cada opción */
   select option {
     font-family: inherit;
   }
 
+  /* CORAZONES FLOTANTES */
+  .heart {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at center, #ff5ca1, #ff8ac7);
+    clip-path: polygon(50% 0%, 90% 30%, 100% 70%, 50% 100%, 0% 70%, 10% 30%);
+    opacity: 0.8;
+    animation: floatHeart 6s ease-in-out infinite;
+    z-index: 5;
+  }
+  #heart1 { left: 10%; animation-delay: 0s; }
+  #heart2 { left: 30%; animation-delay: 2s; }
+  #heart3 { left: 60%; animation-delay: 4s; }
+  #heart4 { left: 80%; animation-delay: 1s; }
+
+  @keyframes floatHeart {
+    0%, 100% { transform: translateY(0) scale(1);}
+    50% { transform: translateY(-20px) scale(1.1);}
+  }
 </style>
 </head>
 <body>
@@ -264,127 +261,96 @@
 <div id="background-container"></div>
 
 <div id="main-content">
-
-  <h1 class="moving-text">Bienvenida a nuestro rincón romántico 💖</h1>
-  <p class="moving-text" style="animation-delay: 1s;">
-    Explora los regalos, laberintos y sorpresas con mucho amor y magia.
-  </p>
+  <div id="intro-text">Bienvenida a tu Rincón Romántico</div>
+  <div id="intro-subtext">Un lugar lleno de amor, diversión y magia ✨💕</div>
 
   <div id="controls">
+    <button class="btn" onclick="location.href='laberinto.html'">Laberintos</button>
+    <button class="btn caja-sorpresa" onclick="location.href='caja_sorpresa.html'">Caja Sorpresa</button>
     <button class="btn" onclick="location.href='regalo1.html'">Regalo 1</button>
     <button class="btn" onclick="location.href='regalo2.html'">Regalo 2</button>
     <button class="btn" onclick="location.href='regalo3.html'">Regalo 3</button>
-    <button class="btn" onclick="location.href='laberinto.html'">Laberintos</button>
-    <button class="btn caja-sorpresa" onclick="location.href='caja_sorpresa.html'">Caja Sorpresa</button>
-    <button class="btn" onclick="location.href='nuestra_libreta.html'">Nuestra Libreta</button>
-    <button class="btn" onclick="location.href='listas_deseos.html'">Lista de Deseos</button>
   </div>
-
 </div>
 
-<!-- Avatar kawai saludando -->
-<div id="avatar-container" title="Haz click para activar modo oscuro">
-  <svg id="avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar corazón kawaii">
-    <g>
-      <!-- Corazón base -->
-      <path fill="#ff5ca1" stroke="#a4006d" stroke-width="2"
-        d="M50 15
-           C35 0 0 25 50 75
-           C100 25 65 0 50 15Z"/>
-      <!-- Ojos -->
-      <circle cx="35" cy="40" r="5" fill="#fff" />
-      <circle cx="65" cy="40" r="5" fill="#fff" />
-      <circle cx="35" cy="40" r="2" fill="#a4006d" />
-      <circle cx="65" cy="40" r="2" fill="#a4006d" />
-      <!-- Boca sonriente -->
-      <path stroke="#a4006d" stroke-width="2" fill="none" d="M35 60 Q50 75 65 60" />
-      <!-- Manos -->
-      <circle cx="25" cy="75" r="10" fill="#ffb6ca" />
-      <circle cx="75" cy="75" r="10" fill="#ffb6ca" />
-      <!-- Pies -->
-      <ellipse cx="35" cy="95" rx="10" ry="5" fill="#ff8ac7" />
-      <ellipse cx="65" cy="95" rx="10" ry="5" fill="#ff8ac7" />
-    </g>
+<!-- AVATAR KAWAII -->
+<div id="avatar-container" title="Haz click para activar el modo oscuro">
+  <svg id="avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Corazón kawaii">
+    <!-- Corazón simple kawaii con pies y manos animadas -->
+    <path fill="#ff5ca1" d="M32 58s-26-15.64-26-36.5S15.64 2 32 20c16.36-18 26 1.5 26 1.5S58 42.36 32 58z"/>
+    <circle cx="22" cy="28" r="5" fill="#fff"/>
+    <circle cx="42" cy="28" r="5" fill="#fff"/>
+    <!-- Manos -->
+    <circle cx="10" cy="48" r="4" fill="#ff5ca1" />
+    <circle cx="54" cy="48" r="4" fill="#ff5ca1" />
+    <!-- Pies -->
+    <ellipse cx="22" cy="60" rx="6" ry="4" fill="#ff8ac7" />
+    <ellipse cx="42" cy="60" rx="6" ry="4" fill="#ff8ac7" />
   </svg>
 </div>
-<div id="avatar-msg">Bienvenida doncella 💜</div>
 
-<!-- NUEVOS BOTONES TRIANGULARES ABAJO -->
-<div id="config-buttons" aria-label="Configuraciones adicionales">
-  <button class="triangle-btn" id="btn-font" data-title="Fuente" aria-haspopup="listbox" aria-expanded="false" aria-controls="font-select">F</button>
-  <button class="triangle-btn" id="btn-size" data-title="Tamaño" aria-haspopup="slider" aria-expanded="false" aria-controls="size-slider">A</button>
-  <button class="triangle-btn" id="btn-bg" data-title="Fondo" aria-haspopup="listbox" aria-expanded="false" aria-controls="bg-select">B</button>
+<div id="avatar-msg">¡Bienvenida doncella!</div>
+
+<!-- BOTONES DE CONFIGURACION -->
+<div id="config-buttons" role="region" aria-label="Configuración de la página">
+  <button class="rect-btn" id="btn-font" aria-expanded="false" aria-controls="font-panel">Fuentes</button>
+  <button class="rect-btn" id="btn-size" aria-expanded="false" aria-controls="size-panel">Tamaño</button>
+  <button class="rect-btn" id="btn-bg" aria-expanded="false" aria-controls="bg-panel">Tema</button>
 </div>
 
-<!-- Paneles desplegables -->
-<div class="config-panel" id="font-panel" role="listbox" aria-label="Selector de fuentes">
-  <h4>Selecciona fuente</h4>
-  <select id="font-select" aria-live="polite" aria-describedby="fontHelp">
-    <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" selected>Sego UI / Tahoma</option>
+<!-- PANELES CONFIGURACION -->
+<div class="config-panel" id="font-panel" role="region" aria-label="Selector de fuentes">
+  <h4>Selecciona una fuente</h4>
+  <select id="font-select" aria-describedby="font-desc">
+    <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" selected>Segoe UI</option>
     <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
     <option value="'Georgia', serif">Georgia</option>
     <option value="'Courier New', monospace">Courier New</option>
-    <option value="'Lucida Handwriting', cursive">Lucida Handwriting</option>
-    <option value="'Arial Black', Gadget, sans-serif">Arial Black</option>
+    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
     <option value="'Brush Script MT', cursive">Brush Script MT</option>
-    <option value="'Palatino Linotype', serif">Palatino Linotype</option>
   </select>
-  <small id="fontHelp">La fuente se aplicará a toda la página.</small>
+  <p id="font-desc" style="font-size: 0.8rem; color: #999;">Las fuentes cambian el estilo de texto general.</p>
 </div>
 
-<div class="config-panel" id="size-panel" role="region" aria-label="Control de tamaño de fuente">
-  <h4>Ajusta tamaño de texto</h4>
-  <input type="range" id="size-slider" min="12" max="36" value="18" aria-valuemin="12" aria-valuemax="36" aria-valuenow="18" aria-label="Tamaño de fuente" />
+<div class="config-panel" id="size-panel" role="region" aria-label="Selector de tamaño de fuente">
+  <h4>Ajusta el tamaño de letra</h4>
+  <input type="range" id="size-slider" min="12" max="36" value="18" step="1" aria-valuemin="12" aria-valuemax="36" aria-valuenow="18" />
+  <p style="font-size: 0.8rem; color: #999; margin-top: 6px;">Tamaño en px: <span id="size-value">18</span></p>
 </div>
 
-<div class="config-panel" id="bg-panel" role="listbox" aria-label="Selector de fondo">
-  <h4>Selecciona fondo</h4>
-  <select id="bg-select" aria-live="polite">
+<div class="config-panel" id="bg-panel" role="region" aria-label="Selector de fondo">
+  <h4>Elige un fondo</h4>
+  <select id="bg-select" aria-describedby="bg-desc">
     <option value="gradient1" selected>Amarillo Pastel</option>
     <option value="gradient2">Rosa Suave</option>
     <option value="pattern1">Corazones Animados</option>
     <option value="gradient3">Lavanda</option>
     <option value="gradient4">Rosa y Morado</option>
   </select>
+  <p id="bg-desc" style="font-size: 0.8rem; color: #999;">Fondos con degradados y patrones animados.</p>
 </div>
 
 <script>
-  // --- MODO OSCURO ---
-  const avatar = document.getElementById('avatar-container');
-  const body = document.body;
-  const avatarMsg = document.getElementById('avatar-msg');
-  const darkModeBtn = null; // no separate button, avatar click toggles
-
-  avatar.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    // Cambiar colores de avatar según modo
-    if(body.classList.contains('dark-mode')){
-      avatarMsg.textContent = 'Modo oscuro activado 💜';
-    } else {
-      avatarMsg.textContent = 'Bienvenida doncella 💜';
-    }
-    avatarMsg.style.opacity = '1';
-    setTimeout(() => avatarMsg.style.opacity = '0', 3000);
-  });
-
-  // === Config botones y paneles ===
+  // Variables de botones y paneles
   const btnFont = document.getElementById('btn-font');
   const btnSize = document.getElementById('btn-size');
   const btnBg = document.getElementById('btn-bg');
+
   const fontPanel = document.getElementById('font-panel');
   const sizePanel = document.getElementById('size-panel');
   const bgPanel = document.getElementById('bg-panel');
 
-  function closeAllPanels(except=null) {
-    if(except !== fontPanel) fontPanel.style.display = 'none';
-    if(except !== sizePanel) sizePanel.style.display = 'none';
-    if(except !== bgPanel) bgPanel.style.display = 'none';
-
-    btnFont.setAttribute('aria-expanded', except === fontPanel);
-    btnSize.setAttribute('aria-expanded', except === sizePanel);
-    btnBg.setAttribute('aria-expanded', except === bgPanel);
+  // Función para cerrar todos los paneles
+  function closeAllPanels(){
+    fontPanel.style.display = 'none';
+    sizePanel.style.display = 'none';
+    bgPanel.style.display = 'none';
+    btnFont.setAttribute('aria-expanded', 'false');
+    btnSize.setAttribute('aria-expanded', 'false');
+    btnBg.setAttribute('aria-expanded', 'false');
   }
 
+  // Toggle paneles
   btnFont.onclick = () => {
     if(fontPanel.style.display === 'block') {
       closeAllPanels();
@@ -424,7 +390,7 @@
     }
   };
 
-  // --- Cambiar fuente ---
+  // Cambiar fuente
   const fontSelect = document.getElementById('font-select');
   fontSelect.addEventListener('change', () => {
     const val = fontSelect.value;
@@ -432,60 +398,71 @@
     document.body.style.fontFamily = val;
   });
 
-  // --- Cambiar tamaño ---
+  // Cambiar tamaño fuente
   const sizeSlider = document.getElementById('size-slider');
+  const sizeValue = document.getElementById('size-value');
   sizeSlider.addEventListener('input', () => {
     const val = sizeSlider.value;
+    sizeValue.textContent = val;
     document.documentElement.style.setProperty('--font-size-base', val + 'px');
     document.body.style.fontSize = val + 'px';
   });
 
-  // --- Cambiar fondo ---
+  // Cambiar fondo
   const bgSelect = document.getElementById('bg-select');
   const bgContainer = document.getElementById('background-container');
 
   const backgrounds = {
-    gradient1: 'linear-gradient(135deg, #fceabb, #f8b500)', // Amarillo Pastel
-    gradient2: 'linear-gradient(135deg, #ffd0e8, #ff85b3)', // Rosa Suave
-    pattern1: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><circle cx=\'20\' cy=\'20\' r=\'8\' fill=\'%23ff8ac7\'/><circle cx=\'20\' cy=\'20\' r=\'4\' fill=\'%23ff5ca1\'/></svg>") #fff0f6 repeat', // Corazones animados con patrón SVG
-    gradient3: 'linear-gradient(135deg, #e0bbff, #b392ff)', // Lavanda
-    gradient4: 'linear-gradient(135deg, #fce4ec, #ba68c8)', // Rosa y Morado
+    gradient1: 'linear-gradient(135deg, #fceabb, #f8b500)',
+    gradient2: 'linear-gradient(135deg, #ffd0e8, #ff85b3)',
+    pattern1: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><circle cx=\'20\' cy=\'20\' r=\'8\' fill=\'%23ff8ac7\'/><circle cx=\'20\' cy=\'20\' r=\'4\' fill=\'%23ff5ca1\'/></svg>")',
+    gradient3: 'linear-gradient(135deg, #d8bfd8, #dda0dd)',
+    gradient4: 'linear-gradient(135deg, #ffb6ca, #4b006d)'
   };
 
-  bgSelect.addEventListener('change', () => {
-    const val = bgSelect.value;
-    if(val === 'pattern1'){
-      bgContainer.style.background = backgrounds[val];
+  function applyBackground(key){
+    if(key === 'pattern1'){
+      bgContainer.style.background = backgrounds[key];
       bgContainer.style.backgroundSize = '40px 40px';
       bgContainer.style.animation = 'none';
     } else {
-      bgContainer.style.background = backgrounds[val];
+      bgContainer.style.background = backgrounds[key];
       bgContainer.style.backgroundSize = '400% 400%';
       bgContainer.style.animation = 'gradientMove 15s ease infinite';
     }
+  }
+
+  bgSelect.addEventListener('change', () => {
+    applyBackground(bgSelect.value);
   });
 
-  // === Inicializar con valores por defecto ===
+  // Inicialización al cargar
+  applyBackground(bgSelect.value);
   document.body.style.fontFamily = fontSelect.value;
   document.body.style.fontSize = sizeSlider.value + 'px';
-  bgContainer.style.background = backgrounds[bgSelect.value];
-  bgContainer.style.backgroundSize = '400% 400%';
-  bgContainer.style.animation = 'gradientMove 15s ease infinite';
 
-  // Cerrar paneles si clic fuera
-  window.addEventListener('click', (e) => {
-    if(!e.target.closest('#config-buttons') && !e.target.closest('.config-panel')){
-      closeAllPanels();
+  // Modo oscuro toggle avatar
+  const avatarContainer = document.getElementById('avatar-container');
+  const avatarMsg = document.getElementById('avatar-msg');
+
+  avatarContainer.onclick = () => {
+    document.body.classList.toggle('dark-mode');
+    if(document.body.classList.contains('dark-mode')){
+      avatarMsg.textContent = "Modo oscuro activado 🌙";
+    } else {
+      avatarMsg.textContent = "Modo oscuro desactivado ☀️";
     }
-  });
+    avatarMsg.style.opacity = '1';
+    setTimeout(() => avatarMsg.style.opacity = '0', 2500);
+  };
 
 </script>
 
-<!-- Corazones flotando -->
-<div id="heart1" class="heart"></div>
-<div id="heart2" class="heart"></div>
-<div id="heart3" class="heart"></div>
-<div id="heart4" class="heart"></div>
+<!-- CORAZONES FLOTANTES -->
+<div class="heart" id="heart1" style="top: 20vh;"></div>
+<div class="heart" id="heart2" style="top: 50vh;"></div>
+<div class="heart" id="heart3" style="top: 70vh;"></div>
+<div class="heart" id="heart4" style="top: 40vh;"></div>
 
 </body>
 </html>
