@@ -22,10 +22,9 @@
 
     #laberinto {
       display: grid;
-      grid-template-columns: repeat(10, 30px);
-      grid-template-rows: repeat(10, 30px);
       gap: 2px;
       margin: 20px;
+      position: relative;
     }
 
     .celda {
@@ -33,6 +32,7 @@
       height: 30px;
       background-color: #fff;
       border: 1px solid #ddd;
+      box-sizing: border-box;
     }
 
     .pared {
@@ -43,13 +43,14 @@
       background-color: #66bb6a;
     }
 
-    #avatar {
+    .avatar {
       width: 30px;
       height: 30px;
       background-image: url('data:image/svg+xml;utf8,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><path fill="%23e91e63" d="M32 12c-8-12-24 0-12 14l12 12 12-12C56 12 40 0 32 12z"/><circle cx="24" cy="24" r="2" fill="white"/><circle cx="40" cy="24" r="2" fill="white"/></svg>');
       background-size: cover;
       position: absolute;
-      transition: 0.2s;
+      transition: top 0.2s, left 0.2s;
+      z-index: 2;
     }
 
     .controles {
@@ -70,21 +71,33 @@
       display: none;
       background-color: #8e24aa;
     }
+
+    #felicidades {
+      display: none;
+      font-size: 24px;
+      color: #e91e63;
+      text-align: center;
+      margin-top: 30px;
+      animation: aparecer 1s ease-in-out forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
   <h1>Laberinto del Amor 💘</h1>
   <div id="laberinto"></div>
-  <div id="avatar"></div>
-
   <div class="controles">
     <button onclick="mover('arriba')">⬆️</button><br/>
     <button onclick="mover('izquierda')">⬅️</button>
     <button onclick="mover('abajo')">⬇️</button>
     <button onclick="mover('derecha')">➡️</button>
   </div>
-
   <button id="siguienteBtn" onclick="siguienteNivel()">Siguiente Nivel</button>
+  <div id="felicidades">🎉 ¡Felicidades! Completaste el Laberinto del Amor 💖</div>
 
   <script>
     const laberintos = [
@@ -135,30 +148,22 @@
         "1000000001",
         "1111111101",
         "1111111111"
-      ],
-      [
-        "1111111111",
-        "1000000001",
-        "1011111101",
-        "1010000001",
-        "1010111111",
-        "1010000001",
-        "1010111111",
-        "1000000001",
-        "1011111101",
-        "1111111121"
       ]
     ];
 
     let nivelActual = parseInt(localStorage.getItem("nivel")) || 0;
     const laberinto = document.getElementById("laberinto");
-    const avatar = document.getElementById("avatar");
+    const avatar = document.createElement("div");
+    avatar.classList.add("avatar");
+    laberinto.appendChild(avatar);
     const siguienteBtn = document.getElementById("siguienteBtn");
+    const felicidades = document.getElementById("felicidades");
 
     let posX = 1, posY = 1;
 
     function crearLaberinto() {
       laberinto.innerHTML = "";
+      laberinto.appendChild(avatar); // reinsertar avatar
       const mapa = laberintos[nivelActual];
       laberinto.style.gridTemplateColumns = `repeat(${mapa[0].length}, 30px)`;
       laberinto.style.gridTemplateRows = `repeat(${mapa.length}, 30px)`;
@@ -168,9 +173,7 @@
           const celda = document.createElement("div");
           celda.className = "celda";
           if (mapa[y][x] === "1") celda.classList.add("pared");
-          if (mapa[y][x] === "2") {
-            celda.classList.add("salida");
-          }
+          if (mapa[y][x] === "2") celda.classList.add("salida");
           laberinto.appendChild(celda);
         }
       }
@@ -211,8 +214,11 @@
         siguienteBtn.style.display = "none";
         crearLaberinto();
       } else {
-        alert("¡Has completado todos los niveles del Laberinto del Amor! 💘");
         localStorage.removeItem("nivel");
+        laberinto.style.display = "none";
+        document.querySelector(".controles").style.display = "none";
+        siguienteBtn.style.display = "none";
+        felicidades.style.display = "block";
       }
     }
 
