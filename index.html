@@ -1,468 +1,251 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rincón Romántico - Inicio</title>
-<style>
-  :root {
-    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-size-base: 18px;
-  }
-  /* RESET & BASE */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0; padding: 0;
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-base);
-    background: linear-gradient(135deg, #fceabb, #f8b500);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-    color: #633;
-    overflow-x: hidden;
-    position: relative;
-  }
-  @keyframes gradientMove {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&family=Indie+Flower&family=Pacifico&display=swap" rel="stylesheet">
 
-  /* CONTENEDOR DE FONDO PARA PATRONES */
-  #background-container {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-  }
+  <style>
+    :root {
+      --fondo-claro: #ffe6f0;
+      --fondo-oscuro: #2b2b2b;
+      --texto-claro: #b30059;
+      --texto-oscuro: #ffb6c1;
+      --fuente-actual: 'Quicksand', sans-serif;
+    }
 
-  /* CONTENIDO PRINCIPAL */
-  #main-content {
-    position: relative;
-    z-index: 10;
-    max-width: 900px;
-    margin: 120px auto 150px auto;
-    padding: 0 20px;
-    text-align: center;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--fuente-actual);
+      background-color: var(--fondo-claro);
+      transition: background 0.5s, color 0.5s;
+      font-size: 16px;
+    }
 
-  /* Intro animada */
-  #intro-text {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #a4006d;
-    opacity: 0;
-    animation: fadeInSlideDown 2s forwards;
-    margin-bottom: 15px;
-  }
-  #intro-subtext {
-    font-size: 1.25rem;
-    color: #ff5ca1;
-    opacity: 0;
-    animation: fadeInSlideUp 2s forwards;
-    animation-delay: 2s;
-  }
-  @keyframes fadeInSlideDown {
-    from {opacity: 0; transform: translateY(-40px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-  @keyframes fadeInSlideUp {
-    from {opacity: 0; transform: translateY(40px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
+    body.dark-mode {
+      background-color: var(--fondo-oscuro);
+      color: var(--texto-oscuro);
+    }
 
-  /* BOTONES GRANDES DE NAVEGACION */
-  #controls {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-    z-index: 10;
-  }
-  .btn {
-    background: #ffb6ca;
-    border: 2px solid #a4006d;
-    border-radius: 20px;
-    padding: 14px 28px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #a4006d;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-    box-shadow: 0 5px 10px rgba(255, 92, 161, 0.4);
-    user-select: none;
-  }
-  .btn:hover {
-    background: #a4006d;
-    color: #ffb6ca;
-  }
-  .btn.caja-sorpresa {
-    background: #fff3a6;
-    border-color: #d6bf49;
-    color: #6b4d00;
-    box-shadow: 0 5px 10px rgba(214, 191, 73, 0.5);
-  }
-  .btn.caja-sorpresa:hover {
-    background: #d6bf49;
-    color: #fff3a6;
-  }
+    .borde-texto span {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 18px;
+      font-family: 'Great Vibes', cursive;
+      color: var(--texto-claro);
+      animation: borderScroll 20s linear infinite;
+    }
 
-  /* AVATAR KAWAII */
-  #avatar-container {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 120px;
-    height: 120px;
-    cursor: pointer;
-    z-index: 15;
-    animation: walkCycle 3s linear infinite;
-  }
-  @keyframes walkCycle {
-    0%, 100% { transform: translateX(0) rotate(0deg); }
-    25% { transform: translateX(15px) rotate(3deg); }
-    50% { transform: translateX(30px) rotate(0deg); }
-    75% { transform: translateX(15px) rotate(-3deg); }
-  }
-  #avatar {
-    width: 100%;
-    height: 100%;
-  }
-  #avatar-msg {
-    position: fixed;
-    bottom: 150px;
-    left: 20px;
-    background: rgba(255 92 161 / 0.85);
-    color: #fff;
-    font-weight: 700;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    user-select: none;
-    z-index: 20;
-  }
+    .borde-texto {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      pointer-events: none;
+      z-index: 10;
+    }
 
-  /* MODO OSCURO */
-  body.dark-mode {
-    background: linear-gradient(135deg, #2c003e, #4b006d);
-    color: #e6d5f3;
-  }
-  body.dark-mode #controls .btn {
-    background: #4b006d;
-    border-color: #ff85b3;
-    color: #ffb6ca;
-    box-shadow: 0 5px 10px rgba(255, 133, 179, 0.5);
-  }
-  body.dark-mode #controls .btn:hover {
-    background: #ff85b3;
-    color: #4b006d;
-  }
-  body.dark-mode #avatar-msg {
-    background: rgba(171, 54, 116, 0.85);
-  }
+    .corazones {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-  /* NUEVOS BOTONES DE CONFIGURACION - RECTANGULARES ABAJO DERECHA */
-  #config-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 12px;
-    z-index: 25;
-  }
-  .rect-btn {
-    background: #ffb6ca;
-    border: 2px solid #a4006d;
-    border-radius: 12px;
-    padding: 8px 16px;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #a4006d;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(255, 92, 161, 0.4);
-    user-select: none;
-    transition: background 0.3s, color 0.3s;
-  }
-  .rect-btn:hover {
-    background: #a4006d;
-    color: #ffb6ca;
-  }
+    .corazon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: flotar 8s infinite;
+      border-radius: 50% 50% 0 0;
+    }
 
-  /* PANELES DE CONFIGURACION */
-  .config-panel {
-    position: fixed;
-    bottom: 70px;
-    right: 20px;
-    background: rgba(255 255 255 / 0.95);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-    padding: 15px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 280px;
-    color: #633;
-    display: none;
-    z-index: 30;
-  }
-  .config-panel h4 {
-    margin-top: 0;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  .config-panel label {
-    display: block;
-    margin: 8px 0 4px 0;
-    font-weight: 600;
-  }
-  .config-panel select,
-  .config-panel input[type=range] {
-    width: 100%;
-    padding: 6px 8px;
-    border-radius: 8px;
-    border: 1.5px solid #cca;
-    font-size: 1rem;
-    font-family: inherit;
-    cursor: pointer;
-  }
+    .corazon::before, .corazon::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
 
-  select option {
-    font-family: inherit;
-  }
+    .corazon::before { top: -10px; left: 0; }
+    .corazon::after { top: 0; left: -10px; }
 
-  /* CORAZONES FLOTANTES */
-  .heart {
-    position: fixed;
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle at center, #ff5ca1, #ff8ac7);
-    clip-path: polygon(50% 0%, 90% 30%, 100% 70%, 50% 100%, 0% 70%, 10% 30%);
-    opacity: 0.8;
-    animation: floatHeart 6s ease-in-out infinite;
-    z-index: 5;
-  }
-  #heart1 { left: 10%; animation-delay: 0s; }
-  #heart2 { left: 30%; animation-delay: 2s; }
-  #heart3 { left: 60%; animation-delay: 4s; }
-  #heart4 { left: 80%; animation-delay: 1s; }
+    @keyframes flotar {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
 
-  @keyframes floatHeart {
-    0%, 100% { transform: translateY(0) scale(1);}
-    50% { transform: translateY(-20px) scale(1.1);}
-  }
-</style>
+    @keyframes borderScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .contenedor {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      top: 30%;
+      animation: aparecer 1s ease-out forwards;
+    }
+
+    @keyframes aparecer {
+      to { opacity: 1; }
+    }
+
+    .titulo {
+      font-size: 36px;
+      font-family: 'Great Vibes', cursive;
+      color: var(--texto-claro);
+      margin-bottom: 40px;
+    }
+
+    .botones, .personalizacion {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px;
+    }
+
+    .boton {
+      padding: 15px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .boton.azul { background-color: #2196F3; }
+    .boton.rojo { background-color: #e91e63; }
+    .boton.rosa { background-color: #f48fb1; }
+    .boton.amarillo { background-color: #ffd54f; color: #000; }
+    .boton.verde { background-color: #66bb6a; }
+    .boton.violeta { background-color: #ba68c8; }
+
+    .boton:hover { transform: scale(1.05); }
+
+    .avatar {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 20;
+      animation: caminar 3s linear infinite;
+    }
+
+    .avatar svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    @keyframes caminar {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+      100% { transform: translateX(0); }
+    }
+
+    select, input[type="range"] {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .personalizacion .boton {
+      border-radius: 5px;
+      background-color: #e1bee7;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
+  <div class="corazones" id="corazones"></div>
 
-<div id="background-container"></div>
-
-<div id="main-content">
-  <div id="intro-text">Bienvenida a tu Rincón Romántico</div>
-  <div id="intro-subtext">Un lugar lleno de amor, diversión y magia ✨💕</div>
-
-  <div id="controls">
-    <button class="btn" onclick="location.href='laberinto.html'">Laberintos</button>
-    <button class="btn caja-sorpresa" onclick="location.href='caja_sorpresa.html'">Caja Sorpresa</button>
-    <button class="btn" onclick="location.href='regalo1.html'">Regalo 1</button>
-    <button class="btn" onclick="location.href='regalo2.html'">Regalo 2</button>
-    <button class="btn" onclick="location.href='regalo3.html'">Regalo 3</button>
+  <div class="borde-texto">
+    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña • </span>
+    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña • </span>
   </div>
-</div>
 
-<!-- AVATAR KAWAII -->
-<div id="avatar-container" title="Haz click para activar el modo oscuro">
-  <svg id="avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Corazón kawaii">
-    <!-- Corazón simple kawaii con pies y manos animadas -->
-    <path fill="#ff5ca1" d="M32 58s-26-15.64-26-36.5S15.64 2 32 20c16.36-18 26 1.5 26 1.5S58 42.36 32 58z"/>
-    <circle cx="22" cy="28" r="5" fill="#fff"/>
-    <circle cx="42" cy="28" r="5" fill="#fff"/>
-    <!-- Manos -->
-    <circle cx="10" cy="48" r="4" fill="#ff5ca1" />
-    <circle cx="54" cy="48" r="4" fill="#ff5ca1" />
-    <!-- Pies -->
-    <ellipse cx="22" cy="60" rx="6" ry="4" fill="#ff8ac7" />
-    <ellipse cx="42" cy="60" rx="6" ry="4" fill="#ff8ac7" />
-  </svg>
-</div>
+  <div class="contenedor">
+    <div class="titulo">Bienvenida, mi amor 💕</div>
+    <div class="botones">
+      <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
+      <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
+      <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
+      <a href="laberinto.html"><button class="boton violeta">LABERINTO</button></a>
+      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
+      <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
+      <a href="caja_sorpresa.html"><button class="boton amarillo">CAJA SORPRESA</button></a>
+    </div>
 
-<div id="avatar-msg">¡Bienvenida doncella!</div>
+    <!-- Configuración -->
+    <div class="personalizacion">
+      <div>
+        <label for="fuenteSelect">Fuentes:</label>
+        <select id="fuenteSelect">
+          <option value="'Quicksand', sans-serif">Quicksand</option>
+          <option value="'Indie Flower', cursive">Indie Flower</option>
+          <option value="'Pacifico', cursive">Pacifico</option>
+          <option value="'Great Vibes', cursive">Great Vibes</option>
+        </select>
+      </div>
+      <div>
+        <label for="fontSizeRange">Tamaño:</label>
+        <input type="range" id="fontSizeRange" min="12" max="24" value="16" />
+      </div>
+      <div>
+        <button class="boton" onclick="toggleTema()">Tema</button>
+      </div>
+    </div>
+  </div>
 
-<!-- BOTONES DE CONFIGURACION -->
-<div id="config-buttons" role="region" aria-label="Configuración de la página">
-  <button class="rect-btn" id="btn-font" aria-expanded="false" aria-controls="font-panel">Fuentes</button>
-  <button class="rect-btn" id="btn-size" aria-expanded="false" aria-controls="size-panel">Tamaño</button>
-  <button class="rect-btn" id="btn-bg" aria-expanded="false" aria-controls="bg-panel">Tema</button>
-</div>
+  <div class="avatar">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#e91e63" d="M32 12c-8-12-24 0-12 14l12 12 12-12C56 12 40 0 32 12z"/>
+      <circle cx="24" cy="24" r="2" fill="#fff"/>
+      <circle cx="40" cy="24" r="2" fill="#fff"/>
+      <path d="M28 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
+      <path d="M36 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
+    </svg>
+  </div>
 
-<!-- PANELES CONFIGURACION -->
-<div class="config-panel" id="font-panel" role="region" aria-label="Selector de fuentes">
-  <h4>Selecciona una fuente</h4>
-  <select id="font-select" aria-describedby="font-desc">
-    <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" selected>Segoe UI</option>
-    <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
-    <option value="'Georgia', serif">Georgia</option>
-    <option value="'Courier New', monospace">Courier New</option>
-    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
-    <option value="'Brush Script MT', cursive">Brush Script MT</option>
-  </select>
-  <p id="font-desc" style="font-size: 0.8rem; color: #999;">Las fuentes cambian el estilo de texto general.</p>
-</div>
+  <script>
+    const corazonesContainer = document.getElementById("corazones");
+    setInterval(() => {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      corazonesContainer.appendChild(corazon);
+      setTimeout(() => corazon.remove(), 10000);
+    }, 500);
 
-<div class="config-panel" id="size-panel" role="region" aria-label="Selector de tamaño de fuente">
-  <h4>Ajusta el tamaño de letra</h4>
-  <input type="range" id="size-slider" min="12" max="36" value="18" step="1" aria-valuemin="12" aria-valuemax="36" aria-valuenow="18" />
-  <p style="font-size: 0.8rem; color: #999; margin-top: 6px;">Tamaño en px: <span id="size-value">18</span></p>
-</div>
-
-<div class="config-panel" id="bg-panel" role="region" aria-label="Selector de fondo">
-  <h4>Elige un fondo</h4>
-  <select id="bg-select" aria-describedby="bg-desc">
-    <option value="gradient1" selected>Amarillo Pastel</option>
-    <option value="gradient2">Rosa Suave</option>
-    <option value="pattern1">Corazones Animados</option>
-    <option value="gradient3">Lavanda</option>
-    <option value="gradient4">Rosa y Morado</option>
-  </select>
-  <p id="bg-desc" style="font-size: 0.8rem; color: #999;">Fondos con degradados y patrones animados.</p>
-</div>
-
-<script>
-  // Variables de botones y paneles
-  const btnFont = document.getElementById('btn-font');
-  const btnSize = document.getElementById('btn-size');
-  const btnBg = document.getElementById('btn-bg');
-
-  const fontPanel = document.getElementById('font-panel');
-  const sizePanel = document.getElementById('size-panel');
-  const bgPanel = document.getElementById('bg-panel');
-
-  // Función para cerrar todos los paneles
-  function closeAllPanels(){
-    fontPanel.style.display = 'none';
-    sizePanel.style.display = 'none';
-    bgPanel.style.display = 'none';
-    btnFont.setAttribute('aria-expanded', 'false');
-    btnSize.setAttribute('aria-expanded', 'false');
-    btnBg.setAttribute('aria-expanded', 'false');
-  }
-
-  // Toggle paneles
-  btnFont.onclick = () => {
-    if(fontPanel.style.display === 'block') {
-      closeAllPanels();
-    } else {
-      fontPanel.style.display = 'block';
-      sizePanel.style.display = 'none';
-      bgPanel.style.display = 'none';
-      btnFont.setAttribute('aria-expanded', 'true');
-      btnSize.setAttribute('aria-expanded', 'false');
-      btnBg.setAttribute('aria-expanded', 'false');
+    function toggleTema() {
+      document.body.classList.toggle("dark-mode");
     }
-  };
 
-  btnSize.onclick = () => {
-    if(sizePanel.style.display === 'block') {
-      closeAllPanels();
-    } else {
-      sizePanel.style.display = 'block';
-      fontPanel.style.display = 'none';
-      bgPanel.style.display = 'none';
-      btnSize.setAttribute('aria-expanded', 'true');
-      btnFont.setAttribute('aria-expanded', 'false');
-      btnBg.setAttribute('aria-expanded', 'false');
-    }
-  };
+    // Fuente
+    document.getElementById("fuenteSelect").addEventListener("change", function() {
+      document.body.style.fontFamily = this.value;
+    });
 
-  btnBg.onclick = () => {
-    if(bgPanel.style.display === 'block') {
-      closeAllPanels();
-    } else {
-      bgPanel.style.display = 'block';
-      fontPanel.style.display = 'none';
-      sizePanel.style.display = 'none';
-      btnBg.setAttribute('aria-expanded', 'true');
-      btnFont.setAttribute('aria-expanded', 'false');
-      btnSize.setAttribute('aria-expanded', 'false');
-    }
-  };
-
-  // Cambiar fuente
-  const fontSelect = document.getElementById('font-select');
-  fontSelect.addEventListener('change', () => {
-    const val = fontSelect.value;
-    document.documentElement.style.setProperty('--font-family-base', val);
-    document.body.style.fontFamily = val;
-  });
-
-  // Cambiar tamaño fuente
-  const sizeSlider = document.getElementById('size-slider');
-  const sizeValue = document.getElementById('size-value');
-  sizeSlider.addEventListener('input', () => {
-    const val = sizeSlider.value;
-    sizeValue.textContent = val;
-    document.documentElement.style.setProperty('--font-size-base', val + 'px');
-    document.body.style.fontSize = val + 'px';
-  });
-
-  // Cambiar fondo
-  const bgSelect = document.getElementById('bg-select');
-  const bgContainer = document.getElementById('background-container');
-
-  const backgrounds = {
-    gradient1: 'linear-gradient(135deg, #fceabb, #f8b500)',
-    gradient2: 'linear-gradient(135deg, #ffd0e8, #ff85b3)',
-    pattern1: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><circle cx=\'20\' cy=\'20\' r=\'8\' fill=\'%23ff8ac7\'/><circle cx=\'20\' cy=\'20\' r=\'4\' fill=\'%23ff5ca1\'/></svg>")',
-    gradient3: 'linear-gradient(135deg, #d8bfd8, #dda0dd)',
-    gradient4: 'linear-gradient(135deg, #ffb6ca, #4b006d)'
-  };
-
-  function applyBackground(key){
-    if(key === 'pattern1'){
-      bgContainer.style.background = backgrounds[key];
-      bgContainer.style.backgroundSize = '40px 40px';
-      bgContainer.style.animation = 'none';
-    } else {
-      bgContainer.style.background = backgrounds[key];
-      bgContainer.style.backgroundSize = '400% 400%';
-      bgContainer.style.animation = 'gradientMove 15s ease infinite';
-    }
-  }
-
-  bgSelect.addEventListener('change', () => {
-    applyBackground(bgSelect.value);
-  });
-
-  // Inicialización al cargar
-  applyBackground(bgSelect.value);
-  document.body.style.fontFamily = fontSelect.value;
-  document.body.style.fontSize = sizeSlider.value + 'px';
-
-  // Modo oscuro toggle avatar
-  const avatarContainer = document.getElementById('avatar-container');
-  const avatarMsg = document.getElementById('avatar-msg');
-
-  avatarContainer.onclick = () => {
-    document.body.classList.toggle('dark-mode');
-    if(document.body.classList.contains('dark-mode')){
-      avatarMsg.textContent = "Modo oscuro activado 🌙";
-    } else {
-      avatarMsg.textContent = "Modo oscuro desactivado ☀️";
-    }
-    avatarMsg.style.opacity = '1';
-    setTimeout(() => avatarMsg.style.opacity = '0', 2500);
-  };
-
-</script>
-
-<!-- CORAZONES FLOTANTES -->
-<div class="heart" id="heart1" style="top: 20vh;"></div>
-<div class="heart" id="heart2" style="top: 50vh;"></div>
-<div class="heart" id="heart3" style="top: 70vh;"></div>
-<div class="heart" id="heart4" style="top: 40vh;"></div>
-
+    // Tamaño de letra
+    document.getElementById("fontSizeRange").addEventListener("input", function() {
+      document.body.style.fontSize = this.value + "px";
+    });
+  </script>
 </body>
 </html>
