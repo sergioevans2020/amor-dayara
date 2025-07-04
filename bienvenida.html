@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienvenida Princesa</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Great Vibes', cursive;
+      color: white;
+      overflow: hidden;
+      user-select: none;
+    }
+    .mensaje {
+      font-size: 4rem;
+      text-shadow: 0 0 10px #fff;
+      animation: fadeInOut 5s forwards;
+    }
+    @keyframes fadeInOut {
+      0% {opacity: 0; transform: scale(0.8);}
+      50% {opacity: 1; transform: scale(1);}
+      100% {opacity: 0; transform: scale(0.8);}
+    }
+  </style>
+</head>
+<body>
+  <div class="mensaje">Bienvenida, Princesa 💖</div>
+  <audio autoplay>
+    <source src="magical-sound.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // Redirige a index.html después de 5 segundos (duración animación)
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 5000);
+  </script>
+</body>
+</html>
