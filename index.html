@@ -7,27 +7,81 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&family=Roboto&family=Poppins&family=Lobster&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --fondo-claro: #ffe6f0;
-      --fondo-oscuro: #2b2b2b;
-      --texto-claro: #b30059;
-      --texto-oscuro: #ffb6c1;
+      /* Temas por defecto (claro) */
+      --fondo: #ffe6f0;
+      --texto: #b30059;
+      --boton-bg: #e91e63;
+      --boton-color: #fff;
+      --borde-texto-color: #b30059;
+      --corazon-color: red;
     }
 
+    /* Temas alternativos */
+    body[data-tema="claro"] {
+      --fondo: #ffe6f0;
+      --texto: #b30059;
+      --boton-bg: #e91e63;
+      --boton-color: #fff;
+      --borde-texto-color: #b30059;
+      --corazon-color: red;
+    }
+
+    body[data-tema="oscuro"] {
+      --fondo: #2b2b2b;
+      --texto: #ffb6c1;
+      --boton-bg: #ad1457;
+      --boton-color: #fff;
+      --borde-texto-color: #ffb6c1;
+      --corazon-color: #ff6f91;
+    }
+
+    body[data-tema="morado"] {
+      --fondo: #4b0082;
+      --texto: #dda0dd;
+      --boton-bg: #800080;
+      --boton-color: #fff;
+      --borde-texto-color: #dda0dd;
+      --corazon-color: #ba68c8;
+    }
+
+    body[data-tema="rosa"] {
+      --fondo: #f8bbd0;
+      --texto: #880e4f;
+      --boton-bg: #f48fb1;
+      --boton-color: #3e003e;
+      --borde-texto-color: #880e4f;
+      --corazon-color: #ec407a;
+    }
+
+    body[data-tema="azul"] {
+      --fondo: #bbdefb;
+      --texto: #0d47a1;
+      --boton-bg: #2196f3;
+      --boton-color: #fff;
+      --borde-texto-color: #0d47a1;
+      --corazon-color: #42a5f5;
+    }
+
+    body[data-tema="verde"] {
+      --fondo: #c8e6c9;
+      --texto: #1b5e20;
+      --boton-bg: #66bb6a;
+      --boton-color: #fff;
+      --borde-texto-color: #1b5e20;
+      --corazon-color: #81c784;
+    }
+
+    /* Estilos generales */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
       font-size: 18px;
-      background-color: var(--fondo-claro);
-      color: var(--texto-claro);
+      background-color: var(--fondo);
+      color: var(--texto);
       transition: background-color 0.5s, color 0.5s, font-family 0.3s, font-size 0.3s;
       overflow-x: hidden;
       overflow-y: auto;
-    }
-
-    body.dark-mode {
-      background-color: var(--fondo-oscuro);
-      color: var(--texto-oscuro);
     }
 
     .borde-texto {
@@ -37,6 +91,7 @@
       box-sizing: border-box;
       pointer-events: none;
       z-index: 10;
+      color: var(--borde-texto-color);
     }
 
     .borde-texto span {
@@ -44,7 +99,6 @@
       white-space: nowrap;
       font-size: 18px;
       font-family: 'Great Vibes', cursive;
-      color: var(--texto-claro);
       animation: borderScroll 20s linear infinite;
     }
 
@@ -57,13 +111,14 @@
       pointer-events: none;
       z-index: 1;
       overflow: hidden;
+      color: var(--corazon-color);
     }
 
     .corazon {
       position: absolute;
       width: 20px;
       height: 20px;
-      background: red;
+      background: var(--corazon-color);
       transform: rotate(45deg);
       animation: flotar 8s infinite;
       border-radius: 50% 50% 0 0;
@@ -74,7 +129,7 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      background: red;
+      background: var(--corazon-color);
       border-radius: 50%;
     }
 
@@ -117,7 +172,7 @@
     .titulo {
       font-size: 36px;
       font-family: 'Great Vibes', cursive;
-      color: var(--texto-claro);
+      color: var(--texto);
       margin-bottom: 40px;
     }
 
@@ -134,20 +189,14 @@
       font-size: 18px;
       border: none;
       border-radius: 10px;
-      color: white;
+      color: var(--boton-color);
+      background-color: var(--boton-bg);
       cursor: pointer;
       font-weight: bold;
       transition: 0.3s;
       min-width: 140px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
-
-    .boton.azul { background-color: #2196F3; }
-    .boton.rojo { background-color: #e91e63; }
-    .boton.rosa { background-color: #f48fb1; }
-    .boton.amarillo { background-color: #ffd54f; color: #333; }
-    .boton.verde { background-color: #66bb6a; }
-    .boton.violeta { background-color: #ba68c8; }
 
     .boton:hover {
       transform: scale(1.05);
@@ -161,19 +210,14 @@
       padding: 10px 16px;
       font-weight: bold;
       cursor: pointer;
-      background: #555;
-      color: white;
+      background: var(--boton-bg);
+      color: var(--boton-color);
       border: none;
       border-radius: 8px;
       z-index: 30;
       box-shadow: 0 2px 5px rgba(0,0,0,0.4);
       user-select: none;
-      transition: background-color 0.3s;
-    }
-
-    #modoBtn.morado-rosa {
-      background: linear-gradient(45deg, #9c27b0, #ad1457);
-      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .avatar {
@@ -196,7 +240,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* NUEVAS FUNCIONALIDADES - CONTENEDOR DE CONFIGURACION */
+    /* Contenedor configuración */
     #configuracion {
       position: fixed;
       bottom: 20px;
@@ -205,38 +249,16 @@
       display: flex;
       gap: 20px;
       z-index: 40;
-    }
-
-    #configuracion button {
+      background: rgba(255 255 255 / 0.8);
       padding: 10px 20px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      background: #ffd54f;
-      color: #333;
-      cursor: pointer;
-      font-family: 'Quicksand', sans-serif;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: background-color 0.3s, color 0.3s;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       user-select: none;
-      min-width: 80px;
     }
 
-    #configuracion button:hover {
-      background: #ffecb3;
-      color: #000;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.3);
-    }
-
-    #configuracion select,
-    #configuracion input[type="range"] {
-      padding: 6px 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 16px;
-      cursor: pointer;
-      user-select: none;
+    body[data-tema="oscuro"] #configuracion {
+      background: rgba(43 43 43 / 0.85);
+      color: var(--texto);
     }
 
     #configuracion label {
@@ -244,23 +266,35 @@
       flex-direction: column;
       font-size: 14px;
       font-weight: bold;
-      color: var(--texto-claro);
+      color: var(--texto);
       user-select: none;
-      margin-bottom: 4px;
+      min-width: 90px;
     }
 
-    /* Ajustes para modo oscuro en configuracion */
-    body.dark-mode #configuracion label,
-    body.dark-mode #configuracion button {
-      color: var(--texto-oscuro);
+    #configuracion select,
+    #configuracion input[type="range"] {
+      margin-top: 5px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.3s;
+    }
+
+    #configuracion select:focus,
+    #configuracion input[type="range"]:focus {
+      outline: none;
+      border-color: var(--boton-bg);
+      box-shadow: 0 0 5px var(--boton-bg);
     }
 
   </style>
 </head>
-<body>
-  <button id="modoBtn">Modo Nocturno</button>
-
-  <div class="borde-texto">
+<body data-tema="claro">
+  <div class="borde-texto" aria-hidden="true">
     <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
     <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
     <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña - 21/06/2025 • </span>
@@ -269,19 +303,21 @@
 
   <div class="corazones" id="corazones"></div>
 
-  <div class="contenedor">
+  <button id="modoBtn" aria-label="Botón para cambiar tema">Cambiar Tema</button>
+
+  <div class="contenedor" role="main">
     <div class="titulo">Bienvenida, mi amor 💕</div>
     <div class="botones">
-      <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
-      <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
-      <a href="minijuego.html"><button class="boton violeta">MINIJUEGO</button></a>
-      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
-      <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
+      <a href="regalo1.html"><button class="boton">REGALO 1</button></a>
+      <a href="regalo2.html"><button class="boton">REGALO 2</button></a>
+      <a href="regalo3.html"><button class="boton">REGALO 3</button></a>
+      <a href="minijuego.html"><button class="boton">MINIJUEGO</button></a>
+      <a href="nuestra_libreta.html"><button class="boton">NUESTRA LIBRETA</button></a>
+      <a href="listas_deseos.html"><button class="boton">LISTA DE DESEOS</button></a>
     </div>
 
-    <div id="configuracion">
-      <label for="fuenteSelector">Fuentes
+    <div id="configuracion" aria-label="Configuración de apariencia">
+      <label for="fuenteSelector">Fuente
         <select id="fuenteSelector" aria-label="Seleccionar fuente">
           <option value="'Quicksand', sans-serif" selected>Quicksand</option>
           <option value="'Roboto', sans-serif">Roboto</option>
@@ -292,13 +328,17 @@
       </label>
 
       <label for="tamanoTexto">Tamaño
-        <input id="tamanoTexto" type="range" min="12" max="36" value="18" />
+        <input id="tamanoTexto" type="range" min="12" max="36" value="18" aria-valuemin="12" aria-valuemax="36" aria-valuenow="18" />
       </label>
 
       <label for="temaSelector">Tema
         <select id="temaSelector" aria-label="Seleccionar tema">
           <option value="claro" selected>Claro</option>
           <option value="oscuro">Oscuro</option>
+          <option value="morado">Morado</option>
+          <option value="rosa">Rosa</option>
+          <option value="azul">Azul</option>
+          <option value="verde">Verde</option>
         </select>
       </label>
     </div>
@@ -327,32 +367,27 @@
     }
     setInterval(crearCorazon, 500);
 
-    // Modo claro/oscuro
+    // Tema por botón (ciclo)
     const modoBtn = document.getElementById("modoBtn");
     const temaSelector = document.getElementById("temaSelector");
 
-    function aplicarTema(tema) {
-      if (tema === "oscuro") {
-        document.body.classList.add("dark-mode");
-        modoBtn.textContent = "Modo Claro";
-      } else {
-        document.body.classList.remove("dark-mode");
-        modoBtn.textContent = "Modo Nocturno";
-      }
-      temaSelector.value = tema;
-    }
+    const temas = ["claro", "oscuro", "morado", "rosa", "azul", "verde"];
+    let indiceTema = temas.indexOf(document.body.getAttribute("data-tema")) || 0;
 
     modoBtn.addEventListener("click", () => {
-      if (document.body.classList.contains("dark-mode")) {
-        aplicarTema("claro");
-      } else {
-        aplicarTema("oscuro");
-      }
+      indiceTema = (indiceTema + 1) % temas.length;
+      aplicarTema(temas[indiceTema]);
+      temaSelector.value = temas[indiceTema];
     });
 
     temaSelector.addEventListener("change", (e) => {
       aplicarTema(e.target.value);
+      indiceTema = temas.indexOf(e.target.value);
     });
+
+    function aplicarTema(tema) {
+      document.body.setAttribute("data-tema", tema);
+    }
 
     // Fuentes
     const fuenteSelector = document.getElementById("fuenteSelector");
@@ -366,7 +401,7 @@
       document.body.style.fontSize = this.value + "px";
     });
 
-    // Para que al cargar mantenga el estado inicial
+    // Mantener configuraciones al cargar la página
     window.addEventListener("DOMContentLoaded", () => {
       document.body.style.fontFamily = fuenteSelector.value;
       document.body.style.fontSize = tamanoTexto.value + "px";
