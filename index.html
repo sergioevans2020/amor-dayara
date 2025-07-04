@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienvenida, princesa 💖</title>
+  <title>Bienvenida princesa</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -12,19 +12,44 @@
       --texto-claro: #b30059;
       --texto-oscuro: #ffb6c1;
     }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
       background-color: var(--fondo-claro);
       transition: background-color 0.5s, color 0.5s;
-      font-size: 18px; /* tamaño base */
     }
+
     body.dark-mode {
       background-color: var(--fondo-oscuro);
       color: var(--texto-oscuro);
     }
+
+    /* Animación de bienvenida */
+    #bienvenida {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: white;
+      text-shadow: 0 0 10px #fff;
+      z-index: 9999;
+      user-select: none;
+      animation: fadeInOut 5s forwards;
+    }
+    @keyframes fadeInOut {
+      0% {opacity: 0; transform: scale(0.8);}
+      50% {opacity: 1; transform: scale(1);}
+      100% {opacity: 0; transform: scale(0.8);}
+    }
+
+    /* Texto borde */
     .borde-texto {
       position: absolute;
       width: 100%;
@@ -41,6 +66,8 @@
       color: var(--texto-claro);
       animation: borderScroll 20s linear infinite;
     }
+
+    /* Corazones flotantes */
     .corazones {
       position: fixed;
       width: 100%;
@@ -84,6 +111,8 @@
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
+
+    /* Contenedor principal */
     .contenedor {
       position: relative;
       z-index: 5;
@@ -91,19 +120,20 @@
       top: 30%;
       opacity: 0;
       animation: aparecer 1s ease-out forwards;
-      font-family: inherit;
-      font-size: inherit;
-      color: inherit;
+      animation-delay: 5.2s; /* Para que aparezca después de la animación bienvenida */
     }
     @keyframes aparecer {
       to { opacity: 1; }
     }
+
     .titulo {
       font-size: 36px;
       font-family: 'Great Vibes', cursive;
       color: var(--texto-claro);
       margin-bottom: 40px;
     }
+
+    /* Botones */
     .botones {
       display: flex;
       flex-wrap: wrap;
@@ -112,23 +142,24 @@
     }
     .boton {
       padding: 15px 25px;
-      font-size: 1.1rem;
+      font-size: 18px;
       border: none;
       border-radius: 10px;
       color: white;
       cursor: pointer;
       font-weight: bold;
       transition: 0.3s;
-      font-family: inherit;
     }
     .boton.azul { background-color: #2196F3; }
     .boton.rojo { background-color: #e91e63; }
     .boton.rosa { background-color: #f48fb1; }
-    .boton.amarillo { background-color: #ffd54f; color: black; }
+    .boton.amarillo { background-color: #ffd54f; color:#333; }
     .boton.verde { background-color: #66bb6a; }
     .boton.violeta { background-color: #ba68c8; }
-    .boton.naranja { background-color: #ff9800; }
+
     .boton:hover { transform: scale(1.05); }
+
+    /* Botón modo oscuro */
     #modoBtn {
       position: absolute;
       top: 10px;
@@ -140,8 +171,10 @@
       color: white;
       border: none;
       border-radius: 8px;
-      font-family: inherit;
+      z-index: 20;
     }
+
+    /* Avatar animado */
     .avatar {
       position: absolute;
       bottom: 10px;
@@ -158,36 +191,14 @@
       50% { transform: translateX(20px); }
       100% { transform: translateX(0); }
     }
-
-    /* MODAL MOTIVACION */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 50;
-      font-family: inherit;
-    }
-    .modal-content {
-      background-color: var(--fondo-claro);
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      color: var(--texto-claro);
-      font-family: inherit;
-    }
-    .modal-content h2 {
-      margin-bottom: 20px;
-    }
   </style>
 </head>
 <body>
+  <!-- Animación bienvenida -->
+  <div id="bienvenida">Bienvenida, Princesa 💖</div>
+
+  <audio id="audioMagico" src="magical-sound.mp3" preload="auto"></audio>
+
   <button id="modoBtn">Modo Nocturno</button>
 
   <div class="borde-texto">
@@ -199,86 +210,74 @@
 
   <div class="corazones" id="corazones"></div>
 
-  <div class="contenedor">
+  <div class="contenedor" id="contenidoPrincipal">
     <div class="titulo">Bienvenida, mi amor 💕</div>
     <div class="botones">
       <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
       <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
       <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
       <a href="laberinto.html"><button class="boton violeta">LABERINTO</button></a>
-      <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
       <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
-      <a href="caja_sorpresa.html"><button class="boton azul">CAJA SORPRESA</button></a>
-      <button class="boton naranja" id="btnMotivacion">MOTIVACIÓN</button>
+      <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
+      <a href="caja_sorpresa.html"><button class="boton amarillo" style="color:#333;">CAJA SORPRESA</button></a>
+      <a href="#" id="btnMotivacion"><button class="boton azul">MOTIVACIÓN</button></a>
     </div>
   </div>
 
-  <div class="avatar">
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#e91e63" d="M32 12c-8-12-24 0-12 14l12 12 12-12C56 12 40 0 32 12z"/>
-      <circle cx="24" cy="24" r="4" fill="#fff"/>
-      <circle cx="40" cy="24" r="4" fill="#fff"/>
+  <div class="avatar" aria-label="Avatar animado">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" >
+      <circle cx="32" cy="20" r="12" fill="#f48fb1"/>
+      <rect x="20" y="32" width="24" height="28" fill="#f8bbd0" rx="8"/>
     </svg>
   </div>
 
-  <!-- Modal Motivación -->
-  <div id="motivacionModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <h2>Elige tu Motivación</h2>
-      <button class="boton violeta" id="btnEstudios">Estudios</button>
-      <button class="boton verde" id="btnEjercicio">Ejercicio</button>
-      <button class="boton rojo" id="btnCerrarModal">Cerrar</button>
-    </div>
-  </div>
-
-  <audio id="audioMagico" src="magical-sound.mp3" loop></audio>
-
   <script>
-    // Modo oscuro / claro
+    // Reproducir sonido mágico cuando la animación se muestra
+    const audioMagico = document.getElementById('audioMagico');
+    audioMagico.volume = 0.3; // volumen suave
+    audioMagico.play().catch(e => { /* autoplay puede fallar en algunos navegadores */ });
+
+    // Ocultar la animación bienvenida después de 5s y mostrar contenido
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const bienvenida = document.getElementById('bienvenida');
+        bienvenida.style.display = 'none';
+        const contenido = document.getElementById('contenidoPrincipal');
+        contenido.style.opacity = 1;
+      }, 5000);
+    });
+
+    // Botón modo oscuro
     const modoBtn = document.getElementById('modoBtn');
     modoBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
-      modoBtn.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Nocturno';
+      if(document.body.classList.contains('dark-mode')){
+        modoBtn.textContent = 'Modo Claro';
+      } else {
+        modoBtn.textContent = 'Modo Nocturno';
+      }
     });
 
-    // Corazones flotantes (generar 30 corazones aleatorios)
-    const corazonesContainer = document.getElementById('corazones');
-    for(let i = 0; i < 30; i++) {
-      const c = document.createElement('div');
-      c.classList.add('corazon');
-      c.style.left = Math.random() * 100 + 'vw';
-      c.style.animationDuration = 5 + Math.random() * 5 + 's';
-      c.style.opacity = Math.random();
-      corazonesContainer.appendChild(c);
+    // Crear corazones animados
+    function crearCorazones() {
+      const container = document.getElementById('corazones');
+      for(let i=0; i<15; i++) {
+        const c = document.createElement('div');
+        c.classList.add('corazon');
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.animationDuration = 4 + Math.random() * 4 + 's';
+        c.style.animationDelay = Math.random() * 8 + 's';
+        container.appendChild(c);
+      }
     }
+    crearCorazones();
 
-    // Modal Motivación
+    // Botón Motivación - mostrar opciones estudios / ejercicio
     const btnMotivacion = document.getElementById('btnMotivacion');
-    const modalMotivacion = document.getElementById('motivacionModal');
-    const btnCerrarModal = document.getElementById('btnCerrarModal');
-    const btnEstudios = document.getElementById('btnEstudios');
-    const btnEjercicio = document.getElementById('btnEjercicio');
-
-    btnMotivacion.addEventListener('click', () => {
-      modalMotivacion.style.display = 'flex';
-      // Opcional: reproducir sonido mágico al abrir modal
-      const audio = document.getElementById('audioMagico');
-      audio.play();
-    });
-
-    btnCerrarModal.addEventListener('click', () => {
-      modalMotivacion.style.display = 'none';
-      const audio = document.getElementById('audioMagico');
-      audio.pause();
-      audio.currentTime = 0;
-    });
-
-    btnEstudios.addEventListener('click', () => {
-      window.location.href = 'motivacion_estudios.html';
-    });
-
-    btnEjercicio.addEventListener('click', () => {
-      window.location.href = 'motivacion_ejercicio.html';
+    btnMotivacion.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Próximamente: Elige entre Estudios o Ejercicio para motivación.');
+      // Aquí luego se puede abrir un modal o redirigir a otra página para elegir.
     });
   </script>
 </body>
