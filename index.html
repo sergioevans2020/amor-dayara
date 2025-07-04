@@ -3,46 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Para mi princesa Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&family=Roboto&family=Lobster&family=Poppins&display=swap" rel="stylesheet" />
+  <title>Bienvenida, princesa 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --fondo-claro: #ffe6f0;
       --fondo-oscuro: #2b2b2b;
       --texto-claro: #b30059;
       --texto-oscuro: #ffb6c1;
-      --color-morado: #7b4d8b;
-      --color-rosa-oscuro: #9e4e71;
-      --color-rosado-claro: #f8d7e7;
-      --color-amarillo-pastel: #fff8b0;
     }
-
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
+      overflow: hidden;
       background-color: var(--fondo-claro);
-      color: var(--texto-claro);
       transition: background-color 0.5s, color 0.5s;
-      overflow-x: hidden;
-      user-select: none;
+      font-size: 18px; /* tamaño base */
     }
     body.dark-mode {
       background-color: var(--fondo-oscuro);
       color: var(--texto-oscuro);
     }
-    body.theme-purple-pink {
-      background: linear-gradient(135deg, #7b4d8b, #9e4e71);
-      color: #f8d7e7;
-    }
-    body.theme-pastel-pink {
-      background: linear-gradient(135deg, #f8d7e7, #fff8b0);
-      color: #9e4e71;
-    }
-
-    /* Texto en bordes animado */
     .borde-texto {
-      position: fixed;
+      position: absolute;
       width: 100%;
       height: 100%;
       box-sizing: border-box;
@@ -54,35 +38,15 @@
       white-space: nowrap;
       font-size: 18px;
       font-family: 'Great Vibes', cursive;
+      color: var(--texto-claro);
       animation: borderScroll 20s linear infinite;
-      user-select: none;
     }
-    .borde-texto span:nth-child(1) { top: 0; left: 0; color: var(--texto-claro);}
-    .borde-texto span:nth-child(2) { bottom: 0; left: 0; color: var(--texto-claro);}
-    .borde-texto span:nth-child(3) { top: 0; left: -100%; transform: rotate(90deg); color: var(--texto-claro);}
-    .borde-texto span:nth-child(4) { bottom: 0; right: -100%; transform: rotate(270deg); color: var(--texto-claro);}
-
-    body.dark-mode .borde-texto span {
-      color: var(--texto-oscuro);
-    }
-    body.theme-purple-pink .borde-texto span {
-      color: #f8d7e7;
-    }
-    body.theme-pastel-pink .borde-texto span {
-      color: #9e4e71;
-    }
-
-    @keyframes borderScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* Corazones flotando */
     .corazones {
       position: fixed;
       width: 100%;
       height: 100%;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
       z-index: 1;
       overflow: hidden;
@@ -93,8 +57,8 @@
       height: 20px;
       background: red;
       transform: rotate(45deg);
+      animation: flotar 8s infinite;
       border-radius: 50% 50% 0 0;
-      animation: flotar linear infinite;
     }
     .corazon::before, .corazon::after {
       content: '';
@@ -104,15 +68,22 @@
       background: red;
       border-radius: 50%;
     }
-    .corazon::before { top: -10px; left: 0; }
-    .corazon::after { left: -10px; top: 0; }
-
+    .corazon::before {
+      top: -10px;
+      left: 0;
+    }
+    .corazon::after {
+      left: -10px;
+      top: 0;
+    }
     @keyframes flotar {
       0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
       100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
-
-    /* Contenedor central */
+    @keyframes borderScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
     .contenedor {
       position: relative;
       z-index: 5;
@@ -120,30 +91,24 @@
       top: 30%;
       opacity: 0;
       animation: aparecer 1s ease-out forwards;
-      padding: 0 20px;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
     }
     @keyframes aparecer {
       to { opacity: 1; }
     }
-
-    /* Título */
     .titulo {
-      font-size: 3rem;
+      font-size: 36px;
       font-family: 'Great Vibes', cursive;
+      color: var(--texto-claro);
       margin-bottom: 40px;
-      user-select: none;
     }
-    body.dark-mode .titulo { color: var(--texto-oscuro); }
-    body.theme-purple-pink .titulo { color: #f8d7e7; }
-    body.theme-pastel-pink .titulo { color: #9e4e71; }
-
-    /* Botones principales */
     .botones {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
-      margin-bottom: 50px;
     }
     .boton {
       padding: 15px 25px;
@@ -152,168 +117,84 @@
       border-radius: 10px;
       color: white;
       cursor: pointer;
-      font-weight: 700;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-      user-select: none;
+      font-weight: bold;
+      transition: 0.3s;
       font-family: inherit;
     }
     .boton.azul { background-color: #2196F3; }
     .boton.rojo { background-color: #e91e63; }
     .boton.rosa { background-color: #f48fb1; }
-    .boton.amarillo { background-color: #ffd54f; color: #000; }
+    .boton.amarillo { background-color: #ffd54f; color: black; }
     .boton.verde { background-color: #66bb6a; }
     .boton.violeta { background-color: #ba68c8; }
-
-    .boton:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-    }
-
-    /* Botones de configuración */
-    .configuracion {
-      position: fixed;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-      z-index: 20;
-      user-select: none;
-    }
-    .boton-config {
-      padding: 10px 18px;
-      font-size: 1rem;
-      border-radius: 8px;
-      background-color: #ff9fc0;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      font-family: inherit;
-      transition: background-color 0.3s ease;
-      min-width: 80px;
-      text-align: center;
-    }
-    .boton-config:hover {
-      background-color: #f3648a;
-    }
-
-    /* Selector tipografía desplegable */
-    #fontSelector {
-      padding: 10px 18px;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: none;
-      font-family: inherit;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-      background-color: #ff9fc0;
-      color: white;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      min-width: 140px;
-    }
-    #fontSelector:hover {
-      background-color: #f3648a;
-    }
-
-    /* Barra de tamaño */
-    .size-slider {
-      -webkit-appearance: none;
-      width: 140px;
-      height: 8px;
-      border-radius: 5px;
-      background: #ffc1d3;
-      outline: none;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    }
-    .size-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 22px;
-      height: 22px;
-      background: #e91e63;
-      cursor: pointer;
-      border-radius: 50%;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
-    .size-slider::-moz-range-thumb {
-      width: 22px;
-      height: 22px;
-      background: #e91e63;
-      cursor: pointer;
-      border-radius: 50%;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
-
-    /* Botones de tema */
-    #themeSelector {
-      padding: 10px 18px;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: none;
-      font-family: inherit;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-      background-color: #ff9fc0;
-      color: white;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      min-width: 140px;
-    }
-    #themeSelector:hover {
-      background-color: #f3648a;
-    }
-
-    /* Boton modo oscuro superior */
+    .boton.naranja { background-color: #ff9800; }
+    .boton:hover { transform: scale(1.05); }
     #modoBtn {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 10px 14px;
+      padding: 10px;
       font-weight: bold;
       cursor: pointer;
       background: #555;
       color: white;
       border: none;
       border-radius: 8px;
-      z-index: 25;
-      user-select: none;
+      font-family: inherit;
     }
-
-    /* Avatar animado abajo izquierda */
     .avatar {
-      position: fixed;
+      position: absolute;
       bottom: 10px;
       left: 10px;
       z-index: 20;
       animation: caminar 3s linear infinite;
-      user-select: none;
     }
     .avatar svg {
       width: 80px;
       height: 80px;
-      pointer-events: none;
     }
     @keyframes caminar {
       0% { transform: translateX(0); }
       50% { transform: translateX(20px); }
       100% { transform: translateX(0); }
     }
+
+    /* MODAL MOTIVACION */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+      font-family: inherit;
+    }
+    .modal-content {
+      background-color: var(--fondo-claro);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      color: var(--texto-claro);
+      font-family: inherit;
+    }
+    .modal-content h2 {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
-  <button id="modoBtn" title="Modo Oscuro/Claro">Modo Nocturno</button>
+  <button id="modoBtn">Modo Nocturno</button>
 
   <div class="borde-texto">
-    <span>siempre serás mi niña - 21/06/2025 • </span>
-    <span>siempre serás mi niña - 21/06/2025 • </span>
-    <span>siempre serás mi niña - 21/06/2025 • </span>
-    <span>siempre serás mi niña - 21/06/2025 • </span>
+    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña - 21/06/2025 • </span>
   </div>
 
   <div class="corazones" id="corazones"></div>
@@ -328,106 +209,76 @@
       <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
       <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
       <a href="caja_sorpresa.html"><button class="boton azul">CAJA SORPRESA</button></a>
+      <button class="boton naranja" id="btnMotivacion">MOTIVACIÓN</button>
     </div>
   </div>
 
-  <!-- Configuraciones: Fuente, Tamaño, Tema -->
-  <div class="configuracion">
-    <select id="fontSelector" title="Selecciona la fuente">
-      <option value="'Quicksand', sans-serif" selected>Quicksand</option>
-      <option value="'Great Vibes', cursive">Great Vibes</option>
-      <option value="'Roboto', sans-serif">Roboto</option>
-      <option value="'Lobster', cursive">Lobster</option>
-      <option value="'Poppins', sans-serif">Poppins</option>
-    </select>
-
-    <input type="range" min="14" max="32" value="18" class="size-slider" id="sizeRange" title="Ajusta el tamaño de letra" />
-
-    <select id="themeSelector" title="Selecciona el tema">
-      <option value="light" selected>Claro</option>
-      <option value="dark">Oscuro</option>
-      <option value="theme-purple-pink">Morado-Rosa</option>
-      <option value="theme-pastel-pink">Pastel-Rosa</option>
-    </select>
-  </div>
-
-  <div class="avatar" title="Tu avatar saludando">
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar">
+  <div class="avatar">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
       <path fill="#e91e63" d="M32 12c-8-12-24 0-12 14l12 12 12-12C56 12 40 0 32 12z"/>
-      <circle cx="24" cy="24" r="2" fill="#fff"/>
-      <circle cx="40" cy="24" r="2" fill="#fff"/>
-      <path d="M28 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
-      <path d="M36 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
+      <circle cx="24" cy="24" r="4" fill="#fff"/>
+      <circle cx="40" cy="24" r="4" fill="#fff"/>
     </svg>
   </div>
 
+  <!-- Modal Motivación -->
+  <div id="motivacionModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Elige tu Motivación</h2>
+      <button class="boton violeta" id="btnEstudios">Estudios</button>
+      <button class="boton verde" id="btnEjercicio">Ejercicio</button>
+      <button class="boton rojo" id="btnCerrarModal">Cerrar</button>
+    </div>
+  </div>
+
+  <audio id="audioMagico" src="magical-sound.mp3" loop></audio>
+
   <script>
-    // Corazones animación
-    const corazonesContainer = document.getElementById("corazones");
-    function crearCorazon() {
-      const corazon = document.createElement("div");
-      corazon.classList.add("corazon");
-      corazon.style.left = Math.random() * 100 + "vw";
-      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      corazonesContainer.appendChild(corazon);
-      setTimeout(() => corazon.remove(), 10000);
-    }
-    setInterval(crearCorazon, 500);
-
-    // Modo oscuro/claro y otros temas
-    const modoBtn = document.getElementById("modoBtn");
-    const body = document.body;
-    modoBtn.addEventListener("click", () => {
-      if(body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        modoBtn.textContent = "Modo Nocturno";
-      } else {
-        body.classList.add('dark-mode');
-        body.classList.remove('theme-purple-pink', 'theme-pastel-pink');
-        modoBtn.textContent = "Modo Claro";
-      }
+    // Modo oscuro / claro
+    const modoBtn = document.getElementById('modoBtn');
+    modoBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      modoBtn.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Nocturno';
     });
 
-    // Fuente selector
-    const fontSelector = document.getElementById("fontSelector");
-    fontSelector.addEventListener("change", () => {
-      body.style.fontFamily = fontSelector.value;
-      // Aplicar a botones y titulo también
-      document.querySelectorAll('.boton').forEach(b => b.style.fontFamily = fontSelector.value);
-      document.querySelector('.titulo').style.fontFamily = fontSelector.value;
+    // Corazones flotantes (generar 30 corazones aleatorios)
+    const corazonesContainer = document.getElementById('corazones');
+    for(let i = 0; i < 30; i++) {
+      const c = document.createElement('div');
+      c.classList.add('corazon');
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.animationDuration = 5 + Math.random() * 5 + 's';
+      c.style.opacity = Math.random();
+      corazonesContainer.appendChild(c);
+    }
+
+    // Modal Motivación
+    const btnMotivacion = document.getElementById('btnMotivacion');
+    const modalMotivacion = document.getElementById('motivacionModal');
+    const btnCerrarModal = document.getElementById('btnCerrarModal');
+    const btnEstudios = document.getElementById('btnEstudios');
+    const btnEjercicio = document.getElementById('btnEjercicio');
+
+    btnMotivacion.addEventListener('click', () => {
+      modalMotivacion.style.display = 'flex';
+      // Opcional: reproducir sonido mágico al abrir modal
+      const audio = document.getElementById('audioMagico');
+      audio.play();
     });
 
-    // Tamaño selector
-    const sizeRange = document.getElementById("sizeRange");
-    function aplicarTamanio(valor) {
-      // Ajustar tamaño base (texto general y botones)
-      body.style.fontSize = valor + "px";
-      document.querySelectorAll('.boton').forEach(b => b.style.fontSize = (valor * 1.1) + "px");
-      document.querySelector('.titulo').style.fontSize = (valor * 2) + "px";
-      // Ajustar borde texto
-      document.querySelectorAll('.borde-texto span').forEach(s => s.style.fontSize = (valor * 1) + "px");
-    }
-    sizeRange.addEventListener("input", e => aplicarTamanio(e.target.value));
-    aplicarTamanio(sizeRange.value);
+    btnCerrarModal.addEventListener('click', () => {
+      modalMotivacion.style.display = 'none';
+      const audio = document.getElementById('audioMagico');
+      audio.pause();
+      audio.currentTime = 0;
+    });
 
-    // Tema selector
-    const themeSelector = document.getElementById("themeSelector");
-    themeSelector.addEventListener("change", () => {
-      // Remover clases de tema y modo oscuro para evitar conflictos
-      body.classList.remove('dark-mode', 'theme-purple-pink', 'theme-pastel-pink');
-      const tema = themeSelector.value;
-      if (tema === 'dark') {
-        body.classList.add('dark-mode');
-        modoBtn.textContent = "Modo Claro";
-      } else if (tema === 'theme-purple-pink') {
-        body.classList.add('theme-purple-pink');
-        modoBtn.textContent = "Modo Nocturno";
-      } else if (tema === 'theme-pastel-pink') {
-        body.classList.add('theme-pastel-pink');
-        modoBtn.textContent = "Modo Nocturno";
-      } else {
-        modoBtn.textContent = "Modo Nocturno";
-      }
+    btnEstudios.addEventListener('click', () => {
+      window.location.href = 'motivacion_estudios.html';
+    });
+
+    btnEjercicio.addEventListener('click', () => {
+      window.location.href = 'motivacion_ejercicio.html';
     });
   </script>
 </body>
