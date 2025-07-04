@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para mi princesa Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&family=Indie+Flower&family=Pacifico&display=swap" rel="stylesheet">
-
+  <title>Para mi princesa 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --fondo-claro: #ffe6f0;
       --fondo-oscuro: #2b2b2b;
       --texto-claro: #b30059;
       --texto-oscuro: #ffb6c1;
-      --fuente-actual: 'Quicksand', sans-serif;
+      --fuente-principal: 'Quicksand', sans-serif;
     }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: var(--fuente-actual);
+      font-family: var(--fuente-principal);
       background-color: var(--fondo-claro);
-      transition: background 0.5s, color 0.5s;
-      font-size: 16px;
+      color: var(--texto-claro);
+      transition: background-color 0.5s, color 0.5s;
+      overflow-x: hidden;
     }
 
     body.dark-mode {
@@ -29,22 +29,93 @@
       color: var(--texto-oscuro);
     }
 
-    .borde-texto span {
-      position: absolute;
-      white-space: nowrap;
-      font-size: 18px;
+    .bienvenida {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, #f8bbd0, #ffe6f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-family: 'Great Vibes', cursive;
-      color: var(--texto-claro);
-      animation: borderScroll 20s linear infinite;
+      font-size: 40px;
+      z-index: 9999;
+      animation: fadeOut 3s ease-in-out forwards;
     }
 
-    .borde-texto {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      pointer-events: none;
-      z-index: 10;
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; display: none; }
+    }
+
+    .contenedor {
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .titulo {
+      font-size: 36px;
+      font-family: 'Great Vibes', cursive;
+      margin-bottom: 30px;
+    }
+
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .boton {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .azul { background-color: #2196F3; }
+    .rojo { background-color: #e91e63; }
+    .rosa { background-color: #f48fb1; }
+    .amarillo { background-color: #ffd54f; color: #333; }
+    .verde { background-color: #66bb6a; }
+    .violeta { background-color: #ba68c8; }
+
+    .boton:hover { transform: scale(1.05); }
+
+    #modoBtn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #444;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .avatar {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      animation: caminar 3s linear infinite;
+      z-index: 2;
+    }
+
+    .avatar svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    @keyframes caminar {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
     }
 
     .corazones {
@@ -68,7 +139,8 @@
       border-radius: 50% 50% 0 0;
     }
 
-    .corazon::before, .corazon::after {
+    .corazon::before,
+    .corazon::after {
       content: '';
       position: absolute;
       width: 20px;
@@ -78,137 +150,58 @@
     }
 
     .corazon::before { top: -10px; left: 0; }
-    .corazon::after { top: 0; left: -10px; }
+    .corazon::after { left: -10px; top: 0; }
 
     @keyframes flotar {
       0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
       100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
 
-    @keyframes borderScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    .contenedor {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      top: 30%;
-      animation: aparecer 1s ease-out forwards;
-    }
-
-    @keyframes aparecer {
-      to { opacity: 1; }
-    }
-
-    .titulo {
-      font-size: 36px;
-      font-family: 'Great Vibes', cursive;
-      color: var(--texto-claro);
-      margin-bottom: 40px;
-    }
-
-    .botones, .personalizacion {
+    .configuracion {
+      margin-top: 60px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin: 10px;
+      gap: 20px;
     }
 
-    .boton {
-      padding: 15px 25px;
+    .configuracion select, .configuracion input[type="range"] {
+      padding: 10px;
+      border-radius: 8px;
       font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .boton.azul { background-color: #2196F3; }
-    .boton.rojo { background-color: #e91e63; }
-    .boton.rosa { background-color: #f48fb1; }
-    .boton.amarillo { background-color: #ffd54f; color: #000; }
-    .boton.verde { background-color: #66bb6a; }
-    .boton.violeta { background-color: #ba68c8; }
-
-    .boton:hover { transform: scale(1.05); }
-
-    .avatar {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      z-index: 20;
-      animation: caminar 3s linear infinite;
-    }
-
-    .avatar svg {
-      width: 80px;
-      height: 80px;
-    }
-
-    @keyframes caminar {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(20px); }
-      100% { transform: translateX(0); }
-    }
-
-    select, input[type="range"] {
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-    }
-
-    .personalizacion .boton {
-      border-radius: 5px;
-      background-color: #e1bee7;
-      color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="corazones" id="corazones"></div>
-
-  <div class="borde-texto">
-    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña • </span>
-    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña • </span>
+  <div class="bienvenida" id="bienvenida">
+    Bienvenida, princesa 🌸
+    <audio autoplay>
+      <source src="https://cdn.pixabay.com/audio/2022/03/31/audio_619379327e.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
-  <div class="contenedor">
-    <div class="titulo">Bienvenida, mi amor 💕</div>
+  <button id="modoBtn">Modo Oscuro</button>
+
+  <div class="contenedor" id="contenido">
+    <div class="titulo">¡Te he preparado algo especial, mi amor! 💕</div>
     <div class="botones">
       <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
       <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
       <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
-      <a href="laberinto.html"><button class="boton violeta">LABERINTO</button></a>
       <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
       <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
-      <a href="caja_sorpresa.html"><button class="boton amarillo">CAJA SORPRESA</button></a>
+      <a href="caja_sorpresa.html"><button class="boton violeta">CAJA SORPRESA</button></a>
+      <a href="laberinto.html"><button class="boton rojo">LABERINTO</button></a>
     </div>
 
-    <!-- Configuración -->
-    <div class="personalizacion">
-      <div>
-        <label for="fuenteSelect">Fuentes:</label>
-        <select id="fuenteSelect">
-          <option value="'Quicksand', sans-serif">Quicksand</option>
-          <option value="'Indie Flower', cursive">Indie Flower</option>
-          <option value="'Pacifico', cursive">Pacifico</option>
-          <option value="'Great Vibes', cursive">Great Vibes</option>
-        </select>
-      </div>
-      <div>
-        <label for="fontSizeRange">Tamaño:</label>
-        <input type="range" id="fontSizeRange" min="12" max="24" value="16" />
-      </div>
-      <div>
-        <button class="boton" onclick="toggleTema()">Tema</button>
-      </div>
+    <div class="configuracion">
+      <select id="fuenteSelector">
+        <option value="'Quicksand', sans-serif">Quicksand</option>
+        <option value="'Great Vibes', cursive">Great Vibes</option>
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="'Comic Sans MS', cursive">Comic Sans</option>
+      </select>
+
+      <input type="range" id="tamanoTexto" min="14" max="30" value="18" />
     </div>
   </div>
 
@@ -222,30 +215,39 @@
     </svg>
   </div>
 
+  <div class="corazones" id="corazones"></div>
+
   <script>
     const corazonesContainer = document.getElementById("corazones");
-    setInterval(() => {
+    function crearCorazon() {
       const corazon = document.createElement("div");
       corazon.classList.add("corazon");
       corazon.style.left = Math.random() * 100 + "vw";
       corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
       corazonesContainer.appendChild(corazon);
       setTimeout(() => corazon.remove(), 10000);
-    }, 500);
-
-    function toggleTema() {
-      document.body.classList.toggle("dark-mode");
     }
+    setInterval(crearCorazon, 500);
 
-    // Fuente
-    document.getElementById("fuenteSelect").addEventListener("change", function() {
+    document.getElementById("modoBtn").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+
+    // Cambiar fuente
+    document.getElementById("fuenteSelector").addEventListener("change", function () {
       document.body.style.fontFamily = this.value;
     });
 
-    // Tamaño de letra
-    document.getElementById("fontSizeRange").addEventListener("input", function() {
+    // Cambiar tamaño texto
+    document.getElementById("tamanoTexto").addEventListener("input", function () {
       document.body.style.fontSize = this.value + "px";
     });
+
+    // Ocultar bienvenida después de 4s
+    setTimeout(() => {
+      const bienvenida = document.getElementById("bienvenida");
+      if (bienvenida) bienvenida.style.display = "none";
+    }, 4000);
   </script>
 </body>
 </html>
