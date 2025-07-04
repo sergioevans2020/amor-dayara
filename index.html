@@ -3,39 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienvenida, mi amor 💕</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&family=Roboto&family=Lora&family=Montserrat&family=Pacifico&display=swap" rel="stylesheet" />
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&family=Roboto&family=Lobster&family=Poppins&display=swap" rel="stylesheet" />
   <style>
     :root {
       --fondo-claro: #ffe6f0;
       --fondo-oscuro: #2b2b2b;
       --texto-claro: #b30059;
       --texto-oscuro: #ffb6c1;
-      --boton-bg: #2196F3;
-      --boton-color: white;
-      --boton-hover-bg: #1976d2;
+      --color-morado: #7b4d8b;
+      --color-rosa-oscuro: #9e4e71;
+      --color-rosado-claro: #f8d7e7;
+      --color-amarillo-pastel: #fff8b0;
     }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      font-size: 18px;
       background-color: var(--fondo-claro);
       color: var(--texto-claro);
-      transition: background-color 0.5s, color 0.5s, font-family 0.3s, font-size 0.3s;
-      user-select: none;
+      transition: background-color 0.5s, color 0.5s;
       overflow-x: hidden;
+      user-select: none;
     }
     body.dark-mode {
       background-color: var(--fondo-oscuro);
       color: var(--texto-oscuro);
-      --boton-bg: #9c27b0;
-      --boton-color: #f8bbd0;
-      --boton-hover-bg: #7b1fa2;
+    }
+    body.theme-purple-pink {
+      background: linear-gradient(135deg, #7b4d8b, #9e4e71);
+      color: #f8d7e7;
+    }
+    body.theme-pastel-pink {
+      background: linear-gradient(135deg, #f8d7e7, #fff8b0);
+      color: #9e4e71;
     }
 
+    /* Texto en bordes animado */
     .borde-texto {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
       box-sizing: border-box;
@@ -47,20 +54,35 @@
       white-space: nowrap;
       font-size: 18px;
       font-family: 'Great Vibes', cursive;
-      color: var(--texto-claro);
       animation: borderScroll 20s linear infinite;
       user-select: none;
     }
+    .borde-texto span:nth-child(1) { top: 0; left: 0; color: var(--texto-claro);}
+    .borde-texto span:nth-child(2) { bottom: 0; left: 0; color: var(--texto-claro);}
+    .borde-texto span:nth-child(3) { top: 0; left: -100%; transform: rotate(90deg); color: var(--texto-claro);}
+    .borde-texto span:nth-child(4) { bottom: 0; right: -100%; transform: rotate(270deg); color: var(--texto-claro);}
+
     body.dark-mode .borde-texto span {
       color: var(--texto-oscuro);
     }
+    body.theme-purple-pink .borde-texto span {
+      color: #f8d7e7;
+    }
+    body.theme-pastel-pink .borde-texto span {
+      color: #9e4e71;
+    }
 
+    @keyframes borderScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Corazones flotando */
     .corazones {
       position: fixed;
       width: 100%;
       height: 100%;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       pointer-events: none;
       z-index: 1;
       overflow: hidden;
@@ -71,8 +93,8 @@
       height: 20px;
       background: red;
       transform: rotate(45deg);
-      animation: flotar 8s infinite;
       border-radius: 50% 50% 0 0;
+      animation: flotar linear infinite;
     }
     .corazon::before, .corazon::after {
       content: '';
@@ -82,23 +104,15 @@
       background: red;
       border-radius: 50%;
     }
-    .corazon::before {
-      top: -10px;
-      left: 0;
-    }
-    .corazon::after {
-      left: -10px;
-      top: 0;
-    }
+    .corazon::before { top: -10px; left: 0; }
+    .corazon::after { left: -10px; top: 0; }
+
     @keyframes flotar {
       0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
       100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
-    @keyframes borderScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
 
+    /* Contenedor central */
     .contenedor {
       position: relative;
       z-index: 5;
@@ -106,130 +120,184 @@
       top: 30%;
       opacity: 0;
       animation: aparecer 1s ease-out forwards;
-      font-family: inherit;
-      font-size: inherit;
-      color: inherit;
-      user-select: none;
+      padding: 0 20px;
     }
     @keyframes aparecer {
       to { opacity: 1; }
     }
 
+    /* Título */
     .titulo {
-      font-size: 2em;
-      font-family: inherit;
-      color: inherit;
+      font-size: 3rem;
+      font-family: 'Great Vibes', cursive;
       margin-bottom: 40px;
       user-select: none;
     }
+    body.dark-mode .titulo { color: var(--texto-oscuro); }
+    body.theme-purple-pink .titulo { color: #f8d7e7; }
+    body.theme-pastel-pink .titulo { color: #9e4e71; }
 
+    /* Botones principales */
     .botones {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
+      margin-bottom: 50px;
     }
-
     .boton {
       padding: 15px 25px;
-      font-size: inherit;
-      font-family: inherit;
+      font-size: 1.1rem;
       border: none;
       border-radius: 10px;
-      color: var(--boton-color);
-      background-color: var(--boton-bg);
+      color: white;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-      min-width: 140px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      font-weight: 700;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
       user-select: none;
+      font-family: inherit;
     }
+    .boton.azul { background-color: #2196F3; }
+    .boton.rojo { background-color: #e91e63; }
+    .boton.rosa { background-color: #f48fb1; }
+    .boton.amarillo { background-color: #ffd54f; color: #000; }
+    .boton.verde { background-color: #66bb6a; }
+    .boton.violeta { background-color: #ba68c8; }
+
     .boton:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
+    /* Botones de configuración */
+    .configuracion {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 20;
+      user-select: none;
+    }
+    .boton-config {
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 8px;
+      background-color: #ff9fc0;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      font-family: inherit;
+      transition: background-color 0.3s ease;
+      min-width: 80px;
+      text-align: center;
+    }
+    .boton-config:hover {
+      background-color: #f3648a;
+    }
+
+    /* Selector tipografía desplegable */
+    #fontSelector {
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      background-color: #ff9fc0;
+      color: white;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      min-width: 140px;
+    }
+    #fontSelector:hover {
+      background-color: #f3648a;
+    }
+
+    /* Barra de tamaño */
+    .size-slider {
+      -webkit-appearance: none;
+      width: 140px;
+      height: 8px;
+      border-radius: 5px;
+      background: #ffc1d3;
+      outline: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .size-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      background: #e91e63;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+    .size-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      background: #e91e63;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    /* Botones de tema */
+    #themeSelector {
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      background-color: #ff9fc0;
+      color: white;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      min-width: 140px;
+    }
+    #themeSelector:hover {
+      background-color: #f3648a;
+    }
+
+    /* Boton modo oscuro superior */
     #modoBtn {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 10px;
+      padding: 10px 14px;
       font-weight: bold;
       cursor: pointer;
       background: #555;
       color: white;
       border: none;
       border-radius: 8px;
-      user-select: none;
-      z-index: 50;
-    }
-
-    /* Nuevos botones al final */
-    .configuraciones {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 50;
-    }
-    .config-btn {
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      font-family: inherit;
-      font-size: 1em;
-      background: var(--boton-bg);
-      color: var(--boton-color);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: 0.3s;
+      z-index: 25;
       user-select: none;
     }
-    .config-btn:hover {
-      background: var(--boton-hover-bg);
-      box-shadow: 0 6px 10px rgba(0,0,0,0.3);
-      transform: scale(1.05);
-    }
 
-    /* Barra tamaño fuente */
-    #fontSizeSlider {
-      width: 150px;
-    }
-
-    /* Selector de fondo */
-    #backgroundSelector {
-      padding: 8px 12px;
-      font-family: inherit;
-      font-size: 1em;
-      border-radius: 6px;
-      border: 1px solid #aaa;
-      cursor: pointer;
-      user-select: none;
-      background: white;
-      color: black;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark-mode #backgroundSelector {
-      background: #444;
-      color: #eee;
-      border-color: #666;
-    }
-
-    /* Animación textos de bienvenida y avatar */
+    /* Avatar animado abajo izquierda */
     .avatar {
-      position: absolute;
+      position: fixed;
       bottom: 10px;
       left: 10px;
       z-index: 20;
       animation: caminar 3s linear infinite;
+      user-select: none;
     }
     .avatar svg {
       width: 80px;
       height: 80px;
+      pointer-events: none;
     }
     @keyframes caminar {
       0% { transform: translateX(0); }
@@ -239,128 +307,127 @@
   </style>
 </head>
 <body>
-  <button id="modoBtn">Modo Nocturno</button>
+  <button id="modoBtn" title="Modo Oscuro/Claro">Modo Nocturno</button>
 
   <div class="borde-texto">
-    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • </span>
+    <span>siempre serás mi niña - 21/06/2025 • </span>
   </div>
 
   <div class="corazones" id="corazones"></div>
 
-  <div class="contenedor" id="mainContent">
+  <div class="contenedor">
     <div class="titulo">Bienvenida, mi amor 💕</div>
     <div class="botones">
       <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
       <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
-      <a href="regalo3.html"><button class="boton verde">REGALO 3</button></a>
-      <a href="laberinto.html"><button class="boton amarillo">LABERINTO</button></a>
+      <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
+      <a href="laberinto.html"><button class="boton violeta">LABERINTO</button></a>
+      <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
+      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
+      <a href="caja_sorpresa.html"><button class="boton azul">CAJA SORPRESA</button></a>
     </div>
   </div>
 
-  <div class="configuraciones">
-    <select id="fontSelector" class="config-btn" aria-label="Seleccionar fuente">
-      <option value="'Quicksand', sans-serif">Quicksand</option>
-      <option value="'Roboto', sans-serif">Roboto</option>
-      <option value="'Lora', serif">Lora</option>
-      <option value="'Montserrat', sans-serif">Montserrat</option>
-      <option value="'Pacifico', cursive">Pacifico</option>
+  <!-- Configuraciones: Fuente, Tamaño, Tema -->
+  <div class="configuracion">
+    <select id="fontSelector" title="Selecciona la fuente">
+      <option value="'Quicksand', sans-serif" selected>Quicksand</option>
       <option value="'Great Vibes', cursive">Great Vibes</option>
+      <option value="'Roboto', sans-serif">Roboto</option>
+      <option value="'Lobster', cursive">Lobster</option>
+      <option value="'Poppins', sans-serif">Poppins</option>
     </select>
 
-    <input type="range" id="fontSizeSlider" min="14" max="40" step="1" title="Tamaño de fuente" aria-label="Ajustar tamaño de fuente" />
+    <input type="range" min="14" max="32" value="18" class="size-slider" id="sizeRange" title="Ajusta el tamaño de letra" />
 
-    <select id="backgroundSelector" class="config-btn" aria-label="Seleccionar tema de fondo">
-      <option value="claro">Claro</option>
-      <option value="oscuro">Oscuro</option>
-      <option value="rosa">Rosa</option>
-      <option value="azul">Azul</option>
-      <option value="verde">Verde</option>
-      <option value="morado">Morado</option>
-      <option value="naranja">Naranja</option>
+    <select id="themeSelector" title="Selecciona el tema">
+      <option value="light" selected>Claro</option>
+      <option value="dark">Oscuro</option>
+      <option value="theme-purple-pink">Morado-Rosa</option>
+      <option value="theme-pastel-pink">Pastel-Rosa</option>
     </select>
   </div>
 
-  <audio id="audio" src="https://cdn.pixabay.com/download/audio/2021/09/17/audio_98a83e72d7.mp3?filename=magic-wand-2-6293.mp3" preload="auto" loop></audio>
+  <div class="avatar" title="Tu avatar saludando">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar">
+      <path fill="#e91e63" d="M32 12c-8-12-24 0-12 14l12 12 12-12C56 12 40 0 32 12z"/>
+      <circle cx="24" cy="24" r="2" fill="#fff"/>
+      <circle cx="40" cy="24" r="2" fill="#fff"/>
+      <path d="M28 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
+      <path d="M36 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
+    </svg>
+  </div>
 
   <script>
-    // Corazones flotantes
-    const corazonesContainer = document.getElementById('corazones');
+    // Corazones animación
+    const corazonesContainer = document.getElementById("corazones");
     function crearCorazon() {
-      const corazon = document.createElement('div');
-      corazon.classList.add('corazon');
-      corazon.style.left = Math.random() * 100 + 'vw';
-      corazon.style.animationDuration = (6 + Math.random() * 4) + 's';
-      corazon.style.opacity = Math.random();
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
       corazonesContainer.appendChild(corazon);
-
-      setTimeout(() => {
-        corazon.remove();
-      }, 10000);
+      setTimeout(() => corazon.remove(), 10000);
     }
     setInterval(crearCorazon, 500);
 
-    // Cambiar modo oscuro/claro
-    const modoBtn = document.getElementById('modoBtn');
-    modoBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')) {
-        modoBtn.textContent = 'Modo Claro';
+    // Modo oscuro/claro y otros temas
+    const modoBtn = document.getElementById("modoBtn");
+    const body = document.body;
+    modoBtn.addEventListener("click", () => {
+      if(body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        modoBtn.textContent = "Modo Nocturno";
       } else {
-        modoBtn.textContent = 'Modo Nocturno';
+        body.classList.add('dark-mode');
+        body.classList.remove('theme-purple-pink', 'theme-pastel-pink');
+        modoBtn.textContent = "Modo Claro";
       }
     });
 
-    // Configuración fuente y tamaño
-    const fontSelector = document.getElementById('fontSelector');
-    const fontSizeSlider = document.getElementById('fontSizeSlider');
-    const backgroundSelector = document.getElementById('backgroundSelector');
-
-    // Inicializar controles con valores actuales
-    fontSizeSlider.value = parseInt(window.getComputedStyle(document.body).fontSize);
-
-    fontSelector.addEventListener('change', () => {
-      document.body.style.fontFamily = fontSelector.value;
+    // Fuente selector
+    const fontSelector = document.getElementById("fontSelector");
+    fontSelector.addEventListener("change", () => {
+      body.style.fontFamily = fontSelector.value;
+      // Aplicar a botones y titulo también
+      document.querySelectorAll('.boton').forEach(b => b.style.fontFamily = fontSelector.value);
+      document.querySelector('.titulo').style.fontFamily = fontSelector.value;
     });
 
-    fontSizeSlider.addEventListener('input', () => {
-      document.body.style.fontSize = fontSizeSlider.value + 'px';
-    });
+    // Tamaño selector
+    const sizeRange = document.getElementById("sizeRange");
+    function aplicarTamanio(valor) {
+      // Ajustar tamaño base (texto general y botones)
+      body.style.fontSize = valor + "px";
+      document.querySelectorAll('.boton').forEach(b => b.style.fontSize = (valor * 1.1) + "px");
+      document.querySelector('.titulo').style.fontSize = (valor * 2) + "px";
+      // Ajustar borde texto
+      document.querySelectorAll('.borde-texto span').forEach(s => s.style.fontSize = (valor * 1) + "px");
+    }
+    sizeRange.addEventListener("input", e => aplicarTamanio(e.target.value));
+    aplicarTamanio(sizeRange.value);
 
-    // Temas adicionales para fondo y texto
-    const temas = {
-      claro: { fondo: '#ffe6f0', texto: '#b30059', botonBg: '#2196F3', botonColor: 'white', botonHover: '#1976d2' },
-      oscuro: { fondo: '#2b2b2b', texto: '#ffb6c1', botonBg: '#9c27b0', botonColor: '#f8bbd0', botonHover: '#7b1fa2' },
-      rosa: { fondo: '#ffc0cb', texto: '#800020', botonBg: '#e75480', botonColor: 'white', botonHover: '#b03a58' },
-      azul: { fondo: '#d0e7ff', texto: '#003366', botonBg: '#1e90ff', botonColor: 'white', botonHover: '#1c86ee' },
-      verde: { fondo: '#d4f4dd', texto: '#004d00', botonBg: '#28a745', botonColor: 'white', botonHover: '#1e7e34' },
-      morado: { fondo: '#e6d0ff', texto: '#4b0082', botonBg: '#800080', botonColor: 'white', botonHover: '#660066' },
-      naranja: { fondo: '#ffe6cc', texto: '#cc6600', botonBg: '#ff6600', botonColor: 'white', botonHover: '#cc5200' }
-    };
-
-    backgroundSelector.addEventListener('change', () => {
-      const tema = temas[backgroundSelector.value];
-      if (tema) {
-        document.body.style.backgroundColor = tema.fondo;
-        document.body.style.color = tema.texto;
-        document.documentElement.style.setProperty('--boton-bg', tema.botonBg);
-        document.documentElement.style.setProperty('--boton-color', tema.botonColor);
-        document.documentElement.style.setProperty('--boton-hover-bg', tema.botonHover);
+    // Tema selector
+    const themeSelector = document.getElementById("themeSelector");
+    themeSelector.addEventListener("change", () => {
+      // Remover clases de tema y modo oscuro para evitar conflictos
+      body.classList.remove('dark-mode', 'theme-purple-pink', 'theme-pastel-pink');
+      const tema = themeSelector.value;
+      if (tema === 'dark') {
+        body.classList.add('dark-mode');
+        modoBtn.textContent = "Modo Claro";
+      } else if (tema === 'theme-purple-pink') {
+        body.classList.add('theme-purple-pink');
+        modoBtn.textContent = "Modo Nocturno";
+      } else if (tema === 'theme-pastel-pink') {
+        body.classList.add('theme-pastel-pink');
+        modoBtn.textContent = "Modo Nocturno";
+      } else {
+        modoBtn.textContent = "Modo Nocturno";
       }
-    });
-
-    // Iniciar con tema claro por defecto
-    backgroundSelector.value = 'claro';
-    backgroundSelector.dispatchEvent(new Event('change'));
-
-    // Reproducir sonido mágico al cargar
-    const audio = document.getElementById('audio');
-    audio.volume = 0.15;
-    audio.play().catch(() => {
-      // Puede que el navegador no permita autoplay, esperar interacción del usuario
-      console.log('El audio no pudo reproducirse automáticamente.');
     });
   </script>
 </body>
