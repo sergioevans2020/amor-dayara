@@ -3,50 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Motivación - Ejercicio</title>
+  <title>🔥 Fitness Power Mode 🔥</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #111, #222);
+      font-family: 'Arial Black', sans-serif;
+      background: radial-gradient(circle at center, #111 0%, #000 100%);
       color: #fff;
-      overflow-x: hidden;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
     }
 
     h1, h2 {
       text-align: center;
       margin-top: 1rem;
-      font-weight: bold;
+      color: #ff3c00;
+      text-shadow: 0 0 10px #ff6d00;
     }
 
     .frase-espejo {
       background: #222;
-      border-left: 5px solid #ff4081;
       padding: 1rem;
       margin: 1rem auto;
-      width: 80%;
+      width: 85%;
       text-align: center;
-      font-size: 1.2rem;
-      border-radius: 8px;
-    }
-
-    .llama {
-      text-align: center;
-      margin: 1rem 0;
-    }
-
-    .llama svg {
-      width: 60px;
-      height: 60px;
-      fill: orange;
-    }
-
-    .tareas-container, .notas-container, .frases-container, .medallas-container {
-      background: #1e1e1e;
-      margin: 2rem auto;
-      padding: 1rem;
+      font-size: 1.4rem;
       border-radius: 10px;
-      width: 80%;
+      border: 2px solid #ff6d00;
+      animation: pulso 2s infinite alternate;
+    }
+
+    @keyframes pulso {
+      from { transform: scale(1); }
+      to { transform: scale(1.02); }
+    }
+
+    .seccion {
+      background: rgba(255, 255, 255, 0.05);
+      margin: 2rem auto;
+      padding: 1.2rem;
+      border-radius: 15px;
+      width: 90%;
+      border: 1px solid #ff5722;
+      box-shadow: 0 0 10px #ff5722;
+    }
+
+    .seccion h2 {
+      color: #ffc107;
+    }
+
+    .tarea-input {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .tarea-input input {
+      flex: 1;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .tarea-input button {
+      padding: 0.6rem 1rem;
+      background: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     ul {
@@ -56,234 +80,223 @@
 
     li {
       margin: 0.5rem 0;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 10px;
-    }
-
-    textarea {
-      width: 100%;
-      height: 80px;
-      resize: none;
-      border: none;
-      border-radius: 6px;
-      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .progreso-barra {
       width: 100%;
-      height: 15px;
-      background: #555;
+      height: 16px;
+      background: #333;
       border-radius: 10px;
-      margin-top: 10px;
+      margin-top: 1rem;
       overflow: hidden;
     }
 
     .progreso-barra span {
       display: block;
       height: 100%;
-      background: #76ff03;
+      background: linear-gradient(to right, #76ff03, #00e676);
       width: 0;
-      transition: width 0.3s;
+      transition: width 0.3s ease-in-out;
     }
 
     .medallas {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
       justify-content: center;
+      gap: 1rem;
     }
 
     .medalla {
-      background: #333;
-      border: 2px solid #666;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      width: 120px;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at center, #ff6d00, #ff3c00);
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 15px #ff5722, 0 0 30px #ff9800;
       position: relative;
     }
 
-    .medalla svg {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 0.5rem;
+    .medalla.locked {
+      filter: grayscale(100%) opacity(0.5);
+      box-shadow: none;
     }
 
-    .bien-hecho {
-      background: #4caf50;
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+      resize: none;
+    }
+
+    button.delete-btn {
+      background: #e53935;
+      border: none;
       color: white;
-      padding: 0.5rem 1rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .mensaje {
       text-align: center;
-      border-radius: 10px;
-      margin: 1rem auto;
-      width: fit-content;
-      animation: aparecer 0.8s ease-in-out;
+      margin-top: 1rem;
+      color: #4caf50;
+      font-weight: bold;
+      animation: aparecer 0.5s ease-in-out;
     }
 
     @keyframes aparecer {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <h1>🔥 Modo Ejercicio Activado 🔥</h1>
+  <h1>🔥 ¡Bienvenido al Power Gym! 🔥</h1>
 
-  <!-- Modo Espejo Motivador -->
+  <!-- Modo Espejo -->
   <div class="frase-espejo" id="fraseEspejo"></div>
 
-  <!-- Llama de Días Activos -->
-  <div class="llama">
-    <svg viewBox="0 0 64 64">
-      <path d="M32 0C18 18 38 24 24 48c-8 16 16 20 24 8 8-12-4-24 0-32s-8-8-16-24z"/>
-    </svg>
-    <div><strong>Días Activos:</strong> <span id="diasActivos">0</span></div>
-  </div>
-
-  <!-- Lista de Tareas + Barra -->
-  <div class="tareas-container">
-    <h2>🎯 Tareas Fitness</h2>
-    <ul id="listaTareas">
-      <li><input type="checkbox" /> Hacer 20 flexiones</li>
-      <li><input type="checkbox" /> Correr 15 minutos</li>
-      <li><input type="checkbox" /> Estiramiento matutino</li>
-      <li><input type="checkbox" /> 10 sentadillas</li>
-    </ul>
-    <div class="progreso-barra"><span id="progreso"></span></div>
-  </div>
-
-  <!-- Sección de Frases -->
-  <div class="frases-container">
-    <h2>💪 Frases de Inspiración</h2>
-    <ul>
-      <li>"El dolor es temporal, la gloria es eterna." – Muhammad Ali</li>
-      <li>"No pares cuando estés cansado, para cuando hayas terminado."</li>
-      <li>"Tu cuerpo puede soportar más de lo que tu mente cree."</li>
-      <li>"Disciplina es hacer lo que debes hacer, incluso si no quieres hacerlo."</li>
-    </ul>
-  </div>
-
-  <!-- Mini Bloc de Notas -->
-  <div class="notas-container">
-    <h2>📓 Notas Rápidas</h2>
-    <textarea id="nota" placeholder="Escribe tu idea o reflexión..."></textarea>
-    <button onclick="guardarNota()">Guardar Nota</button>
-  </div>
-
-  <!-- Medallero -->
-  <div class="medallas-container">
-    <h2>🏅 Medallero Fitness (Estilo Pokémon)</h2>
-    <div class="medallas" id="medallas">
-      <!-- Se llenan por JS -->
+  <!-- Sección Tareas Personalizadas -->
+  <div class="seccion">
+    <h2>🏋️ Tus Desafíos del Día</h2>
+    <div class="tarea-input">
+      <input type="text" id="nuevaTarea" placeholder="Ej. 15 burpees al amanecer"/>
+      <button onclick="agregarTarea()">Añadir</button>
     </div>
+    <ul id="listaTareas"></ul>
+    <div class="progreso-barra"><span id="progreso"></span></div>
+    <div id="mensajeBienHecho" class="mensaje" style="display:none;">¡Bien hecho!🔥 Sigue así.</div>
   </div>
 
-  <div id="mensajeBienHecho" class="bien-hecho" style="display:none;">¡Bien hecho campeón/a! 💥</div>
+  <!-- Medallas Fitness -->
+  <div class="seccion">
+    <h2>🏅 Medallas de Honor</h2>
+    <div class="medallas" id="zonaMedallas"></div>
+  </div>
+
+  <!-- Bloc de Notas Fitness -->
+  <div class="seccion">
+    <h2>📝 Mini Bloc Fitness</h2>
+    <textarea id="notas" placeholder="Escribe tu reflexión, metas o sentimientos..."></textarea>
+    <button onclick="guardarNota()" style="margin-top: 1rem;">Guardar Nota</button>
+  </div>
 
   <script>
-    // Frases espejo
-    const frases = [
-      "¡Hoy es un gran día para superarte!",
-      "Tú puedes con todo 💪",
-      "Cada repetición cuenta.",
-      "¡No te detengas ahora!",
-      "Estás construyendo tu mejor versión."
+    const fraseEspejo = [
+      "¡Hoy te entrenas como leyenda!",
+      "Suda, lucha, gana. 🔥",
+      "No se trata de fuerza, sino de coraje.",
+      "¡Vamos! Esta es tu zona de poder."
     ];
     document.getElementById("fraseEspejo").innerText =
-      frases[Math.floor(Math.random() * frases.length)];
+      fraseEspejo[Math.floor(Math.random() * fraseEspejo.length)];
 
-    // Tareas y progreso
-    const tareas = document.querySelectorAll("#listaTareas input");
+    const lista = document.getElementById("listaTareas");
     const progreso = document.getElementById("progreso");
+    const tareasGuardadas = JSON.parse(localStorage.getItem("tareasFitness") || "[]");
+    const mensaje = document.getElementById("mensajeBienHecho");
 
-    function actualizarProgreso() {
+    function renderizarTareas() {
+      lista.innerHTML = "";
       let completadas = 0;
-      tareas.forEach(t => { if (t.checked) completadas++; });
-      const porcentaje = (completadas / tareas.length) * 100;
+
+      tareasGuardadas.forEach((tarea, index) => {
+        const li = document.createElement("li");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = tarea.done;
+        checkbox.onchange = () => {
+          tareasGuardadas[index].done = checkbox.checked;
+          guardarTareas();
+          renderizarTareas();
+        };
+
+        const texto = document.createTextNode(tarea.text);
+
+        const delBtn = document.createElement("button");
+        delBtn.innerText = "X";
+        delBtn.className = "delete-btn";
+        delBtn.onclick = () => {
+          tareasGuardadas.splice(index, 1);
+          guardarTareas();
+          renderizarTareas();
+        };
+
+        li.appendChild(checkbox);
+        li.appendChild(texto);
+        li.appendChild(delBtn);
+        lista.appendChild(li);
+
+        if (tarea.done) completadas++;
+      });
+
+      const porcentaje = tareasGuardadas.length
+        ? (completadas / tareasGuardadas.length) * 100
+        : 0;
       progreso.style.width = porcentaje + "%";
 
-      localStorage.setItem("tareasFitness", completadas);
-
-      if (completadas === tareas.length) {
-        document.getElementById("mensajeBienHecho").style.display = "block";
+      if (completadas === tareasGuardadas.length && tareasGuardadas.length > 0) {
+        mensaje.style.display = "block";
+      } else {
+        mensaje.style.display = "none";
       }
     }
 
-    tareas.forEach(t => {
-      t.addEventListener("change", actualizarProgreso);
-    });
-
-    window.onload = () => {
-      // Guardar días activos
-      let dias = localStorage.getItem("diasActivos") || 0;
-      dias++;
-      localStorage.setItem("diasActivos", dias);
-      document.getElementById("diasActivos").innerText = dias;
-
-      // Cargar tareas previas
-      let tareasPrevias = parseInt(localStorage.getItem("tareasFitness")) || 0;
-      for (let i = 0; i < tareasPrevias; i++) {
-        tareas[i].checked = true;
+    function agregarTarea() {
+      const input = document.getElementById("nuevaTarea");
+      const texto = input.value.trim();
+      if (texto !== "") {
+        tareasGuardadas.push({ text: texto, done: false });
+        input.value = "";
+        guardarTareas();
+        renderizarTareas();
       }
-      actualizarProgreso();
+    }
 
-      // Mostrar medallas
-      mostrarMedallas(parseInt(dias), tareasPrevias);
+    function guardarTareas() {
+      localStorage.setItem("tareasFitness", JSON.stringify(tareasGuardadas));
     }
 
     function guardarNota() {
-      const nota = document.getElementById("nota").value;
-      if (nota.trim() !== "") {
-        localStorage.setItem("notasFitness", nota);
-        alert("¡Nota guardada!");
+      const nota = document.getElementById("notas").value;
+      localStorage.setItem("notaFitness", nota);
+      alert("Nota guardada!");
+    }
+
+    function mostrarMedallas() {
+      const zona = document.getElementById("zonaMedallas");
+      zona.innerHTML = "";
+      const dias = parseInt(localStorage.getItem("diasActivos") || "1");
+      const completadas = tareasGuardadas.filter(t => t.done).length;
+
+      const cantidad = Math.floor((dias + completadas) / 5);
+
+      for (let i = 0; i < 8; i++) {
+        const med = document.createElement("div");
+        med.className = "medalla";
+        if (i >= cantidad) med.classList.add("locked");
+        zona.appendChild(med);
       }
     }
 
-    // Medallas estilo Pokémon
-    function mostrarMedallas(dias, tareas) {
-      const contenedor = document.getElementById("medallas");
-      contenedor.innerHTML = "";
-
-      const medallas = [
-        {
-          nombre: "Medalla Volcán",
-          condicion: dias >= 5,
-          objetivo: "5 días activos 🔥",
-          svg: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#ff5722"/><path d="M20 40 L32 16 L44 40 Z" fill="#fff"/></svg>`
-        },
-        {
-          nombre: "Medalla Fuerza",
-          condicion: tareas >= 4,
-          objetivo: "Todas las tareas completadas 💪",
-          svg: `<svg viewBox="0 0 64 64"><rect x="20" y="20" width="24" height="24" rx="6" fill="#8bc34a"/></svg>`
-        },
-        {
-          nombre: "Medalla Notas",
-          condicion: !!localStorage.getItem("notasFitness"),
-          objetivo: "Guardaste una nota 📝",
-          svg: `<svg viewBox="0 0 64 64"><rect x="16" y="16" width="32" height="32" rx="4" fill="#03a9f4"/></svg>`
-        },
-        {
-          nombre: "Medalla Constancia",
-          condicion: dias >= 10,
-          objetivo: "10 días activos 🎯",
-          svg: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" stroke="#fff" stroke-width="4" fill="none"/></svg>`
-        }
-      ];
-
-      medallas.forEach(m => {
-        const div = document.createElement("div");
-        div.classList.add("medalla");
-        div.innerHTML = `${m.svg}<div><strong>${m.nombre}</strong></div><small>${m.objetivo}</small>`;
-        if (!m.condicion) {
-          div.style.opacity = 0.4;
-        }
-        contenedor.appendChild(div);
-      });
+    // Día activo (contador de días consecutivos)
+    function aumentarDia() {
+      let dias = parseInt(localStorage.getItem("diasActivos") || "0");
+      dias++;
+      localStorage.setItem("diasActivos", dias.toString());
     }
+
+    aumentarDia();
+    renderizarTareas();
+    mostrarMedallas();
   </script>
 </body>
 </html>
