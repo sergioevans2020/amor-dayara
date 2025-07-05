@@ -3,305 +3,278 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Estudio Chill 📚</title>
+  <title>Motivación para Estudios</title>
   <style>
-    /* === Reset & Base === */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { height:100%; font-family:'Segoe UI', sans-serif; background:#f0f4f8; color:#333; }
-    body { display:flex; flex-direction:column; }
-
-    /* === Header === */
-    header { text-align:center; padding:40px 10px; background:linear-gradient(to right, #84fab0, #8fd3f4); }
-    header h1 { font-size:2.5rem; color:#fff; text-shadow: 0 0 10px rgba(0,0,0,0.2); }
-
-    .frase-relax {
-      font-style:italic;
-      font-size:1.2em;
-      margin-top:10px;
-      color:#fff;
-      animation: fadeIn 6s infinite;
+    :root {
+      --bg-color: #f2f6f9;
+      --accent-color: #6c63ff;
+      --text-color: #333;
+      --card-bg: #ffffff;
     }
 
-    @keyframes fadeIn { 0%,100%{opacity:0;}10%,90%{opacity:1;} }
-
-    /* === Container === */
-    .contenedor { flex:1; overflow-y:auto; padding: 20px; }
-
-    .section-title {
-      font-size:1.8rem;
-      color:#444;
-      margin-top:30px;
-      margin-bottom:15px;
-      border-left:4px solid #8fd3f4;
-      padding-left:10px;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* === Lista de frases === */
-    .frases-lista {
-      background:#fff; border-radius:8px; padding:15px;
-      box-shadow:0 0 8px rgba(0,0,0,0.1);
-      max-width:800px;
-      margin:auto;
-    }
-    .frases-lista li {
-      list-style:none;
-      margin-bottom:12px;
-      padding:10px;
-      border-left:3px solid #84fab0;
-      background:#f9fcff;
-      border-radius:4px;
-      font-style:italic;
+    header {
+      text-align: center;
+      padding: 30px;
     }
 
-    /* === Consejos Rápidos === */
-    .consejos {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-      max-width:800px;
-      margin:auto;
-    }
-    .consejo-item {
-      background:#fff;
-      border-radius:8px;
-      padding:15px;
-      box-shadow:0 0 8px rgba(0,0,0,0.1);
-      font-size:0.95rem;
-    }
-    .consejo-item h3 {
-      margin-bottom:8px;
-      color:#84fab0;
+    h1 {
+      font-size: 2.5em;
+      color: var(--accent-color);
     }
 
-    /* === Block de tareas === */
-    .tasks {
-      background:#fff; border-radius:8px;
-      padding:15px;
-      box-shadow:0 0 8px rgba(0,0,0,0.1);
-      max-width:800px;
-      margin:auto;
-    }
-    .tasks input[type="text"] {
-      width:70%; padding:8px; border:1px solid #ccc; border-radius:6px;
-    }
-    .tasks button {
-      padding:8px 16px; margin-left:5px;
-      background:#84fab0; border:none; border-radius:6px;
-      cursor:pointer; font-weight:bold; color:#fff;
-    }
-    .tasks ul {
-      list-style:none; margin-top:12px;
-    }
-    .tasks li {
-      margin-bottom:8px;
-      padding:10px;
-      display:flex; align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid #eee;
-    }
-    .tasks li.completed { text-decoration:line-through; color:#999; }
-
-    /* === Barra de progreso === */
-    .barra-progreso {
-      margin-top:15px;
-      height:20px;
-      background:#e0e0e0;
-      border-radius:10px;
-      overflow:hidden;
-    }
-    .barra-progreso span {
-      display:block;
-      height:100%;
-      width:0%;
-      background:linear-gradient(to right, #84fab0, #8fd3f4);
-      transition: width 0.5s;
-      text-align:center;
-      color:#fff;
-      line-height:20px;
-      font-size:0.9rem;
+    .frase-motivacional {
+      font-size: 1.2em;
+      margin-top: 10px;
+      padding: 10px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
     }
 
-    /* === Notas personales === */
-    .notas {
-      background:#fff; border-radius:8px;
-      padding:15px;
-      box-shadow:0 0 8px rgba(0,0,0,0.1);
-      max-width:800px;
-      margin:auto;
-    }
-    .notas textarea {
-      width:100%; height:80px;
-      border:1px solid #ccc; border-radius:6px;
-      padding:8px;
-      resize:none;
-    }
-    .notas button {
-      margin-top:8px;
-      background:#8fd3f4; border:none;
-      border-radius:6px;
-      padding:8px 16px;
-      cursor:pointer;
-      color:#fff;
-      font-weight:bold;
+    .seccion {
+      width: 90%;
+      max-width: 800px;
+      background: var(--card-bg);
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
-    /* === Medallas academicas === */
-    .medallero {
-      background:#fff; border-radius:8px;
-      padding:15px;
-      box-shadow:0 0 8px rgba(0,0,0,0.1);
-      max-width:800px;
-      margin:40px auto;
+    .seccion h2 {
+      color: var(--accent-color);
+      margin-bottom: 10px;
     }
-    .medallas-grid {
-      display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
-    }
-    .medalla {
-      width:50px; height:50px;
-      background:radial-gradient(circle,#84fab0,#8fd3f4);
-      border-radius:50%;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    }
-    .medalla.locked { opacity:0.3; }
 
-    /* === Animaciones === */
-    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    textarea, input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background: var(--accent-color);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #5848df;
+    }
+
+    .tarea {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 0;
+    }
+
+    .tarea.completada {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .pomodoro-controles input {
+      width: 60px;
+    }
+
+    .progreso {
+      height: 10px;
+      background: #ccc;
+      border-radius: 10px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progreso-barra {
+      height: 100%;
+      background: var(--accent-color);
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>📚 Estudio Chill</h1>
-    <div class="frase-relax" id="fraseRelax">“Respira. Este momento también es aprendizaje.”</div>
+    <h1>🎓 Bienvenido a tu zona de estudios</h1>
+    <div class="frase-motivacional" id="fraseMotivacional">"El futuro pertenece a quienes creen en la belleza de sus sueños." – Eleanor Roosevelt</div>
   </header>
 
-  <div class="contenedor">
-    <!-- Frases motivadoras -->
-    <h2 class="section-title">Frases Relajadas</h2>
-    <ul class="frases-lista" id="frasesLista">
-      <li>“La mente clara aprende mejor.”</li>
-      <li>“Un pequeño descanso también es parte del progreso.”</li>
-      <li>“La constancia suave vence al estrés.”</li>
-      <li>“Respira, enfócate, avanza.”</li>
-    </ul>
+  <div class="seccion" id="zonaInspiracion">
+    <h2>🌟 Frases e inspiración</h2>
+    <ul id="listaFrases"></ul>
+  </div>
 
-    <!-- Consejos rápidos -->
-    <h2 class="section-title">Consejos Rápidos</h2>
-    <div class="consejos">
-      <div class="consejo-item">
-        <h3>Pomodoro</h3>
-        <p>Estudia 25 min y descansa 5 min. Repite 4 veces.</p>
-      </div>
-      <div class="consejo-item">
-        <h3>Postura</h3>
-        <p>Siéntate derecho con la pantalla a nivel de ojos.</p>
-      </div>
-      <div class="consejo-item">
-        <h3>Ambiente</h3>
-        <p>Usa luz suave y una taza de té para relajarte.</p>
-      </div>
-      <div class="consejo-item">
-        <h3>Música</h3>
-        <p>Escucha sonidos ambientales o música binaural suave.</p>
-      </div>
-    </div>
+  <div class="seccion">
+    <h2>✅ Tus Tareas de Estudio</h2>
+    <input type="text" id="nuevaTarea" placeholder="Escribe una tarea...">
+    <button onclick="agregarTarea()">Agregar</button>
+    <ul id="listaTareas"></ul>
+  </div>
 
-    <!-- Tareas personalizadas -->
-    <h2 class="section-title">Tareas de Estudio</h2>
-    <div class="tasks">
-      <input type="text" id="tareaInput" placeholder="Ej: Repasar capítulos…"/>
-      <button onclick="agregarTarea()">Añadir</button>
-      <ul id="tareasList"></ul>
-      <div class="barra-progreso"><span id="barraEstudio">0%</span></div>
-    </div>
+  <div class="seccion">
+    <h2>💡 Consejos Rápidos</h2>
+    <ol>
+      <li>Estudia en bloques de 25 minutos.</li>
+      <li>Haz resúmenes y mapas mentales.</li>
+      <li>Usa técnicas como Feynman para explicar lo que aprendes.</li>
+      <li>Evita multitarea, concéntrate en una cosa.</li>
+      <li>Recompénsate después de cada sesión.</li>
+    </ol>
+  </div>
 
-    <!-- Notas personales -->
-    <h2 class="section-title">Notas o Reflexiones</h2>
-    <div class="notas">
-      <textarea id="notaText"></textarea>
-      <button onclick="guardarNota()">Guardar nota</button>
+  <div class="seccion">
+    <h2>⏱️ Temporizador Pomodoro</h2>
+    <div class="pomodoro-controles">
+      <label>Estudio (min): <input type="number" id="tiempoEstudio" value="25"></label>
+      <label>Descanso corto (min): <input type="number" id="tiempoDescanso" value="5"></label>
+      <label>Descanso largo (min): <input type="number" id="tiempoLargo" value="15"></label>
     </div>
-
-    <!-- Medallas académicas -->
-    <h2 class="section-title">Tu Colección de Medallas</h2>
-    <div class="medallero">
-      <div class="medallas-grid" id="medallasEstudio"></div>
+    <div style="margin-top: 10px;">
+      <h3 id="modoActual">Modo: Estudio</h3>
+      <h2 id="temporizador">25:00</h2>
+      <button onclick="iniciarTemporizador()">Iniciar</button>
+      <button onclick="resetearTemporizador()">Resetear</button>
     </div>
+    <div class="progreso"><div id="barraProgreso" class="progreso-barra"></div></div>
   </div>
 
   <script>
-    // Frase relajante animada
-    const frases = Array.from(document.querySelectorAll('#frasesLista li')).map(li => li.innerText);
-    let idx = 0;
-    const fraseSpan = document.getElementById('fraseRelax');
+    // Frases motivadoras
+    const frases = [
+      "“Estudia como si fueras a vivir para siempre.” – Mahatma Gandhi",
+      "“El aprendizaje no es un deporte para espectadores.” – D. Blocher",
+      "“No hay secretos para el éxito. Este se alcanza preparándose, trabajando arduamente y aprendiendo del fracaso.” – Colin Powell",
+      "“La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas.” – Jim Ryun",
+      "“No cuentes los días, haz que los días cuenten.” – Muhammad Ali"
+    ];
+    let fraseIndex = 0;
+    const fraseMotivacional = document.getElementById("fraseMotivacional");
+    const listaFrases = document.getElementById("listaFrases");
+
+    frases.forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = f;
+      listaFrases.appendChild(li);
+    });
+
     setInterval(() => {
-      idx = (idx + 1) % frases.length;
-      fraseSpan.innerText = frases[idx];
-    }, 6000);
+      fraseIndex = (fraseIndex + 1) % frases.length;
+      fraseMotivacional.textContent = frases[fraseIndex];
+    }, 10000);
 
-    // Tareas personalizadas
-    const tareasEst = JSON.parse(localStorage.getItem('tareasEstudio')) || [];
-    const listaT = document.getElementById('tareasList');
-    const barraEst = document.getElementById('barraEstudio');
+    // Tareas
+    const listaTareas = document.getElementById("listaTareas");
+    const nuevaTareaInput = document.getElementById("nuevaTarea");
 
-    function actualizarTareas() {
-      listaT.innerHTML = '';
-      let comp = 0;
-      tareasEst.forEach((t,i) => {
-        const li = document.createElement('li');
-        li.innerText = t.texto;
-        if (t.completada) { li.classList.add('completed'); comp++; }
-        li.onclick = () => {
-          tareasEst[i].completada = !t.completada;
-          localStorage.setItem('tareasEstudio', JSON.stringify(tareasEst));
-          actualizarTareas();
-          actualizarProgreso();
-        };
-        listaT.appendChild(li);
+    function guardarTareas() {
+      localStorage.setItem("tareasEstudio", listaTareas.innerHTML);
+    }
+
+    function cargarTareas() {
+      listaTareas.innerHTML = localStorage.getItem("tareasEstudio") || "";
+      document.querySelectorAll('.tarea input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener("change", toggleTarea);
       });
-      actualizarProgreso();
     }
+
     function agregarTarea() {
-      const txt = document.getElementById('tareaInput').value.trim();
-      if (!txt) return;
-      tareasEst.push({ texto:txt, completada:false });
-      localStorage.setItem('tareasEstudio', JSON.stringify(tareasEst));
-      document.getElementById('tareaInput').value = '';
-      actualizarTareas();
-    }
-    function actualizarProgreso() {
-      const tot = tareasEst.length;
-      const comp = tareasEst.filter(t => t.completada).length;
-      const pct = tot ? Math.round(comp/tot * 100) : 0;
-      barraEst.style.width = pct+'%';
-      barraEst.innerText = pct + '%';
-    }
-    actualizarTareas();
-
-    // Notas personales
-    document.getElementById('notaText').value = localStorage.getItem('notaEstudio') || '';
-    function guardarNota() {
-      localStorage.setItem('notaEstudio', document.getElementById('notaText').value);
-      alert('Nota guardada 😊');
-    }
-
-    // Medallas académicas (cada 5 tareas completadas da una medalla)
-    function actualizarMedallasEstudio() {
-      const grid = document.getElementById('medallasEstudio');
-      grid.innerHTML = '';
-      const comp = tareasEst.filter(t=>t.completada).length;
-      const medCount = Math.floor(comp / 5);
-      for (let i = 0; i < medCount; i++) {
-        const m = document.createElement('div');
-        m.classList.add('medalla');
-        grid.appendChild(m);
+      const texto = nuevaTareaInput.value.trim();
+      if (texto) {
+        const li = document.createElement("li");
+        li.classList.add("tarea");
+        li.innerHTML = `<label><input type="checkbox"> ${texto}</label>`;
+        listaTareas.appendChild(li);
+        li.querySelector("input").addEventListener("change", toggleTarea);
+        nuevaTareaInput.value = "";
+        guardarTareas();
       }
     }
-    actualizarMedallasEstudio();
 
-    // Actualizaciones en tiempo real
-    setInterval(() => {
-      actualizarMedallasEstudio();
-    }, 1000);
+    function toggleTarea(e) {
+      const tarea = e.target.closest(".tarea");
+      tarea.classList.toggle("completada");
+      guardarTareas();
+    }
+
+    cargarTareas();
+
+    // Temporizador Pomodoro
+    let modo = "estudio";
+    let tiempoRestante = 25 * 60;
+    let temporizadorActivo;
+    const modoActual = document.getElementById("modoActual");
+    const temporizadorTexto = document.getElementById("temporizador");
+    const barraProgreso = document.getElementById("barraProgreso");
+
+    function iniciarTemporizador() {
+      clearInterval(temporizadorActivo);
+      const minEstudio = parseInt(document.getElementById("tiempoEstudio").value) || 25;
+      const minDescanso = parseInt(document.getElementById("tiempoDescanso").value) || 5;
+      const minLargo = parseInt(document.getElementById("tiempoLargo").value) || 15;
+
+      if (modo === "estudio") tiempoRestante = minEstudio * 60;
+      if (modo === "descanso") tiempoRestante = minDescanso * 60;
+      if (modo === "largo") tiempoRestante = minLargo * 60;
+
+      const total = tiempoRestante;
+
+      temporizadorActivo = setInterval(() => {
+        if (tiempoRestante > 0) {
+          tiempoRestante--;
+          const min = Math.floor(tiempoRestante / 60);
+          const seg = tiempoRestante % 60;
+          temporizadorTexto.textContent = `${min}:${seg < 10 ? '0' + seg : seg}`;
+          barraProgreso.style.width = `${(1 - tiempoRestante / total) * 100}%`;
+        } else {
+          clearInterval(temporizadorActivo);
+          alternarModo();
+        }
+      }, 1000);
+    }
+
+    function resetearTemporizador() {
+      clearInterval(temporizadorActivo);
+      temporizadorTexto.textContent = "00:00";
+      barraProgreso.style.width = "0%";
+    }
+
+    function alternarModo() {
+      if (modo === "estudio") {
+        modo = "descanso";
+        modoActual.textContent = "Modo: Descanso corto";
+      } else if (modo === "descanso") {
+        modo = "largo";
+        modoActual.textContent = "Modo: Descanso largo";
+      } else {
+        modo = "estudio";
+        modoActual.textContent = "Modo: Estudio";
+      }
+      iniciarTemporizador();
+    }
   </script>
 </body>
 </html>
