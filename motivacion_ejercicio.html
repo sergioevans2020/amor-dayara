@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Motivación Fitness 🏋️‍♀️🔥</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+      color: #ffffff;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      color: #ff3c3c;
+      text-shadow: 0 0 10px #ff3c3c;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .frase {
+      background: #292929;
+      border-left: 5px solid #ff3c3c;
+      padding: 15px;
+      margin: 15px auto;
+      max-width: 800px;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: 1.2em;
+      box-shadow: 0 0 10px #111;
+      position: relative;
+    }
+
+    .frase::before {
+      content: "💪";
+      position: absolute;
+      left: -35px;
+      font-size: 1.5em;
+      top: 10px;
+    }
+
+    .seccion {
+      margin-top: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff6b6b;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .consejos, .inspiracion {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1em;
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px #000;
+    }
+
+    .consejos ul {
+      padding-left: 20px;
+    }
+
+    .nota-section, .tareas-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    textarea {
+      width: 90%;
+      max-width: 700px;
+      height: 150px;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 10px;
+      border: 2px solid #ff3c3c;
+      background: #121212;
+      color: #fff;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff3c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 0 8px #ff3c3c;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #cc2e2e;
+    }
+
+    ul.tareas {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+    }
+
+    ul.tareas li {
+      background: #2c2c2c;
+      border: 1px solid #ff3c3c;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    ul.tareas li input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.3);
+    }
+
+    .add-task {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .add-task input {
+      padding: 10px;
+      font-size: 1em;
+      width: 60%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: 1px solid #ff3c3c;
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    .icono {
+      font-size: 1.5em;
+      margin: 5px;
+      animation: latido 1.5s infinite;
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .footer-icons {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* Popup de motivación */
+    .popup {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ff6b6b;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1.3em;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ff3c3c;
+      z-index: 1000;
+      opacity: 0;
+      animation: aparecer 0.5s forwards, desaparecer 3s forwards 2s;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; top: 10px; }
+      to { opacity: 1; top: 30px; }
+    }
+
+    @keyframes desaparecer {
+      to { opacity: 0; top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 ¡Activa tu poder interior! 🏋️‍♂️</h1>
+
+  <!-- Frases -->
+  <div class="frase">"El dolor de hoy es la fuerza de mañana." – Arnold Schwarzenegger</div>
+  <div class="frase">"Cada gota de sudor es una medalla silenciosa ganada por tu esfuerzo."</div>
+  <div class="frase">"No se trata de ser el mejor, se trata de ser mejor que ayer."</div>
+
+  <!-- Consejos -->
+  <div class="seccion">
+    <h2>🏃 Consejos Rápidos</h2>
+    <div class="consejos">
+      <ul>
+        <li>🔥 Establece rutinas realistas y consistentes.</li>
+        <li>💧 Mantente hidratado antes, durante y después.</li>
+        <li>⚡ Escucha música energética para activarte.</li>
+        <li>🥗 Cuida tu nutrición como parte del entrenamiento.</li>
+        <li>🛌 Respeta los tiempos de descanso y recuperación.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Inspiración -->
+  <div class="seccion">
+    <h2>⚡ Zona de Inspiración</h2>
+    <div class="inspiracion">
+      <p>Visualiza tu mejor versión cada día. El cuerpo se entrena, pero la mente es quien lo guía. Nunca subestimes el poder de una rutina diaria. Si puedes imaginarlo, puedes lograrlo.</p>
+    </div>
+  </div>
+
+  <!-- Bloc de notas -->
+  <div class="nota-section">
+    <h2>📓 Mini Bloc de Notas</h2>
+    <textarea id="notaEjercicio" placeholder="Escribe aquí tus ideas, rutinas o metas..."></textarea>
+    <br>
+    <button onclick="guardarNota()">Guardar Nota</button>
+  </div>
+
+  <!-- Tareas -->
+  <div class="tareas-section">
+    <h2>✅ Tareas de Entrenamiento</h2>
+    <div class="add-task">
+      <input type="text" id="nuevaTarea" placeholder="Nueva rutina o tarea...">
+      <button onclick="agregarTarea()">Agregar</button>
+    </div>
+    <ul id="listaTareas" class="tareas"></ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-icons">
+    <span class="icono">💪</span>
+    <span class="icono">🔥</span>
+    <span class="icono">⚡</span>
+    <span class="icono">🏋️‍♀️</span>
+    <span class="icono">🥇</span>
+  </div>
+
+  <!-- Popup de motivación -->
+  <div id="popupMotivacion" class="popup" style="display: none;">¡Bien hecho, sigue así! 💪🔥</div>
+
+  <script>
+    const notaEjercicio = document.getElementById("notaEjercicio");
+
+    function guardarNota() {
+      localStorage.setItem("notaEjercicio", notaEjercicio.value);
+      mostrarPopup("¡Nota guardada! 🚀");
+    }
+
+    function mostrarPopup(texto) {
+      const popup = document.getElementById("popupMotivacion");
+      popup.textContent = texto;
+      popup.style.display = "block";
+
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 4000);
+    }
+
+    function agregarTarea() {
+      const input = document.getElementById("nuevaTarea");
+      const texto = input.value.trim();
+      if (texto !== "") {
+        crearElementoTarea(texto, false);
+        guardarTareas();
+        input.value = "";
+      }
+    }
+
+    function crearElementoTarea(texto, completada) {
+      const li = document.createElement("li");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = completada;
+      checkbox.addEventListener("change", () => {
+        guardarTareas();
+        if (checkbox.checked) mostrarPopup("¡Bien hecho, meta completada! 🏆");
+      });
+
+      const span = document.createElement("span");
+      span.textContent = texto;
+      span.style.flex = "1";
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      document.getElementById("listaTareas").appendChild(li);
+    }
+
+    function guardarTareas() {
+      const tareas = [];
+      document.querySelectorAll("#listaTareas li").forEach(li => {
+        const texto = li.querySelector("span").textContent;
+        const completada = li.querySelector("input").checked;
+        tareas.push({ texto, completada });
+      });
+      localStorage.setItem("tareasEjercicio", JSON.stringify(tareas));
+    }
+
+    // Al cargar la página
+    window.onload = () => {
+      const notaGuardada = localStorage.getItem("notaEjercicio");
+      if (notaGuardada) notaEjercicio.value = notaGuardada;
+
+      const tareasGuardadas = JSON.parse(localStorage.getItem("tareasEjercicio")) || [];
+      tareasGuardadas.forEach(tarea => crearElementoTarea(tarea.texto, tarea.completada));
+
+      mostrarPopup("¡Bienvenido! Hoy es otro día para superarte 💥");
+    };
+  </script>
+
+</body>
+</html>
