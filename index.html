@@ -1,170 +1,318 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Principal</title>
-  <style>
-    /* Fuentes y tamaño para toda la página */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
-      background-color: var(--background-color, #f0f0f0);
-      color: var(--text-color, #222);
-      transition: background-color 0.3s, color 0.3s;
-    }
-    /* Temas: claro y oscuro */
-    :root {
-      --background-color-light: #f0f0f0;
-      --text-color-light: #222;
-      --background-color-dark: #222;
-      --text-color-dark: #f0f0f0;
-    }
-    body[data-theme="light"] {
-      --background-color: var(--background-color-light);
-      --text-color: var(--text-color-light);
-    }
-    body[data-theme="dark"] {
-      --background-color: var(--background-color-dark);
-      --text-color: var(--text-color-dark);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Página Principal - Motivación</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-    /* Botones */
-    .botones {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 20px;
-    }
-    .boton {
-      min-width: 140px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1rem;
-      color: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    .boton:focus {
-      outline: 2px solid #555;
-      outline-offset: 2px;
-    }
-    .boton:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-    /* Colores de los botones */
-    .boton.violeta { background-color: #8e24aa; }
-    .boton.amarillo { background-color: #fbc02d; color: #222; }
-    .boton.verde { background-color: #388e3c; }
-    .boton.rosa { background-color: #d81b60; }
-    .boton.azul { background-color: #1976d2; }
-    .boton.rojo { background-color: #d32f2f; }
+  :root {
+    --color-light-bg: #f5f7fa;
+    --color-light-text: #222;
+    --color-dark-bg: #121212;
+    --color-dark-text: #eee;
 
-    /* Contenedor botón Motivación con submenu */
-    .boton-motivacion-container {
-      position: relative;
-      display: inline-block;
-    }
-    #submenuMotivacion {
-      display: none;
-      position: absolute;
-      top: 45px;
-      left: 0;
-      background: #8e24aa;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      padding: 10px;
-      z-index: 100;
-      width: 160px;
-      text-align: center;
-    }
-    #submenuMotivacion button {
-      width: 100%;
-      margin: 5px 0;
-      font-weight: bold;
-      background-color: #7b1fa2;
-      color: white;
-      border-radius: 10px;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    #submenuMotivacion button:hover {
-      background-color: #9c27b0;
-    }
+    --primary-color: #6a1b9a;
+    --secondary-color: #ab47bc;
+    --accent-color: #ff4081;
+  }
 
-    /* Ajustes generales */
-    header, main, footer {
-      padding: 15px;
-      max-width: 900px;
-      margin: auto;
-    }
+  /* ===== Animación Bienvenida ===== */
+  #bienvenida {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-align: center;
+    z-index: 9999;
+    user-select: none;
+    animation: fadeOut 1.5s ease forwards;
+    animation-delay: 5.5s; /* duración animación + sonido */
+  }
 
-  </style>
+  #bienvenida span {
+    display: block;
+    animation: glowText 2s ease-in-out infinite alternate;
+  }
+
+  #bienvenida span:nth-child(2) {
+    animation-delay: 1s;
+  }
+
+  #bienvenida span:nth-child(3) {
+    animation-delay: 2s;
+  }
+
+  @keyframes glowText {
+    0% {
+      text-shadow:
+        0 0 6px #ff6ef2,
+        0 0 12px #ff6ef2,
+        0 0 18px #ff6ef2;
+      color: #ffc0ff;
+    }
+    100% {
+      text-shadow:
+        0 0 20px #ff00dd,
+        0 0 30px #ff00dd,
+        0 0 40px #ff00dd;
+      color: #ff40ff;
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  /* ===== Fondo Animado y General ===== */
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #9c27b0, #e040fb);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    color: var(--color-light-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 15px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  @keyframes gradientBG {
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+
+  body[data-theme="dark"] {
+    background: linear-gradient(135deg, #311b92, #7e57c2);
+    color: var(--color-dark-text);
+  }
+
+  header h1 {
+    font-weight: 600;
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(255 255 255 / 0.3);
+  }
+
+  .botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .boton {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 16px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+    min-width: 160px;
+    cursor: pointer;
+    box-shadow:
+      0 4px 15px rgba(169, 58, 188, 0.4),
+      inset 0 -3px 0 rgba(120, 27, 145, 0.7);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    user-select: none;
+  }
+
+  .boton svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+
+  .boton:hover, .boton:focus {
+    transform: scale(1.05);
+    box-shadow:
+      0 6px 20px rgba(169, 58, 188, 0.7),
+      inset 0 -3px 0 rgba(120, 27, 145, 0.9);
+    outline: none;
+  }
+
+  /* Submenu Motivación */
+  .boton-motivacion-container {
+    position: relative;
+  }
+  #submenuMotivacion {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    padding: 12px 8px;
+    width: 180px;
+    text-align: center;
+    z-index: 200;
+  }
+  #submenuMotivacion button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px 0;
+    font-weight: 600;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #submenuMotivacion button:hover {
+    background-color: rgba(255 255 255 / 0.2);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  footer {
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: rgba(255 255 255 / 0.6);
+    user-select: none;
+  }
+</style>
 </head>
 <body data-theme="light">
 
+<!-- Animación de bienvenida -->
+<div id="bienvenida" aria-live="polite" role="alert" aria-label="Animación de bienvenida princesa">
+  <span>Bienvenida</span>
+  <span>Princesa</span>
+  <span>✨🌸✨</span>
+</div>
+
+<audio id="audioMagico" preload="auto" src="https://cdn.pixabay.com/download/audio/2021/09/04/audio_8e0fa22418.mp3?filename=magic-chimes-37793.mp3" volume="0.3"></audio>
+
 <header>
-  <h1 style="text-align:center; margin-bottom: 20px;">Bienvenido a la Página Principal</h1>
+  <h1>¡Bienvenido a tu espacio motivacional!</h1>
 </header>
 
 <main>
   <div class="botones">
 
-    <a href="laberinto.html"><button class="boton violeta">LABERINTO</button></a>
-    <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
-    <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
-    <a href="caja_sorpresa.html"><button class="boton rosa">CAJA SORPRESA</button></a>
+    <a href="laberinto.html" title="Juega el laberinto">
+      <button class="boton" aria-label="Laberinto">
+        🧩 Laberinto
+      </button>
+    </a>
+
+    <a href="listas_deseos.html" title="Ve a la lista de deseos">
+      <button class="boton" aria-label="Lista de deseos">
+        🎯 Lista de Deseos
+      </button>
+    </a>
+
+    <a href="nuestra_libreta.html" title="Nuestra libreta">
+      <button class="boton" aria-label="Nuestra libreta">
+        📓 Nuestra Libreta
+      </button>
+    </a>
+
+    <a href="caja_sorpresa.html" title="Caja sorpresa">
+      <button class="boton" aria-label="Caja sorpresa">
+        🎁 Caja Sorpresa
+      </button>
+    </a>
 
     <div class="boton-motivacion-container">
-      <button id="btnMotivacion" class="boton violeta" style="min-width: 160px;">
-        MOTIVACIÓN ▼
+      <button id="btnMotivacion" class="boton" aria-haspopup="true" aria-expanded="false" aria-controls="submenuMotivacion" aria-label="Botón motivación con opciones">
+        💪 Motivación ▼
       </button>
-      <div id="submenuMotivacion">
-        <a href="motivacion_estudios.html" style="text-decoration:none;">
-          <button>Estudios</button>
-        </a>
-        <a href="motivacion_ejercicio.html" style="text-decoration:none;">
-          <button>Ejercicio</button>
-        </a>
+      <div id="submenuMotivacion" role="menu" aria-label="Submenú motivación">
+        <a href="motivacion_estudios.html" role="menuitem" tabindex="-1"><button>📚 Estudios</button></a>
+        <a href="motivacion_ejercicio.html" role="menuitem" tabindex="-1"><button>🏋️‍♂️ Ejercicio</button></a>
       </div>
     </div>
 
-    <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
-    <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
-    <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
-    <a href="minijuego.html"><button class="boton violeta">MINIJUEGO</button></a>
+    <a href="regalo1.html" title="Regalo 1">
+      <button class="boton" aria-label="Regalo 1">
+        🎉 Regalo 1
+      </button>
+    </a>
+
+    <a href="regalo2.html" title="Regalo 2">
+      <button class="boton" aria-label="Regalo 2">
+        🎈 Regalo 2
+      </button>
+    </a>
+
+    <a href="regalo3.html" title="Regalo 3">
+      <button class="boton" aria-label="Regalo 3">
+        🎊 Regalo 3
+      </button>
+    </a>
+
+    <a href="minijuego.html" title="Mini juego">
+      <button class="boton" aria-label="Mini juego">
+        🕹️ Minijuego
+      </button>
+    </a>
 
   </div>
 </main>
 
-<footer style="text-align:center; margin: 30px 0;">
+<footer>
   <small>© 2025 Mi Página Motivacional</small>
 </footer>
 
 <script>
+  // Submenu motivación
   const btnMotivacion = document.getElementById('btnMotivacion');
   const submenuMotivacion = document.getElementById('submenuMotivacion');
 
   btnMotivacion.addEventListener('click', () => {
-    if (submenuMotivacion.style.display === 'none' || submenuMotivacion.style.display === '') {
-      submenuMotivacion.style.display = 'block';
-    } else {
-      submenuMotivacion.style.display = 'none';
-    }
+    const isVisible = submenuMotivacion.style.display === 'block';
+    submenuMotivacion.style.display = isVisible ? 'none' : 'block';
+    btnMotivacion.setAttribute('aria-expanded', String(!isVisible));
   });
 
   document.addEventListener('click', (e) => {
     if (!btnMotivacion.contains(e.target) && !submenuMotivacion.contains(e.target)) {
       submenuMotivacion.style.display = 'none';
+      btnMotivacion.setAttribute('aria-expanded', 'false');
     }
+  });
+
+  // Reproducir sonido mágico suave al cargar la animación
+  window.addEventListener('load', () => {
+    const bienvenida = document.getElementById('bienvenida');
+    const audio = document.getElementById('audioMagico');
+
+    // Intenta reproducir audio (puede que algunos navegadores bloqueen autoplay)
+    audio.volume = 0.2;
+    audio.play().catch(() => {
+      // Autoplay bloqueado, no pasa nada
+    });
+
+    // Ocultar la animación después de 7 segundos (5.5 + 1.5 de fade)
+    setTimeout(() => {
+      bienvenida.style.display = 'none';
+    }, 7000);
   });
 </script>
 
