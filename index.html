@@ -263,58 +263,144 @@
 
     <a href="regalo3.html" title="Regalo 3">
       <button class="boton" aria-label="Regalo 3">
-        🎊 Regalo 3
+        🎀 Regalo 3
       </button>
     </a>
 
-    <a href="minijuego.html" title="Mini juego">
-      <button class="boton" aria-label="Mini juego">
-        🕹️ Minijuego
-      </button>
-    </a>
+    <button id="btnAjustes" class="boton" aria-haspopup="dialog" aria-controls="modalAjustes" aria-label="Abrir ajustes">
+      ⚙️ Ajustes
+    </button>
 
   </div>
 </main>
 
+<!-- Modal ajustes -->
+<div id="modalAjustes" role="dialog" aria-modal="true" aria-labelledby="tituloAjustes" hidden style="position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+color:white; border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,0.7); max-width:320px; width:90%; z-index:300;">
+  <h2 id="tituloAjustes" style="margin-top:0;">Ajustes</h2>
+
+  <label for="selectFuente">Fuente:</label><br />
+  <select id="selectFuente" style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px; border:none; font-size:1rem;">
+    <option value="Poppins, sans-serif">Poppins</option>
+    <option value="'Arial Black', Gadget, sans-serif">Arial Black</option>
+    <option value="'Comic Sans MS', cursive">Comic Sans</option>
+    <option value="'Courier New', Courier, monospace">Courier New</option>
+    <option value="'Georgia', serif">Georgia</option>
+    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+  </select>
+
+  <label for="selectTema">Tema:</label><br />
+  <select id="selectTema" style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px; border:none; font-size:1rem;">
+    <option value="light">Claro</option>
+    <option value="dark">Oscuro</option>
+  </select>
+
+  <label for="selectTamano">Tamaño de letra:</label><br />
+  <select id="selectTamano" style="width:100%;padding:6px;margin-bottom:20px;border-radius:8px; border:none; font-size:1rem;">
+    <option value="14px">Pequeño</option>
+    <option value="16px" selected>Medio</option>
+    <option value="18px">Grande</option>
+    <option value="20px">Muy grande</option>
+  </select>
+
+  <button id="btnAplicar" style="background:#ff4081; border:none; color:white; padding:10px 20px; border-radius:12px; font-weight:600; cursor:pointer;">Aplicar</button>
+  <button id="btnCerrar" style="background:#ab47bc; border:none; color:white; padding:10px 20px; border-radius:12px; font-weight:600; cursor:pointer; margin-left:10px;">Cerrar</button>
+</div>
+
 <footer>
-  <small>© 2025 Mi Página Motivacional</small>
+  <p>© 2025 Motivación Personalizada</p>
 </footer>
 
 <script>
-  // Submenu motivación
+  // Animación bienvenida y sonido
+  window.onload = () => {
+    const bienvenida = document.getElementById('bienvenida');
+    const audio = document.getElementById('audioMagico');
+    audio.volume = 0.3;
+    audio.play();
+
+    setTimeout(() => {
+      bienvenida.style.display = 'none';
+    }, 7000);
+  };
+
+  // Submenu motivacion
   const btnMotivacion = document.getElementById('btnMotivacion');
   const submenuMotivacion = document.getElementById('submenuMotivacion');
 
   btnMotivacion.addEventListener('click', () => {
-    const isVisible = submenuMotivacion.style.display === 'block';
-    submenuMotivacion.style.display = isVisible ? 'none' : 'block';
-    btnMotivacion.setAttribute('aria-expanded', String(!isVisible));
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!btnMotivacion.contains(e.target) && !submenuMotivacion.contains(e.target)) {
+    const expanded = btnMotivacion.getAttribute('aria-expanded') === 'true';
+    btnMotivacion.setAttribute('aria-expanded', !expanded);
+    if (submenuMotivacion.style.display === 'block') {
       submenuMotivacion.style.display = 'none';
-      btnMotivacion.setAttribute('aria-expanded', 'false');
+    } else {
+      submenuMotivacion.style.display = 'block';
+      submenuMotivacion.querySelector('button').focus();
     }
   });
 
-  // Reproducir sonido mágico suave al cargar la animación
+  // Cerrar submenu al hacer click fuera
+  document.addEventListener('click', (e) => {
+    if (!btnMotivacion.contains(e.target) && !submenuMotivacion.contains(e.target)) {
+      submenuMotivacion.style.display = 'none';
+      btnMotivacion.setAttribute('aria-expanded', false);
+    }
+  });
+
+  // Modal ajustes
+  const btnAjustes = document.getElementById('btnAjustes');
+  const modalAjustes = document.getElementById('modalAjustes');
+  const btnCerrar = document.getElementById('btnCerrar');
+  const btnAplicar = document.getElementById('btnAplicar');
+
+  btnAjustes.addEventListener('click', () => {
+    modalAjustes.hidden = false;
+    modalAjustes.style.display = 'block';
+  });
+
+  btnCerrar.addEventListener('click', () => {
+    modalAjustes.hidden = true;
+    modalAjustes.style.display = 'none';
+  });
+
+  btnAplicar.addEventListener('click', () => {
+    const fuente = document.getElementById('selectFuente').value;
+    const tema = document.getElementById('selectTema').value;
+    const tamano = document.getElementById('selectTamano').value;
+
+    document.body.style.fontFamily = fuente;
+    document.body.style.fontSize = tamano;
+    document.body.setAttribute('data-theme', tema);
+
+    modalAjustes.hidden = true;
+    modalAjustes.style.display = 'none';
+
+    // Guardar configuración localStorage
+    localStorage.setItem('configFuente', fuente);
+    localStorage.setItem('configTema', tema);
+    localStorage.setItem('configTamano', tamano);
+  });
+
+  // Cargar configuración guardada
   window.addEventListener('load', () => {
-    const bienvenida = document.getElementById('bienvenida');
-    const audio = document.getElementById('audioMagico');
+    const fuente = localStorage.getItem('configFuente');
+    const tema = localStorage.getItem('configTema');
+    const tamano = localStorage.getItem('configTamano');
 
-    // Intenta reproducir audio (puede que algunos navegadores bloqueen autoplay)
-    audio.volume = 0.2;
-    audio.play().catch(() => {
-      // Autoplay bloqueado, no pasa nada
-    });
-
-    // Ocultar la animación después de 7 segundos (5.5 + 1.5 de fade)
-    setTimeout(() => {
-      bienvenida.style.display = 'none';
-    }, 7000);
+    if (fuente) {
+      document.body.style.fontFamily = fuente;
+      document.getElementById('selectFuente').value = fuente;
+    }
+    if (tema) {
+      document.body.setAttribute('data-theme', tema);
+      document.getElementById('selectTema').value = tema;
+    }
+    if (tamano) {
+      document.body.style.fontSize = tamano;
+      document.getElementById('selectTamano').value = tamano;
+    }
   });
 </script>
-
 </body>
 </html>
