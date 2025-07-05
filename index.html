@@ -2,24 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bienvenida princesa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --fondo-claro: #ffe6f0;
       --fondo-oscuro: #2b2b2b;
       --texto-claro: #b30059;
       --texto-oscuro: #ffb6c1;
+      --fuente-principal: 'Quicksand', sans-serif;
     }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      overflow-x: hidden;
+      font-family: var(--fuente-principal);
       background-color: var(--fondo-claro);
-      transition: background-color 0.5s, color 0.5s;
+      color: var(--texto-claro);
+      transition: all 0.4s ease;
     }
 
     body.dark-mode {
@@ -27,29 +28,6 @@
       color: var(--texto-oscuro);
     }
 
-    /* Animación de bienvenida */
-    #bienvenida {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
-      color: white;
-      text-shadow: 0 0 10px #fff;
-      z-index: 9999;
-      user-select: none;
-      animation: fadeInOut 5s forwards;
-    }
-    @keyframes fadeInOut {
-      0% {opacity: 0; transform: scale(0.8);}
-      50% {opacity: 1; transform: scale(1);}
-      100% {opacity: 0; transform: scale(0.8);}
-    }
-
-    /* Texto borde */
     .borde-texto {
       position: absolute;
       width: 100%;
@@ -58,6 +36,7 @@
       pointer-events: none;
       z-index: 10;
     }
+
     .borde-texto span {
       position: absolute;
       white-space: nowrap;
@@ -67,17 +46,15 @@
       animation: borderScroll 20s linear infinite;
     }
 
-    /* Corazones flotantes */
     .corazones {
       position: fixed;
       width: 100%;
       height: 100%;
-      top: 0;
-      left: 0;
       pointer-events: none;
-      z-index: 1;
       overflow: hidden;
+      z-index: 1;
     }
+
     .corazon {
       position: absolute;
       width: 20px;
@@ -87,6 +64,7 @@
       animation: flotar 8s infinite;
       border-radius: 50% 50% 0 0;
     }
+
     .corazon::before, .corazon::after {
       content: '';
       position: absolute;
@@ -95,51 +73,40 @@
       background: red;
       border-radius: 50%;
     }
-    .corazon::before {
-      top: -10px;
-      left: 0;
-    }
-    .corazon::after {
-      left: -10px;
-      top: 0;
-    }
+
+    .corazon::before { top: -10px; left: 0; }
+    .corazon::after { top: 0; left: -10px; }
+
     @keyframes flotar {
       0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
       100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
     }
+
     @keyframes borderScroll {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
 
-    /* Contenedor principal */
     .contenedor {
       position: relative;
       z-index: 5;
       text-align: center;
-      top: 30%;
-      opacity: 0;
-      animation: aparecer 1s ease-out forwards;
-      animation-delay: 5.2s; /* Para que aparezca después de la animación bienvenida */
-    }
-    @keyframes aparecer {
-      to { opacity: 1; }
+      padding-top: 100px;
     }
 
     .titulo {
       font-size: 36px;
       font-family: 'Great Vibes', cursive;
-      color: var(--texto-claro);
       margin-bottom: 40px;
     }
 
-    /* Botones */
     .botones {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
     }
+
     .boton {
       padding: 15px 25px;
       font-size: 18px;
@@ -150,31 +117,29 @@
       font-weight: bold;
       transition: 0.3s;
     }
+
     .boton.azul { background-color: #2196F3; }
     .boton.rojo { background-color: #e91e63; }
     .boton.rosa { background-color: #f48fb1; }
-    .boton.amarillo { background-color: #ffd54f; color:#333; }
+    .boton.amarillo { background-color: #ffd54f; }
     .boton.verde { background-color: #66bb6a; }
     .boton.violeta { background-color: #ba68c8; }
+    .boton.gris { background-color: #9e9e9e; }
 
     .boton:hover { transform: scale(1.05); }
 
-    /* Botón modo oscuro */
     #modoBtn {
       position: absolute;
       top: 10px;
       right: 10px;
       padding: 10px;
-      font-weight: bold;
-      cursor: pointer;
       background: #555;
       color: white;
       border: none;
       border-radius: 8px;
-      z-index: 20;
+      cursor: pointer;
     }
 
-    /* Avatar animado */
     .avatar {
       position: absolute;
       bottom: 10px;
@@ -182,103 +147,155 @@
       z-index: 20;
       animation: caminar 3s linear infinite;
     }
+
     .avatar svg {
       width: 80px;
       height: 80px;
     }
+
     @keyframes caminar {
-      0% { transform: translateX(0); }
+      0%, 100% { transform: translateX(0); }
       50% { transform: translateX(20px); }
-      100% { transform: translateX(0); }
+    }
+
+    /* SUBMENÚ MOTIVACIÓN */
+    .submenu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .submenu.mostrar {
+      display: flex;
+    }
+
+    /* Opciones abajo */
+    .config-panel {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .panel-botones {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .panel-botones button {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .fuente-select, .slider {
+      margin: 10px auto;
+    }
+
+    input[type="range"] {
+      width: 200px;
     }
   </style>
 </head>
 <body>
-  <!-- Animación bienvenida -->
-  <div id="bienvenida">Bienvenida, Princesa 💖</div>
-
-  <audio id="audioMagico" src="magical-sound.mp3" preload="auto"></audio>
-
   <button id="modoBtn">Modo Nocturno</button>
 
   <div class="borde-texto">
-    <span style="top: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; left: 0;">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="top: 0; left: -100%; transform: rotate(90deg);">siempre serás mi niña - 21/06/2025 • </span>
-    <span style="bottom: 0; right: -100%; transform: rotate(270deg);">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="top: 0;">siempre serás mi niña - 21/06/2025 • </span>
+    <span style="bottom: 0;">siempre serás mi niña - 21/06/2025 • </span>
   </div>
 
   <div class="corazones" id="corazones"></div>
 
-  <div class="contenedor" id="contenidoPrincipal">
+  <div class="contenedor">
     <div class="titulo">Bienvenida, mi amor 💕</div>
     <div class="botones">
       <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
       <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
       <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
       <a href="laberinto.html"><button class="boton violeta">LABERINTO</button></a>
-      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
       <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
-      <a href="caja_sorpresa.html"><button class="boton amarillo" style="color:#333;">CAJA SORPRESA</button></a>
-      <a href="#" id="btnMotivacion"><button class="boton azul">MOTIVACIÓN</button></a>
+      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
+      <a href="caja_sorpresa.html"><button class="boton gris">CAJA SORPRESA</button></a>
+      <button class="boton violeta" onclick="toggleSubmenu()">MOTIVACIÓN</button>
+    </div>
+
+    <div class="submenu" id="submenu">
+      <a href="motivacion_estudios.html"><button class="boton azul">Estudios</button></a>
+      <a href="motivacion_ejercicio.html"><button class="boton rojo">Ejercicio</button></a>
+    </div>
+
+    <div class="config-panel">
+      <h3>Personalización</h3>
+      <div class="panel-botones">
+        <button onclick="cambiarFuente()">Fuentes</button>
+        <button onclick="cambiarFondo()">Tema</button>
+        <button onclick="toggleTamaño()">Tamaño</button>
+      </div>
+      <select id="selectFuente" class="fuente-select" onchange="actualizarFuente()">
+        <option value="'Quicksand', sans-serif">Quicksand</option>
+        <option value="'Great Vibes', cursive">Great Vibes</option>
+        <option value="Arial">Arial</option>
+        <option value="'Comic Sans MS'">Comic Sans</option>
+      </select>
+      <div id="sliderTamaño" class="slider">
+        <input type="range" min="12" max="30" value="18" onchange="cambiarTamano(this.value)" />
+      </div>
     </div>
   </div>
 
-  <div class="avatar" aria-label="Avatar animado">
-    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" >
-      <circle cx="32" cy="20" r="12" fill="#f48fb1"/>
-      <rect x="20" y="32" width="24" height="28" fill="#f8bbd0" rx="8"/>
+  <div class="avatar">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#e91e63" d="M32 12c-8-12-24 0-12 14l12 12 12-12C56 12 40 0 32 12z"/>
+      <circle cx="24" cy="24" r="2" fill="#fff"/>
+      <circle cx="40" cy="24" r="2" fill="#fff"/>
+      <path d="M28 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
+      <path d="M36 44 l-4 12 h4 l2-8 l2 8 h4 l-4-12z" fill="#e91e63"/>
     </svg>
   </div>
 
   <script>
-    // Reproducir sonido mágico cuando la animación se muestra
-    const audioMagico = document.getElementById('audioMagico');
-    audioMagico.volume = 0.3; // volumen suave
-    audioMagico.play().catch(e => { /* autoplay puede fallar en algunos navegadores */ });
-
-    // Ocultar la animación bienvenida después de 5s y mostrar contenido
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const bienvenida = document.getElementById('bienvenida');
-        bienvenida.style.display = 'none';
-        const contenido = document.getElementById('contenidoPrincipal');
-        contenido.style.opacity = 1;
-      }, 5000);
-    });
-
-    // Botón modo oscuro
-    const modoBtn = document.getElementById('modoBtn');
-    modoBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')){
-        modoBtn.textContent = 'Modo Claro';
-      } else {
-        modoBtn.textContent = 'Modo Nocturno';
-      }
-    });
-
-    // Crear corazones animados
-    function crearCorazones() {
-      const container = document.getElementById('corazones');
-      for(let i=0; i<15; i++) {
-        const c = document.createElement('div');
-        c.classList.add('corazon');
-        c.style.left = Math.random() * 100 + 'vw';
-        c.style.animationDuration = 4 + Math.random() * 4 + 's';
-        c.style.animationDelay = Math.random() * 8 + 's';
-        container.appendChild(c);
-      }
+    // Corazones flotantes
+    const corazonesContainer = document.getElementById("corazones");
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      corazonesContainer.appendChild(corazon);
+      setTimeout(() => corazon.remove(), 10000);
     }
-    crearCorazones();
+    setInterval(crearCorazon, 500);
 
-    // Botón Motivación - mostrar opciones estudios / ejercicio
-    const btnMotivacion = document.getElementById('btnMotivacion');
-    btnMotivacion.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Próximamente: Elige entre Estudios o Ejercicio para motivación.');
-      // Aquí luego se puede abrir un modal o redirigir a otra página para elegir.
+    // Tema
+    document.getElementById("modoBtn").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
     });
+
+    // Submenú motivación
+    function toggleSubmenu() {
+      document.getElementById("submenu").classList.toggle("mostrar");
+    }
+
+    // Fuente
+    function actualizarFuente() {
+      const fuente = document.getElementById("selectFuente").value;
+      document.body.style.fontFamily = fuente;
+    }
+
+    // Tamaño
+    function cambiarTamano(valor) {
+      document.body.style.fontSize = valor + "px";
+    }
+
+    // Tema extra (placeholder)
+    function cambiarFondo() {
+      const fondos = ["#ffe6f0", "#fff0f5", "#fce4ec", "#f3e5f5"];
+      const aleatorio = fondos[Math.floor(Math.random() * fondos.length)];
+      document.body.style.backgroundColor = aleatorio;
+    }
   </script>
 </body>
 </html>
