@@ -3,34 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Motivación Fitness 🔥</title>
+  <title>🔥 Motivación Fitness 🔥</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 20px;
-      background: linear-gradient(to bottom, #1e1e2f, #000000);
+      background: linear-gradient(to bottom, #0d0d0d, #1b1b1b);
       color: #fff;
+      overflow-x: hidden;
     }
 
     h1, h2 {
       text-align: center;
       color: #ff7043;
+      text-shadow: 0 0 10px #ff5722;
     }
 
     .seccion {
-      background-color: #2c2c3e;
+      background-color: #2b2b2b;
       padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ff5722;
+      margin: 30px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #ff5722;
+      max-width: 800px;
     }
 
-    .tarea {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
+    .modo-espejo {
+      text-align: center;
+      background: #ff7043;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      animation: parpadeo 1s infinite alternate;
     }
 
     .barra-progreso {
@@ -48,21 +55,42 @@
       transition: width 0.5s ease-in-out;
     }
 
-    input[type="text"] {
-      width: 70%;
-      padding: 8px;
-      border-radius: 5px;
+    .tarea {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
       border: none;
     }
 
     button {
       background-color: #ff5722;
       color: white;
-      padding: 10px;
+      padding: 10px 20px;
       border: none;
-      margin-left: 5px;
-      border-radius: 5px;
+      margin-top: 10px;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 5px #ff5722;
+    }
+
+    .mensaje-logro {
+      display: none;
+      text-align: center;
+      font-size: 20px;
+      background: #43a047;
+      color: white;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
     }
 
     .llama {
@@ -77,15 +105,13 @@
       color: gold;
     }
 
-    .modo-espejo {
+    .frase-epica {
+      font-style: italic;
+      font-size: 22px;
       text-align: center;
-      background: #ff7043;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      font-weight: bold;
-      margin-bottom: 30px;
-      animation: parpadeo 1s infinite alternate;
+      margin: 20px 0;
+      color: #ffd180;
+      animation: subir 1s ease-out;
     }
 
     @keyframes parpadeo {
@@ -93,28 +119,36 @@
       to {opacity: 0.7;}
     }
 
-    .mensaje-logro {
-      display: none;
-      text-align: center;
-      font-size: 20px;
-      background: #43a047;
-      color: white;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
+    @keyframes subir {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="modo-espejo">🔥 ¡Eres fuerte, eres constante, tú puedes lograrlo! 🔥</div>
+  <div class="modo-espejo">🔥 ¡Eres imparable, cada día más fuerte! 🔥</div>
 
-  <h1>Motivación para Ejercicio 🏋️‍♀️</h1>
+  <h1>🔥 Motivación para Ejercicio 🔥</h1>
 
+  <!-- Frases épicas -->
   <div class="seccion">
-    <h2>Tareas de Hoy</h2>
+    <h2>Frase del Día 💬</h2>
+    <div id="frase" class="frase-epica">"El dolor que sientes hoy es la fuerza que sentirás mañana."</div>
+    <button onclick="nuevaFrase()">Otra frase</button>
+  </div>
+
+  <!-- Tareas -->
+  <div class="seccion">
+    <h2>🏋️ Tareas de Hoy</h2>
     <div id="lista-tareas"></div>
-    <input type="text" id="nuevaTarea" placeholder="Ej: 20 flexiones..." />
+    <input type="text" id="nuevaTarea" placeholder="Ej: 30 sentadillas..." />
     <button onclick="agregarTarea()">Añadir</button>
 
     <div class="barra-progreso">
@@ -124,24 +158,46 @@
     <div class="mensaje-logro" id="mensajeLogro">🎉 ¡Bien hecho! Completaste una tarea más. 🎉</div>
   </div>
 
+  <!-- Días activos -->
   <div class="seccion">
-    <h2>Días Activos 🔥</h2>
+    <h2>🔥 Días Activos</h2>
     <div class="llama">🔥</div>
     <p style="text-align:center;">Días activos: <span id="diasActivos">0</span></p>
   </div>
 
+  <!-- Medallas -->
   <div class="seccion">
-    <h2>Medallas 🥇</h2>
+    <h2>🏅 Medallas de Progreso</h2>
     <div class="medallas" id="medallas">Ninguna aún 😢</div>
   </div>
 
+  <!-- Bloc de notas -->
   <div class="seccion">
-    <h2>Bloc de Notas</h2>
-    <textarea id="notas" rows="6" style="width:100%; border-radius:8px;"></textarea>
+    <h2>📝 Tu Bloc de Notas Fitness</h2>
+    <textarea id="notas" rows="6" placeholder="Escribe tus pensamientos o plan de entrenamiento..."></textarea>
     <button onclick="guardarNotas()">Guardar</button>
   </div>
 
+  <!-- Reiniciar -->
+  <div class="seccion">
+    <h2>⚠️ Opciones Avanzadas</h2>
+    <button onclick="reiniciarTodo()">Reiniciar Progreso</button>
+  </div>
+
   <script>
+    const frases = [
+      "No pares hasta estar orgulloso.",
+      "El dolor es temporal, el orgullo es para siempre.",
+      "Sé más fuerte que tu excusa.",
+      "Entrena como si tu vida dependiera de ello.",
+      "Tu cuerpo puede soportarlo, es tu mente la que debes convencer.",
+      "Cada día es una nueva oportunidad para ser mejor.",
+      "No sueñes con el éxito, trabaja para lograrlo.",
+      "Los campeones se hacen cuando nadie los mira.",
+      "Hoy sufres, mañana brillas.",
+      "Quien quiere resultados, no encuentra excusas."
+    ];
+
     let tareas = JSON.parse(localStorage.getItem('tareasEjercicio')) || [];
     let diasActivos = parseInt(localStorage.getItem('diasActivos')) || 0;
 
@@ -223,12 +279,30 @@
       document.getElementById('notas').value = localStorage.getItem('notasFitness') || '';
     }
 
+    function nuevaFrase() {
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById('frase').textContent = `"${frase}"`;
+    }
+
+    function reiniciarTodo() {
+      if (confirm("¿Estás seguro de que deseas borrar todo el progreso?")) {
+        localStorage.removeItem('tareasEjercicio');
+        localStorage.removeItem('diasActivos');
+        localStorage.removeItem('notasFitness');
+        tareas = [];
+        diasActivos = 0;
+        renderTareas();
+        document.getElementById('diasActivos').textContent = diasActivos;
+        actualizarMedallas();
+        document.getElementById('notas').value = '';
+      }
+    }
+
     // Iniciar
     renderTareas();
-    document.getElementById('diasActivos').textContent = diasActivos;
+    actualizarDiasActivos();
     actualizarMedallas();
     cargarNotas();
-    actualizarDiasActivos();
   </script>
 </body>
 </html>
