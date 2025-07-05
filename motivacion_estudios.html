@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Motivación para Estudios 📚🔥</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #fff0f5);
+      color: #4a004d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 36px;
+      animation: fuego 1.5s infinite alternate;
+    }
+
+    .frase {
+      margin: 20px;
+      font-size: 24px;
+      text-align: center;
+      max-width: 90%;
+      min-height: 50px;
+      border-left: 5px solid #ff4081;
+      padding-left: 15px;
+      animation: fadein 1s ease-in;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fuego {
+      from { text-shadow: 0 0 10px orange, 0 0 20px red; }
+      to { text-shadow: 0 0 20px red, 0 0 30px orange; }
+    }
+
+    .seccion {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 700px;
+      background: #fff8fc;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(255, 0, 128, 0.2);
+    }
+
+    .seccion h2 {
+      color: #d81b60;
+      border-bottom: 2px solid #ff80ab;
+      padding-bottom: 5px;
+    }
+
+    .consejos li {
+      margin: 10px 0;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      resize: vertical;
+      border: 2px solid #ff80ab;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .tarea {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .tarea input {
+      margin-right: 10px;
+    }
+
+    #fraseMotivadora {
+      min-height: 40px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 ¡Estudia con pasión! 🔥</h1>
+
+  <div class="frase" id="fraseMotivadora">Cargando frase motivadora...</div>
+
+  <!-- Sección de consejos rápidos -->
+  <div class="seccion">
+    <h2>✨ Consejos Rápidos para Estudiar</h2>
+    <ul class="consejos">
+      <li>Estudia con bloques de 25 minutos y descansa 5.</li>
+      <li>Escribe a mano para retener mejor lo aprendido.</li>
+      <li>Establece metas pequeñas cada día.</li>
+      <li>Evita distracciones, apaga el móvil durante las sesiones.</li>
+      <li>Repasa en voz alta para entender mejor.</li>
+    </ul>
+  </div>
+
+  <!-- Zona de tareas -->
+  <div class="seccion">
+    <h2>📝 Tus tareas</h2>
+    <div id="listaTareas">
+      <div class="tarea"><input type="checkbox"> Terminar resumen de historia</div>
+      <div class="tarea"><input type="checkbox"> Estudiar 30 min de matemáticas</div>
+      <div class="tarea"><input type="checkbox"> Organizar apuntes</div>
+    </div>
+    <input type="text" id="nuevaTarea" placeholder="Escribe una nueva tarea" style="margin-top:10px; width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ff80ab;">
+    <button onclick="agregarTarea()" style="margin-top:10px; padding: 10px 20px; background-color:#ff4081; color:white; border:none; border-radius:8px; cursor:pointer;">Agregar Tarea</button>
+  </div>
+
+  <!-- Zona de inspiración -->
+  <div class="seccion">
+    <h2>💡 Tu Zona de Inspiración</h2>
+    <p>Escribe una frase que te inspire hoy y mantén el enfoque:</p>
+    <textarea placeholder="Hoy quiero lograr... porque..." oninput="guardarInspiracion()" id="inspiracion"></textarea>
+  </div>
+
+  <script>
+    // Frases rotativas
+    const frases = [
+      "La disciplina tarde o temprano vencerá a la inteligencia.",
+      "Cada minuto que estudias te acerca a tus sueños.",
+      "No tienes que ser el mejor, solo constante.",
+      "Estudia hoy lo que otros no quieren, y mañana vivirás como ellos no pueden.",
+      "Haz que tu futuro 'yo' se sienta orgulloso de ti.",
+      "El éxito es la suma de pequeños esfuerzos repetidos cada día. – R. Collier",
+      "Aprender nunca agota la mente. – Leonardo Da Vinci"
+    ];
+    let index = 0;
+    const fraseEl = document.getElementById("fraseMotivadora");
+
+    function mostrarFrase() {
+      fraseEl.textContent = frases[index];
+      index = (index + 1) % frases.length;
+    }
+    mostrarFrase();
+    setInterval(mostrarFrase, 6000);
+
+    // Agregar tareas
+    function agregarTarea() {
+      const input = document.getElementById("nuevaTarea");
+      const tarea = input.value.trim();
+      if (tarea !== "") {
+        const contenedor = document.getElementById("listaTareas");
+        const div = document.createElement("div");
+        div.className = "tarea";
+        div.innerHTML = `<input type="checkbox"> ${tarea}`;
+        contenedor.appendChild(div);
+        input.value = "";
+      }
+    }
+
+    // Guardar inspiración en localStorage
+    const inspArea = document.getElementById("inspiracion");
+    inspArea.value = localStorage.getItem("inspiracion") || "";
+    function guardarInspiracion() {
+      localStorage.setItem("inspiracion", inspArea.value);
+    }
+  </script>
+</body>
+</html>
