@@ -1,0 +1,94 @@
+<!-- ajustes.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajustes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0f5;
+      color: #333;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #e91e63;
+    }
+
+    .ajuste-grupo {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    select, input[type="range"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+  </style>
+</head>
+<body>
+  <h2>⚙️ Ajustes de Personalización</h2>
+
+  <div class="ajuste-grupo">
+    <label for="fuente">Seleccionar fuente:</label>
+    <select id="fuente">
+      <option value="Quicksand">Quicksand</option>
+      <option value="Arial">Arial</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Great Vibes">Great Vibes</option>
+    </select>
+  </div>
+
+  <div class="ajuste-grupo">
+    <label for="tamano">Tamaño de letra:</label>
+    <input type="range" id="tamano" min="12" max="32" value="18">
+  </div>
+
+  <div class="ajuste-grupo">
+    <label for="tema">Seleccionar tema:</label>
+    <select id="tema">
+      <option value="claro">Claro</option>
+      <option value="oscuro">Oscuro</option>
+      <option value="romantico">Romántico</option>
+    </select>
+  </div>
+
+  <button onclick="aplicarAjustes()">Aplicar</button>
+
+  <script>
+    function aplicarAjustes() {
+      const fuente = document.getElementById("fuente").value;
+      const tamano = document.getElementById("tamano").value;
+      const tema = document.getElementById("tema").value;
+
+      // Guardar en localStorage
+      localStorage.setItem("fuente", fuente);
+      localStorage.setItem("tamano", tamano);
+      localStorage.setItem("tema", tema);
+
+      alert("Ajustes guardados. Vuelve a la página principal para ver los cambios.");
+    }
+  </script>
+</body>
+</html>
