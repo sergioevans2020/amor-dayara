@@ -1,406 +1,228 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Página Principal - Motivación</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-  :root {
-    --color-light-bg: #f5f7fa;
-    --color-light-text: #222;
-    --color-dark-bg: #121212;
-    --color-dark-text: #eee;
-
-    --primary-color: #6a1b9a;
-    --secondary-color: #ab47bc;
-    --accent-color: #ff4081;
-  }
-
-  /* ===== Animación Bienvenida ===== */
-  #bienvenida {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #8e2de2, #4a00e0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 3.5rem;
-    text-align: center;
-    z-index: 9999;
-    user-select: none;
-    animation: fadeOut 1.5s ease forwards;
-    animation-delay: 5.5s; /* duración animación + sonido */
-  }
-
-  #bienvenida span {
-    display: block;
-    animation: glowText 2s ease-in-out infinite alternate;
-  }
-
-  #bienvenida span:nth-child(2) {
-    animation-delay: 1s;
-  }
-
-  #bienvenida span:nth-child(3) {
-    animation-delay: 2s;
-  }
-
-  @keyframes glowText {
-    0% {
-      text-shadow:
-        0 0 6px #ff6ef2,
-        0 0 12px #ff6ef2,
-        0 0 18px #ff6ef2;
-      color: #ffc0ff;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para mi princesa Dayara 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --fondo-claro: #ffe6f0;
+      --fondo-oscuro: #2b2b2b;
+      --texto-claro: #b30059;
+      --texto-oscuro: #ffb6c1;
     }
-    100% {
-      text-shadow:
-        0 0 20px #ff00dd,
-        0 0 30px #ff00dd,
-        0 0 40px #ff00dd;
-      color: #ff40ff;
-    }
-  }
 
-  @keyframes fadeOut {
-    to {
-      opacity: 0;
-      visibility: hidden;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--fondo-claro);
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    body.dark-mode {
+      background-color: var(--fondo-oscuro);
+      color: var(--texto-oscuro);
+    }
+
+    .bienvenida {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #ffecf2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      font-family: 'Great Vibes', cursive;
+      z-index: 999;
+      animation: fadeOut 3s ease 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .container {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: var(--texto-claro);
+      font-family: 'Great Vibes', cursive;
+    }
+
+    #carrusel-palabra {
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .botones {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .boton {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .azul { background-color: #2196F3; }
+    .rojo { background-color: #e91e63; }
+    .rosa { background-color: #f48fb1; }
+    .amarillo { background-color: #ffd54f; color: #000; }
+    .verde { background-color: #66bb6a; }
+    .violeta { background-color: #ba68c8; }
+    .naranja { background-color: #ff9800; }
+
+    .boton:hover {
+      transform: scale(1.05);
+    }
+
+    #modoBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 15px;
+      font-weight: bold;
+      background: #555;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .corazones {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
+      z-index: 0;
     }
-  }
 
-  /* ===== Fondo Animado y General ===== */
-  body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0; padding: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #9c27b0, #e040fb);
-    background-size: 400% 400%;
-    animation: gradientBG 20s ease infinite;
-    color: var(--color-light-text);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 30px 15px;
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  @keyframes gradientBG {
-    0%,100%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-  }
+    .corazon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: flotar 8s infinite;
+      border-radius: 50% 50% 0 0;
+    }
 
-  body[data-theme="dark"] {
-    background: linear-gradient(135deg, #311b92, #7e57c2);
-    color: var(--color-dark-text);
-  }
+    .corazon::before, .corazon::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
 
-  header h1 {
-    font-weight: 600;
-    font-size: 2.8rem;
-    margin-bottom: 40px;
-    text-shadow: 0 0 10px rgba(255 255 255 / 0.3);
-  }
+    .corazon::before {
+      top: -10px;
+      left: 0;
+    }
 
-  .botones {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 960px;
-    width: 100%;
-  }
+    .corazon::after {
+      left: -10px;
+      top: 0;
+    }
 
-  .boton {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    border-radius: 16px;
-    border: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 15px 25px;
-    min-width: 160px;
-    cursor: pointer;
-    box-shadow:
-      0 4px 15px rgba(169, 58, 188, 0.4),
-      inset 0 -3px 0 rgba(120, 27, 145, 0.7);
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    user-select: none;
-  }
+    @keyframes flotar {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
 
-  .boton svg {
-    width: 20px;
-    height: 20px;
-    fill: white;
-  }
-
-  .boton:hover, .boton:focus {
-    transform: scale(1.05);
-    box-shadow:
-      0 6px 20px rgba(169, 58, 188, 0.7),
-      inset 0 -3px 0 rgba(120, 27, 145, 0.9);
-    outline: none;
-  }
-
-  /* Submenu Motivación */
-  .boton-motivacion-container {
-    position: relative;
-  }
-  #submenuMotivacion {
-    display: none;
-    position: absolute;
-    top: 56px;
-    left: 0;
-    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-    border-radius: 16px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-    padding: 12px 8px;
-    width: 180px;
-    text-align: center;
-    z-index: 200;
-  }
-  #submenuMotivacion button {
-    width: 100%;
-    background: transparent;
-    border: none;
-    padding: 12px 0;
-    font-weight: 600;
-    color: white;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #submenuMotivacion button:hover {
-    background-color: rgba(255 255 255 / 0.2);
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  footer {
-    margin-top: 60px;
-    font-size: 0.9rem;
-    color: rgba(255 255 255 / 0.6);
-    user-select: none;
-  }
-</style>
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
 </head>
-<body data-theme="light">
-
-<!-- Animación de bienvenida -->
-<div id="bienvenida" aria-live="polite" role="alert" aria-label="Animación de bienvenida princesa">
-  <span>Aquí están tus regalos,</span>
-  <span>mi reina Dayara</span>
-  <span>✨🌹✨</span>
-</div>
-
-<audio id="audioMagico" preload="auto" src="https://cdn.pixabay.com/download/audio/2021/09/04/audio_8e0fa22418.mp3?filename=magic-chimes-37793.mp3" volume="0.3"></audio>
-
-<header>
-  <h1>¡Bienvenido a tu espacio motivacional!</h1>
-</header>
-
-<main>
-  <div class="botones">
-
-    <a href="laberinto.html" title="Juega el laberinto">
-      <button class="boton" aria-label="Laberinto">
-        🧩 Laberinto
-      </button>
-    </a>
-
-    <a href="listas_deseos.html" title="Ve a la lista de deseos">
-      <button class="boton" aria-label="Lista de deseos">
-        🎯 Lista de Deseos
-      </button>
-    </a>
-
-    <a href="nuestra_libreta.html" title="Nuestra libreta">
-      <button class="boton" aria-label="Nuestra libreta">
-        📓 Nuestra Libreta
-      </button>
-    </a>
-
-    <a href="caja_sorpresa.html" title="Caja sorpresa">
-      <button class="boton" aria-label="Caja sorpresa">
-        🎁 Caja Sorpresa
-      </button>
-    </a>
-
-    <div class="boton-motivacion-container">
-      <button id="btnMotivacion" class="boton" aria-haspopup="true" aria-expanded="false" aria-controls="submenuMotivacion" aria-label="Botón motivación con opciones">
-        💪 Motivación ▼
-      </button>
-      <div id="submenuMotivacion" role="menu" aria-label="Submenú motivación">
-        <a href="motivacion_estudios.html" role="menuitem" tabindex="-1"><button>📚 Estudios</button></a>
-        <a href="motivacion_ejercicio.html" role="menuitem" tabindex="-1"><button>🏋️‍♂️ Ejercicio</button></a>
-      </div>
-    </div>
-
-    <a href="regalo1.html" title="Regalo 1">
-      <button class="boton" aria-label="Regalo 1">
-        🎉 Regalo 1
-      </button>
-    </a>
-
-    <a href="regalo2.html" title="Regalo 2">
-      <button class="boton" aria-label="Regalo 2">
-        🎀 Regalo 2
-      </button>
-    </a>
-
-    <a href="regalo3.html" title="Regalo 3">
-      <button class="boton" aria-label="Regalo 3">
-        🎀 Regalo 3
-      </button>
-    </a>
-
-    <button id="btnAjustes" class="boton" aria-haspopup="dialog" aria-controls="modalAjustes" aria-label="Abrir ajustes">
-      ⚙️ Ajustes
-    </button>
-
+<body>
+  <!-- Pantalla de bienvenida -->
+  <div class="bienvenida">
+    Aquí están tus regalos mi reina Dayara 💖
   </div>
-</main>
 
-<!-- Modal ajustes -->
-<div id="modalAjustes" role="dialog" aria-modal="true" aria-labelledby="tituloAjustes" hidden style="position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
-background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-color:white; border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,0.7); max-width:320px; width:90%; z-index:300;">
-  <h2 id="tituloAjustes" style="margin-top:0;">Ajustes</h2>
+  <!-- Botón modo oscuro -->
+  <button id="modoBtn">Modo Nocturno</button>
 
-  <label for="selectFuente">Fuente:</label><br />
-  <select id="selectFuente" style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px; border:none; font-size:1rem;">
-    <option value="Poppins, sans-serif">Poppins</option>
-    <option value="'Arial Black', Gadget, sans-serif">Arial Black</option>
-    <option value="'Comic Sans MS', cursive">Comic Sans</option>
-    <option value="'Courier New', Courier, monospace">Courier New</option>
-    <option value="'Georgia', serif">Georgia</option>
-    <option value="'Times New Roman', Times, serif">Times New Roman</option>
-  </select>
+  <!-- Corazones flotantes -->
+  <div class="corazones" id="corazones"></div>
 
-  <label for="selectTema">Tema:</label><br />
-  <select id="selectTema" style="width:100%;padding:6px;margin-bottom:12px;border-radius:8px; border:none; font-size:1rem;">
-    <option value="light">Claro</option>
-    <option value="dark">Oscuro</option>
-  </select>
+  <!-- Contenido principal -->
+  <div class="container">
+    <h1>
+      Tú siempre serás <span id="carrusel-palabra">mi princesa</span>
+    </h1>
 
-  <label for="selectTamano">Tamaño de letra:</label><br />
-  <select id="selectTamano" style="width:100%;padding:6px;margin-bottom:20px;border-radius:8px; border:none; font-size:1rem;">
-    <option value="14px">Pequeño</option>
-    <option value="16px" selected>Medio</option>
-    <option value="18px">Grande</option>
-    <option value="20px">Muy grande</option>
-  </select>
+    <div class="botones">
+      <a href="regalo1.html"><button class="boton azul">REGALO 1</button></a>
+      <a href="regalo2.html"><button class="boton rojo">REGALO 2</button></a>
+      <a href="regalo3.html"><button class="boton rosa">REGALO 3</button></a>
+      <a href="nuestra_libreta.html"><button class="boton verde">NUESTRA LIBRETA</button></a>
+      <a href="listas_deseos.html"><button class="boton amarillo">LISTA DE DESEOS</button></a>
+      <a href="motivacion.html"><button class="boton violeta">MOTIVACIÓN</button></a>
+      <a href="ajustes.html"><button class="boton naranja">AJUSTES</button></a>
+    </div>
+  </div>
 
-  <button id="btnAplicar" style="background:#ff4081; border:none; color:white; padding:10px 20px; border-radius:12px; font-weight:600; cursor:pointer;">Aplicar</button>
-  <button id="btnCerrar" style="background:#ab47bc; border:none; color:white; padding:10px 20px; border-radius:12px; font-weight:600; cursor:pointer; margin-left:10px;">Cerrar</button>
-</div>
+  <footer>
+    Hecho con 💖 para Dayara
+  </footer>
 
-<footer>
-  <p>© 2025 Motivación Personalizada</p>
-</footer>
+  <script>
+    // Modo oscuro
+    const modoBtn = document.getElementById("modoBtn");
+    modoBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
 
-<script>
-  // Animación bienvenida y sonido
-  window.onload = () => {
-    const bienvenida = document.getElementById('bienvenida');
-    const audio = document.getElementById('audioMagico');
-    audio.volume = 0.3;
-    audio.play();
-
-    setTimeout(() => {
-      bienvenida.style.display = 'none';
-    }, 7000);
-  };
-
-  // Submenu motivacion
-  const btnMotivacion = document.getElementById('btnMotivacion');
-  const submenuMotivacion = document.getElementById('submenuMotivacion');
-
-  btnMotivacion.addEventListener('click', () => {
-    const expanded = btnMotivacion.getAttribute('aria-expanded') === 'true';
-    btnMotivacion.setAttribute('aria-expanded', !expanded);
-    if (submenuMotivacion.style.display === 'block') {
-      submenuMotivacion.style.display = 'none';
-    } else {
-      submenuMotivacion.style.display = 'block';
-      submenuMotivacion.querySelector('button').focus();
+    // Corazones flotantes
+    const corazonesContainer = document.getElementById("corazones");
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      corazonesContainer.appendChild(corazon);
+      setTimeout(() => corazon.remove(), 10000);
     }
-  });
+    setInterval(crearCorazon, 500);
 
-  // Cerrar submenu al hacer click fuera
-  document.addEventListener('click', (e) => {
-    if (!btnMotivacion.contains(e.target) && !submenuMotivacion.contains(e.target)) {
-      submenuMotivacion.style.display = 'none';
-      btnMotivacion.setAttribute('aria-expanded', false);
-    }
-  });
+    // Carrusel de palabras románticas
+    const palabras = ["mi princesa", "mi reina", "mi bombón", "mi niña", "mi tesoro", "mi alegría"];
+    const carrusel = document.getElementById("carrusel-palabra");
+    let index = 0;
 
-  // Modal ajustes
-  const btnAjustes = document.getElementById('btnAjustes');
-  const modalAjustes = document.getElementById('modalAjustes');
-  const btnCerrar = document.getElementById('btnCerrar');
-  const btnAplicar = document.getElementById('btnAplicar');
-
-  btnAjustes.addEventListener('click', () => {
-    modalAjustes.hidden = false;
-    modalAjustes.style.display = 'block';
-  });
-
-  btnCerrar.addEventListener('click', () => {
-    modalAjustes.hidden = true;
-    modalAjustes.style.display = 'none';
-  });
-
-  btnAplicar.addEventListener('click', () => {
-    const fuente = document.getElementById('selectFuente').value;
-    const tema = document.getElementById('selectTema').value;
-    const tamano = document.getElementById('selectTamano').value;
-
-    document.body.style.fontFamily = fuente;
-    document.body.style.fontSize = tamano;
-    document.body.setAttribute('data-theme', tema);
-
-    modalAjustes.hidden = true;
-    modalAjustes.style.display = 'none';
-
-    // Guardar configuración localStorage
-    localStorage.setItem('configFuente', fuente);
-    localStorage.setItem('configTema', tema);
-    localStorage.setItem('configTamano', tamano);
-  });
-
-  // Cargar configuración guardada
-  window.addEventListener('load', () => {
-    const fuente = localStorage.getItem('configFuente');
-    const tema = localStorage.getItem('configTema');
-    const tamano = localStorage.getItem('configTamano');
-
-    if (fuente) {
-      document.body.style.fontFamily = fuente;
-      document.getElementById('selectFuente').value = fuente;
-    }
-    if (tema) {
-      document.body.setAttribute('data-theme', tema);
-      document.getElementById('selectTema').value = tema;
-    }
-    if (tamano) {
-      document.body.style.fontSize = tamano;
-      document.getElementById('selectTamano').value = tamano;
-    }
-  });
-</script>
+    setInterval(() => {
+      carrusel.style.opacity = 0;
+      setTimeout(() => {
+        index = (index + 1) % palabras.length;
+        carrusel.textContent = palabras[index];
+        carrusel.style.opacity = 1;
+      }, 500);
+    }, 10000);
+  </script>
 </body>
 </html>
