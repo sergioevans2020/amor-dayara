@@ -3,296 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Regalos para Dayara 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Bienvenida Princesa Dayara</title>
+  <link rel="stylesheet" href="estilos.css" />
   <style>
     body {
+      background: linear-gradient(135deg, #ffe6f0, #ffe0ff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #6b1e4d;
       margin: 0;
       padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(to top right, #ffe0f0, #fff0f5);
       overflow-x: hidden;
-    }
-
-    .bienvenida {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(to bottom right, #ffb6c1, #ffe4e1);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: fadeOut 3s forwards;
-      animation-delay: 4s;
-    }
-
-    .bienvenida h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3em;
-      color: #fff;
-      animation: aparecer 2s ease-in-out;
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    @keyframes aparecer {
-      0% { opacity: 0; transform: translateY(-50px);}
-      100% { opacity: 1; transform: translateY(0);}
-    }
-
-    h2.frase {
-      text-align: center;
-      font-size: 2rem;
-      color: #d63384;
-      margin-top: 100px;
-      animation: flotar 3s infinite alternate;
-    }
-
-    @keyframes flotar {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px); }
-    }
-
-    .carousel-text {
-      color: #ff1493;
-      font-weight: bold;
-      font-size: 1.5em;
-      display: inline;
     }
 
     .contenedor {
       text-align: center;
-      padding: 40px 20px;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      animation: entrada 2s ease;
+    }
+
+    .mensaje-carrusel {
+      font-size: 1.8em;
+      margin-top: 10px;
+      height: 40px;
+    }
+
+    @keyframes entrada {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .botones-principales {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
     }
 
     .boton {
-      background-color: #ff69b4;
+      background-color: #ffb3d9;
       border: none;
-      color: white;
-      padding: 15px 25px;
-      font-size: 1em;
-      margin: 10px;
-      border-radius: 10px;
+      border-radius: 30px;
+      padding: 12px 28px;
+      font-size: 1.2em;
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(255, 182, 193, 0.6);
     }
 
     .boton:hover {
-      transform: scale(1.1);
+      background-color: #ff80bf;
+      transform: scale(1.05);
     }
 
-    /* CONFIGURACIÓN AJUSTES */
-    .ajustes-panel {
+    .avatar {
+      margin-top: 30px;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .ajustes {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #fff0f5;
-      border: 2px solid #ff69b4;
-      padding: 15px;
-      border-radius: 15px;
-      z-index: 999;
-      display: none;
     }
 
-    .ajustes-panel label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-
-    .ajustes-panel select, .ajustes-panel input[type=range] {
-      width: 100%;
-    }
-
-    .ajustes-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff69b4;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.2em;
-      cursor: pointer;
-    }
-
-    /* CERTIFICADO */
-    .ventana-certificado {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .certificado {
-      background: linear-gradient(145deg, #fff0f5, #ffe4ec);
-      padding: 30px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 0 25px rgba(255, 192, 203, 0.8);
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      animation: aparecerCertificado 0.8s ease-in-out;
-    }
-
-    @keyframes aparecerCertificado {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .certificado button {
-      margin: 10px 8px;
-      padding: 10px 20px;
-      background-color: #e91e63;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      font-family: 'Arial', sans-serif;
-    }
-
-    /* Animación corazones fondo */
-    body::before {
-      content: "💖 💕 💗 💘 💓 💞";
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      animation: corazonesFlotando 20s infinite linear;
-      font-size: 50px;
-      opacity: 0.1;
-      z-index: 0;
-    }
-
-    @keyframes corazonesFlotando {
-      0%   { transform: translateY(100vh); }
-      100% { transform: translateY(-100vh); }
+    .mensaje-bienvenida {
+      font-size: 1.6em;
+      color: #a30061;
+      margin-top: 20px;
     }
   </style>
 </head>
-
 <body>
-  <!-- ANIMACIÓN BIENVENIDA -->
-  <div class="bienvenida">
-    <h1>✨ Aquí están tus regalos mi reina Dayara ✨</h1>
-    <audio autoplay>
-      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_cdd9ffb1a3.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <!-- FRASE DINÁMICA -->
-  <h2 class="frase">Tú siempre serás <span class="carousel-text">mi princesa</span></h2>
-
-  <!-- BOTONES -->
   <div class="contenedor">
-    <a href="caja_sorpresa.html"><button class="boton">🎁 Caja Sorpresa</button></a>
-    <a href="laberinto.html"><button class="boton">💘 Laberinto</button></a>
-    <a href="motivacion.html"><button class="boton">💪 Motivación</button></a>
-    <a href="lista_deseos.html"><button class="boton">🌟 Lista de Deseos</button></a>
-    <a href="libreta.html"><button class="boton">📖 Nuestra Libreta</button></a>
-    <a href="#" onclick="mostrarCertificado()"><button class="boton rosa">💌 1 Mes Juntos</button></a>
-  </div>
+    <h1>💖 Aquí están tus regalos, mi reina Dayara 💖</h1>
 
-  <!-- BOTÓN AJUSTES -->
-  <button class="ajustes-btn" onclick="toggleAjustes()">⚙️</button>
-  <div class="ajustes-panel" id="ajustesPanel">
-    <label>Fuente</label>
-    <select id="fuenteSelect">
-      <option value="Montserrat">Montserrat</option>
-      <option value="Arial">Arial</option>
-      <option value="Courier New">Courier New</option>
-      <option value="Great Vibes">Great Vibes</option>
-    </select>
-    <label>Tamaño</label>
-    <input type="range" id="tamanoInput" min="12" max="32" value="16">
-    <label>Tema</label>
-    <select id="temaSelect">
-      <option value="claro">Claro</option>
-      <option value="oscuro">Oscuro</option>
-      <option value="rosado">Rosado</option>
-    </select>
-    <button onclick="aplicarAjustes()">Aplicar</button>
-  </div>
+    <div class="mensaje-carrusel" id="mensajeCarrusel">
+      Tu siempre serás <span id="cambioPalabra">mi princesa</span>
+    </div>
 
-  <!-- CERTIFICADO -->
-  <div id="certificadoContenedor" class="ventana-certificado">
-    <div class="certificado">
-      <h2>🌹 Certificado de Amor 🌹</h2>
-      <p><strong>Para: Dayara, mi Reina</strong></p>
-      <p>
-        Por este primer mes lleno de amor, ternura y dulzura.<br>
-        Gracias por cada sonrisa, por cada palabra, por cada mirada cómplice.<br>
-        Que este sea solo el primer capítulo de una historia hermosa que jamás termine.
-      </p>
-      <p style="margin-top: 20px;">💖 Con todo mi amor,</p>
-      <p style="font-style: italic;">Tu persona especial 💌</p>
-      <button onclick="descargarCertificado()">📥 Descargar Certificado</button>
-      <button onclick="cerrarCertificado()">Cerrar</button>
+    <div class="avatar">
+      <img src="corazon_kawaii.png" alt="Avatar corazón" width="100" />
+    </div>
+
+    <div class="botones-principales">
+      <a href="regalo1.html"><button class="boton">🎁 Regalo 1</button></a>
+      <a href="regalo2.html"><button class="boton">🎁 Regalo 2</button></a>
+      <a href="regalo3.html"><button class="boton">🎁 Regalo 3</button></a>
+      <a href="listas_deseos.html"><button class="boton">📜 Lista de Deseos</button></a>
+      <a href="libreta.html"><button class="boton">📖 Nuestra Libreta</button></a>
+      <a href="caja_sorpresa.html"><button class="boton">🎁 Caja Sorpresa</button></a>
+      <a href="laberinto.html"><button class="boton">🧩 Laberinto</button></a>
+      <a href="motivacion_selector.html"><button class="boton">💪 Motivación</button></a>
+      <a href="ajustes.html"><button class="boton">⚙️ Ajustes</button></a>
+      <!-- ✅ Nuevo botón agregado aquí -->
+      <a href="mes_juntos.html"><button class="boton">💌 1 Mes Juntos</button></a>
     </div>
   </div>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <!-- Carrusel de palabras -->
   <script>
-    const palabras = ["mi princesa", "mi reina", "mi bombón", "mi niña"];
-    let index = 0;
-
+    const palabras = ['mi princesa', 'mi reina', 'mi bombón', 'mi niña', 'mi amor', 'mi alegría'];
+    let indice = 0;
     setInterval(() => {
-      index = (index + 1) % palabras.length;
-      document.querySelector(".carousel-text").textContent = palabras[index];
+      indice = (indice + 1) % palabras.length;
+      document.getElementById('cambioPalabra').textContent = palabras[indice];
     }, 10000);
-
-    function toggleAjustes() {
-      const panel = document.getElementById("ajustesPanel");
-      panel.style.display = panel.style.display === "block" ? "none" : "block";
-    }
-
-    function aplicarAjustes() {
-      const fuente = document.getElementById("fuenteSelect").value;
-      const tamano = document.getElementById("tamanoInput").value;
-      const tema = document.getElementById("temaSelect").value;
-      document.body.style.fontFamily = fuente;
-      document.body.style.fontSize = tamano + "px";
-
-      if (tema === "claro") {
-        document.body.style.background = "#fff";
-        document.body.style.color = "#000";
-      } else if (tema === "oscuro") {
-        document.body.style.background = "#1a1a1a";
-        document.body.style.color = "#fff";
-      } else {
-        document.body.style.background = "linear-gradient(to top right, #ffe0f0, #fff0f5)";
-        document.body.style.color = "#000";
-      }
-    }
-
-    function mostrarCertificado() {
-      document.getElementById("certificadoContenedor").style.display = "flex";
-    }
-
-    function cerrarCertificado() {
-      document.getElementById("certificadoContenedor").style.display = "none";
-    }
-
-    function descargarCertificado() {
-      html2canvas(document.querySelector(".certificado")).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "Certificado_para_Dayara.png";
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-      });
-    }
   </script>
 </body>
 </html>
