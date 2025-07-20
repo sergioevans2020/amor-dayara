@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💌 1 Mes Juntos - Dayara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom right, #ffe0f0, #fffafc);
+      color: #d63384;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background: #fff0f5;
+      border-bottom: 2px dashed #f06292;
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .timeline, .notas, .imagenes, .certificado {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255,192,203,0.3);
+    }
+
+    h2 {
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .timeline ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline li {
+      margin-bottom: 10px;
+      padding-left: 20px;
+      border-left: 3px solid #e91e63;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-size: 1em;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: vertical;
+    }
+
+    .imagenes input {
+      display: block;
+      margin: 10px 0;
+    }
+
+    #galeria img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 5px;
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>💌 ¡1 Mes Juntos, mi Reina Dayara!</h1>
+    <p>Gracias por un mes lleno de amor, risas y dulzura 💖</p>
+  </header>
+
+  <section class="timeline">
+    <h2>Nuestros Momentos</h2>
+    <ul>
+      <li>💬 Primera conversación mágica</li>
+      <li>🌟 Nuestra primera sonrisa compartida</li>
+      <li>🎵 Canciones que nos conectaron</li>
+      <li>📱 Mensajes hasta la madrugada</li>
+      <li>💖 Este primer mes juntos inolvidable</li>
+    </ul>
+  </section>
+
+  <section class="imagenes">
+    <h2>Galería de Nosotros</h2>
+    <input type="file" accept="image/*" onchange="cargarImagen(event)">
+    <div id="galeria"></div>
+  </section>
+
+  <section class="notas">
+    <h2>Recuerdos y Sentimientos</h2>
+    <textarea id="notas" placeholder="Escribe lo que sientes..."></textarea>
+    <button onclick="guardarNotas()">Guardar</button>
+  </section>
+
+  <section class="certificado">
+    <h2>🎖️ Certificado de Amor</h2>
+    <p>Un símbolo de nuestro primer mes inolvidable juntos.</p>
+    <button onclick="descargarCertificado()">Descargar</button>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    // Notas guardadas
+    const notas = document.getElementById("notas");
+    notas.value = localStorage.getItem("notas_dayara") || "";
+    function guardarNotas() {
+      localStorage.setItem("notas_dayara", notas.value);
+      alert("💌 Tus sentimientos han sido guardados.");
+    }
+
+    // Galería
+    function cargarImagen(event) {
+      const archivo = event.target.files[0];
+      if (!archivo) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        document.getElementById("galeria").appendChild(img);
+      };
+      reader.readAsDataURL(archivo);
+    }
+
+    // Certificado
+    function descargarCertificado() {
+      html2canvas(document.querySelector(".certificado")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "certificado_amor_dayara.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
